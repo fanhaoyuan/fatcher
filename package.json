@@ -1,0 +1,28 @@
+{
+    "name": "stream-fetcher",
+    "version": "0.0.0",
+    "main": "dist/index.js",
+    "esm": "dist/index.esm.js",
+    "typings": "dist/index.d.ts",
+    "repository": "https://github.com/fanhaoyuan/stream-fetcher.git",
+    "author": "Fansy <418536538@qq.com>",
+    "license": "MIT",
+    "gitHooks": {
+        "commit-msg": "cmv",
+        "pre-commit": "lint-staged"
+    },
+    "lint-staged": {
+        "*.{js,ts,md,json,yml}": [
+            "prettier --write"
+        ],
+        "*.{js,ts}": [
+            "eslint"
+        ]
+    },
+    "devDependencies": {
+        "@fansy/commit-msg-validator": "^1.0.0",
+        "@fansy/eslint-config": "^1.0.0",
+        "@fansy/prettier-config": "^1.0.0",
+        "lint-staged": "^11.2.3"
+    }
+}
