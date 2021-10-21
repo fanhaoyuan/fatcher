@@ -1,12 +1,17 @@
 {
-    "name": "stream-fetcher",
+    "name": "fatch",
     "version": "0.0.0",
     "main": "dist/index.js",
     "esm": "dist/index.esm.js",
+    "unpkg": "dist/index.umd.js",
     "typings": "dist/index.d.ts",
-    "repository": "https://github.com/fanhaoyuan/stream-fetcher.git",
+    "repository": "https://github.com/fanhaoyuan/fatch.git",
     "author": "Fansy <418536538@qq.com>",
     "license": "MIT",
+    "scripts": {
+        "dev": "vite build -w",
+        "build": "vite build --minify && tsc"
+    },
     "gitHooks": {
         "commit-msg": "cmv",
         "pre-commit": "lint-staged"
@@ -23,6 +28,8 @@
         "@fansy/commit-msg-validator": "^1.0.0",
         "@fansy/eslint-config": "^1.0.0",
         "@fansy/prettier-config": "^1.0.0",
-        "lint-staged": "^11.2.3"
+        "@types/node": "^16.11.0",
+        "lint-staged": "^11.2.3",
+        "vite": "^2.6.7"
     }
 }

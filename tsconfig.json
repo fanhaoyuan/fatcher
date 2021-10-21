@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "esnext",
+        "declaration": true,
+        "emitDeclarationOnly": true,
+        "outDir": "dist",
+        "strict": true
+    },
+    "include": ["src"],
+    "exclude": ["node_modules", "**/node_modules/*"]
+}
