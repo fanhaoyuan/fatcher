@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "main": "dist/index.js",
     "esm": "dist/index.esm.js",
-    "unpkg": "dist/index.umd.js",
+    "unpkg": "dist/fatch.min.js",
     "typings": "dist/index.d.ts",
     "repository": "https://github.com/fanhaoyuan/fatch.git",
     "author": "Fansy <418536538@qq.com>",
