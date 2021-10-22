@@ -1,0 +1,55 @@
+name: Release
+
+on:
+    push:
+        tags:
+            - 'v*'
+
+jobs:
+    tag-release:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Create GitHub Release By Push Tag
+              uses: Roang-zero1/github-create-release-action@master
+              with:
+                  version_regex: ^v[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+    npm-deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Git Checkout
+              uses: actions/checkout@v2
+              with:
+                  ref: master
+
+            - name: Use Node.js Env ${{ matrix.node-version }}
+              uses: actions/setup-node@v2
+              with:
+                  node-version: '12'
+
+            - name: Use node_modules cache
+              uses: actions/cache@v2
+              id: node_modules_cache
+              with:
+                  path: '**/node_modules/**/*'
+                  key: ${{ runner.os }}-node_modules_cache-${{ hashFiles('**/yarn.lock') }}
+                  restore-key: ${{ runner.os }}-node_modules_cache-${{ hashFiles('**/yarn.lock') }}
+
+            - name: Yarn install
+              uses: borales/actions-yarn@v2.3.0
+              if: steps.yarn-cache.outputs.cache-hit != 'true',
+              with:
+                  cmd: install # yarn install
+
+            - name: Build bundle
+              run: npm run build
+
+            - name: Set .npmrc file
+              run: echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+
+            - name: NPM publish
+              run: npm publish
+              env:
+                  NPM_TOKEN: ${{secrets.NPM_TOKEN}}
