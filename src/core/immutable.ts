@@ -1,26 +1,41 @@
 import { Immutable } from '../interfaces';
 
 /**
- * Set a plain object to readonly.
- * @param rawData
+ * Deep defineProperties.
+ * @param data a object
+ * @param descriptor
  * @returns
+ *
+ * A new object with custom descriptor.
  */
-export function immutable<T extends Record<string, any>>(rawData: T) {
-    return Object.defineProperties<Immutable<T>>(
+function defineProperties<T extends Record<string, any>, U>(
+    data: T,
+    descriptor: (item: T[keyof T]) => PropertyDescriptor
+) {
+    return Object.defineProperties<U>(
         Object.create(null),
-        Object.keys(rawData).reduce<PropertyDescriptorMap>((propertyDescriptorMap, key) => {
-            const value = rawData[key];
-
-            const propertyDescriptor: PropertyDescriptor = {
-                value: typeof value === 'object' ? immutable(value) : value,
-                writable: false,
-                enumerable: true,
-                configurable: false,
-            };
+        Object.keys(data).reduce<PropertyDescriptorMap>((propertyDescriptorMap, key) => {
+            const propertyDescriptor = descriptor.call(null, data[key]);
 
             return Object.assign({}, propertyDescriptorMap, { [key]: propertyDescriptor });
         }, {})
     );
+}
+
+/**
+ * Set a plain object to readonly.
+ * @param rawData
+ * @returns
+ */
+export function immutable<T extends Record<string, any>>(rawData: T): Immutable<T> {
+    return defineProperties<T, Immutable<T>>(rawData, item => {
+        return {
+            value: typeof item === 'object' ? immutable(item) : item,
+            writable: false,
+            enumerable: true,
+            configurable: false,
+        };
+    });
 }
 
 /**
@@ -29,19 +44,12 @@ export function immutable<T extends Record<string, any>>(rawData: T) {
  * @returns
  */
 export function toRaw<T extends Record<string, any>>(immutableData: Immutable<T>): T {
-    return Object.defineProperties<T>(
-        Object.create(null),
-        Object.keys(immutableData).reduce<PropertyDescriptorMap>((propertyDescriptorMap, key) => {
-            const value = immutableData[key];
-
-            const propertyDescriptor: PropertyDescriptor = {
-                value: typeof value === 'object' ? toRaw(value) : value,
-                writable: true,
-                enumerable: true,
-                configurable: true,
-            };
-
-            return Object.assign({}, propertyDescriptorMap, { [key]: propertyDescriptor });
-        }, {})
-    );
+    return defineProperties<Immutable<T>, T>(immutableData, item => {
+        return {
+            value: typeof item === 'object' ? toRaw(item) : item,
+            writable: true,
+            enumerable: true,
+            configurable: true,
+        };
+    });
 }
