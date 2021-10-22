@@ -10,10 +10,11 @@ import { Immutable } from '../interfaces';
  */
 function defineProperties<T extends Record<string, any>, U>(
     data: T,
-    descriptor: (item: T[keyof T]) => PropertyDescriptor
+    descriptor: (item: T[keyof T]) => PropertyDescriptor,
+    prototype: object | null = {}
 ) {
     return Object.defineProperties<U>(
-        Object.create(null),
+        Object.create(prototype),
         Object.keys(data).reduce<PropertyDescriptorMap>((propertyDescriptorMap, key) => {
             const propertyDescriptor = descriptor.call(null, data[key]);
 
@@ -28,14 +29,18 @@ function defineProperties<T extends Record<string, any>, U>(
  * @returns
  */
 export function immutable<T extends Record<string, any>>(rawData: T): Immutable<T> {
-    return defineProperties<T, Immutable<T>>(rawData, item => {
-        return {
-            value: typeof item === 'object' ? immutable(item) : item,
-            writable: false,
-            enumerable: true,
-            configurable: false,
-        };
-    });
+    return defineProperties<T, Immutable<T>>(
+        rawData,
+        item => {
+            return {
+                value: typeof item === 'object' ? immutable(item) : item,
+                writable: false,
+                enumerable: true,
+                configurable: false,
+            };
+        },
+        { __IS_IMMUTABLE__: true }
+    );
 }
 
 /**
