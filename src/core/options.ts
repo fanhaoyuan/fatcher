@@ -1,3 +1,4 @@
+import { RequestOptions } from '../interfaces';
 /**
  * Format headers to plain object.
  * @param headers
@@ -36,4 +37,27 @@ export function mergeHeaders<T extends HeadersInit>(...headers: T[]): Record<str
     }
 
     return mergedHeaders;
+}
+
+/**
+ * Merge multi-options to one.
+ *
+ * A new object of request options.
+ */
+export function mergeOptions(...options: RequestOptions[]): RequestOptions {
+    const [mergedOptions, currentOptions] = options;
+
+    if (!mergedOptions) {
+        return {};
+    }
+
+    if (!currentOptions) {
+        return mergedOptions;
+    }
+
+    if (mergedOptions.headers && currentOptions.headers) {
+        mergedOptions.headers = mergeHeaders(mergedOptions.headers, currentOptions.headers);
+    }
+
+    return mergeOptions(Object.assign({}, mergedOptions, currentOptions), ...options.slice(2));
 }
