@@ -21,3 +21,30 @@ export function isFunction(f: unknown): f is Function {
 export function isString(s: unknown): s is string {
     return typeof s === 'string';
 }
+
+/**
+ * Clone a new data from source data deeply.
+ * @param arg source data
+ * @returns
+ */
+export function cloneDeep(arg: any): any {
+    if (Array.isArray(arg)) {
+        return arg.map(item => cloneDeep(item));
+    }
+
+    if (isFunction(arg)) {
+        return arg.bind(null);
+    }
+
+    if (arg === null) {
+        return arg;
+    }
+
+    if (typeof arg === 'object') {
+        return Object.keys(arg).reduce((object, key) => {
+            return Object.assign({}, object, { [key]: cloneDeep(arg) });
+        }, {});
+    }
+
+    return arg;
+}
