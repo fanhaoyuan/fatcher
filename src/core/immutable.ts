@@ -1,4 +1,5 @@
 import { Immutable } from '../interfaces';
+import { cloneDeep } from '../utils';
 
 /**
  * Deep defineProperties.
@@ -57,4 +58,16 @@ export function toRaw<T extends Record<string, any>>(immutableData: Immutable<T>
             configurable: true,
         };
     });
+}
+
+/**
+ * Clone a new data from immutable data.
+ * @param immutableData
+ * @returns
+ * A plain object.
+ */
+export function clone<T extends Record<string, any>>(immutableData: Immutable<T>): T {
+    return Object.keys(immutableData).reduce((clonedData, key) => {
+        return Object.assign({}, clonedData, { [key]: cloneDeep([immutableData[key]]) });
+    }, Object.create({}));
 }
