@@ -131,7 +131,7 @@ export interface RequestOptions extends RequestInit {
     withCredentials?: 'auto' | boolean;
 }
 
-export interface RequestContext {
+export interface RequestContext extends Record<string, any> {
     /**
      * Request Options
      */
