@@ -52,7 +52,7 @@ export function composeMiddlewares(middlewares: Middleware[]) {
         let response: ResponseType;
         let ctx: RequestContext = context;
 
-        async function dispatch(index: number, patchContext?: RequestContext): Promise<ResponseType> {
+        async function dispatch(index: number, patchContext?: Partial<RequestContext>): Promise<ResponseType> {
             if (index <= currentIndex) {
                 return Promise.reject(
                     new Error(`Middleware <${middlewares[index - 1].name}> use next() more than once.`)
@@ -72,7 +72,7 @@ export function composeMiddlewares(middlewares: Middleware[]) {
                 ctx = patchContext;
             }
 
-            async function next(inlineContext?: RequestContext) {
+            async function next(inlineContext?: Partial<RequestContext>) {
                 return dispatch.call(null, index + 1, inlineContext);
             }
 

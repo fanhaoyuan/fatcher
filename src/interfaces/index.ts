@@ -86,5 +86,5 @@ export interface RequestContext {
 export type ResponseType = Response | ArrayBuffer | FormData | string | ReadableStream<Uint8Array>;
 
 export interface MiddlewareNext {
-    (context?: RequestContext): Promise<ResponseType> | ResponseType;
+    (context?: Partial<RequestContext>): Promise<ResponseType> | ResponseType;
 }
