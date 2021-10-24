@@ -1,4 +1,5 @@
 import { Middleware, Immutable, RequestContext, ResponseType, RequestOptions } from '../interfaces';
+import { immutable, isImmutable } from './immutable';
 import { uuid, isFunction } from '../utils';
 import { mergeContext } from './context';
 
@@ -81,7 +82,7 @@ export function composeMiddlewares(middlewares: Middleware[]) {
 
             try {
                 // use readonly context.
-                const immutablyContext = immutable(ctx);
+                const immutablyContext = isImmutable(ctx) ? ctx : immutable(ctx);
 
                 if (shouldMiddlewareApply(middleware, immutablyContext)) {
                     return (response = (await middleware.use(immutablyContext, next)) ?? response);
