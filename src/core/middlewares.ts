@@ -1,6 +1,6 @@
-import { Middleware, Immutable, RequestContext, ResponseType } from '../interfaces';
-import { immutable } from './immutable';
+import { Middleware, Immutable, RequestContext, ResponseType, RequestOptions } from '../interfaces';
 import { uuid, isFunction } from '../utils';
+import { mergeContext } from './context';
 
 /**
  * Return boolean for should middleware apply with context.
@@ -46,11 +46,14 @@ export function shouldMiddlewareApply(middleware: Middleware, context: Immutable
  * ```
  */
 export function composeMiddlewares(middlewares: Middleware[]) {
-    return async function use(context: RequestContext) {
+    return async function use(initialOptions: RequestOptions) {
         let currentIndex = -1;
 
         let response: ResponseType;
-        let ctx: RequestContext = context;
+
+        let ctx: RequestContext = {
+            options: initialOptions,
+        };
 
         async function dispatch(index: number, patchContext?: Partial<RequestContext>): Promise<ResponseType> {
             if (index <= currentIndex) {
@@ -69,7 +72,7 @@ export function composeMiddlewares(middlewares: Middleware[]) {
 
             // If middleware pass a new context, update it.
             if (patchContext) {
-                ctx = patchContext;
+                ctx = mergeContext(ctx, patchContext);
             }
 
             async function next(inlineContext?: Partial<RequestContext>) {
