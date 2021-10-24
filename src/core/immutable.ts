@@ -71,3 +71,12 @@ export function clone<T extends Record<string, any>>(immutableData: Immutable<T>
         return Object.assign({}, clonedData, { [key]: cloneDeep([immutableData[key]]) });
     }, Object.create({}));
 }
+
+/**
+ * Get a object whether it is a immutable object.
+ * @param object
+ * @returns
+ */
+export function isImmutable<T extends Record<string, any>>(object: T | Immutable<T>): object is Immutable<T> {
+    return !!object.__IS_IMMUTABLE__;
+}
