@@ -85,13 +85,13 @@ export function composeMiddlewares(middlewares: Middleware[]) {
                 }
 
                 // If middleware should not apply. Auto next.
-                return (response = (await next.call(null, ctx)) ?? response);
+                return (response = (await next.call(null)) ?? response);
             } catch (error) {
                 return Promise.reject(error);
             }
         }
 
-        return (response = await dispatch(0, context));
+        return (response = await dispatch(0));
     };
 }
 
