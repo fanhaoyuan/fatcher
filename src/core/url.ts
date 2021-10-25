@@ -3,7 +3,7 @@
  * @param object
  * @returns
  */
-export function stringify<T extends Record<string, any>>(object: T) {
+export function stringify(object: Record<string, any>) {
     return Object.keys(object)
         .reduce<string[]>((array, key) => {
             let k, v;
