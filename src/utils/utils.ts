@@ -57,6 +57,10 @@ export function isPlainObject(o: unknown): o is object {
     return typeof o === 'object' && o !== null && !Array.isArray(o);
 }
 
+export function isUndefined(u: unknown): u is undefined {
+    return typeof u === 'undefined';
+}
+
 /**
  * Clone a new data from source data deeply.
  * @param arg source data
@@ -82,4 +86,26 @@ export function cloneDeep(arg: any): any {
     }
 
     return arg;
+}
+
+/**
+ * Deep merge two object to a new object.
+ * @param object
+ * @param patch
+ * @returns
+ */
+export function merge<T extends Record<string, any>>(object: T, patch: Partial<T> = {}): T {
+    for (const key in patch) {
+        const source = object[key];
+        const target = patch[key];
+
+        if (isPlainObject(patch)) {
+            object[key] = merge(source, target);
+        }
+
+        // Exclude undefined values
+        object[key] = isUndefined(target) ? source : (target as T[Extract<keyof T, string>]);
+    }
+
+    return object;
 }
