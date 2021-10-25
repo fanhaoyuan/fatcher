@@ -22,6 +22,10 @@ export function isString(s: unknown): s is string {
     return typeof s === 'string';
 }
 
+export function isPlainObject(o: unknown): o is object {
+    return typeof o === 'object' && o !== null && !Array.isArray(o);
+}
+
 /**
  * Clone a new data from source data deeply.
  * @param arg source data
@@ -40,7 +44,7 @@ export function cloneDeep(arg: any): any {
         return arg;
     }
 
-    if (typeof arg === 'object') {
+    if (isPlainObject(arg)) {
         return Object.keys(arg).reduce((object, key) => {
             return Object.assign({}, object, { [key]: cloneDeep(arg) });
         }, {});
