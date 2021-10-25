@@ -15,6 +15,20 @@ export function pick<T extends Record<string, any>, K extends keyof T>(object: T
     );
 }
 
+/**
+ * Omit an object composed from the picked object properties.
+ * @param object
+ * @param array
+ * @returns
+ */
+export function omit<T extends Record<string, any>, K extends keyof T>(object: T, array: K[]) {
+    return pick(
+        object,
+        //@ts-expect-error
+        Object.keys(object).filter(key => !array.includes(key))
+    ) as Exclude<T, K>;
+}
+
 export function uuid(length = 6) {
     const STRING_TEMPLATE = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
     const coefficient = STRING_TEMPLATE.length;
