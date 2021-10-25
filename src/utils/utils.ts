@@ -1,3 +1,20 @@
+/**
+ * Creates an object composed of the picked object properties.
+ * @param object
+ * @param array
+ * @returns
+ */
+export function pick<T extends Record<string, any>, K extends keyof T>(object: T, array: K[]): Pick<T, K> {
+    return (
+        Object.keys(object)
+            //@ts-expect-error
+            .filter(key => array.includes(key))
+            .reduce((pre, cur) => {
+                return Object.assign({}, pre, { [cur]: object[cur] });
+            }, Object.create(null))
+    );
+}
+
 export function uuid(length = 6) {
     const STRING_TEMPLATE = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
     const coefficient = STRING_TEMPLATE.length;
