@@ -44,12 +44,8 @@ export function mergeHeaders<T extends HeadersInit>(...headers: T[]): Record<str
  *
  * A new object of request options.
  */
-export function mergeOptions(...options: RequestOptions[]): RequestOptions {
-    const [mergedOptions, currentOptions] = options;
-
-    if (!mergedOptions) {
-        return {};
-    }
+export function mergeOptions<T extends RequestOptions>(mergedOptions: T, ...options: Partial<T>[]): T {
+    const [currentOptions] = options;
 
     if (!currentOptions) {
         return mergedOptions;
@@ -59,5 +55,5 @@ export function mergeOptions(...options: RequestOptions[]): RequestOptions {
         mergedOptions.headers = mergeHeaders(mergedOptions.headers, currentOptions.headers);
     }
 
-    return mergeOptions(Object.assign({}, mergedOptions, currentOptions), ...options.slice(2));
+    return mergeOptions(Object.assign({}, mergedOptions, currentOptions), ...options.slice(1));
 }
