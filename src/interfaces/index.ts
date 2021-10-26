@@ -28,7 +28,7 @@ export interface Middleware {
     /**
      * Middleware function.
      */
-    use(context: Immutable<RequestContext>, next: MiddlewareNext): Promise<ResponseType> | ResponseType;
+    use(context: Immutable<RequestContext>, next: MiddlewareNext): Promise<Response> | Response;
 }
 
 export interface RequestOptions {
@@ -134,5 +134,5 @@ export interface PatchRequestContext extends Record<string, any> {
     options?: Partial<RequestOptions>;
 }
 export interface MiddlewareNext {
-    (context?: Partial<RequestContext>): Promise<ResponseType> | ResponseType;
+    (context?: PatchRequestContext): Promise<Response> | Response;
 }
