@@ -122,7 +122,13 @@ export interface RequestContext extends Record<string, any> {
     options: RequestOptions;
 }
 
-export type ResponseType = Response | ArrayBuffer | FormData | string | ReadableStream<Uint8Array>;
+export interface Response<T = any> {
+    status: number;
+    statusText: string;
+    data: T;
+    headers: Record<string, string>;
+    options: RequestOptions;
+}
 
 export interface MiddlewareNext {
     (context?: Partial<RequestContext>): Promise<ResponseType> | ResponseType;
