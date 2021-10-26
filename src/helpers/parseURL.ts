@@ -3,7 +3,7 @@
  * @param url
  * @returns
  */
-export function parse(url: string) {
+export function parseURL(url: string) {
     const object: Record<string, any> = {};
 
     if (!url) {
