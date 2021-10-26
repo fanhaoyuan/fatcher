@@ -130,6 +130,9 @@ export interface Response<T = any> {
     options: RequestOptions;
 }
 
+export interface PatchRequestContext extends Record<string, any> {
+    options?: Partial<RequestOptions>;
+}
 export interface MiddlewareNext {
     (context?: Partial<RequestContext>): Promise<ResponseType> | ResponseType;
 }
