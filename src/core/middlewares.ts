@@ -1,4 +1,4 @@
-import { Middleware, Immutable, RequestContext, ResponseType, RequestOptions } from '../interfaces';
+import { Middleware, Immutable, RequestContext, Response, RequestOptions, PatchRequestContext } from '../interfaces';
 import { immutable, isImmutable } from './immutable';
 import { uuid, isFunction } from '../utils';
 import { mergeContext } from './context';
@@ -50,13 +50,13 @@ export function composeMiddlewares(middlewares: Middleware[]) {
     return async function use(initialOptions: RequestOptions) {
         let currentIndex = -1;
 
-        let response: ResponseType;
+        let response: Response;
 
         let ctx: RequestContext = {
             options: initialOptions,
         };
 
-        async function dispatch(index: number, patchContext?: Partial<RequestContext>): Promise<ResponseType> {
+        async function dispatch(index: number, patchContext?: PatchRequestContext): Promise<Response> {
             if (index <= currentIndex) {
                 return Promise.reject(
                     new Error(`Middleware <${middlewares[index - 1].name}> use next() more than once.`)
@@ -76,7 +76,7 @@ export function composeMiddlewares(middlewares: Middleware[]) {
                 ctx = mergeContext(ctx, patchContext);
             }
 
-            async function next(inlineContext?: Partial<RequestContext>) {
+            async function next(inlineContext?: PatchRequestContext) {
                 return dispatch.call(null, index + 1, inlineContext);
             }
 

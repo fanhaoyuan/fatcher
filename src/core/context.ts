@@ -1,5 +1,5 @@
 import { mergeOptions } from './options';
-import { RequestContext } from '../interfaces';
+import { PatchRequestContext, RequestContext } from '../interfaces';
 import { omit } from '../utils';
 
 /**
@@ -9,7 +9,7 @@ import { omit } from '../utils';
  * @returns
  * A new context of merged.
  */
-export function mergeContext<T extends RequestContext>(context: T, targetContext: Partial<T>): T {
+export function mergeContext(context: RequestContext, targetContext: PatchRequestContext): RequestContext {
     let ctx = targetContext;
 
     if (ctx.options) {

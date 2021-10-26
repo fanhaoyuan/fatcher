@@ -4,6 +4,8 @@ import { isString } from '../utils';
 
 let defaultOptions: RequestOptions = {
     baseURL: '/',
+    url: '',
+    payload: {},
     method: 'get',
     headers: {
         'Content-Type': 'application/json',
@@ -17,9 +19,15 @@ export function getDefaultOptions(): RequestOptions {
     return defaultOptions;
 }
 
-export function setDefaultOptions<T extends keyof RequestOptions>(key: T, value: RequestOptions[T]): RequestOptions;
-export function setDefaultOptions(options: RequestOptions): RequestOptions;
-export function setDefaultOptions<T extends keyof RequestOptions>(key: T | RequestOptions, value?: RequestOptions[T]) {
+export function setDefaultOptions<T extends keyof RequestOptions>(
+    key: T,
+    value: Partial<RequestOptions>[T]
+): RequestOptions;
+export function setDefaultOptions(options: Partial<RequestOptions>): RequestOptions;
+export function setDefaultOptions<T extends keyof RequestOptions>(
+    key: T | Partial<RequestOptions>,
+    value?: Partial<RequestOptions>[T]
+): RequestOptions {
     const target = isString(key) ? { [key]: value } : key;
 
     return (defaultOptions = mergeOptions(getDefaultOptions(), target));

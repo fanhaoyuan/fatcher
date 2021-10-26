@@ -1,4 +1,4 @@
-import { Immutable } from '../interfaces';
+import { RequestOptions } from '../interfaces';
 
 /**
  * Return `Browser` or `Node` environment http fetcher.
@@ -6,6 +6,6 @@ import { Immutable } from '../interfaces';
  * @param requestOptions request options
  * @returns
  */
-export function fetcher<T extends ResponseInit>(url: string, requestOptions?: Immutable<T> | T) {
-    return globalThis.fetch(url, requestOptions);
+export function fetcher(url: string, requestOptions?: RequestOptions) {
+    return window.fetch(url, requestOptions);
 }
