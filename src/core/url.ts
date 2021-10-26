@@ -43,11 +43,6 @@ export function parse(url: string) {
 
         try {
             key = decodeURIComponent(key);
-        } catch {
-            continue;
-        }
-
-        try {
             value = decodeURIComponent(value);
         } catch {
             continue;
