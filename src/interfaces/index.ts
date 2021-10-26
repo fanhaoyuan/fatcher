@@ -31,7 +31,7 @@ export interface Middleware {
     use(context: Immutable<RequestContext>, next: MiddlewareNext): Promise<ResponseType> | ResponseType;
 }
 
-export interface RequestOptions extends RequestInit {
+export interface RequestOptions {
     /**
      * The prefix url with http request.
      *
@@ -39,19 +39,19 @@ export interface RequestOptions extends RequestInit {
      *
      * @default '/'
      */
-    baseURL?: string;
+    baseURL: string;
 
     /**
      * URL to request.
      */
-    url?: string;
+    url: string;
 
     /**
      * Middleware to register.
      *
      * @default []
      */
-    middlewares?: ((() => Middleware) | Middleware)[];
+    middlewares: ((() => Middleware) | Middleware)[];
 
     /**
      * Request Payload.
@@ -72,7 +72,7 @@ export interface RequestOptions extends RequestInit {
      *
      * @default {}
      */
-    payload?: Record<string, any>;
+    payload: Record<string, any>;
 
     /**
      * Whether auto transform request payload.
@@ -81,7 +81,7 @@ export interface RequestOptions extends RequestInit {
      *
      * @default true
      */
-    autoTransformPayload?: boolean;
+    autoTransformPayload: boolean;
 
     /**
      * Request headers.
@@ -92,14 +92,14 @@ export interface RequestOptions extends RequestInit {
      *   'Content-Type': 'application/json'
      * }
      */
-    headers?: Record<string, string>;
+    headers: Record<string, string>;
 
     /**
      * Request Method
      *
      * @default 'get'
      */
-    method?: RequestMethod;
+    method: RequestMethod;
 
     /**
      * Whether send http request with credentials.
@@ -112,7 +112,7 @@ export interface RequestOptions extends RequestInit {
      *
      * @default 'auto'
      */
-    withCredentials?: 'auto' | boolean;
+    withCredentials: 'auto' | boolean;
 }
 
 export interface RequestContext extends Record<string, any> {
