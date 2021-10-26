@@ -1,21 +1,5 @@
 /* eslint-disable no-use-before-define */
-export type RequestMethod =
-    | 'get'
-    | 'post'
-    | 'delete'
-    | 'put'
-    | 'head'
-    | 'options'
-    | 'patch'
-    | 'connect'
-    | 'GET'
-    | 'POST'
-    | 'DELETE'
-    | 'PUT'
-    | 'HEAD'
-    | 'OPTIONS'
-    | 'PATCH'
-    | 'CONNECT';
+export type RequestMethod = 'get' | 'post' | 'delete' | 'put' | 'head' | 'options' | 'patch';
 
 export type ImmutableObject<T extends Record<string, any>> = { readonly [K in keyof T]: Immutable<T[K]> } & {
     readonly __IS_IMMUTABLE__: true;
