@@ -1,5 +1,5 @@
 import { Immutable } from '../interfaces';
-import { cloneDeep } from '../utils';
+import { cloneDeep, isPlainObject } from '../utils';
 
 /**
  * Deep defineProperties.
@@ -34,7 +34,7 @@ export function immutable<T extends Record<string, any>>(rawData: T): Immutable<
         rawData,
         item => {
             return {
-                value: typeof item === 'object' ? immutable(item) : item,
+                value: isPlainObject(item) ? immutable(item) : item,
                 writable: false,
                 enumerable: true,
                 configurable: false,
@@ -52,7 +52,7 @@ export function immutable<T extends Record<string, any>>(rawData: T): Immutable<
 export function toRaw<T extends Record<string, any>>(immutableData: Immutable<T>): T {
     return defineProperties<Immutable<T>, T>(immutableData, item => {
         return {
-            value: typeof item === 'object' ? toRaw(item) : item,
+            value: isPlainObject(item) ? toRaw(item) : item,
             writable: true,
             enumerable: true,
             configurable: true,
