@@ -1,6 +1,6 @@
 import { RequestOptions } from '../interfaces';
 import { mergeOptions } from '../core';
-import { isString } from '../utils';
+import isString from 'lodash/isString';
 
 let defaultOptions: RequestOptions = {
     baseURL: '/',

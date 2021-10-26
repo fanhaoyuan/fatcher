@@ -1,5 +1,7 @@
+import cloneDeep from 'lodash/cloneDeep';
+import isPlainObject from 'lodash/isPlainObject';
 import { Immutable } from '../interfaces';
-import { cloneDeep, isPlainObject, defineProperties } from '../utils';
+import { defineProperties } from '../utils';
 
 /**
  * Set a plain object to readonly.

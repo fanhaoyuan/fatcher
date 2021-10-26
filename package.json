@@ -28,8 +28,12 @@
         "@fansy/commit-msg-validator": "^1.0.0",
         "@fansy/eslint-config": "^1.0.0",
         "@fansy/prettier-config": "^1.0.0",
+        "@types/lodash": "^4.14.176",
         "@types/node": "^16.11.0",
         "lint-staged": "^11.2.3",
         "vite": "^2.6.7"
+    },
+    "dependencies": {
+        "lodash": "^4.17.21"
     }
 }
