@@ -1,28 +1,5 @@
 import { Immutable } from '../interfaces';
-import { cloneDeep, isPlainObject } from '../utils';
-
-/**
- * Deep defineProperties.
- * @param data a object
- * @param descriptor
- * @returns
- *
- * A new object with custom descriptor.
- */
-function defineProperties<T extends Record<string, any>, U>(
-    data: T,
-    descriptor: (item: T[keyof T]) => PropertyDescriptor,
-    prototype: object | null = {}
-) {
-    return Object.defineProperties<U>(
-        Object.create(prototype),
-        Object.keys(data).reduce<PropertyDescriptorMap>((propertyDescriptorMap, key) => {
-            const propertyDescriptor = descriptor.call(null, data[key]);
-
-            return Object.assign({}, propertyDescriptorMap, { [key]: propertyDescriptor });
-        }, {})
-    );
-}
+import { cloneDeep, isPlainObject, defineProperties } from '../utils';
 
 /**
  * Set a plain object to readonly.
