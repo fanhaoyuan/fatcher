@@ -127,6 +127,13 @@ export interface RequestOptions {
      * @default null
      */
     onAbort: ((...args: any[]) => void) | null;
+
+    /**
+     * Http request body
+     *
+     * If auto transform payload, you would not use this option.
+     */
+    body: ReadableStream | FormData | string | null;
 }
 
 export interface RequestContext extends Record<string, any> {

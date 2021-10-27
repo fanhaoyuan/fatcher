@@ -1,6 +1,6 @@
 import { Response, RequestOptions } from './interfaces';
 import { composeMiddlewares, registerMiddlewares, mergeOptions } from './core';
-import { fetch, URLTransformer } from './middlewares';
+import { fetch, URLEncoder, URLTransformer } from './middlewares';
 import { globalOptions } from './globals';
 import isString from 'lodash/isString';
 
@@ -18,7 +18,7 @@ export async function fatch(
         mergedOptions = mergeOptions(globalOptions, payload ?? {});
     }
 
-    const middlewares = [...mergedOptions.middlewares, URLTransformer, fetch];
+    const middlewares = [...mergedOptions.middlewares, URLEncoder, URLTransformer, fetch];
 
     const registeredMiddlewares = registerMiddlewares(middlewares);
 

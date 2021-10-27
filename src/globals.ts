@@ -19,4 +19,5 @@ export const globalOptions: RequestOptions = {
     middlewares: [],
     signal: null,
     onAbort: null,
+    body: null,
 };
