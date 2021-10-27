@@ -16,7 +16,7 @@ export function mergeContext(context: RequestContext, targetContext: PatchReques
         context.options = mergeOptions(context.options, ctx.options);
 
         // Options merged. Omit it.
-        ctx = omit(targetContext, ['options']);
+        ctx = omit(ctx, ['options']);
     }
 
     // Plain merge for assign.
