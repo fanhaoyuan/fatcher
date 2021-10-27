@@ -92,7 +92,7 @@ export interface RequestOptions {
      *   'Content-Type': 'application/json'
      * }
      */
-    headers: Record<string, string>;
+    headers: Record<string, string | null>;
 
     /**
      * Request Method
@@ -162,3 +162,5 @@ export interface AbortError {
     isAborted: true;
     url: string;
 }
+
+export type SupportedContentType = 'application/x-www-form-urlencoded' | 'multipart/form-data' | 'application/json';

@@ -1,3 +1,3 @@
 export * from './aborter';
-export * from './URLEncoder';
+export * from './payloadTransformer';
 export * from './URLTransformer';
