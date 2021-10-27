@@ -1,5 +1,5 @@
 import { RequestOptions } from '../interfaces';
-import mergeWith from 'lodash/mergewith';
+import merge from 'lodash/merge';
 
 /**
  * Merge multi-options to one.
@@ -7,13 +7,5 @@ import mergeWith from 'lodash/mergewith';
  * A new object of request options.
  */
 export function mergeOptions<T extends RequestOptions>(mergedOptions: T, ...options: Partial<T>[]): T {
-    const [currentOptions, ...rest] = options;
-
-    if (!currentOptions) {
-        return mergedOptions;
-    }
-
-    const merged = mergeWith(mergedOptions, currentOptions);
-
-    return mergeOptions(merged, ...rest);
+    return merge({}, mergedOptions, ...options);
 }
