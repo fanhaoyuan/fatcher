@@ -14,9 +14,9 @@ export function normalizeURL(baseURL: string, url: string) {
      *
      * return url
      */
-    if (isAbsoluteURL(url)) {
+    if (baseURL === '/' || isAbsoluteURL(url)) {
         return url;
     }
 
-    return `${baseURL}/${url}`.replace(/\/\//g, '/');
+    return `${baseURL}/${url}`.replace(/\/\/(\/)?/g, '/');
 }
