@@ -13,6 +13,8 @@ let defaultOptions: RequestOptions = {
     withCredentials: 'auto',
     autoTransformPayload: true,
     middlewares: [],
+    signal: null,
+    onAbort: null,
 };
 
 export function getDefaultOptions(): RequestOptions {

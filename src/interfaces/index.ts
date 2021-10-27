@@ -4,7 +4,7 @@ export type RequestMethod = 'get' | 'post' | 'delete' | 'put' | 'head' | 'option
 export type ImmutableObject<T extends Record<string, any>> = { readonly [K in keyof T]: Immutable<T[K]> } & {
     readonly __IS_IMMUTABLE__: true;
 };
-export type Immutable<T> = T extends Record<string, any> ? ImmutableObject<T> : T;
+export type Immutable<T> = T extends Record<string, any> ? (T extends Function ? T : ImmutableObject<T>) : T;
 
 export interface Middleware {
     /**
@@ -113,6 +113,20 @@ export interface RequestOptions {
      * @default 'auto'
      */
     withCredentials: 'auto' | boolean;
+
+    /**
+     * Abort signal
+     *
+     * @default null
+     */
+    signal: AbortSignal | null;
+
+    /**
+     * Trigger this function with abort fetch
+     *
+     * @default null
+     */
+    onAbort: ((...args: any[]) => void) | null;
 }
 
 export interface RequestContext extends Record<string, any> {
@@ -135,4 +149,9 @@ export interface PatchRequestContext extends Record<string, any> {
 }
 export interface MiddlewareNext {
     (context?: PatchRequestContext): Promise<Response> | Response;
+}
+
+export interface AbortError {
+    isAborted: true;
+    url: string;
 }
