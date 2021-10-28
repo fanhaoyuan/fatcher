@@ -1,7 +1,7 @@
 import { fatch } from './fatch';
 import { RequestOptions } from './interfaces';
 export * from './globals';
-export { aborter } from './middlewares';
+export { aborter, downloadProgress } from './middlewares';
 export * from './interfaces';
 export { isAbort, chunkStreamReader } from './helpers';
 export { fatch };
