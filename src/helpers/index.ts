@@ -1,3 +1,4 @@
+export * from './chunkStreamReader';
 export * from './isAbort';
 export * from './isAbsoluteURL';
 export * from './isSameOriginURL';

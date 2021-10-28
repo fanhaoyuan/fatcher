@@ -3,7 +3,7 @@ import { RequestOptions } from './interfaces';
 export * from './globals';
 export { aborter } from './middlewares';
 export * from './interfaces';
-export { isAbort } from './helpers';
+export { isAbort, chunkStreamReader } from './helpers';
 export { fatch };
 
 export class Fatch {
