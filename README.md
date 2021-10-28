@@ -9,16 +9,17 @@ A out-of-box http request library with fetch and stream.
 -   ✨ Fetch
 -   ✨ TypeScript
 -   ✨ Stream API
+-   ✨ Cancelable
+-   ✨ Auto Transform Request Payload
+-   ✨ Auto Transform Response data
 
 ## Upcoming Features
 
--   ⏳ Timeout
--   ⏳ Download Progress
--   ⏳ Auto Transform Request Payload
--   ⏳ Cancelable
--   ⏳ Progressive response
--   ⏳ Reconnect limits
--   ⏳ Resumable
+-   🌱 Timeout
+-   🌱 Download Progress
+-   🌱 Progressive response
+-   🌱 Reconnect limits
+-   🌱 Resumable
 
 ## Install
 
@@ -29,6 +30,14 @@ A out-of-box http request library with fetch and stream.
 ```
 
 ### CDN
+
+#### jsdelivr
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/fatch/dist/fatch.min.js"></script>
+```
+
+#### unpkg
 
 ```html
 <script src="https://unpkg.com/fatch/dist/fatch.min.js"></script>
