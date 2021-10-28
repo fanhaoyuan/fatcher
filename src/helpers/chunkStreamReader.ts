@@ -17,6 +17,6 @@ export async function chunkStreamReader<T = Uint8Array>(
 
         callback(value);
 
-        read(reader);
+        await read(reader);
     })(readableStream.getReader());
 }
