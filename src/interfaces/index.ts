@@ -168,8 +168,8 @@ export interface Response<T = any> {
 export interface PatchRequestContext extends Record<string, any> {
     options?: Partial<RequestOptions>;
 }
-export interface MiddlewareNext {
-    (context?: PatchRequestContext): Promise<Response> | Response;
+export interface MiddlewareNext<T = ReadableStream<Uint8Array>> {
+    (context?: PatchRequestContext): Promise<Response<T>> | Response<T>;
 }
 
 export interface AbortError {
