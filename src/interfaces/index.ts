@@ -134,6 +134,13 @@ export interface RequestOptions {
      * If auto transform payload, you would not use this option.
      */
     body: ReadableStream | FormData | string | null;
+
+    /**
+     * A expect type to transform before response.
+     *
+     * @default 'json''
+     */
+    responseType: ResponseType;
 }
 
 export interface RequestContext extends Record<string, any> {
@@ -164,3 +171,5 @@ export interface AbortError {
 }
 
 export type SupportedContentType = 'application/x-www-form-urlencoded' | 'multipart/form-data' | 'application/json';
+
+export type ResponseType = 'blob' | 'arrayBuffer' | 'json' | 'text';

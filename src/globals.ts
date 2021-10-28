@@ -20,4 +20,5 @@ export const globalOptions: RequestOptions = {
     signal: null,
     onAbort: null,
     body: null,
+    responseType: 'json',
 };
