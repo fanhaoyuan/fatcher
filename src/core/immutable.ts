@@ -1,5 +1,5 @@
-import { Immutable } from '../interfaces';
-import { defineProperties, isPlainObject, cloneDeep } from '../utils';
+import { Flatten, Immutable, Writable } from '../interfaces';
+import { defineProperties, isPlainObject } from '../utils';
 
 /**
  * Set a plain object to readonly.
@@ -7,7 +7,7 @@ import { defineProperties, isPlainObject, cloneDeep } from '../utils';
  * @returns
  */
 export function immutable<T extends Record<string, any>>(rawData: T): Immutable<T> {
-    return defineProperties<T, Immutable<T>>(
+    return defineProperties(
         rawData,
         item => {
             return {
@@ -26,27 +26,15 @@ export function immutable<T extends Record<string, any>>(rawData: T): Immutable<
  * @param immutableData
  * @returns
  */
-export function toRaw<T extends Record<string, any>>(immutableData: Immutable<T>): T {
-    return defineProperties<Immutable<T>, T>(immutableData, item => {
+export function clone<T extends Record<string, any>>(immutableData: Immutable<T>): Flatten<Writable<T>> {
+    return defineProperties(immutableData, item => {
         return {
-            value: isPlainObject(item) ? toRaw(item) : item,
+            value: isPlainObject(item) ? clone(item) : item,
             writable: true,
             enumerable: true,
             configurable: true,
         };
     });
-}
-
-/**
- * Clone a new data from immutable data.
- * @param immutableData
- * @returns
- * A plain object.
- */
-export function clone<T extends Record<string, any>>(immutableData: Immutable<T>): T {
-    return Object.keys(immutableData).reduce((clonedData, key) => {
-        return Object.assign({}, clonedData, { [key]: cloneDeep([immutableData[key]]) });
-    }, Object.create({}));
 }
 
 /**

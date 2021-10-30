@@ -1,10 +1,41 @@
 /* eslint-disable no-use-before-define */
 export type RequestMethod = 'get' | 'post' | 'delete' | 'put' | 'head' | 'options' | 'patch';
 
-export type ImmutableObject<T extends Record<string, any>> = { readonly [K in keyof T]: Immutable<T[K]> } & {
-    readonly __IS_IMMUTABLE__: true;
-};
-export type Immutable<T> = T extends Record<string, any> ? (T extends Function ? T : ImmutableObject<T>) : T;
+export type PrimitiveType = number | string | boolean;
+
+/**
+ * Deeply Immutable Object.
+ */
+export type ImmutableRecord<T> = { readonly [K in keyof T]: Immutable<T[K]> };
+
+/**
+ * Immutable type for any
+ */
+export type Immutable<T> = T extends PrimitiveType
+    ? T
+    : T extends (...args: any[]) => void
+    ? T
+    : T extends object
+    ? ImmutableRecord<T>
+    : T;
+
+/**
+ * Deeply Writable Object.
+ */
+export type WritableRecord<T> = { -readonly [K in keyof T]: Writable<T[K]> };
+
+/**
+ * Writable type for any.
+ */
+export type Writable<T> = T extends PrimitiveType
+    ? T
+    : T extends (...args: any[]) => void
+    ? T
+    : T extends object
+    ? WritableRecord<T>
+    : T;
+
+export type Flatten<T> = T extends WritableRecord<infer R> ? (R extends ImmutableRecord<infer V> ? V : T) : T;
 
 export interface Middleware {
     /**
