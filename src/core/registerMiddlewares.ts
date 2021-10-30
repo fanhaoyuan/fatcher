@@ -16,7 +16,9 @@ export function registerMiddlewares(middlewares: ((() => Middleware) | Middlewar
             return effectMiddlewares;
         }
 
-        middleware.name ??= `fatch-middleware-${uuid(12)}`;
+        if (!middleware.name) {
+            middleware.name = `fatch-middleware-${uuid(12)}`;
+        }
 
         return effectMiddlewares.concat([middleware]);
     }, []);
