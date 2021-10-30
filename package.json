@@ -1,8 +1,8 @@
 {
     "name": "fatch",
-    "version": "0.0.0",
-    "main": "dist/index.js",
-    "esm": "dist/index.esm.js",
+    "version": "0.1.0",
+    "main": "dist/index.cjs.js",
+    "esm": "dist/index.es.js",
     "unpkg": "dist/fatch.min.js",
     "browser": "dist/fatch.min.js",
     "typings": "dist/index.d.ts",
