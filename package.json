@@ -8,8 +8,23 @@
     "typings": "dist/index.d.ts",
     "repository": "https://github.com/fanhaoyuan/fatch.git",
     "author": "Fansy <418536538@qq.com>",
+    "description": "A out-of-box http request library with fetch for modern browsers.",
+    "keywords": [
+        "http",
+        "fetch",
+        "stream",
+        "http request",
+        "request"
+    ],
+    "files": [
+        "dist",
+        "README.CN.md",
+        "README.md",
+        "CHANGELOG.md"
+    ],
     "license": "MIT",
     "scripts": {
+        "sandbox": "ts-node sandbox/server.ts",
         "dev": "ts-node build/dev.ts",
         "build": "ts-node build/build.ts && tsc"
     },
