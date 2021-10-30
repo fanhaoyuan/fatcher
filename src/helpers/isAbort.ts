@@ -1,4 +1,4 @@
-import isPlainObject from 'lodash/isPlainObject';
+import { isPlainObject } from '../utils';
 
 /**
  * Confirm a error whether cause by stopping fetch.

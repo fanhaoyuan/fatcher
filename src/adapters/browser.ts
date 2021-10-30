@@ -1,6 +1,6 @@
-import pick from 'lodash/pick';
 import { isSameOriginURL } from '../helpers';
 import { RequestOptions } from '../interfaces';
+import { pick } from '../utils';
 
 /**
  * Get credential from request options

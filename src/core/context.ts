@@ -1,6 +1,6 @@
 import { mergeOptions } from './options';
 import { PatchRequestContext, RequestContext } from '../interfaces';
-import omit from 'lodash/omit';
+import { omit } from '../utils';
 
 /**
  * Merge multi-request context into a context

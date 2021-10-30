@@ -1,5 +1,5 @@
-import pick from 'lodash/pick';
 import { Middleware } from '../interfaces';
+import { pick } from '../utils';
 
 /**
  * Format unread response stream to expect type

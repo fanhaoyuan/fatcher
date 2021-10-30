@@ -1,5 +1,5 @@
 import { Middleware, Immutable, RequestContext } from '../interfaces';
-import isFunction from 'lodash/isFunction';
+import { isFunction } from '../utils';
 
 /**
  * Return boolean for should middleware apply with context.

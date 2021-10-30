@@ -34,7 +34,5 @@
         "lint-staged": "^11.2.3",
         "vite": "^2.6.7"
     },
-    "dependencies": {
-        "lodash": "^4.17.21"
-    }
+    "dependencies": {}
 }

@@ -1,5 +1,5 @@
 import { RequestOptions } from '../interfaces';
-import merge from 'lodash/merge';
+import { merge } from '../utils';
 
 /**
  * Merge multi-options to one.

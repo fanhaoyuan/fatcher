@@ -1,6 +1,5 @@
 import { Middleware } from '../interfaces';
-import { uuid } from '../utils';
-import isFunction from 'lodash/isFunction';
+import { uuid, isFunction } from '../utils';
 
 /**
  * Register Middlewares of fetch.
