@@ -1,13 +1,14 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
         "target": "esnext",
         "declaration": true,
         "emitDeclarationOnly": true,
         "outDir": "dist",
         "esModuleInterop": true,
-        "strict": true
+        "strict": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true
     },
-    "include": ["src"],
+    "include": ["src/**/*"],
     "exclude": ["node_modules", "**/node_modules/*"]
 }
