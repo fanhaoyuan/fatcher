@@ -50,12 +50,12 @@ export function uuid(length = 6) {
  *
  * A new object with custom descriptor.
  */
-export function defineProperties<T extends Record<string, any>, U>(
+export function defineProperties<T extends Record<string, any>>(
     data: T,
     descriptor: (item: T[keyof T]) => PropertyDescriptor,
     prototype: object | null = {}
 ) {
-    return Object.defineProperties<U>(
+    return Object.defineProperties(
         Object.create(prototype),
         Object.keys(data).reduce<PropertyDescriptorMap>((propertyDescriptorMap, key) => {
             const propertyDescriptor = descriptor.call(null, data[key]);
@@ -143,7 +143,7 @@ export function cloneDeep<T>(value: T): T {
         clonedData = Object.create({});
 
         for (const key of Object.keys(value)) {
-            //@ts-expect-error
+            //@ts-ignore
             clonedData[key] = cloneDeep(value[key]);
         }
 

@@ -1,4 +1,3 @@
-import { RequestOptions } from '../interfaces';
 import { merge } from '../utils';
 
 /**
@@ -6,6 +5,6 @@ import { merge } from '../utils';
  *
  * A new object of request options.
  */
-export function mergeOptions<T extends RequestOptions>(mergedOptions: T, ...options: Partial<T>[]): T {
+export function mergeOptions<T>(mergedOptions: T, ...options: Partial<T>[]): T {
     return merge({}, mergedOptions, ...options);
 }
