@@ -13,7 +13,7 @@ import { parseURL, stringifyURL } from '../helpers';
  */
 export function URLTransformer(): Middleware {
     return {
-        name: 'fatch-middleware-url-transformer',
+        name: 'fatcher-middleware-url-transformer',
         apply({ options }) {
             return options.autoTransformPayload && options.method === 'get' && !!Object.keys(options.payload).length;
         },

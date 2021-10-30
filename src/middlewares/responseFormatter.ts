@@ -8,7 +8,7 @@ import { pick } from '../utils';
  */
 export function responseFormatter(): Middleware {
     return {
-        name: 'fatch-middleware-response-formatter',
+        name: 'fatcher-middleware-response-formatter',
         async use(context, next) {
             const response = await next();
 

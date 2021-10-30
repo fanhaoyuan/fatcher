@@ -1,12 +1,12 @@
 {
-    "name": "fatch",
+    "name": "fatcher",
     "version": "0.1.0",
     "main": "dist/index.cjs.js",
     "esm": "dist/index.es.js",
-    "unpkg": "dist/fatch.min.js",
-    "browser": "dist/fatch.min.js",
+    "unpkg": "dist/fatcher.min.js",
+    "browser": "dist/fatcher.min.js",
     "typings": "dist/index.d.ts",
-    "repository": "https://github.com/fanhaoyuan/fatch.git",
+    "repository": "https://github.com/fanhaoyuan/fatcher.git",
     "author": "Fansy <418536538@qq.com>",
     "description": "A out-of-box http request library with fetch for modern browsers.",
     "keywords": [

@@ -1,14 +1,14 @@
 import { Middleware, AbortError } from '../interfaces';
 
 /**
- * A Fatch middleware for abort fetch
+ * A Fatcher middleware for abort fetch
  *
  * Inline onAbort callback will `replace` globals onAbort callback
  *
  * @param onAbort Inline onAbort callback
  * @returns
  *
- * - A Fatch `middleware` to register.
+ * - A Fatcher `middleware` to register.
  *
  * - A Function to `abort` current fetch.
  */
@@ -25,7 +25,7 @@ export function aborter(onAbort: ((...args: any[]) => void) | null = null) {
     let _onAbort = onAbort;
 
     const middleware: Middleware = {
-        name: 'fatch-middleware-aborter',
+        name: 'fatcher-middleware-aborter',
         async use(context, next) {
             try {
                 /**

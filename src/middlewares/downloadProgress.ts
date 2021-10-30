@@ -10,7 +10,7 @@ import { chunkStreamReader } from '../helpers';
  */
 export function downloadProgress(onDownloadProgress?: DownloadProgressEvent): Middleware {
     return {
-        name: 'fatch-middleware-download-progress',
+        name: 'fatcher-middleware-download-progress',
         apply(context) {
             if (!onDownloadProgress && !context.options.onDownloadProgress) {
                 return false;

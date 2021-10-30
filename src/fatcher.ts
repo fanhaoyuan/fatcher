@@ -4,9 +4,9 @@ import { fetch, payloadTransformer, URLTransformer, responseFormatter } from './
 import { globalOptions } from './globals';
 import { isString } from './utils';
 
-export async function fatch(payload: string, options?: Partial<RequestOptions>): Promise<Response>;
-export async function fatch(payload?: Partial<RequestOptions> & { url: string }): Promise<Response>;
-export async function fatch(
+export async function fatcher(payload: string, options?: Partial<RequestOptions>): Promise<Response>;
+export async function fatcher(payload?: Partial<RequestOptions> & { url: string }): Promise<Response>;
+export async function fatcher(
     payload?: (Partial<RequestOptions> & { url: string }) | string,
     inlineOptions?: Partial<RequestOptions>
 ) {

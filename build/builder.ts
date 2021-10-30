@@ -51,11 +51,11 @@ export async function builder(serve = false) {
             options.plugins?.push(terser());
         }
 
-        const file = path.resolve(__dirname, '../dist/fatch.min.js');
+        const file = path.resolve(__dirname, '../dist/fatcher.min.js');
 
         const bundle = await rollup(merge({}, options));
 
-        await bundle.write({ file, format: 'umd', name: 'Fatch' });
+        await bundle.write({ file, format: 'umd', name: 'Fatcher' });
 
         sizeLog(file);
     })();

@@ -17,7 +17,7 @@ export function registerMiddlewares(middlewares: ((() => Middleware) | Middlewar
         }
 
         if (!middleware.name) {
-            middleware.name = `fatch-middleware-${uuid(12)}`;
+            middleware.name = `fatcher-middleware-${uuid(12)}`;
         }
 
         return effectMiddlewares.concat([middleware]);

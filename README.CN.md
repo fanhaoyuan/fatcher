@@ -1,4 +1,4 @@
-# Fatch
+# Fatcher
 
 一个开箱即用的现代浏览器 `http` 请求库。
 
@@ -28,7 +28,7 @@
 ### NPM
 
 ```bash
->$ npm install fatch
+>$ npm install fatcher
 ```
 
 ### CDN
@@ -36,21 +36,21 @@
 #### jsdelivr
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/fatch/dist/fatch.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fatcher/dist/fatcher.min.js"></script>
 ```
 
 #### unpkg
 
 ```html
-<script src="https://unpkg.com/fatch/dist/fatch.min.js"></script>
+<script src="https://unpkg.com/fatcher/dist/fatcher.min.js"></script>
 ```
 
 ## 用法
 
 ```ts
-import { fatch } from 'fatch';
+import { fatcher } from 'fatcher';
 
-fatch(
+fatcher(
     '/api/my/request/url', //请求路径
     {
         //配置项
@@ -108,11 +108,11 @@ next({
 
 会以下列顺序执行中间件:
 
--   fatch-middleware-response-formatter
+-   fatcher-middleware-response-formatter
 -   Custom Middlewares
--   fatch-middleware-payload-transformer
--   fatch-middleware-url-transformer
--   fatch-middleware-fetcher
+-   fatcher-middleware-payload-transformer
+-   fatcher-middleware-url-transformer
+-   fatcher-middleware-fetcher
 
 ## Typescript
 

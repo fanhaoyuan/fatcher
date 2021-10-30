@@ -20,7 +20,7 @@ const supportedContentTypes: SupportedContentType[] = [
  */
 export function payloadTransformer(): Middleware {
     return {
-        name: 'fatch-middleware-payload-transformer',
+        name: 'fatcher-middleware-payload-transformer',
         apply({ options }) {
             if (!options.autoTransformPayload) {
                 return false;

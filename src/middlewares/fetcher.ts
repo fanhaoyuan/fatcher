@@ -5,7 +5,7 @@ import { Middleware } from '../interfaces';
 
 export function fetch(): Middleware {
     return {
-        name: 'fatch-middleware-fetch',
+        name: 'fatcher-middleware-fetch',
         async use(context) {
             const url = normalizeURL(context.options.baseURL, context.options.url);
 

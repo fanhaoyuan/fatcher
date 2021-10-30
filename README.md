@@ -1,4 +1,4 @@
-# Fatch
+# Fatcher
 
 A out-of-box http request library with fetch for modern browsers.
 
@@ -28,7 +28,7 @@ English | [中文](./README.CN.md)
 ### NPM
 
 ```bash
->$ npm install fatch
+>$ npm install fatcher
 ```
 
 ### CDN
@@ -36,21 +36,21 @@ English | [中文](./README.CN.md)
 #### jsdelivr
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/fatch/dist/fatch.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fatcher/dist/fatcher.min.js"></script>
 ```
 
 #### unpkg
 
 ```html
-<script src="https://unpkg.com/fatch/dist/fatch.min.js"></script>
+<script src="https://unpkg.com/fatcher/dist/fatcher.min.js"></script>
 ```
 
 ## usage
 
 ```ts
-import { fatch } from 'fatch';
+import { fatcher } from 'fatcher';
 
-fatch(
+fatcher(
     '/api/my/request/url', //request url
     {
         //options
@@ -106,13 +106,13 @@ It will merge into a new context.
 
 ### Order
 
-`Fatch` will use the following order to use middlewares.
+`Fatcher` will use the following order to use middlewares.
 
--   fatch-middleware-response-formatter
+-   fatcher-middleware-response-formatter
 -   Custom Middlewares
--   fatch-middleware-payload-transformer
--   fatch-middleware-url-transformer
--   fatch-middleware-fetcher
+-   fatcher-middleware-payload-transformer
+-   fatcher-middleware-url-transformer
+-   fatcher-middleware-fetcher
 
 ## Typescript
 
