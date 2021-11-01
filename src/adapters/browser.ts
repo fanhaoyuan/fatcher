@@ -50,7 +50,7 @@ function getHeaders(headers: Record<string, any>): Headers {
  * @returns
  */
 export function fetcher(url: string, requestOptions: RequestOptions) {
-    const requestInit: RequestInit = pick(requestOptions, ['body', 'method']);
+    const requestInit: RequestInit = pick(requestOptions, ['body', 'method', 'signal']);
 
     requestInit.credentials = getCredentials(requestOptions.withCredentials, requestOptions.url);
 
