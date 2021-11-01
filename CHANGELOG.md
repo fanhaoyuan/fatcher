@@ -1,3 +1,9 @@
+## v0.1.1
+
+### bugs
+
+-   🐞 Fix can not abort fetch when request pending.
+
 ## v0.1.0
 
 ### features

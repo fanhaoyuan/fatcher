@@ -1,6 +1,6 @@
 {
     "name": "fatcher",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "main": "dist/index.cjs.js",
     "esm": "dist/index.es.js",
     "unpkg": "dist/fatcher.min.js",
