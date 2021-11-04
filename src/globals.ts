@@ -22,4 +22,5 @@ export const globalOptions: RequestOptions = {
     body: null,
     onDownloadProgress: null,
     responseType: 'json',
+    timeout: 0,
 };

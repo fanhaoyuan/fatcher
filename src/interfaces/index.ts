@@ -179,6 +179,17 @@ export interface RequestOptions {
      * @default 'json''
      */
     responseType: ResponseType;
+
+    /**
+     * Request timeout
+     *
+     * If response out of timeout, will abort this request.
+     *
+     * If timeout is `0`, request will not auto abort.
+     *
+     * @default 0
+     */
+    timeout: number;
 }
 
 export interface RequestContext extends Record<string, any> {
