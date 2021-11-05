@@ -10,6 +10,8 @@ import * as fs from 'fs';
 import gzipSize from 'gzip-size';
 import esbuild from 'rollup-plugin-esbuild';
 
+import { getBabelOutputPlugin } from '@rollup/plugin-babel';
+
 function formatSize(size: number) {
     return `${(size / 1024).toFixed(2)} KiB`;
 }
@@ -35,7 +37,13 @@ export async function builder(serve = false) {
 
     rimraf.sync(path.resolve(__dirname, '../dist/'));
 
-    const plugins = [resolver(), commonjs(), esbuild()];
+    const plugins = [
+        resolver(),
+        commonjs(),
+        esbuild({
+            target: 'esnext',
+        }),
+    ];
 
     const baseOptions: RollupOptions = {
         input: path.resolve(__dirname, '../src/index.ts'),
@@ -47,15 +55,32 @@ export async function builder(serve = false) {
 
         delete options.external;
 
-        if (!serve) {
-            options.plugins?.push(terser());
-        }
-
         const file = path.resolve(__dirname, '../dist/fatcher.min.js');
 
         const bundle = await rollup(merge({}, options));
 
-        await bundle.write({ file, format: 'umd', name: 'Fatcher' });
+        await bundle.write({
+            file,
+            format: 'umd',
+            name: 'Fatcher',
+            plugins: [
+                getBabelOutputPlugin({
+                    presets: [
+                        [
+                            '@babel/preset-env',
+                            {
+                                modules: 'umd',
+                                targets: {
+                                    esmodules: true,
+                                },
+                            },
+                        ],
+                    ],
+                    allowAllFormats: true,
+                }),
+                serve ? false : terser(),
+            ],
+        });
 
         sizeLog(file);
     })();
@@ -65,7 +90,24 @@ export async function builder(serve = false) {
 
         const file = path.resolve(__dirname, '../dist/index.es.js');
 
-        await bundle.write({ file, format: 'esm' });
+        await bundle.write({
+            file,
+            format: 'esm',
+            plugins: [
+                getBabelOutputPlugin({
+                    presets: [
+                        [
+                            '@babel/preset-env',
+                            {
+                                targets: {
+                                    esmodules: true,
+                                },
+                            },
+                        ],
+                    ],
+                }),
+            ],
+        });
 
         sizeLog(file);
     })();
@@ -75,7 +117,24 @@ export async function builder(serve = false) {
 
         const file = path.resolve(__dirname, '../dist/index.cjs.js');
 
-        await bundle.write({ file, format: 'cjs' });
+        await bundle.write({
+            file,
+            format: 'cjs',
+            plugins: [
+                getBabelOutputPlugin({
+                    presets: [
+                        [
+                            '@babel/preset-env',
+                            {
+                                targets: {
+                                    esmodules: true,
+                                },
+                            },
+                        ],
+                    ],
+                }),
+            ],
+        });
 
         sizeLog(file);
     })();
