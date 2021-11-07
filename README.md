@@ -13,6 +13,12 @@ A out-of-box http request library with fetch for modern browsers.
 
 English | [中文](./README.CN.md)
 
+## Browsers
+
+|  Chrome   |  Firefox  |  Edge   |  Safari  |    IE    |
+| :-------: | :-------: | :-----: | :------: | :------: |
+| ✅ latest | ✅ latest | ✅ >=14 | ✅ >=6.1 | ✅ >= 10 |
+
 ## Features
 
 -   ✨ Custom Middlewares
