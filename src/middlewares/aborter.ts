@@ -1,4 +1,5 @@
-import { Middleware, AbortError } from '../interfaces';
+import { Middleware } from '../interfaces';
+import { AbortError } from '../helpers';
 
 /**
  * A Fatcher middleware for abort fetch
@@ -55,12 +56,7 @@ export function aborter(onAbort: ((...args: any[]) => void) | null = null) {
                  * throw a AbortError
                  */
                 if (abortController.signal.aborted) {
-                    const abortError: AbortError = {
-                        isAborted: true,
-                        url: context.options.url,
-                    };
-
-                    return Promise.reject(new Error(JSON.stringify(abortError)));
+                    return Promise.reject(new AbortError(context.options));
                 }
 
                 /**

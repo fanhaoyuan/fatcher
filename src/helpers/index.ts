@@ -1,3 +1,4 @@
+export * from './AbortError';
 export * from './chunkStreamReader';
 export * from './isAbort';
 export * from './isAbsoluteURL';

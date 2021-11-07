@@ -1,19 +1,13 @@
-import { isPlainObject } from '../utils';
+import { AbortError } from './AbortError';
 
 /**
  * Confirm a error whether cause by stopping fetch.
  * @param error
  * @returns
  */
-export function isAbort(error: Error) {
+export function isAbort(error: AbortError) {
     try {
-        const body = JSON.parse(error.message);
-
-        if (isPlainObject(body) && body.isAborted) {
-            return true;
-        }
-
-        return false;
+        return error instanceof AbortError && error.name === 'AbortError' && error.isAborted;
     } catch {
         return false;
     }
