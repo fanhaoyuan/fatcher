@@ -1,3 +1,14 @@
+## v0.2.0
+
+### features
+
+-   🚀 Add Timeout aborter.
+-   🚀 Throw AbortError during aborting fetch.
+
+### build
+
+-   🔧 Add compatibility with esModule
+
 ## v0.1.1
 
 ### bugs
