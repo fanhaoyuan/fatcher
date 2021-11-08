@@ -27,7 +27,7 @@ jobs:
               with:
                   path: '**/node_modules/**/*'
                   key: ${{ runner.os }}-node_modules_cache-${{ hashFiles('**/yarn.lock') }}
-                  restore-key: ${{ runner.os }}-node_modules_cache-${{ hashFiles('**/yarn.lock') }}
+                  restore-keys: ${{ runner.os }}-node_modules_cache-${{ hashFiles('**/yarn.lock') }}
 
             - name: Yarn install
               uses: borales/actions-yarn@v2.3.0
@@ -50,7 +50,7 @@ jobs:
               with:
                   path: '**/node_modules/**/*'
                   key: ${{ runner.os }}-node_modules_cache-${{ hashFiles('**/yarn.lock') }}
-                  restore-key: ${{ runner.os }}-node_modules_cache-${{ hashFiles('**/yarn.lock') }}
+                  restore-keys: ${{ runner.os }}-node_modules_cache-${{ hashFiles('**/yarn.lock') }}
 
             - name: Yarn install
               uses: borales/actions-yarn@v2.3.0
@@ -73,7 +73,7 @@ jobs:
               with:
                   path: '**/node_modules/**/*'
                   key: ${{ runner.os }}-node_modules_cache-${{ hashFiles('**/yarn.lock') }}
-                  restore-key: ${{ runner.os }}-node_modules_cache-${{ hashFiles('**/yarn.lock') }}
+                  restore-keys: ${{ runner.os }}-node_modules_cache-${{ hashFiles('**/yarn.lock') }}
 
             - name: Yarn install
               uses: borales/actions-yarn@v2.3.0
