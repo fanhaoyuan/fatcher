@@ -28,10 +28,10 @@ English | [中文](./README.CN.md)
 -   ✨ Auto Transform Response data
 -   ✨ Download Progress
 -   ✨ Immutable Context
+-   ✨ Timeout
 
 ## Upcoming Features
 
--   🌱 Timeout
 -   🌱 Reconnect limits
 -   🌱 Resumable
 -   🌱 Easy Mock

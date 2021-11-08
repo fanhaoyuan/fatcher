@@ -27,6 +27,12 @@ export function aborter(onAbort: ((...args: any[]) => void) | null = null) {
 
     const middleware: Middleware = {
         name: 'fatcher-middleware-aborter',
+        apply(context) {
+            if ((onAbort || context.options.onAbort) && context.options.timeout > 0) {
+                return true;
+            }
+            return false;
+        },
         async use(context, next) {
             try {
                 /**
@@ -36,11 +42,21 @@ export function aborter(onAbort: ((...args: any[]) => void) | null = null) {
                     _onAbort = context.options.onAbort;
                 }
 
-                const response = await next({
-                    options: {
-                        signal: abortController.signal,
-                    },
-                });
+                const response = await Promise.race([
+                    next({
+                        options: {
+                            signal: abortController.signal,
+                        },
+                    }),
+                    (async function timer(): Promise<never> {
+                        return new Promise((_, reject) => {
+                            setTimeout(() => {
+                                abortController.abort();
+                                reject(new Error());
+                            }, context.options.timeout);
+                        });
+                    })(),
+                ]);
 
                 isResponse = true;
 
