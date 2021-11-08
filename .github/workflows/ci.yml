@@ -19,7 +19,7 @@ jobs:
                       node_version: 16
                     - os: windows-latest
                       node_version: 16
-        fail-fast: false
+            fail-fast: false
 
         name: 'Building in: node-${{ matrix.node_version }}, ${{ matrix.os }}'
         steps:
