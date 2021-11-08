@@ -14,11 +14,6 @@ jobs:
             matrix:
                 os: [ubuntu-latest]
                 node_version: [12, 14, 16]
-                include:
-                    - os: macos-latest
-                      node_version: 16
-                    - os: windows-latest
-                      node_version: 16
             fail-fast: false
 
         name: 'Building in: node-${{ matrix.node_version }}, ${{ matrix.os }}'
@@ -36,7 +31,7 @@ jobs:
               run: npm run build
 
     eslint:
-        runs-on: ${{ matrix.os }}
+        runs-on: ubuntu-latest
         steps:
             - name: Checkout
               uses: actions/checkout@v2
@@ -51,7 +46,7 @@ jobs:
               run: eslint ./src
 
     typings:
-        runs-on: ${{ matrix.os }}
+        runs-on: ubuntu-latest
         steps:
             - name: Checkout
               uses: actions/checkout@v2
