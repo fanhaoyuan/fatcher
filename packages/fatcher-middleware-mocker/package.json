@@ -1,0 +1,13 @@
+{
+    "name": "fatcher-middleware-mocker",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "dependencies": {
+        "fatcher": "^0.2.0",
+        "mockjs": "^1.1.0"
+    },
+    "devDependencies": {
+        "@types/mockjs": "^1.0.4"
+    }
+}
