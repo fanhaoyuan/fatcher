@@ -1,11 +1,11 @@
 import { fatcher } from './fatcher';
 import { RequestOptions } from './interfaces';
-import { mergeOptions } from './core';
+import { mergeOptions, clone } from './core';
 export * from './globals';
 export { aborter, downloadProgress } from './middlewares';
 export * from './interfaces';
 export { isAbort, chunkStreamReader } from './helpers';
-export { fatcher };
+export { fatcher, clone };
 export class Fatcher {
     constructor() {
         throw new Error('Fatcher can not be initialized.');
