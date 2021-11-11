@@ -4,12 +4,25 @@ export interface MockerOptions {
      *
      * @default 0
      */
-    delay?: number;
+    delay?: number | number[];
 
     /**
-     * Whether use mock middleware
+     * Mock Data Type
+     *
+     * - `false` do not use mocker
+     * - `string` data placeholder template
+     * - `object` data template
      *
      * @default false
      */
-    mock?: boolean;
+    mock?: false | string | Record<string, any>;
+
+    /**
+     * The probability of response error
+     *
+     * The number in range of 0 and 1
+     *
+     * @default 0
+     */
+    errorProbability?: number;
 }
