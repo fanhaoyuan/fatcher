@@ -24,7 +24,7 @@
     ],
     "license": "MIT",
     "scripts": {
-        "sandbox": "ts-node sandbox/server.ts",
+        "sandbox": "node sandbox/server.js",
         "dev": "ts-node build/dev.ts",
         "build": "ts-node build/build.ts && tsc"
     },
@@ -47,6 +47,7 @@
         "@rollup/plugin-commonjs": "^21.0.1",
         "@rollup/plugin-node-resolve": "^13.0.6",
         "@types/chokidar": "^2.1.3",
+        "@types/koa": "^2.13.4",
         "@types/lodash": "^4.14.176",
         "@types/node": "^16.11.0",
         "@types/rimraf": "^3.0.2",
@@ -54,6 +55,8 @@
         "chokidar": "^3.5.2",
         "esbuild": "^0.13.11",
         "gzip-size": "^6.0.0",
+        "koa": "^2.13.4",
+        "koa-router": "^10.1.1",
         "lint-staged": "^11.2.3",
         "lodash": "^4.17.21",
         "rimraf": "^3.0.2",
@@ -62,5 +65,8 @@
         "rollup-plugin-terser": "^7.0.2",
         "ts-node": "^10.4.0",
         "typescript": "^4.4.4"
+    },
+    "dependencies": {
+        "koa2-cors": "^2.0.6"
     }
 }
