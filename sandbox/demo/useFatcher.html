@@ -15,7 +15,7 @@
 <script>
     // console.log(Fatcher);
     Fatcher.fatcher({
-        url: "http://127.0.0.1:3000/check/getCheckInfo",
+        url: "http://127.0.0.1:3000/zcs/check/getCheckInfo",
         method: "get",
         headers: {
             'Content-Type': 'multipart/form-data',
@@ -24,7 +24,7 @@
         console.log(res.data);
     })
     Fatcher.fatcher({
-        url: "http://127.0.0.1:3000/group/groupList",
+        url: "http://127.0.0.1:3000/zcs/group/groupList",
         method: "post",
         headers: {
             'Content-Type': 'multipart/form-data',
