@@ -50,21 +50,20 @@ Fatcher.fatcher({
 
 #### vue demo
 
-参考代码： sandbox/demo/use-fatcher-by-vue/src/api/platform.ts
+参考代码： sandbox/demo/auth.html
 
-使用：
+引入 Fatcher
 
-```ts
-import { Fatcher } from 'fatcher';
+```html
+<script src="../../dist/fatcher.min.js"></script>
 ```
 
 可以创建一个统一 api 实例
 
 ```ts
-const request = Fatcher.create({
+const request = Fatcher.Fatcher.create({
     //配置项
     method: 'post',//get、...
-    baseURL: 'api',//自行配置
     middlewares: [
         {
 			//自定义的中间件
@@ -134,7 +133,7 @@ middleware by data stream handle
 例：
 
 ```ts
-export function login(data: { loginCode: string; password: string }) {
+function login(data: { loginCode: string; password: string }) {
     return request('/group/groupList', data, {
         headers: {
             SystemType: 'onlineBookKeeping',
@@ -180,3 +179,17 @@ if (!responseJSON.success) {
 ```
 
 对不同的状态进行不同的操作，然后进行抛错等一系列业务操作。
+
+举例的统一 api 为 post 请求，如果多个 api 中有其他请求类型的，也可以进行传参修改请求方式
+
+```ts
+function getCheckInfo() {
+    return request(
+        'http://localhost:3000/zcs/check/getCheckInfo',
+        {},
+        {
+            method: 'get',
+        }
+    );
+}
+```

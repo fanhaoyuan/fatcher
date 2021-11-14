@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>fatcher test</div>
+    <br />
+    <br />
+    <div>
+        <button onclick="add()">添加token</button>
+        <button onclick="remove()">删除token</button>
+        <button onclick="loginBtn()">登录</button>
+        <button onclick="getInfo()">获取信息</button>
+    </div>
+</body>
+<script src="../../dist/fatcher.min.js"></script>
+<script>
+    const request = Fatcher.Fatcher.create({
+        //配置项
+        method: 'post',
+        middlewares: [
+            {
+                name: 'carry token',
+                apply() {
+                    return !!sessionStorage.getItem('token');
+                },
+                async use(context, next) {
+                    const response = await next({
+                        options: {
+                            headers: {
+                                Authorization: sessionStorage.getItem('token'),
+                            },
+                        },
+                    });
+                    return {
+                        ...response,
+                    };
+                },
+            },
+            {
+                name: 'data stream handle',
+                async use(context, next) {
+                    const response = await next();
+
+                    const [stream, returnStream] = response.data.tee();
+
+                    const _res = new Response(stream, { headers: response.headers });
+
+                    const responseJSON = await _res.json();
+
+                    console.log('response', responseJSON);
+                    if (responseJSON.code === 401) {
+                        return { ...response, data: returnStream };
+                    }
+                    if (!responseJSON.success) {
+                        return Promise.reject(new Error());
+                    }
+
+                    return {
+                        ...response,
+                        data: returnStream,
+                    };
+                },
+            },
+        ],
+    });
+
+    function login(data) {
+        return request('http://localhost:3000/zcs/group/groupList', data, {
+            headers: {
+                SystemType: 'onlineBookKeeping',
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+        });
+    }
+
+    function getCheckInfo() {
+        return request(
+            'http://localhost:3000/zcs/check/getCheckInfo',
+            {},
+            {
+                method: 'get',
+            }
+        );
+    }
+
+    const add = () => {
+        sessionStorage.setItem('token', '123');
+    };
+    const remove = () => {
+        sessionStorage.removeItem('token');
+    };
+    const loginBtn = () => {
+        console.log(123);
+        login({
+            loginCode: 'yanfa123',
+            password: '111111',
+        }).then(res => {
+            console.log(res);
+        });
+    };
+    const getInfo = () => {
+        getCheckInfo().then(res => {
+            console.log(res);
+        });
+    };
+</script>
+
+</html>
