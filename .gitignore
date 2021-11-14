@@ -3,3 +3,4 @@ dist/
 .umi
 .umi-production
 .env.local
+docs-dist
