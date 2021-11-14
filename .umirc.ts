@@ -4,10 +4,8 @@ export default defineConfig({
     title: 'Fatcher',
     mode: 'site',
     base: '/fatcher/',
-    publicPath: './',
+    publicPath: '/fatcher/',
     outputPath: 'docs-dist',
-    hash: true,
-    dynamicImport: {},
     navs: {
         'en-US': [
             null,
