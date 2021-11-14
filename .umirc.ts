@@ -3,6 +3,7 @@ import { defineConfig } from 'dumi';
 export default defineConfig({
     title: 'Fatcher',
     mode: 'site',
+    base: '/fatcher/',
     outputPath: 'docs-dist',
     hash: true,
     dynamicImport: {},

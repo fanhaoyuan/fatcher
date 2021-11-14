@@ -10,6 +10,6 @@ git init
 git add -A
 git commit -m '🚀 docuement deploy'
 
-git push -f git@github.com:fanhaoyuan/fatcher.git master:gh-pages
+git push -f https://github.com/fanhaoyuan/fatcher.git master:gh-pages
 
 cd -
