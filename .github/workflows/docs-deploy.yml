@@ -28,6 +28,9 @@ jobs:
                   key: ${{ runner.os }}-node_modules_cache-${{ hashFiles('**/yarn.lock') }}
                   restore-keys: ${{ runner.os }}-node_modules_cache-${{ hashFiles('**/yarn.lock') }}
 
+            - name: Docs Build
+              run: npm docs:build
+
             - name: Docs Deploy
               uses: JamesIves/github-pages-deploy-action@4.1.1
               with:

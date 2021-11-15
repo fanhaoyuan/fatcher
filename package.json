@@ -31,8 +31,7 @@
         "dev": "ts-node build/dev.ts",
         "build": "ts-node build/build.ts && tsc",
         "docs:dev": "dumi dev",
-        "docs:build": "dumi build",
-        "docs:deploy": "sh docs-deploy.sh"
+        "docs:build": "dumi build"
     },
     "gitHooks": {
         "commit-msg": "cmv",
