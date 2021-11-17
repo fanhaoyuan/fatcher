@@ -30,10 +30,8 @@ export async function fatcher(
     try {
         return await useMiddlewares(mergedOptions);
     } catch (error: any) {
-        console.log(isFatcherError(error));
-
         if (isFatcherError(error)) {
-            return Promise.reject(error.toJSON());
+            return Promise.reject(await error.toJSON());
         }
     }
 }

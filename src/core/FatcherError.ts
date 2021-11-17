@@ -26,21 +26,28 @@ export class FatcherError<T = ReadableStream<Uint8Array>> extends Error {
     isFatcherError = true;
 
     get headers(): Record<string, any> {
+        console.log(Object.fromEntries(Object.entries(this.options.headers).filter(item => item[1])));
         return Object.fromEntries(Object.entries(this.options.headers).filter(item => item[1]));
     }
 
-    toJSON() {
-        const headers = this.options.headers;
+    async toJSON() {
+        let responseData: string | Record<string, any> = this.data;
 
-        const data =
-            this.data instanceof ReadableStream ? new Response(this.data, { headers: this.headers }).json() : this.data;
+        if (responseData instanceof ReadableStream) {
+            const [s1, s2] = responseData.tee();
+            try {
+                responseData = await new Response(s1, { headers: this.headers }).json();
+            } catch (err) {
+                responseData = await new Response(s2, { headers: this.headers }).text();
+            }
+        }
 
         return {
             status: this.status,
             statusText: this.statusText,
-            data,
+            data: responseData,
             options: this.options,
-            headers,
+            headers: this.headers,
         };
     }
 }
