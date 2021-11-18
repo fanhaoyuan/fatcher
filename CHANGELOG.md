@@ -1,3 +1,14 @@
+## v0.3.0
+
+### features
+
+-   🚀 add `FatcherError`
+-   🚀 add `isFatcherError` for custom middleware
+
+### modules
+
+-   📦 export `clone` helper function
+
 ## v0.2.0
 
 ### features
