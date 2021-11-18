@@ -1,5 +1,5 @@
 import { fetcher } from '../adapters';
-import { clone } from '../core';
+import { clone, FatcherError } from '../core';
 import { normalizeHeaders, normalizeURL } from '../helpers';
 import { Middleware } from '../interfaces';
 
@@ -24,7 +24,14 @@ export function fetch(): Middleware {
                 return Object.assign({}, baseResponse, { data: response.body });
             }
 
-            return Promise.reject(JSON.stringify(baseResponse));
+            /**
+             * If response.status is not in range of [200, 300)
+             *
+             * Throw a FatcherError
+             */
+            return Promise.reject(
+                new FatcherError(response.status, response.statusText, response.body, context.options)
+            );
         },
     };
 }

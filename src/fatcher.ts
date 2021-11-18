@@ -3,6 +3,7 @@ import { composeMiddlewares, registerMiddlewares, mergeOptions } from './core';
 import { fetch, payloadTransformer, URLTransformer, responseFormatter } from './middlewares';
 import { globalOptions } from './globals';
 import { isString } from './utils';
+import { isFatcherError } from './helpers';
 
 export async function fatcher(payload: string, options?: Partial<RequestOptions>): Promise<Response>;
 export async function fatcher(payload?: Partial<RequestOptions> & { url: string }): Promise<Response>;
@@ -26,5 +27,13 @@ export async function fatcher(
 
     const useMiddlewares = composeMiddlewares(registeredMiddlewares);
 
-    return useMiddlewares(mergedOptions);
+    try {
+        return await useMiddlewares(mergedOptions);
+    } catch (error: any) {
+        if (isFatcherError(error)) {
+            return Promise.reject(await error.toJSON());
+        }
+
+        throw error;
+    }
 }
