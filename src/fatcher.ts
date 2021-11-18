@@ -33,5 +33,7 @@ export async function fatcher(
         if (isFatcherError(error)) {
             return Promise.reject(await error.toJSON());
         }
+
+        throw error;
     }
 }
