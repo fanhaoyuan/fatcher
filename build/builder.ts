@@ -46,7 +46,7 @@ export async function builder(serve = false) {
     ];
 
     const baseOptions: RollupOptions = {
-        input: path.resolve(__dirname, '../src/index.ts'),
+        input: path.resolve(__dirname, '../packages/fatcher/src/index.ts'),
         plugins,
     };
 

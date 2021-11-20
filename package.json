@@ -1,35 +1,9 @@
 {
-    "name": "fatcher",
-    "version": "0.3.0",
-    "main": "dist/index.cjs.js",
-    "esm": "dist/index.es.js",
-    "unpkg": "dist/fatcher.min.js",
-    "browser": "dist/fatcher.min.js",
-    "typings": "dist/index.d.ts",
-    "repository": "https://github.com/fanhaoyuan/fatcher.git",
-    "author": "Fansy <418536538@qq.com>",
-    "description": "A out-of-box http request library with fetch for modern browsers.",
-    "engines": {
-        "node": ">=12.0.0"
-    },
-    "keywords": [
-        "http",
-        "fetch",
-        "stream",
-        "http request",
-        "request"
-    ],
-    "files": [
-        "dist",
-        "README.CN.md",
-        "README.md",
-        "CHANGELOG.md"
-    ],
-    "license": "MIT",
+    "private": true,
     "scripts": {
         "sandbox": "node sandbox/server.js",
         "dev": "ts-node build/dev.ts",
-        "build": "ts-node build/build.ts && tsc",
+        "build": "ts-node build/build.ts && tsc -p packages/fatcher/tsconfig.json --outDir dist",
         "docs:dev": "dumi dev",
         "docs:build": "dumi build"
     },
@@ -65,7 +39,9 @@
         "esbuild": "^0.13.11",
         "gzip-size": "^6.0.0",
         "koa": "^2.13.4",
+        "koa-bodyparser": "^4.3.0",
         "koa-router": "^10.1.1",
+        "koa2-cors": "^2.0.6",
         "lint-staged": "^12.0.3",
         "lodash": "^4.17.21",
         "rimraf": "^3.0.2",
@@ -74,7 +50,9 @@
         "rollup-plugin-terser": "^7.0.2",
         "ts-node": "^10.4.0",
         "typescript": "^4.4.4",
-        "koa-bodyparser": "^4.3.0",
-        "koa2-cors": "^2.0.6"
+        "yorkie": "^2.0.0"
+    },
+    "resolutions": {
+        "@types/react": "^16.9.23"
     }
 }
