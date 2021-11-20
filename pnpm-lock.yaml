@@ -1,5 +1,8 @@
 lockfileVersion: 5.3
 
+overrides:
+  '@types/react': ^16.9.23
+
 importers:
 
   .:
@@ -67,6 +70,9 @@ importers:
       ts-node: 10.4.0_6d6d60348da931c98bc2cf01b7fcd2a7
       typescript: 4.5.2
       yorkie: 2.0.0
+
+  packages/fatcher:
+    specifiers: {}
 
   packages/fatcher-middleware-mocker:
     specifiers:
@@ -1588,7 +1594,7 @@ packages:
     resolution: {integrity: sha512-WOSetDV3YPxbkVJAdv/bqExJjmcdCi/vpCJh3NfQOy1X15vHMSiMioXIcGekXDJJYhqGUMDo9e337mh508foAA==}
     dependencies:
       '@types/history': 4.7.9
-      '@types/react': 17.0.35
+      '@types/react': 16.14.21
       '@types/react-router': 5.1.17
     dev: true
 
@@ -1604,7 +1610,7 @@ packages:
     resolution: {integrity: sha512-D5mHD6TbdV/DNHYsnwBTv+y73ei+mMjrkGrla86HthE4/PVvL1J94Bu3qABU+COXzpL23T1EZapVVpwHuBXiUg==}
     dependencies:
       '@types/history': 4.7.9
-      '@types/react': 17.0.35
+      '@types/react': 16.14.21
       '@types/react-router': 5.1.12
     dev: true
 
@@ -1612,26 +1618,18 @@ packages:
     resolution: {integrity: sha512-0bhXQwHYfMeJlCh7mGhc0VJTRm0Gk+Z8T00aiP4702mDUuLs9SMhnd2DitpjWFjdOecx2UXtICK14H9iMnziGA==}
     dependencies:
       '@types/history': 4.7.9
-      '@types/react': 17.0.35
+      '@types/react': 16.14.21
     dev: true
 
   /@types/react-router/5.1.17:
     resolution: {integrity: sha512-RNSXOyb3VyRs/EOGmjBhhGKTbnN6fHWvy5FNLzWfOWOGjgVUKqJZXfpKzLmgoU8h6Hj8mpALj/mbXQASOb92wQ==}
     dependencies:
       '@types/history': 4.7.9
-      '@types/react': 17.0.35
+      '@types/react': 16.14.21
     dev: true
 
   /@types/react/16.14.21:
     resolution: {integrity: sha512-rY4DzPKK/4aohyWiDRHS2fotN5rhBSK6/rz1X37KzNna9HJyqtaGAbq9fVttrEPWF5ywpfIP1ITL8Xi2QZn6Eg==}
-    dependencies:
-      '@types/prop-types': 15.7.4
-      '@types/scheduler': 0.16.2
-      csstype: 3.0.10
-    dev: true
-
-  /@types/react/17.0.35:
-    resolution: {integrity: sha512-r3C8/TJuri/SLZiiwwxQoLAoavaczARfT9up9b4Jr65+ErAUX3MIkU0oMOQnrpfgHme8zIqZLX7O5nnjm5Wayw==}
     dependencies:
       '@types/prop-types': 15.7.4
       '@types/scheduler': 0.16.2
