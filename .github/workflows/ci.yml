@@ -35,7 +35,7 @@ jobs:
               run: pnpm install
 
             - name: Build bundle
-              run: pnpm run -r build
+              run: pnpm run -r build --if-present
 
     eslint:
         runs-on: ubuntu-latest
