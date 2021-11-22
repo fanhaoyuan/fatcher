@@ -1,4 +1,4 @@
-name: Release
+name: Fatcher Release
 
 on:
     push:
@@ -35,13 +35,16 @@ jobs:
             - name: Install dependencies
               run: pnpm install
 
+            - name: Enter Workspace
+              run: cd packages/fatcher
+
             - name: Build bundle
-              run: npm run build
+              run: pnpm build
 
             - name: Set .npmrc file
               run: echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
 
             - name: NPM publish
-              run: npm publish
+              run: pnpm publish
               env:
                   NPM_TOKEN: ${{secrets.NPM_TOKEN}}
