@@ -1,4 +1,5 @@
-import { RequestOptions, Immutable } from '../interfaces';
+import { isImmutable, clone } from './immutable';
+import { RequestOptions, Immutable, Response as FatcherResponse } from '../interfaces';
 
 /**
  * Error of Fatcher.
@@ -7,7 +8,7 @@ export class FatcherError<T = ReadableStream<Uint8Array>> extends Error {
     constructor(status: number, statusText: string, data: T, options: RequestOptions | Immutable<RequestOptions>) {
         super(`Fetch failed with status code ${status}`);
 
-        this.options = options;
+        this.options = isImmutable(options) ? clone(options) : options;
         this.status = status;
         this.data = data;
         this.statusText = statusText;
@@ -21,16 +22,15 @@ export class FatcherError<T = ReadableStream<Uint8Array>> extends Error {
 
     statusText: string;
 
-    options: RequestOptions | Immutable<RequestOptions>;
+    options: RequestOptions;
 
     isFatcherError = true;
 
     get headers(): Record<string, any> {
-        console.log(Object.fromEntries(Object.entries(this.options.headers).filter(item => item[1])));
         return Object.fromEntries(Object.entries(this.options.headers).filter(item => item[1]));
     }
 
-    async toJSON() {
+    async toJSON(): Promise<FatcherResponse<string | Record<string, any>>> {
         let responseData: string | Record<string, any> = this.data;
 
         if (responseData instanceof ReadableStream) {
