@@ -2,13 +2,17 @@
     "name": "fatcher",
     "version": "0.3.0",
     "main": "dist/index.cjs.js",
-    "esm": "dist/index.es.js",
+    "module": "dist/index.es.js",
     "unpkg": "dist/fatcher.min.js",
     "browser": "dist/fatcher.min.js",
     "typings": "dist/index.d.ts",
     "repository": "https://github.com/fanhaoyuan/fatcher.git",
     "author": "Fansy <418536538@qq.com>",
     "description": "A out-of-box http request library with fetch for modern browsers.",
+    "scripts": {
+        "dev": "rollup -c -w",
+        "build": "cross-env NODE_ENV=production rollup -c"
+    },
     "engines": {
         "node": ">=12.0.0"
     },
@@ -25,6 +29,7 @@
         "README.md",
         "CHANGELOG.md"
     ],
+    "license": "MIT",
     "devDependencies": {
         "@babel/core": "^7.16.0",
         "@babel/preset-env": "^7.16.4",
