@@ -1,7 +1,8 @@
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import esbuild from 'rollup-plugin-esbuild';
-import { main, module as esm, browser } from './package.json';
+import { main, module as esm, browser, typings } from './package.json';
+import dts from 'rollup-plugin-dts';
 import { terser } from 'rollup-plugin-terser';
 import { getBabelOutputPlugin } from '@rollup/plugin-babel';
 import rm from 'rimraf';
@@ -82,6 +83,14 @@ const config = [
                 ],
             },
         ],
+    },
+    {
+        input,
+        plugins: [dts()],
+        output: {
+            file: getCurrentPath(typings),
+            format: 'es',
+        },
     },
 ];
 
