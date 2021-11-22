@@ -6,7 +6,9 @@
         "esModuleInterop": true,
         "strict": true,
         "moduleResolution": "node",
-        "resolveJsonModule": true
+        "resolveJsonModule": true,
+        "baseUrl": "."
     },
+    "include": ["src/**/*"],
     "exclude": ["dist", "node_modules", "**/node_modules/*"]
 }

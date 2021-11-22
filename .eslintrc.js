@@ -1,3 +1,6 @@
 module.exports = {
-    extends: ['@fansy/eslint-config']
-}
+    extends: ['@fansy/eslint-config'],
+    parserOptions: {
+        sourceType: 'module',
+    },
+};
