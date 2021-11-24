@@ -1,5 +1,5 @@
 import { Middleware, Immutable, RequestContext } from '../interfaces';
-import { isFunction } from '../utils';
+import { isFunction } from 'utils-shared';
 
 /**
  * Return boolean for should middleware apply with context.

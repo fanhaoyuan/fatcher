@@ -1,6 +1,6 @@
 import { isSameOriginURL } from '../helpers';
 import { RequestOptions } from '../interfaces';
-import { pick } from '../utils';
+import { pick } from 'utils-shared';
 
 /**
  * Get credential from request options

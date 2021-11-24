@@ -1,5 +1,5 @@
 import { Flatten, Immutable, Writable } from '../interfaces';
-import { defineProperties, isPlainObject } from '../utils';
+import { defineProperties, isPlainObject } from 'utils-shared';
 
 /**
  * Set a plain object to readonly.
