@@ -1,4 +1,4 @@
-import { merge } from '../utils';
+import { merge } from 'utils-shared';
 
 /**
  * Merge multi-options to one.

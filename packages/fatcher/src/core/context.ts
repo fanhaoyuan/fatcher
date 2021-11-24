@@ -1,6 +1,6 @@
 import { mergeOptions } from './options';
 import { PatchRequestContext, RequestContext } from '../interfaces';
-import { omit } from '../utils';
+import { omit } from 'utils-shared';
 
 /**
  * Merge multi-request context into a context

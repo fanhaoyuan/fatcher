@@ -1,5 +1,5 @@
 import { Middleware } from '../interfaces';
-import { uuid, isFunction } from '../utils';
+import { uuid, isFunction } from 'utils-shared';
 
 /**
  * Register Middlewares of fetch.

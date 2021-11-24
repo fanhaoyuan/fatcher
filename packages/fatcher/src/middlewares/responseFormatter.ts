@@ -1,5 +1,5 @@
 import { Middleware } from '../interfaces';
-import { pick } from '../utils';
+import { pick } from 'utils-shared';
 
 /**
  * Format unread response stream to expect type
