@@ -5,7 +5,7 @@ import { AbortError } from './AbortError';
  * @param error
  * @returns
  */
-export function isAbort(error: AbortError) {
+export function isAbort(error: AbortError): error is AbortError {
     try {
         return error instanceof AbortError && error.name === 'AbortError' && error.isAborted;
     } catch {
