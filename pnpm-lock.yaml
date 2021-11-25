@@ -74,13 +74,16 @@ importers:
   packages/fatcher-middleware-mocker:
     specifiers:
       '@types/mockjs': ^1.0.4
-      fatcher: ^0.2.0
+      fatcher: workspace:^
       mockjs: ^1.1.0
     dependencies:
-      fatcher: 0.2.0
+      fatcher: link:../fatcher
       mockjs: 1.1.0
     devDependencies:
       '@types/mockjs': 1.0.4
+
+  packages/fatcher-middleware-retry:
+    specifiers: {}
 
   packages/utils-shared:
     specifiers: {}
@@ -3711,10 +3714,6 @@ packages:
     dependencies:
       reusify: 1.0.4
     dev: true
-
-  /fatcher/0.2.0:
-    resolution: {integrity: sha512-inaaVKttF6gneIeiBhYn+x9nxbqtWY8qlxeOwDT0xEkZ/4QPnJYSqUq+f6oFOKD9wupX0Rgay2LDAly9q6cm3A==}
-    dev: false
 
   /fault/1.0.4:
     resolution: {integrity: sha512-CJ0HCB5tL5fYTEA7ToAq5+kTwd++Borf1/bifxd9iT70QcXr4MRrO3Llf8Ifs70q+SJcGHFtnIE/Nw6giCtECA==}
