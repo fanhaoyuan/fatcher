@@ -24,5 +24,10 @@ export interface MockerOptions {
      *
      * @default 0
      */
-    errorProbability?: number;
+    errorFactor?: number;
+}
+
+declare module 'fatcher' {
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    export interface RequestOptions extends MockerOptions {}
 }
