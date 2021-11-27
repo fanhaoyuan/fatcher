@@ -24,7 +24,7 @@ export interface MockerOptions {
      *
      * @default 0
      */
-    errorProbability?: number;
+    errorFactor?: number;
 }
 
 declare module 'fatcher' {

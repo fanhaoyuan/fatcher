@@ -24,9 +24,9 @@ export function mocker(inlineOptions: MockerOptions = {}): Middleware {
             const options = clone(context.options);
 
             //Set default options
-            const { errorProbability = 0, mock = false, delay = 0 } = mergeOptions({}, options, inlineOptions);
+            const { errorFactor = 0, mock = false, delay = 0 } = mergeOptions({}, options, inlineOptions);
 
-            if (errorProbability > 0 && Math.random() > errorProbability) {
+            if (errorFactor > 0 && Math.random() > errorFactor) {
                 return Promise.reject(
                     new FatcherError(500, 'Internal Server Error', 'Mocker: Mock http request error.', options)
                 );
