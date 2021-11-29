@@ -28,7 +28,7 @@
         "@types/rimraf": "^3.0.2",
         "cross-env": "^7.0.3",
         "dumi": "^1.0.13",
-        "esbuild": "^0.13.15",
+        "esbuild": "^0.14.0",
         "fatcher": "workspace:*",
         "koa": "^2.13.4",
         "koa-bodyparser": "^4.3.0",
