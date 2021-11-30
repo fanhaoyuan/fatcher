@@ -1,5 +1,4 @@
 import { RequestMethod } from 'fatcher';
-import fetchMock from 'jest-fetch-mock';
 import Mock from 'mockjs';
 
 function response(request: Request, method: RequestMethod) {
@@ -18,7 +17,7 @@ function response(request: Request, method: RequestMethod) {
     };
 }
 
-fetchMock.mockIf(/^https:\/\/fatcher\.mock\.com\/methods\/.*/, async request => {
+export default async function methods(request: Request) {
     if (request.url.endsWith('/get')) return response(request, 'get');
     if (request.url.endsWith('/post')) return response(request, 'post');
     if (request.url.endsWith('/put')) return response(request, 'put');
@@ -31,4 +30,4 @@ fetchMock.mockIf(/^https:\/\/fatcher\.mock\.com\/methods\/.*/, async request => 
         status: 404,
         body: 'Not Found',
     };
-});
+}
