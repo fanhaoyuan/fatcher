@@ -11,41 +11,41 @@ export class Fatcher {
         throw new Error('Fatcher can not be initialized.');
     }
 
-    static get(url: string, inlineOptions: Partial<RequestOptions> = {}) {
-        return fatcher(url, {
+    static get<T = any>(url: string, inlineOptions: Partial<RequestOptions> = {}) {
+        return fatcher<T>(url, {
             ...inlineOptions,
             method: 'get',
         });
     }
 
-    static post(url: string, inlineOptions: Partial<RequestOptions> = {}) {
-        return fatcher(url, {
+    static post<T = any>(url: string, inlineOptions: Partial<RequestOptions> = {}) {
+        return fatcher<T>(url, {
             ...inlineOptions,
             method: 'post',
         });
     }
 
-    static put(url: string, inlineOptions: Partial<RequestOptions> = {}) {
-        return fatcher(url, {
+    static put<T = any>(url: string, inlineOptions: Partial<RequestOptions> = {}) {
+        return fatcher<T>(url, {
             ...inlineOptions,
             method: 'put',
         });
     }
 
-    static delete(url: string, inlineOptions: Partial<RequestOptions> = {}) {
-        return fatcher(url, {
+    static delete<T = any>(url: string, inlineOptions: Partial<RequestOptions> = {}) {
+        return fatcher<T>(url, {
             ...inlineOptions,
             method: 'delete',
         });
     }
 
-    static create(localRequestOptions: Partial<RequestOptions> = {}) {
+    static create<T = any>(localRequestOptions: Partial<RequestOptions> = {}) {
         return (
             url: string,
             payload: Record<string, any> | null = null,
             inlineOptions: Partial<RequestOptions> = {}
         ) => {
-            return fatcher(url, mergeOptions(localRequestOptions, inlineOptions, { payload: payload ?? {} }));
+            return fatcher<T>(url, mergeOptions(localRequestOptions, inlineOptions, { payload: payload ?? {} }));
         };
     }
 }
