@@ -17,6 +17,7 @@ importers:
       '@rollup/plugin-node-resolve': ^13.0.6
       '@types/jest': ^27.0.3
       '@types/koa': ^2.13.4
+      '@types/mockjs': ^1.0.4
       '@types/node': ^16.11.0
       '@types/rimraf': ^3.0.2
       cross-env: ^7.0.3
@@ -24,11 +25,13 @@ importers:
       esbuild: ^0.13.15
       fatcher: workspace:*
       jest: ^27.3.1
+      jest-fetch-mock: ^3.0.3
       koa: ^2.13.4
       koa-bodyparser: ^4.3.0
       koa-router: ^10.1.1
       koa2-cors: ^2.0.6
       lint-staged: ^12.0.3
+      mockjs: ^1.1.0
       rimraf: ^3.0.2
       rollup: ^2.60.0
       rollup-plugin-dts: ^4.0.1
@@ -36,6 +39,8 @@ importers:
       ts-node: ^10.4.0
       typescript: ^4.4.4
       utils-shared: workspace:*
+      web-streams-polyfill: ^3.2.0
+      whatwg-fetch: ^3.6.2
       yorkie: ^2.0.0
     devDependencies:
       '@babel/preset-env': 7.16.4
@@ -48,6 +53,7 @@ importers:
       '@rollup/plugin-node-resolve': 13.0.6_rollup@2.60.0
       '@types/jest': 27.0.3
       '@types/koa': 2.13.4
+      '@types/mockjs': 1.0.4
       '@types/node': 16.11.9
       '@types/rimraf': 3.0.2
       cross-env: 7.0.3
@@ -55,11 +61,13 @@ importers:
       esbuild: 0.13.15
       fatcher: link:packages/fatcher
       jest: 27.3.1_ts-node@10.4.0
+      jest-fetch-mock: 3.0.3
       koa: 2.13.4
       koa-bodyparser: 4.3.0
       koa-router: 10.1.1
       koa2-cors: 2.0.6
       lint-staged: 12.0.3
+      mockjs: 1.1.0
       rimraf: 3.0.2
       rollup: 2.60.0
       rollup-plugin-dts: 4.0.1_rollup@2.60.0+typescript@4.5.2
@@ -67,6 +75,8 @@ importers:
       ts-node: 10.4.0_6d6d60348da931c98bc2cf01b7fcd2a7
       typescript: 4.5.2
       utils-shared: link:packages/utils-shared
+      web-streams-polyfill: 3.2.0
+      whatwg-fetch: 3.6.2
       yorkie: 2.0.0
 
   packages/fatcher:
@@ -75,13 +85,11 @@ importers:
       '@babel/preset-env': ^7.16.4
       '@rollup/plugin-babel': ^5.3.0
       rollup-plugin-terser: ^7.0.2
-      whatwg-fetch: ^3.6.2
     devDependencies:
       '@babel/core': 7.16.0
       '@babel/preset-env': 7.16.4_@babel+core@7.16.0
       '@rollup/plugin-babel': 5.3.0_@babel+core@7.16.0+rollup@2.60.0
       rollup-plugin-terser: 7.0.2_rollup@2.60.0
-      whatwg-fetch: 3.6.2
 
   packages/fatcher-middleware-mocker:
     specifiers:
@@ -4217,6 +4225,12 @@ packages:
       cross-spawn: 7.0.3
     dev: true
 
+  /cross-fetch/3.1.4:
+    resolution: {integrity: sha512-1eAtFWdIubi6T4XPy6ei9iUFoKpUkIF971QLN8lIvvvwueI65+Nw5haMNKUwfJxabqlIIDODJKGrQ66gxC0PbQ==}
+    dependencies:
+      node-fetch: 2.6.1
+    dev: true
+
   /cross-spawn/5.1.0:
     resolution: {integrity: sha1-6L0O/uWPz/b4+UUQoKVUu/ojVEk=}
     dependencies:
@@ -6012,6 +6026,13 @@ packages:
       jest-util: 27.3.1
     dev: true
 
+  /jest-fetch-mock/3.0.3:
+    resolution: {integrity: sha512-Ux1nWprtLrdrH4XwE7O7InRY6psIi3GOsqNESJgMJ+M5cv4A8Lh7SN9d2V2kKRZ8ebAfcd1LNyZguAOb6JiDqw==}
+    dependencies:
+      cross-fetch: 3.1.4
+      promise-polyfill: 8.2.1
+    dev: true
+
   /jest-get-type/27.3.1:
     resolution: {integrity: sha512-+Ilqi8hgHSAdhlQ3s12CAVNd8H96ZkQBfYoXmArzZnOfAtVAJEiPDBirjByEblvG/4LPJmkL+nBqPO3A1YJAEg==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
@@ -7032,7 +7053,6 @@ packages:
     hasBin: true
     dependencies:
       commander: 8.3.0
-    dev: false
 
   /ms/2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
@@ -7049,6 +7069,11 @@ packages:
 
   /nice-try/1.0.5:
     resolution: {integrity: sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==}
+    dev: true
+
+  /node-fetch/2.6.1:
+    resolution: {integrity: sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==}
+    engines: {node: 4.x || >=6.0.0}
     dev: true
 
   /node-int64/0.4.0:
@@ -7789,6 +7814,10 @@ packages:
   /progress/2.0.3:
     resolution: {integrity: sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==}
     engines: {node: '>=0.4.0'}
+    dev: true
+
+  /promise-polyfill/8.2.1:
+    resolution: {integrity: sha512-3p9zj0cEHbp7NVUxEYUWjQlffXqnXaZIMPkAO7HhFh8u5636xLRDHOUo2vpWSK0T2mqm6fKLXYn1KP6PAZ2gKg==}
     dev: true
 
   /prompts/2.4.2:
@@ -9405,6 +9434,11 @@ packages:
 
   /web-namespaces/1.1.4:
     resolution: {integrity: sha512-wYxSGajtmoP4WxfejAPIr4l0fVh+jeMXZb08wNc0tMg6xsfZXj3cECqIK0G7ZAqUq0PP8WlMDtaOGVBTAWztNw==}
+    dev: true
+
+  /web-streams-polyfill/3.2.0:
+    resolution: {integrity: sha512-EqPmREeOzttaLRm5HS7io98goBgZ7IVz79aDvqjD0kYXLtFZTc0T/U6wHTPKyIjb+MdN7DFIIX6hgdBEpWmfPA==}
+    engines: {node: '>= 8'}
     dev: true
 
   /webidl-conversions/5.0.0:
