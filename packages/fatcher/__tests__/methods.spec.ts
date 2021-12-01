@@ -1,10 +1,11 @@
 /**
  * @jest-environment jsdom
  */
-import { fatcher, FatcherError, RequestMethod, RequestOptions } from 'fatcher';
+import { fatcher, FatcherError, RequestMethod, RequestOptions } from '../src';
+import { BASE_URL } from '../../../shared/setups/utils';
 
 async function send(method: RequestMethod, options: Partial<RequestOptions> = {}) {
-    const res = await fatcher<Uint8Array>(`https://fatcher.mock.com/methods/${method}`, {
+    const res = await fatcher<Uint8Array>(`${BASE_URL}/methods/${method}`, {
         method,
         ...options,
     });
