@@ -1,7 +1,7 @@
 <div style="text-align: center;">
 <p style="font-size:40px;">Fatcher<p>
 <p style="font-size:20x;margin-bottom: 8px;">
-A out-of-box 📦 http request library with fetch for modern browsers.<p>
+一个开箱即用 📦 的现代浏览器 `http` 请求库。<p>
 
 [![codecov](https://codecov.io/gh/fanhaoyuan/fatcher/branch/master/graph/badge.svg?token=9DRTR2GXH8)](https://codecov.io/gh/fanhaoyuan/fatcher)
 [![](https://data.jsdelivr.com/v1/package/npm/fatcher/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fatcher)
@@ -13,26 +13,26 @@ A out-of-box 📦 http request library with fetch for modern browsers.<p>
 
 ---
 
-## Languages
+## 语言
 
-English | [中文](./README.zh-CN.md)
+[English](./README.md) | 中文
 
-## Browsers
+## 支持列表
 
-|  Chrome   |  Firefox  |   Edge    |  Safari   |       IE       |
-| :-------: | :-------: | :-------: | :-------: | :------------: |
-| ✅ latest | ✅ latest | ✅ latest | ✅ latest | ❌ Not Support |
+|   Chrome    |   Firefox   |    Edge     |   Safari    |    IE     |
+| :---------: | :---------: | :---------: | :---------: | :-------: |
+| ✅ 最新版本 | ✅ 最新版本 | ✅ 最新版本 | ✅ 最新版本 | ❌ 不支持 |
 
-## Features
+## 特性
 
--   ✨ Built-in common request encapsulation and default configuration, no additional configuration required.
--   ✨ Flexible middleware system that processes data in different scenarios through different combinations of middleware.
--   ✨ Data emulation of each request is supported to obtain simulated data returned by the interface at development.
--   ✨ Written entirely in TypeScript, the complete type system is much easier to use.
--   ✨ Data is returned as a stream and can be read and operated at the same time to speed up interface processing.
--   ✨ Request payload and response data are automatically converted without manual conversion.
+-   ✨ 内置常用的请求封装和默认配置，开箱即用，无需额外的配置
+-   ✨ 灵活的中间件系统，通过不同的中间件组合，处理不同场景的数据
+-   ✨ 支持单独请求的数据模拟，在开发时获得接口返回的模拟数据
+-   ✨ 完全使用 TypeScript 编写，完备的类型系统更省心
+-   ✨ 数据以流的形式返回，可边读边操作，加快接口处理速度
+-   ✨ 请求载体和响应数据自动转换，无需手动转换
 
-## Install
+## 安装
 
 ### NPM
 
@@ -46,15 +46,15 @@ English | [中文](./README.zh-CN.md)
 <script src="https://cdn.jsdelivr.net/npm/fatcher/dist/fatcher.min.js"></script>
 ```
 
-## usage
+## 用法
 
 ```ts
 import { fatcher } from 'fatcher';
 
 fatcher(
-    '/api/my/request/url', //request url
+    '/api/my/request/url', //请求路径
     {
-        //options
+        //配置项
         method: 'get',
         payload: {
             a: 1,
@@ -64,16 +64,16 @@ fatcher(
     }
 )
     .then(res => {
-        // response here
+        // 响应回调
     })
     .catch(err => {
-        // request error here.
+        // 错误回调
     });
 ```
 
-## More
+## 更多
 
-More information in [document](https://fanhaoyuan.github.io/fatcher)
+更多信息请查看[文档](https://fanhaoyuan.github.io/fatcher/zh-CN)
 
 ## License
 
