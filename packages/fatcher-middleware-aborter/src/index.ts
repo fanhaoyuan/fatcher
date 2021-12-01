@@ -1,5 +1,9 @@
-import { Middleware } from '../interfaces';
-import { AbortError } from '../helpers';
+import { Middleware } from 'fatcher';
+import { AbortError } from './AbortError';
+
+export * from './isAbort';
+export { AbortError };
+export * from './interfaces';
 
 /**
  * A Fatcher middleware for abort fetch
@@ -13,7 +17,7 @@ import { AbortError } from '../helpers';
  *
  * - A Function to `abort` current fetch.
  */
-export function aborter(onAbort: ((...args: any[]) => void) | null = null) {
+export default function aborter(onAbort: ((...args: any[]) => void) | null = null) {
     const abortController = new AbortController();
 
     /**
