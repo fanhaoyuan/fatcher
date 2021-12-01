@@ -1,4 +1,4 @@
-import { RequestOptions, Immutable } from '../interfaces';
+import { RequestOptions, Immutable } from 'fatcher';
 
 /**
  * An error of abort fetch

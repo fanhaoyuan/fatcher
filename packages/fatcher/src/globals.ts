@@ -17,8 +17,6 @@ export const globalOptions: RequestOptions = {
     withCredentials: 'auto',
     autoTransformPayload: true,
     middlewares: [],
-    signal: null,
-    onAbort: null,
     body: null,
     responseType: 'json',
     timeout: 0,

@@ -2,9 +2,8 @@ import { fatcher } from './fatcher';
 import { RequestOptions } from './interfaces';
 import { mergeOptions, clone, FatcherError } from './core';
 export * from './globals';
-export { aborter } from './middlewares';
 export * from './interfaces';
-export { isAbort, chunkStreamReader, isFatcherError } from './helpers';
+export { chunkStreamReader, isFatcherError } from './helpers';
 export { fatcher, clone, FatcherError };
 export class Fatcher {
     constructor() {

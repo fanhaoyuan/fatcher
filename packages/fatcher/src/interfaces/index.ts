@@ -146,20 +146,6 @@ export interface RequestOptions {
     withCredentials: 'auto' | boolean;
 
     /**
-     * Abort signal
-     *
-     * @default null
-     */
-    signal: AbortSignal | null;
-
-    /**
-     * Trigger this function with abort fetch
-     *
-     * @default null
-     */
-    onAbort: ((...args: any[]) => void) | null;
-
-    /**
      * Http request body
      *
      * If auto transform payload, you would not use this option.
@@ -205,11 +191,6 @@ export interface PatchRequestContext extends Record<string, any> {
 }
 export interface MiddlewareNext<T = ReadableStream<Uint8Array>> {
     (context?: PatchRequestContext): Promise<Response<T>> | Response<T>;
-}
-
-export interface AbortError {
-    isAborted: true;
-    url: string;
 }
 
 export type SupportedContentType = 'application/x-www-form-urlencoded' | 'multipart/form-data' | 'application/json';
