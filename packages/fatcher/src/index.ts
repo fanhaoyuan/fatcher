@@ -2,7 +2,7 @@ import { fatcher } from './fatcher';
 import { RequestOptions } from './interfaces';
 import { mergeOptions, clone, FatcherError } from './core';
 export * from './globals';
-export { aborter, downloadProgress } from './middlewares';
+export { aborter } from './middlewares';
 export * from './interfaces';
 export { isAbort, chunkStreamReader, isFatcherError } from './helpers';
 export { fatcher, clone, FatcherError };
