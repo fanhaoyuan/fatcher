@@ -20,7 +20,6 @@ export const globalOptions: RequestOptions = {
     signal: null,
     onAbort: null,
     body: null,
-    onDownloadProgress: null,
     responseType: 'json',
     timeout: 0,
 };

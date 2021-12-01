@@ -1,6 +1,6 @@
-import { Middleware, DownloadProgressEvent } from '../interfaces';
-import { chunkStreamReader } from '../helpers';
-
+import { Middleware, chunkStreamReader } from 'fatcher';
+import { DownloadProgressEvent } from './interfaces';
+export * from './interfaces';
 /**
  * Imitating download progress events.
  * - Total length comes from response `headers['content-type']`
@@ -8,7 +8,7 @@ import { chunkStreamReader } from '../helpers';
  *
  * @param onDownloadProgress inline download progress callback
  */
-export function downloadProgress(onDownloadProgress?: DownloadProgressEvent): Middleware {
+export default function downloadProgress(onDownloadProgress?: DownloadProgressEvent): Middleware {
     return {
         name: 'fatcher-middleware-download-progress',
         apply(context) {

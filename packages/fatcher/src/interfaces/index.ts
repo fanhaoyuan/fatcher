@@ -167,13 +167,6 @@ export interface RequestOptions {
     body: ReadableStream | FormData | string | null;
 
     /**
-     * Trigger this function with download progress
-     *
-     * @default null
-     */
-    onDownloadProgress: DownloadProgressEvent | null;
-
-    /**
      * A expect type to transform before response.
      *
      * @default 'json''
@@ -221,5 +214,4 @@ export interface AbortError {
 
 export type SupportedContentType = 'application/x-www-form-urlencoded' | 'multipart/form-data' | 'application/json';
 
-export type DownloadProgressEvent = (current?: number, total?: number) => void;
 export type ResponseType = 'blob' | 'arrayBuffer' | 'json' | 'text';
