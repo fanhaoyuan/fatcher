@@ -4,3 +4,4 @@ dist/
 .umi-production
 .env.local
 docs-dist
+coverage

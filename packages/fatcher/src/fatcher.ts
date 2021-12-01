@@ -5,8 +5,8 @@ import { globalOptions } from './globals';
 import { isString } from 'utils-shared';
 import { isFatcherError } from './helpers';
 
-export async function fatcher(payload: string, options?: Partial<RequestOptions>): Promise<Response>;
-export async function fatcher(payload?: Partial<RequestOptions> & { url: string }): Promise<Response>;
+export async function fatcher<T = any>(payload: string, options?: Partial<RequestOptions>): Promise<Response<T>>;
+export async function fatcher<T = any>(payload?: Partial<RequestOptions> & { url: string }): Promise<Response<T>>;
 export async function fatcher(
     payload?: (Partial<RequestOptions> & { url: string }) | string,
     inlineOptions?: Partial<RequestOptions>
