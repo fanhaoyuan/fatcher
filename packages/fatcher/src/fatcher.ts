@@ -1,6 +1,7 @@
 import { Response, RequestOptions } from './interfaces';
 import { composeMiddlewares, registerMiddlewares, mergeOptions } from './core';
-import { fetch, payloadTransformer, URLTransformer, responseFormatter } from './middlewares';
+import { fetch, responseFormatter } from './middlewares';
+import payloadTransformer from 'fatcher-middleware-payload-transformer';
 import { globalOptions } from './globals';
 import { isString } from 'utils-shared';
 import { isFatcherError } from './helpers';
@@ -19,7 +20,7 @@ export async function fatcher(
         mergedOptions = mergeOptions(globalOptions, payload ?? {});
     }
 
-    const middlewares = [responseFormatter, ...mergedOptions.middlewares, payloadTransformer, URLTransformer, fetch];
+    const middlewares = [responseFormatter, ...mergedOptions.middlewares, payloadTransformer, fetch];
 
     const registeredMiddlewares = registerMiddlewares(middlewares);
 

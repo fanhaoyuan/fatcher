@@ -1,4 +1,6 @@
 /* eslint-disable no-use-before-define */
+import { PayloadTransformerOptions } from 'fatcher-middleware-payload-transformer';
+
 export type RequestMethod = 'get' | 'post' | 'delete' | 'put' | 'head' | 'options' | 'patch';
 
 export type PrimitiveType = number | string | boolean;
@@ -62,7 +64,7 @@ export interface Middleware {
     use(context: Immutable<RequestContext>, next: MiddlewareNext): Promise<Response> | Response;
 }
 
-export interface RequestOptions {
+export interface RequestOptions extends PayloadTransformerOptions {
     /**
      * The prefix url with http request.
      *
@@ -104,15 +106,6 @@ export interface RequestOptions {
      * @default {}
      */
     payload: Record<string, any>;
-
-    /**
-     * Whether auto transform request payload.
-     *
-     * If `false`, should transform payload customization .
-     *
-     * @default true
-     */
-    autoTransformPayload: boolean;
 
     /**
      * Request headers.
@@ -192,7 +185,5 @@ export interface PatchRequestContext extends Record<string, any> {
 export interface MiddlewareNext<T = ReadableStream<Uint8Array>> {
     (context?: PatchRequestContext): Promise<Response<T>> | Response<T>;
 }
-
-export type SupportedContentType = 'application/x-www-form-urlencoded' | 'multipart/form-data' | 'application/json';
 
 export type ResponseType = 'blob' | 'arrayBuffer' | 'json' | 'text';
