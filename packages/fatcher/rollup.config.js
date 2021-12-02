@@ -86,7 +86,7 @@ const config = [
     },
     {
         input,
-        plugins: [dts()],
+        plugins: [dts({ respectExternal: true })],
         output: {
             file: getCurrentPath(typings),
             format: 'es',

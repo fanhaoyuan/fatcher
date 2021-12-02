@@ -84,11 +84,13 @@ importers:
       '@babel/core': ^7.16.0
       '@babel/preset-env': ^7.16.4
       '@rollup/plugin-babel': ^5.3.0
+      fatcher-middleware-payload-transformer: workspace:*
       rollup-plugin-terser: ^7.0.2
     devDependencies:
       '@babel/core': 7.16.0
       '@babel/preset-env': 7.16.4_@babel+core@7.16.0
       '@rollup/plugin-babel': 5.3.0_@babel+core@7.16.0+rollup@2.60.0
+      fatcher-middleware-payload-transformer: link:../fatcher-middleware-payload-transformer
       rollup-plugin-terser: 7.0.2_rollup@2.60.0
 
   packages/fatcher-middleware-aborter:
@@ -113,6 +115,9 @@ importers:
       mockjs: 1.1.0
     devDependencies:
       '@types/mockjs': 1.0.4
+
+  packages/fatcher-middleware-payload-transformer:
+    specifiers: {}
 
   packages/fatcher-middleware-retry:
     specifiers: {}
