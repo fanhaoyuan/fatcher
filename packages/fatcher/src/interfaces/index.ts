@@ -1,5 +1,6 @@
 /* eslint-disable no-use-before-define */
 import { PayloadTransformerOptions } from 'fatcher-middleware-payload-transformer';
+import { ResponseFormatterOptions } from 'fatcher-middleware-response-formatter';
 
 export type RequestMethod = 'get' | 'post' | 'delete' | 'put' | 'head' | 'options' | 'patch';
 
@@ -64,7 +65,7 @@ export interface Middleware {
     use(context: Immutable<RequestContext>, next: MiddlewareNext): Promise<Response> | Response;
 }
 
-export interface RequestOptions extends PayloadTransformerOptions {
+export interface RequestOptions extends PayloadTransformerOptions, ResponseFormatterOptions {
     /**
      * The prefix url with http request.
      *
@@ -146,13 +147,6 @@ export interface RequestOptions extends PayloadTransformerOptions {
     body: ReadableStream | FormData | string | null;
 
     /**
-     * A expect type to transform before response.
-     *
-     * @default 'json''
-     */
-    responseType: ResponseType;
-
-    /**
      * Request timeout
      *
      * If response out of timeout, will abort this request.
@@ -185,5 +179,3 @@ export interface PatchRequestContext extends Record<string, any> {
 export interface MiddlewareNext<T = ReadableStream<Uint8Array>> {
     (context?: PatchRequestContext): Promise<Response<T>> | Response<T>;
 }
-
-export type ResponseType = 'blob' | 'arrayBuffer' | 'json' | 'text';

@@ -1,12 +1,13 @@
-import { Middleware } from '../interfaces';
+import { Middleware } from 'fatcher';
 import { pick } from 'utils-shared';
+export * from './interfaces';
 
 /**
  * Format unread response stream to expect type
  *
  * It will return custom response when response stream read.
  */
-export function responseFormatter(): Middleware {
+export default function responseFormatter(): Middleware {
     return {
         name: 'fatcher-middleware-response-formatter',
         async use(context, next) {
