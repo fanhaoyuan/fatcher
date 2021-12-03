@@ -1,6 +1,7 @@
 /* eslint-disable no-use-before-define */
 import { PayloadTransformerOptions } from 'fatcher-middleware-payload-transformer';
 import { ResponseFormatterOptions } from 'fatcher-middleware-response-formatter';
+import { AborterOptions } from 'fatcher-middleware-aborter';
 
 export type RequestMethod = 'get' | 'post' | 'delete' | 'put' | 'head' | 'options' | 'patch';
 
@@ -65,7 +66,7 @@ export interface Middleware {
     use(context: Immutable<RequestContext>, next: MiddlewareNext): Promise<Response> | Response;
 }
 
-export interface RequestOptions extends PayloadTransformerOptions, ResponseFormatterOptions {
+export interface RequestOptions extends PayloadTransformerOptions, ResponseFormatterOptions, AborterOptions {
     /**
      * The prefix url with http request.
      *
@@ -145,17 +146,6 @@ export interface RequestOptions extends PayloadTransformerOptions, ResponseForma
      * If auto transform payload, you would not use this option.
      */
     body: ReadableStream | FormData | string | null;
-
-    /**
-     * Request timeout
-     *
-     * If response out of timeout, will abort this request.
-     *
-     * If timeout is `0`, request will not auto abort.
-     *
-     * @default 0
-     */
-    timeout: number;
 }
 
 export interface RequestContext extends Record<string, any> {
