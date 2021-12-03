@@ -27,8 +27,12 @@ export function normalizeURL(baseURL: string, url: string) {
      *
      * return url
      */
-    if (baseURL === '/' || isAbsoluteURL(url)) {
+    if (isAbsoluteURL(url)) {
         return normalize(url);
+    }
+
+    if (baseURL === '/') {
+        return url;
     }
 
     return normalize(`${baseURL}/${url}`);
