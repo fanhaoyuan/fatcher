@@ -1,4 +1,3 @@
-import 'fatcher';
 export interface AborterOptions {
     /**
      * Abort signal
@@ -13,9 +12,15 @@ export interface AborterOptions {
      * @default null
      */
     onAbort: ((...args: any[]) => void) | null;
-}
 
-declare module 'fatcher' {
-    // eslint-disable-next-line @typescript-eslint/no-empty-interface
-    export interface RequestOptions extends AborterOptions {}
+    /**
+     * Request timeout
+     *
+     * If response out of timeout, will abort this request.
+     *
+     * If timeout is `0`, request will not auto abort.
+     *
+     * @default 0
+     */
+    timeout: number;
 }

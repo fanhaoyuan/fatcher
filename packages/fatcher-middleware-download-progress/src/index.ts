@@ -1,4 +1,5 @@
-import { Middleware, chunkStreamReader } from 'fatcher';
+import { Middleware } from 'fatcher';
+import { chunkStreamReader } from 'utils-shared';
 import { DownloadProgressEvent } from './interfaces';
 export * from './interfaces';
 /**

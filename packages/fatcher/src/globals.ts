@@ -19,5 +19,8 @@ export const globalOptions: RequestOptions = {
     middlewares: [],
     body: null,
     responseType: 'json',
+    onAbort: null,
+    signal: null,
     timeout: 0,
+    onDownloadProgress: null,
 };
