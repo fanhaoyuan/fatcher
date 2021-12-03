@@ -7,9 +7,9 @@ const config: Config.InitialOptions = {
     roots: ['__tests__'],
     testPathIgnorePatterns: ['/node_modules/'],
     setupFiles: [
-        path.resolve(__dirname, 'node_modules/web-streams-polyfill/dist/polyfill.js'),
-        path.resolve(__dirname, 'node_modules/whatwg-fetch/dist/fetch.umd.js'),
-        path.resolve(__dirname, 'shared/setups/index.ts'),
+        path.resolve(__dirname, '../node_modules/web-streams-polyfill/dist/polyfill.js'),
+        path.resolve(__dirname, '../node_modules/whatwg-fetch/dist/fetch.umd.js'),
+        path.resolve(__dirname, './setups/index.ts'),
     ],
 };
 
