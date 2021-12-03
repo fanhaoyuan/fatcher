@@ -1,4 +1,3 @@
-export * from './chunkStreamReader';
 export * from './isAbsoluteURL';
 export * from './isFatcherError';
 export * from './isSameOriginURL';

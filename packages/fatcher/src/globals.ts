@@ -22,4 +22,5 @@ export const globalOptions: RequestOptions = {
     onAbort: null,
     signal: null,
     timeout: 0,
+    onDownloadProgress: null,
 };

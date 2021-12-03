@@ -2,6 +2,7 @@
 import { PayloadTransformerOptions } from 'fatcher-middleware-payload-transformer';
 import { ResponseFormatterOptions } from 'fatcher-middleware-response-formatter';
 import { AborterOptions } from 'fatcher-middleware-aborter';
+import { DownloadProgressOptions } from 'fatcher-middleware-download-progress';
 
 export type RequestMethod = 'get' | 'post' | 'delete' | 'put' | 'head' | 'options' | 'patch';
 
@@ -66,7 +67,11 @@ export interface Middleware {
     use(context: Immutable<RequestContext>, next: MiddlewareNext): Promise<Response> | Response;
 }
 
-export interface RequestOptions extends PayloadTransformerOptions, ResponseFormatterOptions, AborterOptions {
+export interface RequestOptions
+    extends PayloadTransformerOptions,
+        ResponseFormatterOptions,
+        AborterOptions,
+        DownloadProgressOptions {
     /**
      * The prefix url with http request.
      *

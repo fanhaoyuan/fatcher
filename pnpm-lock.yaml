@@ -85,6 +85,7 @@ importers:
       '@babel/preset-env': ^7.16.4
       '@rollup/plugin-babel': ^5.3.0
       fatcher-middleware-aborter: workspace:*
+      fatcher-middleware-download-progress: workspace:*
       fatcher-middleware-payload-transformer: workspace:*
       fatcher-middleware-response-formatter: workspace:*
       rollup-plugin-terser: ^7.0.2
@@ -93,21 +94,16 @@ importers:
       '@babel/preset-env': 7.16.4_@babel+core@7.16.0
       '@rollup/plugin-babel': 5.3.0_@babel+core@7.16.0+rollup@2.60.0
       fatcher-middleware-aborter: link:../fatcher-middleware-aborter
+      fatcher-middleware-download-progress: link:../fatcher-middleware-download-progress
       fatcher-middleware-payload-transformer: link:../fatcher-middleware-payload-transformer
       fatcher-middleware-response-formatter: link:../fatcher-middleware-response-formatter
       rollup-plugin-terser: 7.0.2_rollup@2.60.0
 
   packages/fatcher-middleware-aborter:
-    specifiers:
-      fatcher: workspace:^
-    dependencies:
-      fatcher: link:../fatcher
+    specifiers: {}
 
   packages/fatcher-middleware-download-progress:
-    specifiers:
-      fatcher: workspace:^
-    dependencies:
-      fatcher: link:../fatcher
+    specifiers: {}
 
   packages/fatcher-middleware-mocker:
     specifiers:
