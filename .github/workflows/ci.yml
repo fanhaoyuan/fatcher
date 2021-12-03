@@ -79,4 +79,4 @@ jobs:
               run: pnpm install
 
             - name: Test
-              run: pnpm -r run test
+              run: pnpm -r run test --if-present
