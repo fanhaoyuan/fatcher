@@ -140,17 +140,24 @@ export function cloneDeep<T>(value: T): T {
     let clonedData;
 
     if (isPlainObject(value)) {
-        clonedData = Object.create({});
+        clonedData = {};
 
-        for (const key of Object.keys(value)) {
-            //@ts-ignore
+        for (const key in value) {
             clonedData[key] = cloneDeep(value[key]);
         }
 
         return clonedData;
     }
 
-    clonedData = value;
+    if (Array.isArray(value)) {
+        clonedData = [];
 
-    return clonedData;
+        for (const item of value as unknown[]) {
+            clonedData.push(cloneDeep(item));
+        }
+
+        return clonedData;
+    }
+
+    return value;
 }
