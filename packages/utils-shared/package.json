@@ -2,5 +2,8 @@
     "private": true,
     "name": "utils-shared",
     "main": "index.ts",
-    "author": "Fansy <418536538@qq.com>"
+    "author": "Fansy <418536538@qq.com>",
+    "scripts": {
+        "test": "jest"
+    }
 }
