@@ -45,3 +45,7 @@ test('Object will deep merge', () => {
 test('undefined will ignore', () => {
     expect(merged.c.h).toStrictEqual('test');
 });
+
+test('Nothing to merge', () => {
+    expect(Object.is(merge(object), object)).toStrictEqual(true);
+});
