@@ -119,17 +119,22 @@ export function merge(object: Record<string, any>, ...sources: Record<string, an
         return object;
     }
 
-    for (const key of Object.keys(source)) {
+    for (const key in source) {
         const value = source[key];
 
-        if (value) {
-            if (isPlainObject(value)) {
-                object[key] = merge(object[key] ?? {}, value);
-            }
+        if (typeof value === 'undefined') {
+            continue;
         }
+
+        if (isPlainObject(value)) {
+            object[key] = merge(object[key], value);
+            continue;
+        }
+
+        object[key] = source[key];
     }
 
-    return merge(Object.assign(object, source), ...sources.slice(1));
+    return object;
 }
 
 /**
