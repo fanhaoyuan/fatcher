@@ -55,6 +55,7 @@ export default function config(options = {}) {
         {
             input,
             plugins: [dts({ respectExternal: true })],
+            external: options.external,
             output: {
                 format: 'esm',
                 file: typings,
