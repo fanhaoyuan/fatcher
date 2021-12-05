@@ -38,12 +38,12 @@ export function merge(object: Record<string, any>, ...sources: Record<string, an
         }
 
         if (isPlainObject(value)) {
-            object[key] = merge(object[key], value);
+            object[key] = merge(object[key] ?? {}, value);
             continue;
         }
 
-        object[key] = source[key];
+        object[key] = value;
     }
 
-    return object;
+    return merge(object, ...sources.slice(1));
 }
