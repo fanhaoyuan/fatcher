@@ -8,7 +8,7 @@ export function cloneDeep<T>(value: T): T {
     let clonedData;
 
     if (isPlainObject(value)) {
-        clonedData = {};
+        clonedData = Object.create({});
 
         for (const key in value) {
             clonedData[key] = cloneDeep(value[key]);
@@ -23,7 +23,7 @@ export function cloneDeep<T>(value: T): T {
         for (const item of value as unknown[]) {
             clonedData.push(cloneDeep(item));
         }
-
+        //@ts-expect-error
         return clonedData;
     }
 
