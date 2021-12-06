@@ -4,6 +4,7 @@
     "main": "index.ts",
     "author": "Fansy <418536538@qq.com>",
     "scripts": {
-        "test": "jest"
+        "test": "jest",
+        "test:coverage": "jest --coverage"
     }
 }

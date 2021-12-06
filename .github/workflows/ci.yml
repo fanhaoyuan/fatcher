@@ -71,5 +71,12 @@ jobs:
             - name: Install dependencies
               run: pnpm install
 
-            - name: Test
-              run: pnpm -r run test --if-present
+            - name: Test with coverage
+              run: pnpm -r run test:coverage --if-present
+
+            - name: Code coverage
+              uses: codecov/codecov-action@v2
+              with:
+                  token: ${{secrets.CODECOV_TOKEN}}
+                  fail_ci_if_error: true
+                  verbose: true
