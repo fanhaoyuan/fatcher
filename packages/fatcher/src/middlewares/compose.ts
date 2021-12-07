@@ -1,5 +1,5 @@
 import { RequestOptions, Middleware, RequestContext, PatchRequestContext, Response } from '../interfaces';
-import { mergeContext } from '../core';
+import { mergeContext } from '../context';
 import { isImmutable, immutable } from '../immutable';
 import { shouldMiddlewareApply } from './apply';
 
