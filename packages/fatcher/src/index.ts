@@ -1,6 +1,7 @@
 import { fatcher } from './fatcher';
 import { RequestOptions } from './interfaces';
-import { mergeOptions, clone, FatcherError } from './core';
+import { clone, FatcherError } from './core';
+import { mergeOptions } from './options';
 import aborter, { AbortError, isAbort } from 'fatcher-middleware-aborter';
 import downloadProgress from 'fatcher-middleware-download-progress';
 import { chunkStreamReader } from 'utils-shared';
