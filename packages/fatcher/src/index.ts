@@ -1,13 +1,12 @@
 import { fatcher } from './fatcher';
 import { RequestOptions } from './interfaces';
-import { FatcherError } from './core';
+import { FatcherError, isFatcherError } from './errors';
 import { clone } from './immutable';
 import { mergeOptions, globalOptions } from './options';
 import aborter, { AbortError, isAbort } from 'fatcher-middleware-aborter';
 import downloadProgress from 'fatcher-middleware-download-progress';
 import { chunkStreamReader } from 'utils-shared';
 export * from './interfaces';
-export { isFatcherError } from './helpers';
 export {
     globalOptions,
     fatcher,
@@ -18,6 +17,7 @@ export {
     isAbort,
     downloadProgress,
     chunkStreamReader,
+    isFatcherError,
 };
 export class Fatcher {
     constructor() {

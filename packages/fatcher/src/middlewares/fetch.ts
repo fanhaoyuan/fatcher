@@ -1,5 +1,5 @@
 import { fetcher } from '../adapters';
-import { FatcherError } from '../core';
+import { FatcherError } from '../errors';
 import { normalizeHeaders, normalizeURL } from '../helpers';
 import { Middleware } from '../interfaces';
 import { clone } from '../immutable';

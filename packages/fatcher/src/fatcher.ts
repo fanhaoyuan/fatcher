@@ -5,7 +5,7 @@ import responseFormatter from 'fatcher-middleware-response-formatter';
 import payloadTransformer from 'fatcher-middleware-payload-transformer';
 
 import { isString } from 'utils-shared';
-import { isFatcherError } from './helpers';
+import { isFatcherError } from './errors';
 
 export async function fatcher<T = any>(payload: string, options?: Partial<RequestOptions>): Promise<Response<T>>;
 export async function fatcher<T = any>(payload: Partial<RequestOptions> & { url: string }): Promise<Response<T>>;
