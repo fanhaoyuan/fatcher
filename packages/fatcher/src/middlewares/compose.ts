@@ -1,7 +1,7 @@
 import { RequestOptions, Middleware, RequestContext, PatchRequestContext, Response } from '../interfaces';
-import { mergeContext } from './context';
-import { isImmutable, immutable } from './immutable';
-import { shouldMiddlewareApply } from '../helpers';
+import { mergeContext } from '../context';
+import { isImmutable, immutable } from '../immutable';
+import { shouldMiddlewareApply } from './apply';
 
 /**
  * Compose middlewares to a higher-order function.

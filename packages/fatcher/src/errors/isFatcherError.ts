@@ -1,4 +1,4 @@
-import { FatcherError } from '../core/FatcherError';
+import { FatcherError } from './FatcherError';
 
 /**
  * Confirm a error whether is FatcherError

@@ -1,4 +1,4 @@
-import { isImmutable, clone } from './immutable';
+import { isImmutable, clone } from '../immutable';
 import { RequestOptions, Immutable, Response as FatcherResponse } from '../interfaces';
 
 /**

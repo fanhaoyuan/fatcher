@@ -1,4 +1,4 @@
-import { mergeOptions } from './options';
+import { mergeOptions } from '../options';
 import { PatchRequestContext, RequestContext } from '../interfaces';
 import { omit } from 'utils-shared';
 
