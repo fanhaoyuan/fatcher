@@ -1,6 +1,7 @@
 import { fatcher } from './fatcher';
 import { RequestOptions } from './interfaces';
-import { clone, FatcherError } from './core';
+import { FatcherError } from './core';
+import { clone } from './immutable';
 import { mergeOptions, globalOptions } from './options';
 import aborter, { AbortError, isAbort } from 'fatcher-middleware-aborter';
 import downloadProgress from 'fatcher-middleware-download-progress';

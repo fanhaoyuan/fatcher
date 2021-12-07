@@ -1,7 +1,8 @@
 import { fetcher } from '../adapters';
-import { clone, FatcherError } from '../core';
+import { FatcherError } from '../core';
 import { normalizeHeaders, normalizeURL } from '../helpers';
 import { Middleware } from '../interfaces';
+import { clone } from '../immutable';
 
 export function fetch(): Middleware {
     return {
