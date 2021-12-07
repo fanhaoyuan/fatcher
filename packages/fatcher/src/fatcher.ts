@@ -1,7 +1,6 @@
 import { Response, RequestOptions } from './interfaces';
-import { registerMiddlewares } from './core';
 import { mergeOptions, globalOptions } from './options';
-import { fetch, composeMiddlewares } from './middlewares';
+import { fetch, composeMiddlewares, registerMiddlewares } from './middlewares';
 import responseFormatter from 'fatcher-middleware-response-formatter';
 import payloadTransformer from 'fatcher-middleware-payload-transformer';
 
