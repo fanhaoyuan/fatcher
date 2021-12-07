@@ -1,3 +1,10 @@
+## v0.3.1
+
+### bugs
+
+-   🐛 fix normalize url error
+-   🐛 fix merge options error
+
 ## v0.3.0
 
 ### features
