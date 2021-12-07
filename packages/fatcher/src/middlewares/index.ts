@@ -1,2 +1,2 @@
 export * from './compose';
-export * from './fetcher';
+export * from './fetch';
