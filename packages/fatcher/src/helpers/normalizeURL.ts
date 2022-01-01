@@ -9,7 +9,7 @@ function normalize(url: string) {
             return '';
         })
         .replace(/\/\/(\/)?/g, '/')
-        .replace(/.*\S/, str => protocol + str);
+        .replace(/.*\S/, str => (protocol ?? '') + str);
 }
 
 /**
