@@ -1,3 +1,7 @@
+## v0.3.2
+
+-   🐛 fix normalize error when baseURL is not '/' [#62](https://github.com/fanhaoyuan/fatcher/pull/62)
+
 ## v0.3.1
 
 ### bugs
