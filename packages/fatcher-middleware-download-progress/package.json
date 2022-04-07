@@ -1,6 +1,0 @@
-{
-    "private": true,
-    "name": "fatcher-middleware-download-progress",
-    "main": "index.ts",
-    "license": "MIT"
-}

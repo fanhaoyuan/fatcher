@@ -1,6 +1,0 @@
-{
-    "private": true,
-    "name": "fatcher-middleware-payload-transformer",
-    "main": "index.ts",
-    "author": "Fansy <418536538@qq.com>"
-}
