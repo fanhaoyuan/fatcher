@@ -3,6 +3,7 @@ import dts from 'rollup-plugin-dts';
 import { main, module, browser, typings, dependencies } from './package.json';
 import esbuild, { minify } from 'rollup-plugin-esbuild';
 import nodeResolver from '@rollup/plugin-node-resolve';
+import bundleSize from 'rollup-plugin-bundle-size';
 
 const input = 'src/index.ts';
 const plugins = [nodeResolver(), esbuild()];
@@ -27,7 +28,7 @@ export default defineConfig([
         input,
         plugins,
         output: {
-            plugins: [minify()],
+            plugins: [minify(), bundleSize()],
             format: 'umd',
             file: browser,
             name: 'Fatcher',
