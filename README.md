@@ -7,7 +7,7 @@
 <a href="https://nodejs.org/en/about/releases/"><img src="https://img.shields.io/node/v/fatcher.svg" alt="node compatibility"></a>
 <a href="https://github.com/fatcherjs/fatcher/actions/workflows/ci.yml"><img src="https://github.com/fatcherjs/fatcher/actions/workflows/ci.yml/badge.svg?branch=master" alt="build status"></a>
 
-A light weight (**<= 2KB**) composable HTTP request library which base on fetch API.
+A tiny (**<= 2KB**) composable HTTP request library which base on fetch API.
 
 ## Languages
 
