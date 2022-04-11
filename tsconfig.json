@@ -5,8 +5,9 @@
         "esModuleInterop": true,
         "strict": true,
         "resolveJsonModule": true,
-        "moduleResolution": "node"
+        "moduleResolution": "node",
+        "noEmit": true
     },
-    "include": ["src/**/*"],
+    "include": ["src/**/*", "__tests__/**/*"],
     "exclude": ["node_modules", "dist"]
 }
