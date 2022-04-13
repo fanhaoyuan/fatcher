@@ -1,3 +1,3 @@
 export * from './composeMiddlewares';
+export * from './fetcher';
 export * from './registerMiddlewares';
-export * from './json';
