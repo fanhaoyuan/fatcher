@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "esModuleInterop": true,
+        "strict": true,
+        "resolveJsonModule": true,
+        "moduleResolution": "node",
+        "noEmit": true
+    },
+    "include": ["src/**/*", "__tests__/**/*"],
+    "exclude": ["node_modules", "dist"]
+}
