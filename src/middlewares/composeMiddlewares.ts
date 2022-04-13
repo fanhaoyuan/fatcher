@@ -1,7 +1,6 @@
 import { Context, Middleware, MiddlewareResult, PatchContext } from '../interfaces';
 import { mergeContext } from '../context';
 import { immutable } from '@fatcherjs/utils-shared';
-import { BaseError } from '../errors/BaseError';
 
 /**
  * Compose middlewares to a higher-order function.
@@ -38,10 +37,10 @@ export function composeMiddlewares(middlewares: Middleware[]) {
 
         let immutableContext: Context = immutable(context);
 
-        async function dispatch(index: number, patchContext?: PatchContext) {
+        async function dispatch(index: number, patchContext?: PatchContext): Promise<MiddlewareResult> {
             if (index <= currentIndex) {
                 return Promise.reject(
-                    new BaseError(`Middleware <${middlewares[index - 1].name}> call next() more than once.`)
+                    new Error(`Middleware <${middlewares[index - 1].name}> call next() more than once.`)
                 );
             }
 
@@ -59,9 +58,7 @@ export function composeMiddlewares(middlewares: Middleware[]) {
             }
 
             try {
-                response = await middleware.use(immutableContext, async patch => dispatch(index + 1, patch));
-
-                return response;
+                return (response = await middleware.use(immutableContext, async patch => dispatch(index + 1, patch)));
             } catch (error) {
                 return Promise.reject(error);
             }
