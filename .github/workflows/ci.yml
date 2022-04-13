@@ -23,7 +23,7 @@ jobs:
 
             - run: pnpm install
 
-            - run: pnpm run -r build --if-present
+            - run: pnpm run build
 
     eslint:
         runs-on: ubuntu-latest
@@ -40,7 +40,7 @@ jobs:
 
             - run: pnpm install
 
-            - run: pnpm exec eslint ./packages
+            - run: pnpm exec eslint ./src
 
     typings:
         runs-on: ubuntu-latest
@@ -74,7 +74,7 @@ jobs:
 
             - run: pnpm install
 
-            - run: pnpm -r run test:coverage --if-present
+            - run: pnpm run test:coverage
 
             - uses: codecov/codecov-action@v2
               with:
