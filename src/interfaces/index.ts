@@ -8,7 +8,9 @@ export type RequestMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'HEAD' | 'OPTION
 /**
  * Middleware Context
  */
-export type Context = Omit<RequestOptions, 'middlewares'>;
+export interface Context extends Omit<RequestOptions, 'middlewares'> {
+    body?: BodyInit | null;
+}
 
 /**
  * Request Headers
@@ -63,7 +65,7 @@ export type UnregisteredMiddlewares = ((() => Middleware) | Middleware | ((() =>
 /**
  * Request Options for fetch
  */
-export interface RequestOptions {
+export interface RequestOptions extends Omit<RequestInit, 'body' | 'headers'> {
     /**
      * Base url to fetch.
      *
