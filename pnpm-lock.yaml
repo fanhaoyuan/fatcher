@@ -5,12 +5,14 @@ specifiers:
   '@babel/preset-typescript': ^7.16.7
   '@fansy/eslint-config': ^1.0.0
   '@fansy/prettier-config': ^1.0.0
+  '@fatcherjs/middleware-json': ^1.0.0
   '@fatcherjs/utils-shared': ^0.1.0
   '@jest/types': ^27.5.1
   '@rollup/plugin-node-resolve': ^13.1.3
   '@types/jest': ^27.4.1
   '@types/node': ^17.0.23
   esbuild: ^0.14.29
+  fatcher: ./dist
   jest: ^27.5.1
   jest-fetch-mock: ^3.0.3
   rimraf: ^3.0.2
@@ -32,11 +34,13 @@ devDependencies:
   '@babel/preset-typescript': 7.16.7
   '@fansy/eslint-config': 1.0.0
   '@fansy/prettier-config': 1.0.0
+  '@fatcherjs/middleware-json': 1.0.0
   '@jest/types': 27.5.1
   '@rollup/plugin-node-resolve': 13.1.3_rollup@2.70.1
   '@types/jest': 27.4.1
   '@types/node': 17.0.23
   esbuild: 0.14.29
+  fatcher: link:dist
   jest: 27.5.1_ts-node@10.7.0
   jest-fetch-mock: 3.0.3
   rimraf: 3.0.2
@@ -1330,6 +1334,12 @@ packages:
     resolution: {integrity: sha512-zevewtIYvHl9T7Ejkghng0eDbljWksqkvuEbje8ifILY+Vp4+Y77GxRk3HkQtMP0GEXq/UVDDd7f1+t/hb/qOQ==}
     dependencies:
       prettier: 2.6.1
+    dev: true
+
+  /@fatcherjs/middleware-json/1.0.0:
+    resolution: {integrity: sha512-7c/UMY7W8L3ENIMlFXxPVA365O3URXwNpoxuHpQUwYp/0FSHXqSIjAHABqTihzhace6n2L4hrCY8DCKBcoraWw==}
+    peerDependencies:
+      fatcher: ^1.0.0
     dev: true
 
   /@fatcherjs/utils-shared/0.1.0:
