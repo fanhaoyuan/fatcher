@@ -48,6 +48,8 @@ English | [中文](./README.zh-CN.md)
 
 ## Usage
 
+### Basic
+
 ```ts
 import { fatcher, isFatcherError } from 'fatcher';
 
@@ -57,6 +59,75 @@ fatcher({
         foo: 'bar',
     },
     method: 'GET',
+})
+    .then(response => {
+        // response
+        console.log(response);
+    })
+    .catch(error => {
+        if (isFatcherError(error)) {
+            // handle fatcher error;
+            console.error(error.toJSON());
+            return;
+        }
+        // handle other error
+        console.error(error);
+    });
+```
+
+### Advance
+
+#### createScopedRequest
+
+```ts
+import { createScopedRequest } from 'fatcher';
+import { json } from '@fatcherjs/middleware-json';
+
+const fatcher = createScopedRequest({
+    baseUrl: 'https://fatcher.virtual',
+    method: 'POST',
+    middlewares: [json()],
+});
+
+fatcher({
+    url: '/getUserList',
+    payload: {
+        foo: 'bar',
+    },
+})
+    .then(response => {
+        // response
+        console.log(response);
+    })
+    .catch(error => {
+        if (isFatcherError(error)) {
+            // handle fatcher error;
+            console.error(error.toJSON());
+            return;
+        }
+        // handle other error
+        console.error(error);
+    });
+```
+
+#### Globals Options
+
+Inline Options `>` Scoped Options `>` Default Options
+
+```ts
+import { setDefaultOptions } from 'fatcher';
+
+setDefaultOptions({
+    baseUrl: 'https://fatcher.virtual',
+    method: 'POST',
+    middlewares: [json()],
+});
+
+fatcher({
+    url: '/getUserList',
+    payload: {
+        foo: 'bar',
+    },
 })
     .then(response => {
         // response
