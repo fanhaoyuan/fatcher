@@ -17,14 +17,15 @@ English | [中文](./README.zh-CN.md)
 
 | Name                          | Requires                                                                                                   | Browsers(`Modern`)                                          | Node(`>= 17.5.0`) |
 | ----------------------------- | ---------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- | :---------------: |
-| `Basic Request`               | `Core`                                                                                                     | ✅ ([Fetch](https://caniuse.com/fetch))                     |        ✅         |
-| `Promise API`                 | `Core`                                                                                                     | ✅                                                          |        ✅         |
-| `TypeScript Supports`         | `Core`                                                                                                     | ✅                                                          |        ✅         |
-| `Streams API`                 | `Core`                                                                                                     | ✅ ([Streams](https://caniuse.com/streams))                 |        ✅         |
-| `Composable Middlewares`      | `Core`                                                                                                     | ✅                                                          |        ✅         |
-| `Automated JSON Transforming` | [@fatcherjs/middleware-json](https://github.com/fatcherjs/middlewares/tree/master/packages/json)           | ✅                                                          |        ✅         |
-| `Cancelable`                  | [@fatcherjs/middleware-aborter](https://github.com/fatcherjs/middlewares/tree/master/packages/aborter)     | ✅ ([AbortController](https://caniuse.com/abortcontroller)) |        ✅         |
-| `FormData Supports`           | [@fatcherjs/middleware-form-data](https://github.com/fatcherjs/middlewares/tree/master/packages/form-data) | ✅                                                          |        ✅         |
+| `Basic Request`               | `Core`                                                                                                     | ✅ ([Fetch](https://caniuse.com/fetch))                     |        ⚠️         |
+| `Promise API`                 | `Core`                                                                                                     | ✅                                                          |        ⚠️          |
+| `TypeScript Supports`         | `Core`                                                                                                     | ✅                                                          |        ⚠️          |
+| `Streams API`                 | `Core`                                                                                                     | ✅ ([Streams](https://caniuse.com/streams))                 |        ⚠️          |
+| `Composable Middlewares`      | `Core`                                                                                                     | ✅                                                          |        ⚠️          |
+| `Automated JSON Transforming` | [@fatcherjs/middleware-json](https://github.com/fatcherjs/middlewares/tree/master/packages/json)           | ✅                                                          |        ⚠️          |
+| `Cancelable`                  | [@fatcherjs/middleware-aborter](https://github.com/fatcherjs/middlewares/tree/master/packages/aborter)     | ✅ ([AbortController](https://caniuse.com/abortcontroller)) |        ⚠️          |
+| `FormData Supports`           | [@fatcherjs/middleware-form-data](https://github.com/fatcherjs/middlewares/tree/master/packages/form-data) | ✅                                                          |        ⚠️          |
+| `Download Progress`           | [@fatcherjs/middleware-progress](https://github.com/fatcherjs/middlewares/tree/master/packages/progress)   | ✅                                                          |        ⚠️          |
 
 ## Install
 
