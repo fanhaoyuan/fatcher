@@ -150,6 +150,10 @@ fatcher({
 -   [Streams API](https://github.com/MattiasBuelens/web-streams-polyfill#readme)
 -   [Fetch API](https://github.com/github/fetch#readme)
 
+## More
+
+More information in [documentation](https://fatcherjs.github.io/docs/)
+
 ## License
 
 [MIT](./LICENSE)
