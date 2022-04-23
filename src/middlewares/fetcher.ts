@@ -11,7 +11,14 @@ export function fetcher(): Middleware {
     return {
         name: 'fatcher-middleware-http-fetcher',
         async use(context) {
-            const { baseUrl = '/', url = '', headers = {}, method = 'GET', ...rest } = context;
+            const {
+                baseUrl = '/',
+                url = '',
+                headers = {},
+                method = 'GET',
+                credentials = 'same-origin',
+                ...rest
+            } = context;
 
             if (!url) {
                 return unreachable('url is not defined.');
@@ -25,6 +32,7 @@ export function fetcher(): Middleware {
                 ...rest,
                 method,
                 headers: normalizedHeaders,
+                credentials,
             });
 
             const { status, statusText, ok } = response;
