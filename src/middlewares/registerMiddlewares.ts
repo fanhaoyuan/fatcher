@@ -1,5 +1,5 @@
 import { UnregisteredMiddlewares, Middleware } from '../interfaces';
-import { isFunction } from '@fatcherjs/utils-shared';
+import { isFunction } from '../utils';
 
 /**
  * Register Middlewares for fatcher.

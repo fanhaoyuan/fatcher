@@ -1,6 +1,6 @@
 import { Context, Middleware, MiddlewareResult, PatchContext } from '../interfaces';
 import { mergeContext } from '../context';
-import { immutable } from '@fatcherjs/utils-shared';
+import { immutable } from '../utils';
 
 /**
  * Compose middlewares to a higher-order function.

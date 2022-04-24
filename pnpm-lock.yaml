@@ -26,15 +26,13 @@ specifiers:
   web-streams-polyfill: ^3.2.0
   whatwg-fetch: ^3.6.2
 
-dependencies:
-  '@fatcherjs/utils-shared': 0.1.0
-
 devDependencies:
   '@babel/preset-env': 7.16.11
   '@babel/preset-typescript': 7.16.7
   '@fansy/eslint-config': 1.0.0
   '@fansy/prettier-config': 1.0.0
   '@fatcherjs/middleware-json': 1.0.0
+  '@fatcherjs/utils-shared': 0.1.0
   '@jest/types': 27.5.1
   '@rollup/plugin-node-resolve': 13.1.3_rollup@2.70.1
   '@types/jest': 27.4.1
@@ -1344,7 +1342,7 @@ packages:
 
   /@fatcherjs/utils-shared/0.1.0:
     resolution: {integrity: sha512-aO9koT/1YsW9QqYm/x6x6EZe4QaEXZLS/YiMkqQFzFzK2KazG0gsa5RKcKsBETtAt30CRDY5sjpSnFud4MOffA==}
-    dev: false
+    dev: true
 
   /@humanwhocodes/config-array/0.5.0:
     resolution: {integrity: sha512-FagtKFz74XrTl7y6HCzQpwDfXP0yhxe9lHLD1UZxjvZIcbyRz8zTFF/yYNfSfzU414eDwZ1SrO0Qvtyf+wFMQg==}

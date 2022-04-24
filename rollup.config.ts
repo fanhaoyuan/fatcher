@@ -1,6 +1,6 @@
 import { defineConfig } from 'rollup';
 import dts from 'rollup-plugin-dts';
-import { main, module, browser, typings, dependencies } from './package.json';
+import { main, module, browser, typings } from './package.json';
 import esbuild, { minify } from 'rollup-plugin-esbuild';
 import nodeResolver from '@rollup/plugin-node-resolve';
 import bundleSize from 'rollup-plugin-bundle-size';
@@ -12,7 +12,6 @@ export default defineConfig([
     {
         input,
         plugins,
-        external: Object.keys(dependencies),
         output: [
             {
                 format: 'cjs',

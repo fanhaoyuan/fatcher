@@ -1,7 +1,6 @@
 import { Middleware, MiddlewareResult } from '../interfaces';
-import { normalizeURL, normalizeHeaders } from '@fatcherjs/utils-shared';
 import { FatcherError } from '../errors';
-import { unreachable } from '../utils';
+import { unreachable, normalizeURL, normalizeHeaders } from '../utils';
 
 /**
  * A middleware for send http request by using fetch.
