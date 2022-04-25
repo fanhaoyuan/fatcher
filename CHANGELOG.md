@@ -1,3 +1,8 @@
+## v1.1.0
+
+-   🔧 Move `@fatcherjs/utils-shared` to `utils`
+-   🚀 Add default request init for same behavior during fetch in different browsers
+
 ## v1.0.0
 
 -   🚀 Add `payload-consumer`
