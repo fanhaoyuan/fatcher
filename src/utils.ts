@@ -3,7 +3,7 @@
  * @returns
  */
 export function isDev() {
-    return typeof process !== 'undefined' && !!(process?.env?.NODE_ENV === 'development');
+    return typeof process !== 'undefined' && !!(process.env.NODE_ENV === 'development');
 }
 
 /**
