@@ -4,6 +4,7 @@ import { main, module, browser, typings } from './package.json';
 import esbuild, { minify } from 'rollup-plugin-esbuild';
 import nodeResolver from '@rollup/plugin-node-resolve';
 import bundleSize from 'rollup-plugin-bundle-size';
+import replace from '@rollup/plugin-replace';
 
 const input = 'src/index.ts';
 const plugins = [nodeResolver(), esbuild()];
@@ -25,7 +26,12 @@ export default defineConfig([
     },
     {
         input,
-        plugins,
+        plugins: [
+            ...plugins,
+            replace({
+                'process.env.NODE_ENV': JSON.stringify('production'),
+            }),
+        ],
         output: {
             plugins: [minify(), bundleSize()],
             format: 'umd',
