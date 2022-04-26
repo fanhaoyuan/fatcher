@@ -1,10 +1,4 @@
-/**
- * Determine whether it is the development environment
- * @returns
- */
-export function isDev() {
-    return typeof process !== 'undefined' && !!(process.env.NODE_ENV === 'development');
-}
+export const isDev = process.env.NODE_ENV === 'development';
 
 /**
  * Set a plain object to readonly.
@@ -14,7 +8,7 @@ export function isDev() {
 export function immutable<T extends Record<string, any>>(record: T): T {
     return new Proxy(record, {
         set(key) {
-            if (isDev()) {
+            if (isDev) {
                 console.error(`Immutable object, ${key} can not be assigned.`);
             }
 
@@ -93,7 +87,7 @@ export const VerbosityLevel = {
     INFOS: 5,
 } as const;
 
-const verbosityLevel = isDev() ? VerbosityLevel.INFOS : VerbosityLevel.WARNINGS;
+const verbosityLevel = isDev ? VerbosityLevel.INFOS : VerbosityLevel.WARNINGS;
 
 const VerbosityPrefix = '[Fatcher]';
 
