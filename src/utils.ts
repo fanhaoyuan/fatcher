@@ -81,32 +81,22 @@ export function normalizeURL(baseURL: string, url: string) {
     return normalize(`${baseURL}/${url}`);
 }
 
-export const VerbosityLevel = {
-    ERRORS: 0,
-    WARNINGS: 1,
-    INFOS: 5,
-} as const;
-
-const verbosityLevel = isDev ? VerbosityLevel.INFOS : VerbosityLevel.WARNINGS;
-
 const VerbosityPrefix = '[Fatcher]';
 
 export function log(message: string) {
-    if (verbosityLevel >= VerbosityLevel.INFOS) {
+    if (isDev) {
         console.log(`${VerbosityPrefix} ${message}`);
     }
 }
 
 export function warn(message: string) {
-    if (verbosityLevel >= VerbosityLevel.WARNINGS) {
+    if (isDev) {
         console.warn(`${VerbosityPrefix} ${message}`);
     }
 }
 
 export function error(message: string) {
-    if (verbosityLevel >= VerbosityLevel.ERRORS) {
-        console.error(`${VerbosityPrefix} ${message}`);
-    }
+    console.error(`${VerbosityPrefix} ${message}`);
 }
 
 export function unreachable(reason: string): never {
