@@ -1,40 +1,6 @@
 export const isDev = process.env.NODE_ENV === 'development';
 
 /**
- * Set a plain object to readonly.
- * @param rawData
- * @returns
- */
-export function immutable<T extends Record<string, any>>(record: T): T {
-    return new Proxy(record, {
-        set(key) {
-            if (isDev) {
-                console.error(`Immutable object, ${key} can not be assigned.`);
-            }
-
-            return false;
-        },
-    });
-}
-
-/**
- * Normalize custom headers to Headers
- */
-export function normalizeHeaders(customHeaders: Record<string, any>): Headers {
-    const headers = new Headers();
-
-    for (const key of Object.keys(customHeaders)) {
-        const value = customHeaders[key];
-
-        if (value) {
-            headers.append(key, value);
-        }
-    }
-
-    return headers;
-}
-
-/**
  * Confirm a url whether is a absolute url.
  * @param url url to confirm
  * @returns
@@ -81,32 +47,22 @@ export function normalizeURL(baseURL: string, url: string) {
     return normalize(`${baseURL}/${url}`);
 }
 
-export const VerbosityLevel = {
-    ERRORS: 0,
-    WARNINGS: 1,
-    INFOS: 5,
-} as const;
-
-const verbosityLevel = isDev ? VerbosityLevel.INFOS : VerbosityLevel.WARNINGS;
-
 const VerbosityPrefix = '[Fatcher]';
 
 export function log(message: string) {
-    if (verbosityLevel >= VerbosityLevel.INFOS) {
+    if (isDev) {
         console.log(`${VerbosityPrefix} ${message}`);
     }
 }
 
 export function warn(message: string) {
-    if (verbosityLevel >= VerbosityLevel.WARNINGS) {
+    if (isDev) {
         console.warn(`${VerbosityPrefix} ${message}`);
     }
 }
 
 export function error(message: string) {
-    if (verbosityLevel >= VerbosityLevel.ERRORS) {
-        console.error(`${VerbosityPrefix} ${message}`);
-    }
+    console.error(`${VerbosityPrefix} ${message}`);
 }
 
 export function unreachable(reason: string): never {
@@ -120,4 +76,19 @@ export function unreachable(reason: string): never {
  */
 export function isFunction(value: unknown): value is (...args: any[]) => any {
     return typeof value === 'function';
+}
+
+/**
+ * Set a plain object to readonly.
+ * @param rawData
+ * @returns
+ */
+export function immutable<T extends Record<string, any>>(record: T): T {
+    return new Proxy(record, {
+        set(key) {
+            warn(`Immutable object, ${key} can not be assigned.`);
+
+            return false;
+        },
+    });
 }

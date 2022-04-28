@@ -1,6 +1,6 @@
 import { Middleware, MiddlewareResult } from '../interfaces';
 import { FatcherError } from '../errors';
-import { unreachable, normalizeURL, normalizeHeaders } from '../utils';
+import { unreachable, normalizeURL } from '../utils';
 
 /**
  * A middleware for send http request by using fetch.
@@ -18,7 +18,11 @@ export function fetcher(): Middleware {
 
             const normalizedURL = normalizeURL(baseUrl, url);
 
-            const normalizedHeaders = normalizeHeaders(headers);
+            const normalizedHeaders = Object.keys(headers).reduce<Record<string, string>>((_headers, key) => {
+                const value = headers[key];
+
+                return value ? { ..._headers, [key]: value } : _headers;
+            }, Object.create(null));
 
             const response = await fetch(normalizedURL, {
                 ...rest,
