@@ -18,23 +18,6 @@ export function immutable<T extends Record<string, any>>(record: T): T {
 }
 
 /**
- * Normalize custom headers to Headers
- */
-export function normalizeHeaders(customHeaders: Record<string, any>): Headers {
-    const headers = new Headers();
-
-    for (const key of Object.keys(customHeaders)) {
-        const value = customHeaders[key];
-
-        if (value) {
-            headers.append(key, value);
-        }
-    }
-
-    return headers;
-}
-
-/**
  * Confirm a url whether is a absolute url.
  * @param url url to confirm
  * @returns
