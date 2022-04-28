@@ -1,23 +1,6 @@
 export const isDev = process.env.NODE_ENV === 'development';
 
 /**
- * Set a plain object to readonly.
- * @param rawData
- * @returns
- */
-export function immutable<T extends Record<string, any>>(record: T): T {
-    return new Proxy(record, {
-        set(key) {
-            if (isDev) {
-                console.error(`Immutable object, ${key} can not be assigned.`);
-            }
-
-            return false;
-        },
-    });
-}
-
-/**
  * Confirm a url whether is a absolute url.
  * @param url url to confirm
  * @returns
@@ -93,4 +76,19 @@ export function unreachable(reason: string): never {
  */
 export function isFunction(value: unknown): value is (...args: any[]) => any {
     return typeof value === 'function';
+}
+
+/**
+ * Set a plain object to readonly.
+ * @param rawData
+ * @returns
+ */
+export function immutable<T extends Record<string, any>>(record: T): T {
+    return new Proxy(record, {
+        set(key) {
+            warn(`Immutable object, ${key} can not be assigned.`);
+
+            return false;
+        },
+    });
 }
