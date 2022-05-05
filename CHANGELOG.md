@@ -1,3 +1,8 @@
+## v1.1.1
+
+-   🐛 Using body instead of inline url params with `application/x-www-form-urlencoded` ([#113](https://github.com/fatcher/fatcher/pull/113))
+-   ⚡️ Headers using `Record<string, string>` to send request ([#109](https://github.com/fatcher/fatcher/pull/109))
+
 ## v1.1.0
 
 -   🔧 Move `@fatcherjs/utils-shared` to `utils`
@@ -20,7 +25,7 @@
 
 ## v0.3.2
 
--   🐛 fix normalize error when baseURL is not '/' [#62](https://github.com/fanhaoyuan/fatcher/pull/62)
+-   🐛 fix normalize error when baseURL is not '/' [#62](https://github.com/fatcher/fatcher/pull/62)
 
 ## v0.3.1
 
