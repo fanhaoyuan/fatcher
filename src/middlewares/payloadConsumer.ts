@@ -29,9 +29,9 @@ export function payloadConsumer(): Middleware {
 
             /**
              * If Request Method is `GET` or `HEAD`.
-             * 
+             *
              * Will ignore headers['Content-Type'].
-             * 
+             *
              * payload will transform into search params.
              */
             if (['GET', 'HEAD'].includes(method)) {
@@ -49,8 +49,7 @@ export function payloadConsumer(): Middleware {
             }
 
             if (contentType?.includes('application/x-www-form-urlencoded')) {
-                normalizedURL = wrapperSearchParams(url, payload);
-                normalizedBody = null;
+                normalizedBody = new URLSearchParams(payload);
             }
 
             return next({
