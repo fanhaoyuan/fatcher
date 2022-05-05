@@ -1,13 +1,12 @@
 import { fatcher, isFatcherError } from '../src';
 import fetchMock from 'jest-fetch-mock';
 import { BASE_URL } from './utils';
-import { parseURL } from '@fatcherjs/utils-shared';
 import { json } from '@fatcherjs/middleware-json';
 
 describe('Basic Request', () => {
     beforeEach(() => {
         fetchMock.mockIf(new RegExp(`${BASE_URL}/.*`), async request => {
-            const [path, pathParams] = request.url.split('?');
+            const [path] = request.url.split('?');
 
             if (path === `${BASE_URL}/getJsonData`) {
                 return {
@@ -26,12 +25,12 @@ describe('Basic Request', () => {
                     };
                 }
 
-                const { id, name } = parseURL(pathParams);
+                const params = new URLSearchParams(await request.text());
 
-                if (id === 'setJsonData') {
+                if (params.get('id') === 'setJsonData') {
                     return {
                         status: 201,
-                        body: `fatcher change into ${name}`,
+                        body: `fatcher change into ${params.get('name')}`,
                     };
                 }
 
