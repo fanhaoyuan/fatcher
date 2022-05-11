@@ -82,7 +82,7 @@ fatcher({
 #### 作用域请求
 
 ```ts
-import { createScopedRequest } from 'fatcher';
+import { createScopedRequest, fatcher, isFatcherError } from 'fatcher';
 import { json } from '@fatcherjs/middleware-json';
 
 // 自定义初始化配置项
@@ -116,7 +116,7 @@ fatcher({
 行内配置 `>` 作用域配置 `>` 全局配置
 
 ```ts
-import { setDefaultOptions } from 'fatcher';
+import { setDefaultOptions, fatcher, isFatcherError } from 'fatcher';
 import { json } from '@fatcherjs/middleware-json';
 
 setDefaultOptions({
@@ -139,6 +139,100 @@ fatcher({
             console.error(error.toJSON());
             return;
         }
+        console.error(error);
+    });
+```
+
+### 拦截器
+
+实际上是使用自定义中间件来拦截。
+
+#### 请求拦截器
+
+一个在发送前拦截请求的示例。
+
+```ts
+import { Middleware, fatcher, isFatcherError } from 'fatcher';
+
+function requestInterceptor(): Middleware {
+    return {
+        name: 'fatcher-middleware-request-interceptor',
+        use(context, next) {
+            if (!context.payload) {
+                return Promise.reject(new Error('Payload is required.'));
+            }
+
+            if (context.method !== 'POST') {
+                return Promise.reject(new Error('Method is not allowed.'));
+            }
+
+            // 从 context 中检查内容
+
+            return next();
+        },
+    };
+}
+
+fatcher({
+    url: '/foo/bar',
+    method: 'POST',
+    middlewares: [requestInterceptor()],
+})
+    .then(response => {
+        // 响应内容
+        console.log(response);
+    })
+    .catch(error => {
+        if (isFatcherError(error)) {
+            // 处理请求失败的错误
+            console.error(error.toJSON());
+            return;
+        }
+        // 处理其他错误
+        console.error(error);
+    });
+```
+
+#### 响应拦截器
+
+一个在解析前拦截响应的示例。
+
+```ts
+import { Middleware, fatcher, isFatcherError } from 'fatcher';
+
+function responseInterceptor(): Middleware {
+    return {
+        name: 'fatcher-middleware-response-interceptor',
+        async use(context, next) {
+            const result = await next();
+
+            // 从 result 中检查内容
+
+            if (result.data.status === 50000) {
+                return Promise.reject(result.data);
+            }
+
+            return result;
+        },
+    };
+}
+
+fatcher({
+    url: '/foo/bar',
+    method: 'POST',
+    middlewares: [responseInterceptor()],
+})
+    .then(response => {
+        // 响应内容
+        console.log(response);
+    })
+    .catch(error => {
+        if (isFatcherError(error)) {
+            // 处理请求失败的错误
+            console.error(error.toJSON());
+            return;
+        }
+        // 处理其他错误
         console.error(error);
     });
 ```
