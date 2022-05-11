@@ -4,7 +4,7 @@
  * @param callback
  * @returns
  */
-export async function chunkStreamReader<T = Uint8Array>(
+export async function readStreamByChunk<T = Uint8Array>(
     readableStream: ReadableStream<T>,
     callback: (chunk: T) => void
 ) {
@@ -22,3 +22,13 @@ export async function chunkStreamReader<T = Uint8Array>(
 
     return read(readableStream.getReader());
 }
+
+/**
+ * Read a readable stream by chunk
+ * @param readableStream
+ * @param callback
+ * @returns
+ *
+ * @deprecated Use `readStreamByChunk` instead.
+ */
+export const chunkStreamReader = readStreamByChunk;
