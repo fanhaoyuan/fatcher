@@ -82,7 +82,7 @@ fatcher({
 #### createScopedRequest
 
 ```ts
-import { createScopedRequest } from 'fatcher';
+import { createScopedRequest, fatcher, isFatcherError } from 'fatcher';
 import { json } from '@fatcherjs/middleware-json';
 
 const fatcher = createScopedRequest({
@@ -117,7 +117,7 @@ fatcher({
 Inline Options `>` Scoped Options `>` Default Options
 
 ```ts
-import { setDefaultOptions } from 'fatcher';
+import { setDefaultOptions, fatcher, isFatcherError } from 'fatcher';
 import { json } from '@fatcherjs/middleware-json';
 
 setDefaultOptions({
@@ -131,6 +131,100 @@ fatcher({
     payload: {
         foo: 'bar',
     },
+})
+    .then(response => {
+        // response
+        console.log(response);
+    })
+    .catch(error => {
+        if (isFatcherError(error)) {
+            // handle fatcher error;
+            console.error(error.toJSON());
+            return;
+        }
+        // handle other error
+        console.error(error);
+    });
+```
+
+### Interceptors
+
+It's actually using a custom Middleware to intercept.
+
+#### Request Interceptor
+
+An example for intercepting request before send.
+
+```ts
+import { Middleware, fatcher, isFatcherError } from 'fatcher';
+
+function requestInterceptor(): Middleware {
+    return {
+        name: 'fatcher-middleware-request-interceptor',
+        use(context, next) {
+            if (!context.payload) {
+                return Promise.reject(new Error('Payload is required.'));
+            }
+
+            if (context.method !== 'POST') {
+                return Promise.reject(new Error('Method is not allowed.'));
+            }
+
+            // check anything from context.
+
+            return next();
+        },
+    };
+}
+
+fatcher({
+    url: '/foo/bar',
+    method: 'POST',
+    middlewares: [requestInterceptor()],
+})
+    .then(response => {
+        // response
+        console.log(response);
+    })
+    .catch(error => {
+        if (isFatcherError(error)) {
+            // handle fatcher error;
+            console.error(error.toJSON());
+            return;
+        }
+        // handle other error
+        console.error(error);
+    });
+```
+
+#### Response Interceptor
+
+An example for intercepting response before resolve.
+
+```ts
+import { Middleware, fatcher, isFatcherError } from 'fatcher';
+
+function responseInterceptor(): Middleware {
+    return {
+        name: 'fatcher-middleware-response-interceptor',
+        async use(context, next) {
+            const result = await next();
+
+            // check anything from result.
+
+            if (result.data.status === 50000) {
+                return Promise.reject(result.data);
+            }
+
+            return result;
+        },
+    };
+}
+
+fatcher({
+    url: '/foo/bar',
+    method: 'POST',
+    middlewares: [responseInterceptor()],
 })
     .then(response => {
         // response
