@@ -1,4 +1,4 @@
-export { chunkStreamReader, canActivate } from './helpers';
+export * from './helpers';
 export { FatcherError, isFatcherError } from './errors';
 export { setDefaultOptions, mergeOptions } from './options';
 export * from './interfaces';
