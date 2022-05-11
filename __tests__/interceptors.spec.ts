@@ -35,15 +35,15 @@ describe('Custom Interceptors', () => {
     });
 
     it('Request Interceptor', async () => {
-        const urlErrMsg = 'Url is not defined';
+        const payloadErrMsg = 'Payload is not defined';
         const methodErrMsg = 'Method is not POST';
 
         function requestInterceptor(): Middleware {
             return {
                 name: 'fatcher-middleware-request-interceptor',
                 use(context, next) {
-                    if (!context.url) {
-                        throw new Error(urlErrMsg);
+                    if (!context.payload) {
+                        throw new Error(payloadErrMsg);
                     }
 
                     if (context.method !== 'POST') {
@@ -62,6 +62,9 @@ describe('Custom Interceptors', () => {
                 baseUrl: BASE_URL,
                 url: '/foo/bar',
                 middlewares: [requestInterceptor()],
+                payload: {
+                    test: 1
+                }
             });
         } catch (err: any) {
             expect(err.message).toBe(methodErrMsg);
@@ -70,11 +73,12 @@ describe('Custom Interceptors', () => {
         try {
             await fatcher({
                 baseUrl: BASE_URL,
+                url: '/foo/bar',
                 middlewares: [requestInterceptor()],
                 method: 'POST',
             });
         } catch (err: any) {
-            expect(err.message).toBe(urlErrMsg);
+            expect(err.message).toBe(payloadErrMsg);
         }
     });
 
