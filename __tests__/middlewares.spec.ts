@@ -38,9 +38,9 @@ describe('Custom Middlewares', () => {
         return {
             name: 'fatcher-middleware-pre',
             use(context, next) {
-                if (context.url === '/get') {
+                if (context.url === `${BASE_URL}/get`) {
                     return next({
-                        url: '/getLongText',
+                        url: `${BASE_URL}/getLongText`,
                         method: 'POST',
                     });
                 }
