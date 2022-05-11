@@ -1,5 +1,6 @@
 import { RequestOptions } from '../interfaces';
 import { defaultOptions } from './defaultOptions';
+import { mergeOptions } from './mergeOptions';
 
 /**
  * Set Default Fatcher Request Options.
@@ -13,5 +14,5 @@ import { defaultOptions } from './defaultOptions';
  * Inline Options `>` Scoped Options `>` Default Options
  */
 export function setDefaultOptions<T extends RequestOptions>(patchRequestOptions: Partial<T>) {
-    Object.assign(defaultOptions, patchRequestOptions);
+    Object.assign(defaultOptions, mergeOptions(defaultOptions, patchRequestOptions));
 }
