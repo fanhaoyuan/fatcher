@@ -1,3 +1,9 @@
+## v1.1.2
+
+-   🐛 It is not exported `isAbortError` and `readStreamByChunk` ([#120](https://github.com/fatcherjs/fatcher/pull/120))
+-   🔧 Rename `chunkStreamReader` to `readStreamByChunk` ([#119](https://github.com/fatcherjs/fatcher/pull/119))
+-   🐛 The global options `overriding` headers rather than `merging` headers ([#118](https://github.com/fatcherjs/fatcher/pull/118))
+
 ## v1.1.1
 
 -   🐛 Using body instead of inline url params with `application/x-www-form-urlencoded` ([#113](https://github.com/fatcherjs/fatcher/pull/113))
