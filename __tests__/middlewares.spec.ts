@@ -1,4 +1,4 @@
-import { fatcher, Middleware, isFatcherError, canActivate, chunkStreamReader } from '../src';
+import { fatcher, Middleware, isFatcherError, canActivate, readStreamByChunk } from 'fatcher';
 import fetchMock from 'jest-fetch-mock';
 import { BASE_URL } from './utils';
 
@@ -130,7 +130,7 @@ describe('Custom Middlewares', () => {
         });
 
         const result: string[] = [];
-        await chunkStreamReader(data, str => result.push(str));
+        await readStreamByChunk(data, str => result.push(str));
         expect(result[0].length).toBe(COF);
         expect(result.length).toBe(longText.length / COF);
         expect(result.join('')).toBe(longText);
