@@ -35,6 +35,7 @@
         "ci": "npm run build && npm run test && pnpm run tsc"
     },
     "devDependencies": {
+        "@babel/core": "^7.18.0",
         "@babel/preset-env": "^7.16.11",
         "@babel/preset-typescript": "^7.16.7",
         "@fansy/eslint-config": "^1.0.0",
