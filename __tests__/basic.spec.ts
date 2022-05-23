@@ -1,7 +1,6 @@
 import { fatcher, isFatcherError } from 'fatcher';
 import fetchMock from 'jest-fetch-mock';
-import { BASE_URL } from './utils';
-import { json } from '@fatcherjs/middleware-json';
+import { BASE_URL, json } from './utils';
 
 describe('Basic Request', () => {
     beforeEach(() => {

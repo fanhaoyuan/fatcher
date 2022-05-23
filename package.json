@@ -39,7 +39,6 @@
         "@babel/preset-typescript": "^7.16.7",
         "@fansy/eslint-config": "^1.0.0",
         "@fansy/prettier-config": "^1.0.0",
-        "@fatcherjs/middleware-json": "^1.0.0",
         "@jest/types": "^28.1.0",
         "@rollup/plugin-node-resolve": "^13.1.3",
         "@rollup/plugin-replace": "^4.0.0",
