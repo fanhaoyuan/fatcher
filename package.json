@@ -21,7 +21,7 @@
     "unpkg": "dist/fatcher.min.js",
     "typings": "dist/index.d.ts",
     "engines": {
-        "node": ">=17.5.0"
+        "node": ">=18.0.0"
     },
     "files": [
         "dist"
