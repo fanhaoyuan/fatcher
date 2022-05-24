@@ -5,9 +5,19 @@ import esbuild, { minify } from 'rollup-plugin-esbuild';
 import nodeResolver from '@rollup/plugin-node-resolve';
 import bundleSize from 'rollup-plugin-bundle-size';
 import replace from '@rollup/plugin-replace';
+import strip from '@rollup/plugin-strip';
 
 const input = 'src/index.ts';
-const plugins = [nodeResolver(), esbuild()];
+const VerbosityPrefix = '[Fatcher]';
+
+const plugins = [
+    nodeResolver(),
+    esbuild(),
+    replace({
+        __vp__: VerbosityPrefix,
+        preventAssignment: false,
+    }),
+];
 
 export default defineConfig([
     {
@@ -30,6 +40,11 @@ export default defineConfig([
             ...plugins,
             replace({
                 'process.env.NODE_ENV': JSON.stringify('production'),
+                preventAssignment: false,
+            }),
+            strip({
+                include: ['src/**/*.ts'],
+                functions: ['console.log', 'console.warn'],
             }),
         ],
         output: {

@@ -1,4 +1,4 @@
-import { immutable, isAbsoluteURL, isFunction, normalizeURL, unreachable } from 'fatcher/utils';
+import { immutable, isAbsoluteURL, isFunction, normalizeURL } from 'fatcher/utils';
 
 describe('Utils', () => {
     it('isAbsoluteURL', () => {
@@ -47,14 +47,5 @@ describe('Utils', () => {
         object.a = '';
 
         expect(object.a).toBe('');
-    });
-
-    it('unreachable', () => {
-        try {
-            unreachable('test');
-        } catch (error: any) {
-            expect(error instanceof Error).toBe(true);
-            expect(error.message).toBe('[Fatcher] test');
-        }
     });
 });

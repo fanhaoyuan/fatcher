@@ -16,7 +16,7 @@ describe('Context', () => {
         try {
             createContext({ baseUrl: '/' });
         } catch (error: any) {
-            expect(error.message).toBe('[Fatcher] URL is required.');
+            expect(error.message).toBe('__vp__ URL is required.');
         }
     });
 
@@ -24,7 +24,7 @@ describe('Context', () => {
         try {
             createContext({});
         } catch (error: any) {
-            expect(error.message).toBe('[Fatcher] URL is required.');
+            expect(error.message).toBe('__vp__ URL is required.');
         }
     });
 
