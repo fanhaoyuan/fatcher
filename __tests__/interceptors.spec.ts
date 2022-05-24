@@ -1,7 +1,6 @@
 import { fatcher, Middleware } from 'fatcher';
-import { json } from '@fatcherjs/middleware-json';
 import fetchMock from 'jest-fetch-mock';
-import { BASE_URL } from './utils';
+import { BASE_URL, json } from './utils';
 
 describe('Custom Interceptors', () => {
     const ResponseErrMsg = 'Response Error';
@@ -63,8 +62,8 @@ describe('Custom Interceptors', () => {
                 url: '/foo/bar',
                 middlewares: [requestInterceptor()],
                 payload: {
-                    test: 1
-                }
+                    test: 1,
+                },
             });
         } catch (err: any) {
             expect(err.message).toBe(methodErrMsg);
