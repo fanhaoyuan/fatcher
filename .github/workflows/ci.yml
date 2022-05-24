@@ -21,6 +21,7 @@ jobs:
             - uses: actions/setup-node@v2
               with:
                   cache: 'pnpm'
+                  node-version: 18
 
             - run: pnpm install
 
@@ -38,6 +39,7 @@ jobs:
             - uses: actions/setup-node@v2
               with:
                   cache: 'pnpm'
+                  node-version: 18
 
             - run: pnpm install
 
@@ -55,6 +57,7 @@ jobs:
             - uses: actions/setup-node@v2
               with:
                   cache: 'pnpm'
+                  node-version: 18
 
             - run: pnpm install
 
@@ -72,6 +75,7 @@ jobs:
             - uses: actions/setup-node@v2
               with:
                   cache: 'pnpm'
+                  node-version: 18
 
             - run: pnpm install
 
