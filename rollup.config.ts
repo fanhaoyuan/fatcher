@@ -7,7 +7,16 @@ import bundleSize from 'rollup-plugin-bundle-size';
 import replace from '@rollup/plugin-replace';
 
 const input = 'src/index.ts';
-const plugins = [nodeResolver(), esbuild()];
+const VerbosityPrefix = '[Fatcher]';
+
+const plugins = [
+    nodeResolver(),
+    esbuild(),
+    replace({
+        __vp__: VerbosityPrefix,
+        preventAssignment: false,
+    }),
+];
 
 export default defineConfig([
     {
@@ -30,6 +39,7 @@ export default defineConfig([
             ...plugins,
             replace({
                 'process.env.NODE_ENV': JSON.stringify('production'),
+                preventAssignment: false,
             }),
         ],
         output: {

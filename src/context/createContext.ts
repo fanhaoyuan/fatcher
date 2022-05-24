@@ -1,5 +1,5 @@
 import { Context, RequestOptions } from '../interfaces';
-import { normalizeURL, unreachable } from '../utils';
+import { normalizeURL } from '../utils';
 
 /**
  * Create initial context by request options
@@ -10,7 +10,7 @@ export function createContext(options: RequestOptions): Context {
     const { baseUrl = '', url = '' } = options;
 
     if (!url) {
-        return unreachable('URL is required.');
+        throw new Error('__vp__ URL is required.');
     }
 
     const normalizedURL = normalizeURL(baseUrl, url);

@@ -5,7 +5,7 @@ import { Context } from '../interfaces';
  */
 export class FatcherError extends Error {
     constructor(context: Context, response: Response) {
-        super(`[Fatcher]: Fetch failed with status code ${response.status}`);
+        super(`__vp__ Fetch failed with status code ${response.status}`);
 
         this._response = response;
         this._context = context;

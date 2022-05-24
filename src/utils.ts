@@ -1,5 +1,3 @@
-export const isDev = process.env.NODE_ENV === 'development';
-
 /**
  * Confirm a url whether is a absolute url.
  * @param url url to confirm
@@ -47,28 +45,6 @@ export function normalizeURL(baseURL: string, url: string) {
     return normalize(`${baseURL}/${url}`);
 }
 
-const VerbosityPrefix = '[Fatcher]';
-
-export function log(message: string) {
-    if (isDev) {
-        console.log(`${VerbosityPrefix} ${message}`);
-    }
-}
-
-export function warn(message: string) {
-    if (isDev) {
-        console.warn(`${VerbosityPrefix} ${message}`);
-    }
-}
-
-export function error(message: string) {
-    console.error(`${VerbosityPrefix} ${message}`);
-}
-
-export function unreachable(reason: string): never {
-    throw new Error(`${VerbosityPrefix} ${reason}`);
-}
-
 /**
  * Confirm a value whether is a function
  * @param value value to confirm
@@ -86,7 +62,7 @@ export function isFunction(value: unknown): value is (...args: any[]) => any {
 export function immutable<T extends Record<string, any>>(record: T): T {
     return new Proxy(record, {
         set(key) {
-            warn(`Immutable object, ${key} can not be assigned.`);
+            console.warn(`__vp__ Immutable object, ${key} can not be assigned.`);
 
             return false;
         },
