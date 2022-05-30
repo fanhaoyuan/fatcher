@@ -22,7 +22,7 @@
 | TypeScript 支持     | 核心库                                                                                                     | ✅                                                          | ✅             |
 | Streams API 支持    | 核心库                                                                                                     | ✅ ([Streams](https://caniuse.com/streams))                 | ✅ (>= 18.0.0) |
 | 组合式中间件        | 核心库                                                                                                     | ✅                                                          | ✅             |
-| 自动转换 JSON 响应  | [@fatcherjs/middleware-json](https://github.com/fatcherjs/middlewares/tree/master/packages/json)           | ✅                                                          | ⚠️             |
+| 自动转换 JSON 响应  | [@fatcherjs/middleware-json](https://github.com/fatcherjs/middlewares/tree/master/packages/json)           | ✅                                                          | ✅             |
 | 取消请求            | [@fatcherjs/middleware-aborter](https://github.com/fatcherjs/middlewares/tree/master/packages/aborter)     | ✅ ([AbortController](https://caniuse.com/abortcontroller)) | ⚠️             |
 | 超时时间            | [@fatcherjs/middleware-aborter](https://github.com/fatcherjs/middlewares/tree/master/packages/aborter)     | ✅ ([AbortController](https://caniuse.com/abortcontroller)) | ⚠️             |
 | FormData 请求体格式 | [@fatcherjs/middleware-form-data](https://github.com/fatcherjs/middlewares/tree/master/packages/form-data) | ✅                                                          | ⚠️             |
