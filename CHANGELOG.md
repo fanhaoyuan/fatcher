@@ -1,3 +1,8 @@
+## v1.1.3
+
+-   🐛 `ResponseResult` headers should be response headers ([#126](https://github.com/fatcherjs/fatcher/pull/126))
+-   🧪 Upgrade node version to `18` and setup units tests ([#124](https://github.com/fatcherjs/fatcher/pull/124))
+
 ## v1.1.2
 
 -   🐛 It is not exported `isAbortError` and `readStreamByChunk` ([#120](https://github.com/fatcherjs/fatcher/pull/120))
