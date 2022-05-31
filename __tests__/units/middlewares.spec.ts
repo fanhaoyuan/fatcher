@@ -137,7 +137,7 @@ describe('Middlewares', () => {
                         status: response.status,
                         statusText: response.statusText,
                         data: response,
-                        headers: context.headers || {},
+                        headers: response.headers,
                         url: context.url || '',
                     };
                 },

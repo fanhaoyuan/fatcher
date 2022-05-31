@@ -24,7 +24,7 @@ export type RequestHeaders = Record<string, string | null>;
  */
 export interface ResponseResult<T = any> {
     data: T;
-    headers: RequestHeaders;
+    headers: Headers;
     status: number;
     statusText: string;
     options: RequestOptions;
