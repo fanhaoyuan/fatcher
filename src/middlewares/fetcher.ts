@@ -11,7 +11,7 @@ export function fetcher(): Middleware {
         async use(context) {
             const { url = '', headers = {}, ...rest } = context;
 
-            const normalizedHeaders = Object.keys(headers).reduce<Record<string, string>>((_headers, key) => {
+            const requestHeaders = Object.keys(headers).reduce<Record<string, string>>((_headers, key) => {
                 const value = headers[key];
 
                 return value ? { ..._headers, [key]: value } : _headers;
@@ -19,15 +19,15 @@ export function fetcher(): Middleware {
 
             const response = await fetch(url, {
                 ...rest,
-                headers: normalizedHeaders,
+                headers: requestHeaders,
             });
 
-            const { status, statusText, ok } = response;
+            const { status, statusText, ok, headers: responseHeaders } = response;
 
             const result: MiddlewareResult = {
                 status,
                 statusText,
-                headers,
+                headers: responseHeaders,
                 url,
                 data: response,
             };
