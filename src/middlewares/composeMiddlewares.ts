@@ -35,7 +35,7 @@ export function composeMiddlewares(middlewares: Middleware[]) {
 
         let context: Context = initialContext;
 
-        let immutableContext: Context = immutable(context);
+        let immutableContext = immutable(context);
 
         async function dispatch(index: number, patchContext?: PatchContext): Promise<MiddlewareResult> {
             if (index <= currentIndex) {
