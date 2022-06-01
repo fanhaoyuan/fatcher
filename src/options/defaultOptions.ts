@@ -9,6 +9,7 @@ export const defaultOptions: RequestOptions = {
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
     },
+    params: {},
     credentials: 'same-origin',
     cache: 'default',
     redirect: 'follow',
