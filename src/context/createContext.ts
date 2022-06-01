@@ -7,13 +7,19 @@ import { normalizeURL } from '../utils';
  * @returns
  */
 export function createContext(options: RequestOptions): Context {
-    const { baseUrl = '', url = '' } = options;
+    const { baseUrl = '', url = '', params = {} } = options;
 
     if (!url) {
         throw new Error('__vp__ URL is required.');
     }
 
-    const normalizedURL = normalizeURL(baseUrl, url);
+    const [normalizedURL, querystring] = normalizeURL(baseUrl, url).split('?');
 
-    return { ...options, url: normalizedURL };
+    if (querystring) {
+        for (const [key, value] of new URLSearchParams(querystring)) {
+            params[key] = value;
+        }
+    }
+
+    return { ...options, url: normalizedURL, params };
 }
