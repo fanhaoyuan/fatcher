@@ -86,6 +86,11 @@ export interface RequestOptions extends Omit<RequestInit, 'body' | 'headers'> {
     method?: RequestMethod;
 
     /**
+     * Query string for request url
+     */
+    params?: Record<string, string>;
+
+    /**
      * An array of function with `pre` or `post` request.
      *
      * Middlewares will compose into an async function.
