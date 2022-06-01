@@ -36,11 +36,8 @@ describe('Utils', () => {
 
         const immutableObject = immutable(object);
 
-        try {
-            immutableObject.a = '';
-        } catch (error) {
-            expect(error instanceof TypeError).toBe(true);
-        }
+        //@ts-expect-error
+        immutableObject.a = '';
 
         expect(immutableObject.a).toBe('c');
 
