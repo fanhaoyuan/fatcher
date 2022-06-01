@@ -45,14 +45,14 @@ export type PatchContext = Partial<Context>;
  *
  * Should call by using middleware for get response.
  */
-export type MiddlewareNext = (context?: PatchContext) => Promise<MiddlewareResult> | MiddlewareResult;
+export type MiddlewareNext = (patchContext?: PatchContext) => Promise<MiddlewareResult> | MiddlewareResult;
 
 /**
  * Middleware
  */
 export interface Middleware {
     name: `fatcher-middleware-${string}`;
-    use(context: Context, next: MiddlewareNext): Promise<MiddlewareResult> | MiddlewareResult;
+    use(context: Readonly<Context>, next: MiddlewareNext): Promise<MiddlewareResult> | MiddlewareResult;
 }
 
 /**

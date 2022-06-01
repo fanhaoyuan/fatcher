@@ -59,12 +59,10 @@ export function isFunction(value: unknown): value is (...args: any[]) => any {
  * @param rawData
  * @returns
  */
-export function immutable<T extends Record<string, any>>(record: T): T {
+export function immutable<T extends Record<string, any>>(record: T): Readonly<T> {
     return new Proxy(record, {
-        set(key) {
-            console.warn(`__vp__ Immutable object, ${key} can not be assigned.`);
-
-            return false;
+        set() {
+            return true;
         },
     });
 }
