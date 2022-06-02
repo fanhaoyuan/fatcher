@@ -10,6 +10,21 @@ export type RequestMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'HEAD' | 'OPTION
  */
 export interface Context extends Omit<RequestOptions, 'middlewares'> {
     body?: BodyInit | null;
+
+    /**
+     * A map of http request headers.
+     *
+     * @description Some headers name cannot be modified programmatically.
+     * @see https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_header_name
+     */
+    requestHeaders: Headers;
+
+    /**
+     * Request Headers
+     *
+     * @deprecated use `requestHeaders` instead.
+     */
+    headers?: RequestHeaders;
 }
 
 /**

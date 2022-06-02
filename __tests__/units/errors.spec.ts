@@ -9,6 +9,7 @@ describe('Errors', () => {
         headers: {
             'Content-Type': 'application/json',
         },
+        requestHeaders: new Headers(),
     };
 
     const responseBody = {

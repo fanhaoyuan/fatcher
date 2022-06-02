@@ -15,8 +15,14 @@ export function mergeContext(defaultContext: Context, ...context: (Context | Pat
          */
         if (headers) {
             patchContext.headers = Object.assign(mergedContext.headers || {}, headers);
+
+            for (const [key, value] of Object.entries(headers)) {
+                if (value) {
+                    defaultContext.requestHeaders.set(key, value);
+                }
+            }
         }
 
         return Object.assign(mergedContext, patchContext);
-    }, Object.assign({}, defaultContext));
+    }, Object.assign(Object.create(null), defaultContext));
 }
