@@ -1,4 +1,4 @@
-import { Context } from 'fatcher';
+import { Context, RequestHeaders } from 'fatcher';
 import { createContext, mergeContext } from 'fatcher/context';
 
 describe('Context', () => {
@@ -34,6 +34,7 @@ describe('Context', () => {
             method: 'POST',
             baseUrl: '/a/',
             credentials: 'same-origin',
+            requestHeaders: new Headers(),
         };
 
         const patchContext: Partial<Context> = {
@@ -48,6 +49,10 @@ describe('Context', () => {
         expect(mergedContext.baseUrl).toBe(context.baseUrl);
         expect(mergedContext.credentials).toBe(context.credentials);
         expect(mergedContext.headers).toStrictEqual(patchContext.headers);
+
+        expect([...mergedContext.requestHeaders.values()].length).toBe(
+            Object.keys(patchContext.headers as RequestHeaders).length
+        );
     });
 
     it('mergeContext with headers', () => {
@@ -56,6 +61,7 @@ describe('Context', () => {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 Origin: 'origin',
             },
+            requestHeaders: new Headers(),
         };
 
         const patchContext: Partial<Context> = {
@@ -72,5 +78,16 @@ describe('Context', () => {
         expect(mergedContext.headers!['Content-Type']).toBe(patchContext.headers!['Content-Type']);
         expect(mergedContext.headers!['Test']).toBe(mergedContext.headers!['Test']);
         expect(mergedContext.headers!['Origin']).toBe(context.headers!['Origin']);
+
+        expect(mergedContext.requestHeaders.get('content-type')).toBe(patchContext.headers!['Content-Type']);
+        expect(mergedContext.requestHeaders.get('test')).toBe(mergedContext.headers!['Test']);
+        /**
+         * Origin is a forbidden header name
+         *
+         * So we can't set it to anything
+         *
+         * @see https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_header_name
+         */
+        expect(mergedContext.requestHeaders.get('origin')).toBe(null);
     });
 });

@@ -21,5 +21,7 @@ export function createContext(options: RequestOptions): Context {
         }
     }
 
-    return { ...options, url: normalizedURL, params };
+    const requestHeaders = new Headers();
+
+    return { ...options, url: normalizedURL, params, requestHeaders };
 }

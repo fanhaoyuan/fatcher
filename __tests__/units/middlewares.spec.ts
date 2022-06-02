@@ -56,7 +56,9 @@ describe('Middlewares', () => {
         const useMiddlewares = composeMiddlewares(registeredMiddlewares);
 
         try {
-            await useMiddlewares({});
+            await useMiddlewares({
+                requestHeaders: new Headers(),
+            });
         } catch (error) {
             expect(`Middleware <${errorMiddlewareName}> call next() more than once.`);
         }
@@ -152,6 +154,7 @@ describe('Middlewares', () => {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
+            requestHeaders: new Headers(),
         });
 
         expect(result.status).toBe(404);

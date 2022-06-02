@@ -32,7 +32,8 @@
         "test": "jest",
         "test:cov": "jest --coverage",
         "tsc": "tsc --noEmit",
-        "ci": "npm run build && npm run test && pnpm run tsc"
+        "prettier": "prettier -w src/**/*.ts", 
+        "ci": "npm run prettier && npm run build && npm run test && npm run tsc"
     },
     "devDependencies": {
         "@babel/core": "^7.18.0",
