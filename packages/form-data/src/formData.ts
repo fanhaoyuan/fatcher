@@ -16,8 +16,6 @@ export function formData(): Middleware {
                 return next();
             }
 
-            const originType = contentType;
-
             let body: FormData | null = null;
 
             if (payload) {
@@ -35,7 +33,7 @@ export function formData(): Middleware {
                 }
             }
 
-            const response = await next({
+            return next({
                 payload: null,
                 body,
                 headers: {
@@ -43,14 +41,6 @@ export function formData(): Middleware {
                     'Content-Type': null,
                 },
             });
-
-            return {
-                ...response,
-                headers: {
-                    ...response.headers,
-                    'Content-Type': originType,
-                },
-            };
         },
     };
 }
