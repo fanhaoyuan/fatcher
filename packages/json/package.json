@@ -1,0 +1,30 @@
+{
+    "name": "@fatcherjs/middleware-json",
+    "version": "1.0.0",
+    "main": "dist/json.js",
+    "module": "dist/json.esm.js",
+    "browser": "dist/json.min.js",
+    "typings": "dist/json.d.ts",
+    "scripts": {
+        "dev": "rimraf dist && rollup -c rollup.config.ts -w",
+        "build": "rimraf dist && rollup -c rollup.config.ts"
+    },
+    "license": "MIT",
+    "description": "A fatcher middleware for transforming stream into json",
+    "keywords": [
+        "fatcher",
+        "middleware",
+        "json"
+    ],
+    "files": [
+        "dist"
+    ],
+    "homepage": "https://github.com/fatcherjs/fatcher/tree/master/packages/json",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/fatcherjs/fatcher.git"
+    },
+    "peerDependencies": {
+        "fatcher": "^1.0.0"
+    }
+}
