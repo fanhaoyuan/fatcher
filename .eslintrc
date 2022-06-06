@@ -2,5 +2,8 @@
     "extends": ["@fansy/eslint-config"],
     "parserOptions": {
         "sourceType": "module"
+    },
+    "rules": {
+        "no-bitwise": "off"
     }
 }
