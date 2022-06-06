@@ -1,0 +1,25 @@
+{
+    "name": "@fatcherjs/middleware-progress",
+    "version": "1.0.0",
+    "main": "dist/progress.js",
+    "module": "dist/progress.esm.js",
+    "browser": "dist/progress.min.js",
+    "typings": "dist/progress.d.ts",
+    "scripts": {
+        "dev": "rimraf dist && rollup -c rollup.config.ts -w",
+        "build": "rimraf dist && rollup -c rollup.config.ts"
+    },
+    "description": "A Middleware for getting progress",
+    "files": [
+        "dist"
+    ],
+    "homepage": "https://github.com/fatcherjs/fatcher/tree/master/packages/progress",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/fatcherjs/fatcher.git"
+    },
+    "license": "MIT",
+    "peerDependencies": {
+        "fatcher": "^1.0.0"
+    }
+}
