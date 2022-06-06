@@ -1,5 +1,5 @@
-import { Middleware } from 'fatcher';
-import { composeMiddlewares, registerMiddlewares } from 'fatcher/middlewares';
+import { Middleware } from '../../src';
+import { composeMiddlewares, registerMiddlewares } from '../../src/middlewares';
 
 describe('Middlewares', () => {
     let registeredMiddlewares: Middleware[];

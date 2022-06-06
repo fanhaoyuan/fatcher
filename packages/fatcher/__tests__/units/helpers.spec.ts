@@ -1,4 +1,4 @@
-import { canActivate, isAbortError, readStreamByChunk } from 'fatcher/helpers';
+import { canActivate, isAbortError, readStreamByChunk } from '../../src/helpers';
 
 describe('Helpers', () => {
     it('canActivate', () => {

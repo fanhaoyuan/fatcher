@@ -12,7 +12,7 @@ const VerbosityPrefix = '[Fatcher]';
 
 const plugins = [
     nodeResolver(),
-    esbuild(),
+    esbuild({ target: 'es2018'}),
     replace({
         __vp__: VerbosityPrefix,
         preventAssignment: false,
