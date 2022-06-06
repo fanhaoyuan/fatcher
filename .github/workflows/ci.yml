@@ -4,7 +4,6 @@ on:
     push:
         branches:
             - master
-            - development
     pull_request:
     workflow_dispatch:
 
@@ -25,7 +24,7 @@ jobs:
 
             - run: pnpm install
 
-            - run: pnpm run build
+            - run: pnpm -r run build
 
     eslint:
         runs-on: ubuntu-latest
@@ -43,7 +42,7 @@ jobs:
 
             - run: pnpm install
 
-            - run: pnpm exec eslint ./src
+            - run: pnpm -r run eslint
 
     typings:
         runs-on: ubuntu-latest
@@ -61,7 +60,7 @@ jobs:
 
             - run: pnpm install
 
-            - run: tsc --noEmit
+            - run: pnpm -r run tsc
 
     test:
         runs-on: ubuntu-latest

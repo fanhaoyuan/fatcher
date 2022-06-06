@@ -1,4 +1,4 @@
-import { fatcher, Middleware } from 'fatcher';
+import { fatcher, Middleware } from '../src';
 import fetchMock from 'jest-fetch-mock';
 import { BASE_URL, json } from './utils';
 

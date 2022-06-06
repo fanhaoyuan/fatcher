@@ -1,5 +1,5 @@
-import { Context, RequestHeaders } from 'fatcher';
-import { createContext, mergeContext } from 'fatcher/context';
+import { Context, RequestHeaders } from '../../src';
+import { createContext, mergeContext } from '../../src/context';
 
 describe('Context', () => {
     it('createContext', () => {

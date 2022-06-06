@@ -1,4 +1,4 @@
-import { fatcher, Middleware, isFatcherError, canActivate, readStreamByChunk } from 'fatcher';
+import { fatcher, Middleware, isFatcherError, canActivate, readStreamByChunk } from '../src';
 import fetchMock from 'jest-fetch-mock';
 import { BASE_URL } from './utils';
 

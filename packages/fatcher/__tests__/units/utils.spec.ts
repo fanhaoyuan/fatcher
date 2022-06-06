@@ -1,4 +1,4 @@
-import { immutable, isAbsoluteURL, isFunction, normalizeURL } from 'fatcher/utils';
+import { immutable, isAbsoluteURL, isFunction, normalizeURL } from '../../src/utils';
 
 describe('Utils', () => {
     it('isAbsoluteURL', () => {

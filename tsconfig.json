@@ -7,8 +7,7 @@
         "resolveJsonModule": true,
         "moduleResolution": "node",
         "noEmit": true,
-        "allowJs": true
+        "allowJs": true,
     },
-    "include": ["src/**/*", "__tests__/**/*"],
     "exclude": ["node_modules", "dist"]
 }
