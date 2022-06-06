@@ -30,6 +30,7 @@
         "dev": "rimraf dist && rollup -c rollup.config.ts -w",
         "build": "rimraf dist && rollup -c rollup.config.ts",
         "eslint": "eslint ./src",
-        "tsc": "tsc --noEmit"
+        "tsc": "tsc --noEmit",
+        "prerelease": "ts-node scripts/prerelease.ts"
     }
 }
