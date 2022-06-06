@@ -42,7 +42,7 @@ jobs:
 
             - run: pnpm install
 
-            - run: pnpm -r exec eslint ./src
+            - run: pnpm -r run eslint
 
     typings:
         runs-on: ubuntu-latest
@@ -60,7 +60,7 @@ jobs:
 
             - run: pnpm install
 
-            - run: pnpm -r exec tsc --noEmit
+            - run: pnpm -r run tsc
 
     test:
         runs-on: ubuntu-latest
