@@ -8,7 +8,7 @@ export function mergeOptions(
         const { headers } = options;
 
         if (headers) {
-            options.headers = Object.assign(mergedOptions.headers || {}, headers);
+            options.headers = Object.assign({}, mergedOptions.headers || {}, headers);
         }
 
         return Object.assign(mergedOptions, options);
