@@ -30,10 +30,8 @@ jobs:
 
             - run: pnpm install
 
-            - run: pnpm build
-
             - run: echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
 
-            - run: npm publish
-              env:
-                  NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+            - run: pnpm -r --filter fatcher run deploy
+
+            - run: pnpm -r --filter \!fatcher run deploy
