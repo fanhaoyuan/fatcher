@@ -7,7 +7,8 @@
     "typings": "dist/json.d.ts",
     "scripts": {
         "dev": "rimraf dist && rollup -c rollup.config.ts -w",
-        "build": "rimraf dist && rollup -c rollup.config.ts"
+        "build": "rimraf dist && rollup -c rollup.config.ts",
+        "deploy": "pnpm run build && pnpm publish --no-git-check"
     },
     "license": "MIT",
     "description": "A fatcher middleware for transforming stream into json",
