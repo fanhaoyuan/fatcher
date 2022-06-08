@@ -8,11 +8,9 @@ export function formData(): Middleware {
     return {
         name: 'fatcher-middleware-form-data',
         async use(context, next) {
-            const { headers = {}, payload = null } = context;
+            const { requestHeaders: headers, payload = null } = context;
 
-            const contentType = headers['Content-Type'];
-
-            if (!contentType?.includes('multipart/form-data')) {
+            if (!headers.get('content-type')?.includes('multipart/form-data')) {
                 return next();
             }
 
@@ -33,13 +31,11 @@ export function formData(): Middleware {
                 }
             }
 
+            headers.delete('content-type');
+
             return next({
                 payload: null,
                 body,
-                headers: {
-                    ...headers,
-                    'Content-Type': null,
-                },
             });
         },
     };
