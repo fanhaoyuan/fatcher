@@ -9,17 +9,11 @@ export function fetcher(): Middleware {
     return {
         name: 'fatcher-middleware-http-fetcher',
         async use(context) {
-            const { url = '', headers = {}, ...rest } = context;
-
-            const requestHeaders = Object.keys(headers).reduce<Record<string, string>>((_headers, key) => {
-                const value = headers[key];
-
-                return value ? { ..._headers, [key]: value } : _headers;
-            }, Object.create(null));
+            const { url = '', requestHeaders: headers, ...rest } = context;
 
             const response = await fetch(url, {
                 ...rest,
-                headers: requestHeaders,
+                headers,
             });
 
             const { status, statusText, ok, headers: responseHeaders } = response;

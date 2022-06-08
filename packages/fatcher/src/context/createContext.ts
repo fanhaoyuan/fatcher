@@ -7,7 +7,7 @@ import { normalizeURL } from '../utils';
  * @returns
  */
 export function createContext(options: RequestOptions): Context {
-    const { baseUrl = '', url = '', params = {} } = options;
+    const { baseUrl = '', url = '', params = {}, headers = {} } = options;
 
     if (!url) {
         throw new Error('__vp__ URL is required.');
@@ -22,6 +22,12 @@ export function createContext(options: RequestOptions): Context {
     }
 
     const requestHeaders = new Headers();
+
+    for (const [key, value] of Object.entries(headers)) {
+        if (value) {
+            requestHeaders.set(key, value);
+        }
+    }
 
     return { ...options, url: normalizedURL, params, requestHeaders };
 }
