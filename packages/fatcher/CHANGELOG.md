@@ -1,3 +1,14 @@
+## v1.2.0
+
+-   🚀 Use `Headers` class for sending http headers. ([#129](https://github.com/fatcherjs/fatcher/pull/129))
+-   🚀 Add `params` into request options ([#128](https://github.com/fatcherjs/fatcher/pull/128))
+-   🚀 Change context in `middleware.use` to readonly ([#127](https://github.com/fatcherjs/fatcher/pull/127))
+
+-   🐛 When using `createScopedRequest`, headers will cover another request headers ([#140](https://github.com/fatcherjs/fatcher/pull/140))
+-   🐛 Should not return request headers but response headers ([#137](https://github.com/fatcherjs/fatcher/pull/137))
+
+-   🔧 Using `requestHeaders` instead of `headers` in context ([#142](https://github.com/fatcherjs/fatcher/pull/142))
+
 ## v1.1.3
 
 -   🐛 `ResponseResult` headers should be response headers ([#126](https://github.com/fatcherjs/fatcher/pull/126))
@@ -40,42 +51,27 @@
 
 ## v0.3.1
 
-### bugs
-
 -   🐛 fix normalize url error
 -   🐛 fix merge options error
 
 ## v0.3.0
 
-### features
-
 -   🚀 add `FatcherError`
 -   🚀 add `isFatcherError` for custom middleware
-
-### modules
-
 -   📦 export `clone` helper function
 
 ## v0.2.0
 
-### features
-
 -   🚀 Add Timeout aborter.
 -   🚀 Throw AbortError during aborting fetch.
-
-### build
 
 -   🔧 Add compatibility with esModule
 
 ## v0.1.1
 
-### bugs
-
 -   🐞 Fix can not abort fetch when request pending.
 
 ## v0.1.0
-
-### features
 
 -   🚀 Basic Fetch.
 -   🚀 Cancelable.
