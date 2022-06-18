@@ -1,0 +1,50 @@
+.navigation {
+    width: 250px;
+    overflow-y: auto;
+    background-color: rgba(31, 32, 40, 0.6);
+    transition: transform 0.5s ease 0.15s, visibility 0.15s 0s, opacity 0.15s 0s;
+}
+
+.navigationMenu {
+    padding-left: 0;
+    list-style: none;
+    margin: 0;
+}
+
+.navigationItem {
+    margin: 0;
+}
+
+.navigationItem > a {
+    display: block;
+    padding: 4px 25px;
+    font-size: 17px;
+    padding-left: 40px;
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.15s;
+}
+
+.navigationItem > a:hover {
+    color: white;
+}
+
+.navigationItem.active {
+    color: white;
+    font-weight: 600;
+    border-width: 0;
+    background: linear-gradient(to right, rgb(66, 69, 87), transparent);
+}
+
+@media (min-width: 992px) {
+    .navigation {
+        padding-top: 0px;
+        display: block;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        opacity: 1;
+        will-change: transform, opacity;
+        backdrop-filter: blur(30px) saturate(100%);
+    }
+}

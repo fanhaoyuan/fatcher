@@ -1,0 +1,14 @@
+.footer {
+    text-align: center;
+    padding: 25px 0;
+    border-top: 1px solid rgba(0, 32, 128, 0.12);
+    font-size: 85%;
+}
+
+.footer a {
+    color: rgb(191, 195, 217);
+}
+
+.footer a:hover {
+    color: #fff;
+}

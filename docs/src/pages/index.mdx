@@ -1,0 +1,39 @@
+---
+title: Guide
+order: 0
+---
+
+Fatcher is a HTTP request library based on `Fetch API`.
+
+We can use fatcher in `node.js` and `modern browsers`.
+
+Fatcher`s core is composing a series of middlewares to expand more functions.
+
+## Features
+
+-   Based on Fetch API
+-   Promise API Supports
+-   TypeScript Supports
+-   Composable Middlewares
+-   Streams API supports
+-   Mini Size (`<= 2KB`)
+
+## Inspiration
+
+Fatcher's inspiration stemming from `koa`.
+
+## How It Works
+
+A fatcher instance is composed a series of middlewares to a high-order async function.
+
+Middlewares can change request context and fetch response.
+
+Middleware using a immutable request context.It make for debug better.
+
+## Why not
+
+#### Axios
+
+Axios is a promise-based HTTP Client for node.js and the browser. On the server-side it uses the native node.js `http` module, while on the client (browser) it uses `XMLHttpRequests`.
+
+But Fatcher based on `fetch` api and fully supports `promise` and `streams` api. `Node.js` and `Modern Browsers` is supported `fetch` api now.

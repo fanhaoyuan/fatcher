@@ -1,0 +1,11 @@
+.code {
+    color: rgb(129, 237, 255);
+    font-family: Menlo, 'Dank Mono', Inconsolata, 'Operator Mono', Consolas, 'Andale Mono WT', 'Andale Mono',
+        'Lucida Console', 'Lucida Sans Typewriter', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Liberation Mono',
+        'Nimbus Mono L', 'Courier New', Courier, monospace;
+    padding: 0.15em 0.25em;
+    border-radius: 0.25em;
+    line-height: inherit;
+    font-size: 90%;
+    background: none;
+}

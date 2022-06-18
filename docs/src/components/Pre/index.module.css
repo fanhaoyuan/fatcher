@@ -1,0 +1,32 @@
+.pre {
+    margin-left: -16px;
+    margin-right: -16px;
+    background-color: rgb(39, 41, 53);
+    border-radius: 0px;
+    padding: 1rem 0;
+    font-family: Menlo, 'Dank Mono', Inconsolata, 'Operator Mono', Consolas, 'Andale Mono WT', 'Andale Mono',
+        'Lucida Console', 'Lucida Sans Typewriter', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Liberation Mono',
+        'Nimbus Mono L', 'Courier New', Courier, monospace;
+    font-size: 1em;
+    color: #c8d3f5;
+    line-height: 2;
+    overflow-x: auto;
+}
+
+@media (min-width: 576px) {
+    .pre {
+        border-radius: 10px;
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 768px) {
+    .pre {
+        margin-left: -25px;
+        margin-right: -25px;
+    }
+}
+
+.pre .prismjs {
+    padding: 0 1.5rem;
+}

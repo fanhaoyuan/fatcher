@@ -1,0 +1,57 @@
+.prismjs {
+    white-space: pre;
+    color: rgb(191, 195, 217);
+    text-shadow: rgb(0 0 0 / 30%) 0px 1px;
+    line-height: 2;
+	display: inline-block;
+	min-width: 100%;
+	overflow: hidden;
+}
+
+.token.function.maybe-class-name,
+.token.function {
+    color: #65bcff;
+}
+
+.token.tag.attr-value,
+.token.string {
+    color: #c3e88d;
+}
+
+.token.punctuation,
+.token.tag.punctuation,
+.token.imports.punctuation {
+    color: #86e1fc;
+}
+
+.token.tag {
+    color: #ff757f;
+}
+
+.token.keyword,
+.token.keyword.control-flow,
+.token.tag.attr-name,
+.token.operator {
+    color: #c099ff;
+}
+
+.token.maybe-class-name,
+.token.class-name,
+.token.imports {
+    color: #ffc777;
+}
+
+.token.boolean,
+.token.number {
+    color: #ff966c;
+}
+
+.token.comment {
+    color: #7a88cf;
+}
+
+.token.builtin,
+.token.regex,
+.token.script.language-javascript.literal-property.property {
+    color: #4fd6be;
+}

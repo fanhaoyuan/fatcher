@@ -1,0 +1,21 @@
+{
+    "extends": ["@fansy/eslint-config", "plugin:react/recommended", "eslint-config-prettier"],
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "plugins": ["react-hooks"],
+    "overrides": [
+        {
+            "files": ["./**/*.tsx"],
+            "extends": ["@fansy/eslint-config/typescript.js", "eslint-config-prettier"]
+        }
+    ],
+    "rules": {
+        "no-use-before-define": "off",
+        "@typescript-eslint/no-use-before-define": "error",
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
+        "react/prop-types": [2, { "ignore": ["children"] }],
+        "react/react-in-jsx-scope": "off"
+    }
+}
