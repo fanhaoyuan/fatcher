@@ -7,6 +7,7 @@ import typescript from 'react-syntax-highlighter/dist/esm/languages/prism/typesc
 import tsx from 'react-syntax-highlighter/dist/esm/languages/prism/tsx';
 import bash from 'react-syntax-highlighter/dist/esm/languages/prism/bash';
 import css from 'react-syntax-highlighter/dist/esm/languages/prism/css';
+import diff from 'react-syntax-highlighter/dist/esm/languages/prism/diff';
 import './theme.css';
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
@@ -16,6 +17,7 @@ PrismLight.registerLanguage('typescript', typescript);
 PrismLight.registerLanguage('tsx', tsx);
 PrismLight.registerLanguage('bash', bash);
 PrismLight.registerLanguage('css', css);
+PrismLight.registerLanguage('diff', diff);
 
 export interface CodeBlockProps {
     className?: string;
