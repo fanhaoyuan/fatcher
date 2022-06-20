@@ -1,0 +1,39 @@
+---
+title: 指引
+order: 0
+---
+
+# 指引
+
+fatcher 是一个轻量的 HTTP 请求库, 它基于 `fetch`，它允许我们在浏览器与 NodeJS 环境中使用原生的`fetch`来进行网络请求。
+
+因为它是使用原生的 fetch 进行封装，所以我们在使用的时候，要求浏览器或者是 NodeJS 中要支持 fetch。
+
+-   在现代浏览器中，对 fetch 的支持已经很好了，所以我们不用担心 fetch 的兼容性
+-   在 NodeJS 中，则从`18.0.0`开始，对 fetch 已经有一定的支持
+
+fatcher 目的是在于拥抱标准库的 fetch 的同时，提供 fetch 中一些提供不了的功能，以及让功能更好的拓展与复用。
+
+## 兼容性
+
+### 浏览器
+
+-   [fetch](https://caniuse.com/fetch)
+-   [ReadableStream](https://caniuse.com/mdn-api_readablestream)
+-   [Headers](https://caniuse.com/mdn-api_headers)
+-   [Response](https://caniuse.com/mdn-api_response)
+-   [Request](https://caniuse.com/mdn-api_request)
+-   [AbortController](https://caniuse.com/abortcontroller)
+
+### NodeJS
+
+-   [fetch](https://nodejs.org/dist/latest-v18.x/docs/api/globals.html#fetch)
+-   [ReadableStream](https://nodejs.org/dist/latest-v18.x/docs/api/globals.html#class-readablestream)
+-   [Headers](https://nodejs.org/dist/latest-v18.x/docs/api/globals.html#class-headers)
+-   [Response](https://nodejs.org/dist/latest-v18.x/docs/api/globals.html#response)
+-   [Request](https://nodejs.org/dist/latest-v18.x/docs/api/globals.html#request)
+-   [AbortController](https://nodejs.org/dist/latest-v18.x/docs/api/globals.html#class-abortcontroller)
+
+---
+
+在下一节的[快速开始](/zh-CN/quick-start)中，会介绍如何快速发送一个 fatcher 请求。
