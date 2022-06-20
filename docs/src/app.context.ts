@@ -1,45 +1,50 @@
 import constate from 'constate';
-import { useMemo } from 'react';
-import { asyncRoutes, RouteRecord } from './app.routes';
+import { useEffect, useMemo, useState } from 'react';
+import { AppContext } from './interfaces';
 
-export interface AppContext {
-    logo?: string;
-    repository?: string;
-    version?: string;
-    title?: string;
-    routes?: RouteRecord[];
-}
+const [AppContextProvider, useAppContext] = constate((props: AppContext) => {
+    const { logo, repository, version, title, locales, routes } = props;
 
-const [AppContextProvider, useAppContext] = constate(() => {
-    const { logo, repository, version, title } = useMemo(() => {
-        return __FANDO_APP_CONTEXT__;
-    }, []);
+    const [locale, setLocal] = useState(locales[0][0]);
 
-    const repo = useMemo(() => {
-        if (typeof repository === 'string') {
-            return repository;
+    const routerPrefix = useMemo(() => {
+        if (locale === locales[0][0]) {
+            return '/';
         }
 
-        if (typeof repository === 'object' && repository.url) {
-            const [match] = repository.url.match(/http(s?):\/\/.*/g) ?? [];
+        return `/${locales.find(item => item[0] === locale)?.[0]}`;
+    }, [locale]);
 
-            if (match) {
-                return match.replace(new RegExp(`.${repository.type || 'git'}$`), '');
-            }
+    useEffect(() => {
+        const [loc] = location.pathname.replace(import.meta.env.BASE_URL, '').split('/');
+
+        let index = locales.findIndex(item => item[0] === loc);
+
+        if (index === -1) {
+            index = 0;
         }
-    }, [repository]);
 
-    const routes = useMemo(() => {
-        return asyncRoutes.find(item => item.path === '/')?.children ?? [];
+        setLocal(() => locales[index][0]);
     }, []);
+
+    const currentRoutes = useMemo(() => {
+        return routes.find(item => item.path === routerPrefix)?.children ?? [];
+    }, [routerPrefix, routes]);
+
+    useEffect(() => {
+        console.log(currentRoutes);
+    }, [currentRoutes]);
 
     return {
         logo,
-        repository: repo,
+        repository,
         version,
         title,
-        routes,
-    } as AppContext;
+        currentRoutes,
+        locale,
+        locales,
+        setLocal
+    };
 });
 
 export { AppContextProvider, useAppContext };
