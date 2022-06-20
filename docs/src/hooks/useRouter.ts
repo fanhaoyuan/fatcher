@@ -1,6 +1,7 @@
+import { useAppContext } from '@/app.context';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
-import { asyncRoutes, RouteRecord } from '../app.routes';
+import { RouteRecord } from '../interfaces';
 
 export function useRouter() {
     const { pathname } = useLocation();
@@ -11,8 +12,10 @@ export function useRouter() {
 
     const [collection, setCollection] = useState<RouteRecord[]>([]);
 
+    const { currentRoutes } = useAppContext();
+
     useEffect(() => {
-        const routes = asyncRoutes.find(item => item.path === '/')?.children ?? [];
+        const routes = currentRoutes ?? [];
 
         setCollection(() => routes);
 
