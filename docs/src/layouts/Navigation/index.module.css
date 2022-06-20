@@ -5,6 +5,73 @@
     transition: transform 0.5s ease 0.15s, visibility 0.15s 0s, opacity 0.15s 0s;
 }
 
+.navigationToolbar {
+    height: 70px;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+}
+
+.navigationToolbarButton {
+    border: none;
+    color: #fff;
+    background: #424557;
+    will-change: opacity;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 4px;
+    transition: background 0.2s, color 0.2s;
+    box-shadow: 0 1px 4px -2px black, inset 0 2px 1px -1px rgb(255 255 255 / 10%);
+    background: #424557;
+    color: #81edff;
+    border: none;
+    position: relative;
+}
+
+.navigationToolbarDropdownMenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding-top: 12px;
+}
+
+.navigationToolbarDropdownMenuList {
+    color: #26323d;
+    box-shadow: 0 0 20px 4px rgb(154 161 177 / 15%), 0 4px 80px -8px rgb(36 40 47 / 25%),
+        0 4px 4px -2px rgb(91 94 105 / 15%);
+    background-color: #fff;
+    padding: 13px 17px;
+    border-radius: 4px;
+    margin: 0;
+}
+
+.navigationToolbarDropdownMenuListItem {
+    margin-bottom: 5px;
+    margin-top: 0;
+    list-style: none;
+    cursor: pointer;
+}
+
+.navigationToolbarDropdownMenuListItem:hover {
+    text-decoration: underline;
+}
+
+.navigationToolbarButtonIcon {
+    font-size: 14px;
+    margin-left: 8px;
+}
+
+.navigationToolbarButton:hover {
+    background: white;
+    color: black;
+}
+
+.navigationToolbarButton:hover > .navigationToolbarDropdownMenu {
+    display: block;
+}
+
 .navigationMenu {
     padding-left: 0;
     list-style: none;
