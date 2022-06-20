@@ -29,6 +29,8 @@ jobs:
 
             - run: pnpm docs:build
 
+            - run: cp docs-dist/index.html docs-dist/404.html
+
             - uses: JamesIves/github-pages-deploy-action@4.1.1
               with:
                   commit-message: 'docs: 🚀 Github Pages Deployment.'
