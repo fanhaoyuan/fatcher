@@ -25,7 +25,7 @@ export function useRouter() {
                 setRouter(() => routes[i]);
             }
         }
-    }, [pathname]);
+    }, [pathname, currentRoutes]);
 
     return {
         router,
