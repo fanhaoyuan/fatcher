@@ -31,10 +31,6 @@ const [AppContextProvider, useAppContext] = constate((props: AppContext) => {
         return routes.find(item => item.path === routerPrefix)?.children ?? [];
     }, [routerPrefix, routes]);
 
-    useEffect(() => {
-        console.log(currentRoutes);
-    }, [currentRoutes]);
-
     return {
         logo,
         repository,
@@ -43,7 +39,7 @@ const [AppContextProvider, useAppContext] = constate((props: AppContext) => {
         currentRoutes,
         locale,
         locales,
-        setLocal
+        setLocal,
     };
 });
 

@@ -1,24 +1,29 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAppContext } from '@/app.context';
-import { DownOutlined } from '@ant-design/icons';
+import { CloseOutlined, DownOutlined } from '@ant-design/icons';
 import { useLocalePath } from '@/hooks';
 import styled, { css } from 'styled-components';
+import { MediaScreen } from '@/utils';
 
 const Wrapper = styled.nav`
+    display: block;
+    transform: translate3d(-100%, 0px, 0px);
+    opacity: 0;
+    box-shadow: rgba(0, 32, 64, 0.25) 4px 0px 32px 0px;
     width: 250px;
-    overflow-y: auto;
     background-color: rgba(31, 32, 40, 0.6);
     transition: transform 0.5s ease 0.15s, visibility 0.15s 0s, opacity 0.15s 0s;
+    visibility: hidden;
+    backdrop-filter: blur(30px) saturate(100%);
+    will-change: transform, opacity;
 
-    @media (min-width: 992px) {
+    ${MediaScreen.LG} {
         padding-top: 0px;
         display: block;
         visibility: visible;
         transform: none;
         box-shadow: none;
         opacity: 1;
-        will-change: transform, opacity;
-        backdrop-filter: blur(30px) saturate(100%);
     }
 `;
 
@@ -122,6 +127,18 @@ const NavigationItem = styled.li`
     ${(props: { active: boolean }) => (props.active ? navigationItemActive : '')}
 `;
 
+const CloseIcon = styled(CloseOutlined)`
+    margin-left: auto;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+
+    ${MediaScreen.LG} {
+        display: none;
+    }
+`;
+
 export interface NavigationItemOptions {
     title: string;
     path: string;
@@ -130,10 +147,11 @@ export interface NavigationItemOptions {
 export interface NavigationProps {
     routes?: NavigationItemOptions[];
     className?: string;
+    onCloseIconClick?: () => void;
 }
 
 export function Navigation(props: NavigationProps) {
-    const { className } = props;
+    const { className, onCloseIconClick } = props;
 
     const { pathname } = useLocation();
 
@@ -175,6 +193,8 @@ export function Navigation(props: NavigationProps) {
                         </NavigationToolbarDropdownMenuList>
                     </NavigationToolbarDropdownMenu>
                 </NavigationToolbarButton>
+
+                <CloseIcon onClick={onCloseIconClick} />
             </NavigateToolbar>
 
             <NavigateMenu>

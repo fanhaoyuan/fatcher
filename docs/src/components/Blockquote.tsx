@@ -1,3 +1,4 @@
+import { MediaScreen } from '@/utils';
 import { PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
@@ -10,7 +11,7 @@ const Wrapper = styled.blockquote`
     border-radius: 0px 8px 8px 0px;
     font-size: 95%;
 
-    @media (min-width: 768px) {
+    ${MediaScreen.LG} {
         padding: 5px 20px;
         margin-left: -25px;
         margin-right: -25px;

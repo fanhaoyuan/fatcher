@@ -10,7 +10,7 @@ const ContentWrapper = styled.section`
     max-width: 875px;
     margin: 0 auto;
     position: relative;
-    padding: 0 16px;
+    padding: 0 32px;
     width: 100%;
     display: flex;
     flex-direction: column;
