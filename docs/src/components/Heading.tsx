@@ -1,5 +1,5 @@
 import { PropsWithChildren, useMemo } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const Anchor = styled.a`
     display: inline-block;
@@ -20,7 +20,7 @@ const Anchor = styled.a`
     }
 `;
 
-const HeadingBaseStyles = css`
+const HeadingWrapper = styled.h1`
     position: relative;
     margin-top: 0px;
     margin-bottom: 16px;
@@ -32,7 +32,7 @@ const HeadingBaseStyles = css`
     }
 `;
 
-const HeadingOneStyles = css`
+const HeadingOne = styled(HeadingWrapper)`
     font-size: 48px;
     display: inline-block;
     text-shadow: rgb(0 0 0) -2px 2px 0px, rgb(0 0 0) -4px 3px 0px;
@@ -59,7 +59,7 @@ const HeadingOneStyles = css`
     }
 `;
 
-const HeadingTwoStyles = css`
+const HeadingTwo = styled(HeadingWrapper.withComponent('h2'))`
     font-size: 28px;
     margin-top: 60px;
     margin-bottom: 24px;
@@ -74,7 +74,7 @@ const HeadingTwoStyles = css`
     }
 `;
 
-const HeadingThreeStyles = css`
+const HeadingThree = styled(HeadingWrapper.withComponent('h3'))`
     font-size: 24px;
     margin-top: 35px;
 
@@ -83,55 +83,43 @@ const HeadingThreeStyles = css`
     }
 `;
 
+const HeadingFour = HeadingWrapper.withComponent('h4');
+const HeadingFive = HeadingWrapper.withComponent('h5');
+const HeadingSix = HeadingWrapper.withComponent('h6');
+
 export interface HeadingProps {
     level: 1 | 2 | 3 | 4 | 5 | 6;
     anchor?: boolean;
 }
 
-const anchors = new Set<string>();
+const map = new Map(
+    Object.entries({
+        1: HeadingOne,
+        2: HeadingTwo,
+        3: HeadingThree,
+        4: HeadingFour,
+        5: HeadingFive,
+        6: HeadingSix,
+    })
+);
 
 export function Heading(props: PropsWithChildren<HeadingProps>) {
     const { level, anchor = true, children } = props;
 
-    const HeadingWrapper = styled[`h${level}`]`
-        ${() => HeadingBaseStyles}
-        ${() => (level === 1 ? HeadingOneStyles : '')}
-        ${() => (level === 2 ? HeadingTwoStyles : '')}
-        ${() => (level === 3 ? HeadingThreeStyles : '')}
-    `;
+    const Wrapper = map.get(`${level}`)!;
 
     const hash = useMemo(() => {
-        let h = [children]
-            .filter(child => typeof child === 'string')
-            .join(' ')
-            .replace(/[^a-zA-Z0-9]/g, '-')
-            .replace(/-+/g, '-')
-            .replace(/-$/g, '')
-            .toLowerCase();
-
-        if (anchors.has(h)) {
-            let count = 1;
-
-            while (anchors.has(h + count)) {
-                count++;
-            }
-
-            h = `${h}-${count}`;
-        }
-
-        anchors.add(h);
-
-        return h;
+        return decodeURIComponent([children].filter(child => typeof child === 'string').join(' '));
     }, []);
 
     return (
-        <HeadingWrapper>
+        <Wrapper>
             {anchor && (
                 <Anchor id={hash} href={`#${hash}`}>
                     #
                 </Anchor>
             )}
             {children}
-        </HeadingWrapper>
+        </Wrapper>
     );
 }
