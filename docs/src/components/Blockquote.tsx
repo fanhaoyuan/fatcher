@@ -1,4 +1,7 @@
-.blockquote {
+import { PropsWithChildren } from 'react';
+import styled from 'styled-components';
+
+const Wrapper = styled.blockquote`
     border-left: 5px solid rgb(109, 180, 255);
     background: rgb(50, 59, 87);
     color: rgb(255, 255, 255);
@@ -6,12 +9,16 @@
     padding: 5px 15px;
     border-radius: 0px 8px 8px 0px;
     font-size: 95%;
-}
 
-@media (min-width: 768px) {
-    .blockquote {
+    @media (min-width: 768px) {
         padding: 5px 20px;
         margin-left: -25px;
         margin-right: -25px;
     }
+`;
+
+export function Blockquote(props: PropsWithChildren<{}>) {
+    const { children } = props;
+
+    return <Wrapper>{children}</Wrapper>;
 }

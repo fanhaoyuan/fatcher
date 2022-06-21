@@ -1,4 +1,7 @@
-.pre {
+import { PropsWithChildren } from 'react';
+import styled from 'styled-components';
+
+const Wrapper = styled.pre`
     margin-left: -16px;
     margin-right: -16px;
     background-color: rgb(39, 41, 53);
@@ -11,22 +14,23 @@
     color: #c8d3f5;
     line-height: 2;
     overflow-x: auto;
-}
 
-@media (min-width: 576px) {
-    .pre {
+    @media (min-width: 576px) {
         border-radius: 10px;
         font-size: 16px;
     }
-}
 
-@media (min-width: 768px) {
-    .pre {
+    @media (min-width: 768px) {
         margin-left: -25px;
         margin-right: -25px;
     }
-}
 
-.pre .prismjs {
-    padding: 0 1.5rem;
+    .prismjs {
+        padding: 0 1.5rem;
+    }
+`;
+
+export function Pre(props: PropsWithChildren<{}>) {
+    const { children } = props;
+    return <Wrapper>{children}</Wrapper>;
 }
