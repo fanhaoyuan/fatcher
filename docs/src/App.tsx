@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { RouteRecord, AppContext } from './interfaces';
 import { repository, name, version } from '../../package.json';
-import { BasicLayout } from './layouts';
+import { Layout } from './layouts';
 
 const defaultAppContext: AppContext = {
     repository: '',
@@ -35,7 +35,7 @@ const asyncRoutes: RouteRecord[] = [];
 
         asyncRoutes.push({
             path: i === 0 ? '/' : `/${lang}`,
-            component: BasicLayout,
+            component: Layout,
             children: [],
             meta: {
                 title,

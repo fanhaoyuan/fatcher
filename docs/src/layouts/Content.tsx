@@ -1,11 +1,56 @@
 import { Outlet } from 'react-router';
 import { MDXProvider } from '@mdx-js/react';
-import styles from './index.module.css';
-import classnames from 'classnames';
 import { NavigationLink, Heading, Blockquote, Link, Code, Pre } from '@/components';
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons';
 import { useRouter } from '@/hooks';
 import { useMemo } from 'react';
+import styled, { css } from 'styled-components';
+
+const ContentWrapper = styled.section`
+    max-width: 875px;
+    margin: 0 auto;
+    position: relative;
+    padding: 0 16px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+`;
+
+const NavigationLinkGroup = styled.div`
+    margin-top: auto;
+    display: flex;
+    margin-top: 64px;
+`;
+
+const NavigationLinkWrapper = styled(NavigationLink)`
+    font-size: 22px !important;
+    display: inline-flex !important;
+    align-items: center;
+    width: 50%;
+`;
+
+const NavigationPrevLink = styled(NavigationLinkWrapper)`
+    justify-content: flex-start;
+`;
+
+const NavigationNextLink = styled(NavigationLinkWrapper)`
+    margin-left: auto;
+    justify-content: flex-end;
+`;
+
+const NavigationLinkIcon = css`
+    font-size: 32px;
+`;
+
+const NavigationPrevLinkIcon = styled(ArrowLeftOutlined)`
+    ${NavigationLinkIcon}
+    margin-right: 8px;
+`;
+
+const NavigationNextLinkIcon = styled(ArrowRightOutlined)`
+    ${NavigationLinkIcon}
+    margin-left: 8px;
+`;
 
 export interface ContentProps {
     className?: string;
@@ -32,7 +77,7 @@ export function Content(props: ContentProps) {
     }, [showNextLink, collection, order]);
 
     return (
-        <section className={classnames(styles.content, className)}>
+        <ContentWrapper className={className}>
             <MDXProvider
                 components={{
                     h1: p => <Heading {...p} level={1} anchor={false} />,
@@ -50,27 +95,21 @@ export function Content(props: ContentProps) {
                 <Outlet />
             </MDXProvider>
 
-            <div className={styles.navigationLinkGroup}>
+            <NavigationLinkGroup>
                 {showPrevLink && (
-                    <NavigationLink
-                        className={classnames(styles.navigationLink, styles.prevLink)}
-                        to={prevRouter?.path}
-                    >
-                        <ArrowLeftOutlined className={styles.navigationLinkIcon} />
+                    <NavigationPrevLink to={prevRouter?.path}>
+                        <NavigationPrevLinkIcon />
                         {prevRouter?.meta?.title}
-                    </NavigationLink>
+                    </NavigationPrevLink>
                 )}
 
                 {showNextLink && (
-                    <NavigationLink
-                        className={classnames(styles.navigationLink, styles.nextLink)}
-                        to={nextRouter?.path}
-                    >
+                    <NavigationNextLink to={nextRouter?.path}>
                         {nextRouter?.meta?.title}
-                        <ArrowRightOutlined className={styles.navigationLinkIcon} />
-                    </NavigationLink>
+                        <NavigationNextLinkIcon />
+                    </NavigationNextLink>
                 )}
-            </div>
-        </section>
+            </NavigationLinkGroup>
+        </ContentWrapper>
     );
 }

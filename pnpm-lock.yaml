@@ -26,7 +26,6 @@ importers:
       '@types/react-syntax-highlighter': ^15.5.2
       '@types/styled-components': ^5.1.25
       '@vitejs/plugin-react': ^1.3.2
-      classnames: ^2.3.1
       constate: ^3.3.2
       esbuild: ^0.14.29
       eslint-plugin-react: ^7.30.0
@@ -76,7 +75,6 @@ importers:
       '@types/react-syntax-highlighter': 15.5.2
       '@types/styled-components': 5.1.25
       '@vitejs/plugin-react': 1.3.2
-      classnames: 2.3.1
       constate: 3.3.2_react@18.2.0
       esbuild: 0.14.29
       eslint-plugin-react: 7.30.0
@@ -103,24 +101,6 @@ importers:
       ts-node: 10.7.0_badfd7pi43ncrdeelhhkl7tg34
       typescript: 4.6.3
       vite: 2.9.12
-
-  packages/aborter:
-    specifiers: {}
-
-  packages/cache:
-    specifiers: {}
-
-  packages/fatcher:
-    specifiers: {}
-
-  packages/form-data:
-    specifiers: {}
-
-  packages/json:
-    specifiers: {}
-
-  packages/progress:
-    specifiers: {}
 
 packages:
 

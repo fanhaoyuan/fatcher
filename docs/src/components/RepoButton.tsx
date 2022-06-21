@@ -1,6 +1,5 @@
 import { useAppContext } from '@/app.context';
 import { GithubOutlined } from '@ant-design/icons';
-import classnames from 'classnames';
 
 import styled from 'styled-components';
 
@@ -41,7 +40,7 @@ export function RepoButton(props: RepoButtonProps) {
     const { repository } = useAppContext();
 
     return (
-        <Wrapper className={classnames(className)} target='_blank' rel='noreferrer' href={repository}>
+        <Wrapper className={className} target='_blank' rel='noreferrer' href={repository}>
             <Icon /> View on Github
         </Wrapper>
     );

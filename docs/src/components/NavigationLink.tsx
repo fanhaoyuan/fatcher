@@ -1,5 +1,4 @@
 import { PropsWithChildren } from 'react';
-import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -27,7 +26,7 @@ export function NavigationLink(props: PropsWithChildren<NavigationLinkProps>) {
     const { children, to = '#', className } = props;
 
     return (
-        <Wrapper to={to} className={classnames(className)}>
+        <Wrapper to={to} className={className}>
             {children}
         </Wrapper>
     );
