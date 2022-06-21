@@ -1,6 +1,8 @@
 import { RepoButton } from '@/components';
 import { useAppContext } from '@/app.context';
 import styled, { keyframes } from 'styled-components';
+import { MenuOutlined } from '@ant-design/icons';
+import { MediaScreen } from '@/utils';
 
 const Wrapper = styled.header`
     position: relative;
@@ -88,12 +90,27 @@ const Mask = styled.svg`
     }
 `;
 
+const CollopseIcon = styled(MenuOutlined)`
+    position: absolute;
+    font-size: 40px;
+    color: black;
+    left: 25px;
+    top: -5px;
+    cursor: pointer;
+    display: inline-block;
+
+    ${MediaScreen.LG} {
+        display: none;
+    }
+`;
+
 export interface HeaderProps {
     className?: string;
+    onCollapseIconClick?: () => void;
 }
 
 export function Header(props: HeaderProps) {
-    const { className } = props;
+    const { className, onCollapseIconClick: onCollopseIconClick } = props;
 
     const { logo, title, repository, version } = useAppContext();
 
@@ -111,6 +128,8 @@ export function Header(props: HeaderProps) {
                         v{version}
                     </ReleaseLink>
                 )}
+
+                <CollopseIcon onClick={onCollopseIconClick} />
             </Content>
 
             <Mask xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 240' fill='#1f2028'>

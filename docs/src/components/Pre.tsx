@@ -1,3 +1,4 @@
+import { MediaScreen } from '@/utils';
 import { PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
@@ -12,15 +13,15 @@ const Wrapper = styled.pre`
         'Nimbus Mono L', 'Courier New', Courier, monospace;
     font-size: 1em;
     color: #c8d3f5;
-    line-height: 2;
     overflow-x: auto;
+    border-radius: 10px;
 
     @media (min-width: 576px) {
         border-radius: 10px;
         font-size: 16px;
     }
 
-    @media (min-width: 768px) {
+    ${MediaScreen.LG} {
         margin-left: -25px;
         margin-right: -25px;
     }
