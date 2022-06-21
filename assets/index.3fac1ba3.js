@@ -526,7 +526,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     color: #000;
     font-size: 24px;
     margin-right: 8px;
-`;function j2(e){const{className:t}=e,{repository:n}=Ti();return F(A2,{className:t,target:"_blank",rel:"noreferrer",href:n,children:[h(b2,{})," View on Github"]})}function E2(){const{locales:e}=Ti();function t(n,r){let i=r.split("/");return i.shift(),e.some(l=>l[0]===i[0])||(i=[e[0][0],...i]),i.shift(),["",n,...i].join("/").replace(e[0][0],"")}return{getLocalePath:t}}function M2(){const{pathname:e}=$n(),[t,n]=P.exports.useState(-1),[r,i]=P.exports.useState(),[o,l]=P.exports.useState([]),{currentRoutes:a}=Ti();return P.exports.useEffect(()=>{const s=a!=null?a:[];l(()=>s);for(let c=0;c<s.length;c++)e===s[c].path&&(n(()=>c),i(()=>s[c]))},[e]),{router:r,order:t,collection:o}}const T2=U.section`
+`;function j2(e){const{className:t}=e,{repository:n}=Ti();return F(A2,{className:t,target:"_blank",rel:"noreferrer",href:n,children:[h(b2,{})," View on Github"]})}function E2(){const{locales:e}=Ti();function t(n,r){let i=r.split("/");return i.shift(),e.some(l=>l[0]===i[0])||(i=[e[0][0],...i]),i.shift(),["",n,...i].join("/").replace(e[0][0],"")}return{getLocalePath:t}}function M2(){const{pathname:e}=$n(),[t,n]=P.exports.useState(-1),[r,i]=P.exports.useState(),[o,l]=P.exports.useState([]),{currentRoutes:a}=Ti();return P.exports.useEffect(()=>{const s=a!=null?a:[];l(()=>s);for(let c=0;c<s.length;c++)e===s[c].path&&(n(()=>c),i(()=>s[c]))},[e,a]),{router:r,order:t,collection:o}}const T2=U.section`
     max-width: 875px;
     margin: 0 auto;
     position: relative;
