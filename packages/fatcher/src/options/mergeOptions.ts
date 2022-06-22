@@ -1,16 +1,14 @@
 import { RequestOptions } from '../interfaces';
+import { merge } from '../utils';
 
-export function mergeOptions(
-    defaultOptions: RequestOptions,
-    ...patchOptions: Partial<RequestOptions>[]
-): RequestOptions {
-    return patchOptions.reduce((mergedOptions, options) => {
-        const { headers } = options;
+export function mergeOptions(options: RequestOptions, ...patchOptions: Partial<RequestOptions>[]): RequestOptions {
+    return merge(options, patchOptions, (merged, current) => {
+        const { headers } = current;
 
         if (headers) {
-            options.headers = Object.assign({}, mergedOptions.headers || {}, headers);
+            current.headers = Object.assign({}, merged.headers || {}, headers);
         }
 
-        return Object.assign(mergedOptions, options);
-    }, Object.assign({}, defaultOptions));
+        return current;
+    });
 }
