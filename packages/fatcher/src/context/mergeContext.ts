@@ -1,28 +1,29 @@
 import { Context, PatchContext } from '../interfaces';
+import { merge } from '../utils';
 
 /**
  * Merge context or patch context to a context
- * @param defaultContext
  * @param context
+ * @param patchContext
  * @returns
  */
-export function mergeContext(defaultContext: Context, ...context: (Context | PatchContext)[]): Context {
-    return context.reduce((mergedContext, patchContext) => {
-        const { headers } = patchContext;
+export function mergeContext(context: Context, ...patchContext: PatchContext[]): Context {
+    return merge(context, patchContext, (merged, current) => {
+        const { headers } = current;
 
         /**
          * Deep merge headers
          */
         if (headers) {
-            patchContext.headers = Object.assign(mergedContext.headers || {}, headers);
+            current.headers = Object.assign(merged.headers || {}, headers);
 
             for (const [key, value] of Object.entries(headers)) {
                 if (value) {
-                    defaultContext.requestHeaders.set(key, value);
+                    context.requestHeaders.set(key, value);
                 }
             }
         }
 
-        return Object.assign(mergedContext, patchContext);
-    }, Object.assign(Object.create(null), defaultContext));
+        return current;
+    });
 }
