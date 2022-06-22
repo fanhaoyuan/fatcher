@@ -5,7 +5,7 @@
 <div align="center">
 <h1>Fatcher</h1>
 
-A tiny (**<= 2KB**) composable HTTP request library which base on fetch API.
+Send fetch request gracefully in browsers and nodeJS
 
 [![codecov](https://codecov.io/gh/fatcherjs/fatcher/branch/master/graph/badge.svg?token=9DRTR2GXH8)](https://codecov.io/gh/fatcherjs/fatcher)
 [![](https://data.jsdelivr.com/v1/package/npm/fatcher/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fatcher)
