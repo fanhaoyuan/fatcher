@@ -73,6 +73,14 @@ export function Layout() {
         setVisible(false);
     }, [location]);
 
+    useEffect(() => {
+        window.scrollTo({
+            left: 0,
+            top: 0,
+            behavior: 'smooth',
+        });
+    }, [location]);
+
     return (
         <Wrapper visible={visible}>
             <NavigationWrapper onCloseIconClick={() => setVisible(false)} />

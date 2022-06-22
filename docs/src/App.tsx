@@ -17,8 +17,6 @@ const defaultAppContext: AppContext = {
     routes: [],
 };
 
-console.log(defaultAppContext);
-
 (function normalizeRepository() {
     const [match] = repository.url.match(/http(s?):\/\/.*/g) ?? [];
 
@@ -45,14 +43,10 @@ const asyncRoutes: RouteRecord[] = [];
     }
 })();
 
-console.log(asyncRoutes);
-
 const groups: Map<string, RouteRecord[]> = new Map();
 
 (function registerContentRoutes() {
     const modules = import.meta.globEager(`@/pages/**/*.md(x)?`);
-
-    console.log(modules);
 
     for (const [key, { default: component, ...meta }] of Object.entries(modules)) {
         const [path, locale = '/'] = key
@@ -80,8 +74,6 @@ const groups: Map<string, RouteRecord[]> = new Map();
     }
 
     for (const [locale, routes] of groups.entries()) {
-        console.log(locale, routes);
-
         const currentRouter = asyncRoutes.find(router => {
             return router.path === (locale === '/' ? '/' : `/${locale}`);
         }) as RouteRecord;
@@ -92,11 +84,7 @@ const groups: Map<string, RouteRecord[]> = new Map();
             return a.meta.order - b.meta.order;
         });
     }
-
-    console.log(groups);
 })();
-
-console.log(asyncRoutes);
 
 defaultAppContext.routes = asyncRoutes;
 
