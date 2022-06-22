@@ -9,10 +9,6 @@
 
 A tiny (**<= 2KB**) composable HTTP request library which base on fetch API.
 
-## Languages
-
-English | [中文](./README.zh-CN.md)
-
 ## Feature List
 
 | Name                          | Requires                                                                                                   | Browsers(`Modern`)                                          | Node           |
