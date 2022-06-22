@@ -18,7 +18,7 @@ A tiny (**<= 2KB**) composable HTTP request library which base on fetch API.
 
 ## Documentation
 
-➡️ [View documentation Here](fatcherjs.github.io/fatcher)
+➡️ [View documentation Here](https://fatcherjs.github.io/fatcher)
 
 ## Install
 
