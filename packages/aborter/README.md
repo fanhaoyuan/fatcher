@@ -13,7 +13,7 @@ A middleware for aborting fatcher request.
 ### CDN
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@fatcherjs/middleware-aborter/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fatcherjs/middleware-aborter/dist/aborter.min.js"></script>
 ```
 
 ## Usage
@@ -69,4 +69,4 @@ A callback when aborting this request.
 
 ## License
 
-[MIT](../../LICENSE)
+[MIT](https://github.com/fatcherjs/fatcher/blob/master/LICENSE)

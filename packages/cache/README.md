@@ -13,7 +13,7 @@ A middleware for caching response result.
 ### CDN
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@fatcherjs/middleware-cache/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fatcherjs/middleware-cache/dist/cache.min.js"></script>
 ```
 
 ## Usage
@@ -47,4 +47,4 @@ fatcher({
 
 ## License
 
-[LICENSE](../../LICENSE)
+[LICENSE](https://github.com/fatcherjs/fatcher/blob/master/LICENSE)

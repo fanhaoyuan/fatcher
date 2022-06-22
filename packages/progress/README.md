@@ -13,7 +13,7 @@ A Middleware for getting progress
 ### CDN
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@fatcherjs/middleware-progress/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fatcherjs/middleware-progress/dist/progress.min.js"></script>
 ```
 
 ## Usage
@@ -55,4 +55,4 @@ Callback with read stream chunks.
 
 ## License
 
-[MIT](../../LICENSE)
+[MIT](https://github.com/fatcherjs/fatcher/blob/master/LICENSE)

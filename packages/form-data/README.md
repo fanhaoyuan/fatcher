@@ -13,7 +13,7 @@ A middleware for consuming payload to form data
 ### CDN
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@fatcherjs/middleware-form-data/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fatcherjs/middleware-form-data/dist/form-data.min.js"></script>
 ```
 
 ## Usage
@@ -42,4 +42,4 @@ fatcher({
 
 ## License
 
-[LICENSE](../../LICENSE)
+[LICENSE](https://github.com/fatcherjs/fatcher/blob/master/LICENSE)
