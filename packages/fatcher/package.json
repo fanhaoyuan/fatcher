@@ -1,8 +1,8 @@
 {
     "name": "fatcher",
     "version": "1.2.0",
-    "description": "A tiny composable HTTP request library witch base on fetch API.",
-    "homepage": "https://fatcherjs.github.io/docs/",
+    "description": "Send fetch request gracefully in browsers and nodeJS",
+    "homepage": "https://fatcherjs.github.io/fatcher/",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/fatcherjs/fatcher.git"
