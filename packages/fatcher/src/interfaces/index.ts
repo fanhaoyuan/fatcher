@@ -68,6 +68,10 @@ export type MiddlewareNext = (patchContext?: PatchContext) => Promise<Middleware
 export interface Middleware {
     name: `fatcher-middleware-${string}`;
     use(context: Readonly<Context>, next: MiddlewareNext): Promise<MiddlewareResult> | MiddlewareResult;
+    /**
+     * Current middleware needs some middlewares
+     */
+    presets?: UnregisteredMiddlewares;
 }
 
 /**

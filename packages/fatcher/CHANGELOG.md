@@ -1,3 +1,7 @@
+## Coming Soon
+
+-   🚀 `Middleware` add `presets` options, can set preset middlewares before using this middleware.
+
 ## v1.2.0
 
 -   🚀 Use `Headers` class for sending http headers. ([#129](https://github.com/fatcherjs/fatcher/pull/129))

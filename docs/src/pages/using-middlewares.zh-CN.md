@@ -26,6 +26,24 @@ use 方法是一个函数，这个函数是中间件的方法实现，它会被�
 -   第一个参数为当前请求的上下文，这个上下文是不可变的，所以**不要**对上下文进行重新赋值。
 -   第二个参数为 next 方法，调用它则是调用下个中间件。
 
+### presets
+
+> 添加于 `v1.3.0`
+
+presets 是这个中间件需要前置的中间件
+
+#### 合并规则
+
+声明在这里的中间件会在注册时被扁平化，声明于当前中间件的前方
+
+```ts
+const a = {
+    presets: [b, c],
+};
+
+register([a]); // => [b, c, a]
+```
+
 ## 约定
 
 我们约定 fatcher 中间件的名称是以 `fatcher-middleware-` 开头，这样我们就很容易知道这是 fatcher 的一个中间件。
@@ -33,17 +51,19 @@ use 方法是一个函数，这个函数是中间件的方法实现，它会被�
 ## 类型签名
 
 ```ts
-export interface MiddlewareResult extends Omit<ResponseResult, 'options' | 'data'> {
+interface MiddlewareResult extends Omit<ResponseResult, 'options' | 'data'> {
     data?: any;
 }
 
-export type PatchContext = Partial<Context>;
+type UnregisteredMiddlewares = ((() => Middleware) | Middleware | ((() => Middleware) | Middleware)[])[];
 
-export type MiddlewareNext = (patchContext?: PatchContext) => Promise<MiddlewareResult> | MiddlewareResult;
+type PatchContext = Partial<Context>;
 
-export interface Middleware {
+type MiddlewareNext = (patchContext?: PatchContext) => Promise<MiddlewareResult> | MiddlewareResult;
+
+interface Middleware {
     name: `fatcher-middleware-${string}`;
     use(context: Readonly<Context>, next: MiddlewareNext): Promise<MiddlewareResult> | MiddlewareResult;
+    presets?: UnregisteredMiddlewares;
 }
 ```
-
