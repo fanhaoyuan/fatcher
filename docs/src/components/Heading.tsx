@@ -26,6 +26,7 @@ const HeadingWrapper = styled.h1`
     margin-bottom: 16px;
     color: rgb(255, 255, 255);
     word-break: break-word;
+    font-size: 18px;
 
     :hover ${Anchor} {
         opacity: 1;
