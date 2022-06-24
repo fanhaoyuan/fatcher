@@ -165,4 +165,35 @@ describe('Middlewares', () => {
         expect(data.id).toBe(body.id);
         expect(data.name).toBe(body.name);
     });
+
+    it('Presets Middlewares', () => {
+        const middlewareName = 'fatcher-middleware-middleware';
+        const presetsName = 'fatcher-middleware-presets';
+
+        const middleware = (): Middleware => {
+            return {
+                name: middlewareName,
+                use(context, next) {
+                    return next();
+                },
+                presets: [],
+            };
+        };
+
+        const presets = (): Middleware => {
+            return {
+                name: presetsName,
+                use(context, next) {
+                    return next();
+                },
+                presets: [middleware],
+            };
+        };
+
+        const middlewares = registerMiddlewares([presets]);
+
+        expect(middlewares[0].name).toBe(middlewareName);
+        expect(middlewares[1].name).toBe(presetsName);
+        expect(middlewares.length).toBe(2);
+    });
 });

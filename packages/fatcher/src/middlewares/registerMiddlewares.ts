@@ -15,6 +15,10 @@ export function registerMiddlewares(unregisteredMiddlewares: UnregisteredMiddlew
             middleware = registerMiddlewares(current);
         } else {
             middleware = [isFunction(current) ? current() : current];
+
+            if (middleware[0].presets?.length) {
+                middleware = registerMiddlewares(middleware[0].presets).concat(middleware);
+            }
         }
 
         return total.concat(middleware);

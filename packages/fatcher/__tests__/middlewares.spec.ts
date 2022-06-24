@@ -136,5 +136,49 @@ describe('Custom Middlewares', () => {
         expect(result.join('')).toBe(longText);
     });
 
+    it('Presets Middlewares', async () => {
+        const returnedData = 'returned by fatcher-middleware-return';
+
+        const url = '/test/presets';
+
+        const test = (): Middleware => {
+            return {
+                name: 'fatcher-middleware-test',
+                async use(context, next) {
+                    const result = await next({
+                        url,
+                    });
+
+                    expect(result.data).toBe(returnedData);
+                    expect(result.status).toBe(200);
+                    expect(result.statusText).toBe('ok');
+                    expect(result.url).toBe(url);
+
+                    return result;
+                },
+            };
+        };
+
+        const middleware = (): Middleware => {
+            return {
+                name: 'fatcher-middleware-return',
+                use(context) {
+                    expect(context.url).toBe(url);
+
+                    return {
+                        status: 200,
+                        statusText: 'ok',
+                        data: returnedData,
+                        headers: new Headers(),
+                        url: context.url!,
+                    };
+                },
+                presets: [test()],
+            };
+        };
+
+        await fatcher({ url: '/presets', middlewares: [middleware()] });
+    });
+
     afterEach(() => fetchMock.disableMocks());
 });
