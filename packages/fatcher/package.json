@@ -1,6 +1,6 @@
 {
     "name": "fatcher",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "description": "Send fetch request gracefully in browsers and nodeJS",
     "homepage": "https://fatcherjs.github.io/fatcher/",
     "repository": {
@@ -31,7 +31,6 @@
         "build": "rimraf dist && rollup -c rollup.config.ts",
         "eslint": "eslint ./src",
         "tsc": "tsc --noEmit",
-        "prerelease": "ts-node scripts/prerelease.ts",
         "deploy": "pnpm run build && pnpm publish --no-git-check"
     }
 }

@@ -1,6 +1,6 @@
-## Coming Soon
+## v1.3.0
 
--   🚀 `Middleware` add `presets` options, can set preset middlewares before using this middleware.
+-   🚀 `Middleware` add `presets` options, can set preset middlewares before using this middleware. ([#152](https://github.com/fatcherjs/fatcher/pull/152))
 
 ## v1.2.0
 
