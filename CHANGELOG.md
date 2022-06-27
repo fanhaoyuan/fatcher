@@ -1,3 +1,9 @@
+## Coming Soon
+
+### @fatcherjs/middleware-form-data
+
+-   🐛 No longer transform `payload` when it is `FormData`
+
 ## v1.3.0
 
 ### fatcher

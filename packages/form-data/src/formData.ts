@@ -17,17 +17,21 @@ export function formData(): Middleware {
             let body: FormData | null = null;
 
             if (payload) {
-                body = new FormData();
+                if (payload instanceof FormData) {
+                    body = payload;
+                } else {
+                    body = new FormData();
 
-                for (const key of Object.keys(payload)) {
-                    const value = payload[key];
+                    for (const key of Object.keys(payload)) {
+                        const value = payload[key];
 
-                    if (Array.isArray(value)) {
-                        value.forEach(item => body?.append(key, item));
-                        continue;
+                        if (Array.isArray(value)) {
+                            value.forEach(item => body?.append(key, item));
+                            continue;
+                        }
+
+                        body.append(key, value);
                     }
-
-                    body.append(key, value);
                 }
             }
 
