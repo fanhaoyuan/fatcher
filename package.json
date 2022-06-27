@@ -10,7 +10,8 @@
         "test": "jest",
         "test:cov": "jest --coverage",
         "prettier": "prettier -wu . --loglevel warn",
-        "prerelease": "pnpm run prettier && ts-node scripts/prerelease.ts && pnpm -r run prerelease --if-present",
+        "changelog": "ts-node scripts/changelog.ts",
+        "prerelease": "pnpm run changelog && pnpm run prettier && ts-node scripts/prerelease.ts && pnpm -r run prerelease --if-present",
         "ci": "pnpm -r run build && pnpm -r run eslint && pnpm -r run tsc && pnpm run test",
         "docs:dev": "vite docs",
         "docs:build": "vite build docs"
