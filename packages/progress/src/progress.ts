@@ -7,7 +7,7 @@ import { ProgressOptions } from './interfaces';
  * @returns
  */
 export function progress(options: ProgressOptions = {}): Middleware {
-    const { onDownloadProgress = null } = options;
+    const { onDownloadProgress = null, lengthName = 'content-length' } = options;
 
     return {
         name: 'fatcher-middleware-progress',
@@ -18,7 +18,7 @@ export function progress(options: ProgressOptions = {}): Middleware {
                 return result;
             }
 
-            const total = ~~(result.headers.get('content-length') || 0);
+            const total = ~~(result.headers.get(lengthName) || 0);
 
             if (total === 0) {
                 return result;

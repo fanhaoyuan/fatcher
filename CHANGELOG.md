@@ -1,5 +1,9 @@
 ## Coming Soon
 
+### @fatcherjs/middleware-progress
+
+-   🚀 Add `lengthName` for setting custom headers name
+
 ### @fatcherjs/middleware-form-data
 
 -   🐛 No longer transform `payload` when it is `FormData`

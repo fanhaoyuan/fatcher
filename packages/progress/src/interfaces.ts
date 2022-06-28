@@ -5,4 +5,11 @@ export interface ProgressOptions {
      * @default null
      */
     onDownloadProgress?: ((current: number, total: number) => void) | null;
+
+    /**
+     * Custom name in headers with content-length
+     *
+     * @default 'content-length'
+     */
+    lengthName?: string;
 }

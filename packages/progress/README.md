@@ -53,6 +53,14 @@ fatcher({
 
 Callback with read stream chunks.
 
+### lengthName
+
+-   Type: `string`
+-   DefaultValue: `'content-length'`,
+-   Description:
+
+Custom name in headers with `content-length`
+
 ## License
 
 [MIT](https://github.com/fatcherjs/fatcher/blob/master/LICENSE)
