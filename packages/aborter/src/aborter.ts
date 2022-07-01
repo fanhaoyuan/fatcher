@@ -1,5 +1,7 @@
 import { Middleware } from 'fatcher';
-import { AborterOptions } from './interfaces';
+import { AbortReason, AborterOptions, RoadMap } from './interfaces';
+
+const roadMap: RoadMap = {};
 
 /**
  * A middleware for aborting fatcher request.
@@ -7,7 +9,7 @@ import { AborterOptions } from './interfaces';
  * @returns
  */
 export function aborter(options: AborterOptions = {}): Middleware {
-    const { timeout = 0, onAbort = null } = options;
+    const { timeout = 0, onAbort = null, concurrency, groupBy } = options;
 
     let _timeout = timeout;
 
@@ -19,26 +21,53 @@ export function aborter(options: AborterOptions = {}): Middleware {
     return {
         name: 'fatcher-middleware-aborter',
         async use(context, next) {
-            const abortController = new AbortController();
+            const { signal, abort } = new AbortController();
 
-            const requestTask = next({
-                signal: abortController.signal,
-            });
+            const requestTask = next({ signal });
 
-            if (!_timeout) {
-                return requestTask;
+            const group =
+                groupBy?.(context) ??
+                `${context.url}_${context.method}_${new URLSearchParams(context.params).toString()}`;
+
+            // Setup road map before response
+            roadMap[group] ??= [];
+
+            if (roadMap[group].length && concurrency) {
+                // If has other request in group. Abort them.
+                roadMap[group].forEach(item => {
+                    item.abort('concurrency');
+                });
             }
 
-            const timer = setTimeout(() => {
-                abortController.abort();
-                onAbort?.();
-            }, _timeout);
+            roadMap[group].push({
+                abort: (reason: AbortReason) => {
+                    abort();
+                    onAbort?.(reason);
+                },
+                timer: _timeout ? setTimeout(() => abort('timeout'), _timeout) : null,
+                signal,
+            });
 
-            const response = await requestTask;
+            // Cleanup with abort event triggered.
+            signal.addEventListener('abort', () => {
+                roadMap[group] = roadMap[group].filter(item => {
+                    if (item.signal === signal) {
+                        if (item.timer) {
+                            clearTimeout(item.timer);
+                        }
 
-            clearTimeout(timer);
+                        return false;
+                    }
 
-            return response;
+                    return true;
+                });
+
+                if (!roadMap[group].length) {
+                    delete roadMap[group];
+                }
+            });
+
+            return requestTask;
         },
     };
 }
