@@ -1,5 +1,13 @@
 ## Coming Soon
 
+### @fatcherjs/middleware-aborter
+
+-   🚀 Add `isAbortError` helpers.
+
+### fatcher
+
+-   ❌ Deprecate `isAbortError`, move it to `@fatcherjs/middleware-aborter`.
+
 ### @fatcherjs/middleware-progress
 
 -   🚀 Add `lengthName` for setting custom headers name
