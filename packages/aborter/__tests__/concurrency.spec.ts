@@ -47,6 +47,9 @@ describe('Concurrency', () => {
                     middlewares: [
                         aborter({
                             concurrency: true,
+                            onAbort(reason) {
+                                expect(reason).toBe('concurrency');
+                            },
                         }),
                     ],
                 });
