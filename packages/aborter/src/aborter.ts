@@ -21,7 +21,9 @@ export function aborter(options: AborterOptions = {}): Middleware {
     return {
         name: 'fatcher-middleware-aborter',
         async use(context, next) {
-            const { signal, abort } = new AbortController();
+            const abortController = new AbortController();
+
+            const { abort, signal } = abortController;
 
             const requestTask = next({ signal });
 
@@ -30,18 +32,18 @@ export function aborter(options: AborterOptions = {}): Middleware {
                 `${context.url}_${context.method}_${new URLSearchParams(context.params).toString()}`;
 
             // Setup road map before response
-            roadMap[group] ??= [];
-
-            if (roadMap[group].length && concurrency) {
+            if (roadMap[group]?.length && concurrency) {
                 // If has other request in group. Abort them.
                 roadMap[group].forEach(item => {
                     item.abort('concurrency');
                 });
             }
 
+            roadMap[group] ??= [];
+
             roadMap[group].push({
                 abort: (reason: AbortReason) => {
-                    abort();
+                    abort.call(abortController);
                     onAbort?.(reason);
                 },
                 timer: _timeout ? setTimeout(() => abort('timeout'), _timeout) : null,
