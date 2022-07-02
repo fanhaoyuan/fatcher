@@ -11,7 +11,7 @@ export function aborter(options: AborterOptions = {}): Middleware {
 
     let _timeout = timeout;
 
-    if (isNaN(timeout) || ~~timeout <= 0) {
+    if (isNaN(timeout) || ~~timeout < 0) {
         console.warn('[fatcher-middleware-aborter] Timeout is not a valid number.');
         _timeout = 0;
     }

@@ -3,6 +3,7 @@
 ### @fatcherjs/middleware-aborter
 
 -   🚀 Add `isAbortError` helpers.
+-   🐛 Remove unexpected warning when `timeout = 0`
 
 ### fatcher
 
