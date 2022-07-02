@@ -3,6 +3,7 @@
 ### @fatcherjs/middleware-aborter
 
 -   🚀 Add `isAbortError` helpers.
+-   🚀 Add `concurrency` prop for aborting concurrency request
 
 ### fatcher
 
