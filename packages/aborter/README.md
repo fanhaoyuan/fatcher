@@ -67,6 +67,22 @@ Aborted request will throw a DOMException which can use `isAbortError` to confir
 
 A callback when aborting this request.
 
+### concurrency
+
+-   Type: `boolean`
+-   DefaultValue: `false`
+-   Description:
+
+Request concurrency restrictions
+
+### groupBy
+
+-   Type: `(context: Readonly<Context>) => string;`
+-   DefaultValue: `${context.url}_${context.method}_${new URLSearchParams(context.params).toString()}`
+-   Description:
+
+Concurrency key.
+
 ## License
 
 [MIT](https://github.com/fatcherjs/fatcher/blob/master/LICENSE)
