@@ -1,6 +1,6 @@
 ## v1.4.0
 
--   🐛 No longer transform `payload` when it is `FormData`
+-   🐛 No longer transform `payload` when it is `FormData` ([#153](https://github.com/fatcherjs/fatcher/pull/153))
 
 ## v1.2.0
 

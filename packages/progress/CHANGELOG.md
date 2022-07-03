@@ -1,6 +1,6 @@
 ## v1.4.0
 
--   🚀 Add `lengthName` for setting custom headers name
+-   🚀 Add `lengthName` for setting custom headers name ([#155](https://github.com/fatcherjs/fatcher/pull/155))
 
 ## v1.0.1
 

@@ -2,21 +2,21 @@
 
 ### @fatcherjs/middleware-aborter
 
--   🚀 Add `isAbortError` helpers.
--   🚀 Add `concurrency` prop for aborting concurrency request
--   🐛 Remove unexpected warning when `timeout = 0`
+-   🚀 Add `isAbortError` helpers. ([#157](https://github.com/fatcherjs/fatcher/pull/157))
+-   🚀 Add `concurrency` prop for aborting concurrency request ([#158](https://github.com/fatcherjs/fatcher/pull/158))
+-   🐛 Remove unexpected warning when `timeout = 0` ([#159](https://github.com/fatcherjs/fatcher/pull/159))
 
 ### fatcher
 
--   ❌ Deprecate `isAbortError`, move it to `@fatcherjs/middleware-aborter`.
+-   ❌ Deprecate `isAbortError`, move it to `@fatcherjs/middleware-aborter`. ([#157](https://github.com/fatcherjs/fatcher/pull/157))
 
 ### @fatcherjs/middleware-progress
 
--   🚀 Add `lengthName` for setting custom headers name
+-   🚀 Add `lengthName` for setting custom headers name ([#155](https://github.com/fatcherjs/fatcher/pull/155))
 
 ### @fatcherjs/middleware-form-data
 
--   🐛 No longer transform `payload` when it is `FormData`
+-   🐛 No longer transform `payload` when it is `FormData` ([#153](https://github.com/fatcherjs/fatcher/pull/153))
 
 ## v1.3.0
 

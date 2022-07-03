@@ -1,6 +1,6 @@
 ## v1.4.0
 
--   ❌ Deprecate `isAbortError`, move it to `@fatcherjs/middleware-aborter`.
+-   ❌ Deprecate `isAbortError`, move it to `@fatcherjs/middleware-aborter`. ([#157](https://github.com/fatcherjs/fatcher/pull/157))
 
 ## v1.3.0
 
