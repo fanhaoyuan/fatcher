@@ -1,4 +1,4 @@
-## Coming Soon
+## v1.4.0
 
 ### @fatcherjs/middleware-aborter
 

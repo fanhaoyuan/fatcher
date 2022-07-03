@@ -1,3 +1,7 @@
+## v1.4.0
+
+-   🐛 No longer transform `payload` when it is `FormData`
+
 ## v1.2.0
 
 -   🔧 Using `requestHeaders` instead of `headers` in context ([#142](https://github.com/fatcherjs/fatcher/pull/142))

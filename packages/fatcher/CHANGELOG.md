@@ -1,3 +1,7 @@
+## v1.4.0
+
+-   ❌ Deprecate `isAbortError`, move it to `@fatcherjs/middleware-aborter`.
+
 ## v1.3.0
 
 -   🚀 `Middleware` add `presets` options, can set preset middlewares before using this middleware. ([#152](https://github.com/fatcherjs/fatcher/pull/152))
