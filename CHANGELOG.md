@@ -1,3 +1,9 @@
+## Coming Soon
+
+### @fatcherjs/middleware-aborter
+
+-   🐛 Fix error which will not trigger `onAbort` in `timeout`
+
 ## v1.4.0
 
 ### @fatcherjs/middleware-aborter
