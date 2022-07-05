@@ -41,12 +41,14 @@ export function aborter(options: AborterOptions = {}): Middleware {
 
             roadMap[group] ??= [];
 
+            const trigger = (reason: AbortReason) => {
+                abort.call(abortController);
+                onAbort?.(reason);
+            };
+
             roadMap[group].push({
-                abort: (reason: AbortReason) => {
-                    abort.call(abortController);
-                    onAbort?.(reason);
-                },
-                timer: _timeout ? setTimeout(() => abort('timeout'), _timeout) : null,
+                abort: trigger,
+                timer: _timeout ? setTimeout(() => trigger('timeout'), _timeout) : null,
                 signal,
             });
 
