@@ -1,3 +1,7 @@
+## v1.4.1
+
+-   🐛 Fix error which will not trigger `onAbort` in `timeout` ([#160](https://github.com/fatcherjs/fatcher/pull/160))
+
 ## v1.4.0
 
 -   🚀 Add `isAbortError` helpers. ([#157](https://github.com/fatcherjs/fatcher/pull/157))

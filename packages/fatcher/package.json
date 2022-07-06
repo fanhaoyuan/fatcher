@@ -1,6 +1,6 @@
 {
     "name": "fatcher",
-    "version": "1.4.0",
+    "version": "1.4.1",
     "description": "Send fetch request gracefully in browsers and nodeJS",
     "homepage": "https://fatcherjs.github.io/fatcher/",
     "repository": {
@@ -13,7 +13,10 @@
         "http",
         "request",
         "middlewares",
-        "streams"
+        "streams",
+        "axios",
+        "got",
+        "node"
     ],
     "main": "dist/index.js",
     "module": "dist/index.esm.js",

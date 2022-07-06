@@ -1,12 +1,12 @@
-## Coming Soon
+## v1.4.1
 
 ### fatcher
 
--   🔧 Remove some overt options
+-   🔧 Remove some overt options ([#161](https://github.com/fatcherjs/fatcher/pull/161))
 
 ### @fatcherjs/middleware-aborter
 
--   🐛 Fix error which will not trigger `onAbort` in `timeout`
+-   🐛 Fix error which will not trigger `onAbort` in `timeout` ([#160](https://github.com/fatcherjs/fatcher/pull/160))
 
 ## v1.4.0
 

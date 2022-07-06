@@ -1,3 +1,7 @@
+## v1.4.1
+
+-   🔧 Remove some overt options ([#161](https://github.com/fatcherjs/fatcher/pull/161))
+
 ## v1.4.0
 
 -   ❌ Deprecate `isAbortError`, move it to `@fatcherjs/middleware-aborter`. ([#157](https://github.com/fatcherjs/fatcher/pull/157))

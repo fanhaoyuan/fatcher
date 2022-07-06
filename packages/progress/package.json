@@ -1,6 +1,6 @@
 {
     "name": "@fatcherjs/middleware-progress",
-    "version": "1.4.0",
+    "version": "1.4.1",
     "main": "dist/progress.js",
     "module": "dist/progress.esm.js",
     "browser": "dist/progress.min.js",
