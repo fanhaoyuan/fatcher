@@ -3,37 +3,39 @@ title: Guide
 order: 0
 ---
 
-Fatcher is a HTTP request library based on `Fetch API`.
+# Guide
 
-We can use fatcher in `node.js` and `modern browsers`.
+fatcher is a lightweight HTTP request library based on `fetch`.
 
-Fatcher`s core is composing a series of middlewares to expand more functions.
+fatcher allows us to use native `fetch` for web requests in a browser and NodeJS environment.
 
-## Features
+It is wrapped using the native `fetch`, we require that browsers or NodeJS support `fetch` when we use it.
 
--   Based on Fetch API
--   Promise API Supports
--   TypeScript Supports
--   Composable Middlewares
--   Streams API supports
--   Mini Size (`<= 2KB`)
+-   Fetch support is already pretty good in modern browsers, so we don't have to worry about FETCH compatibility
+-   In NodeJS, fetch already has some support starting with '18.0.0'
 
-## Inspiration
+Fatcher aims to embrace the `fetch` of the standard library and at the same time provide some functions that cannot be provided in `fetch`, as well as make the function better expand and reuse.
 
-Fatcher's inspiration stemming from `koa`.
+## Compatibility
 
-## How It Works
+### Broswers
 
-A fatcher instance is composed a series of middlewares to a high-order async function.
+-   [fetch](https://caniuse.com/fetch)
+-   [ReadableStream](https://caniuse.com/mdn-api_readablestream)
+-   [Headers](https://caniuse.com/mdn-api_headers)
+-   [Response](https://caniuse.com/mdn-api_response)
+-   [Request](https://caniuse.com/mdn-api_request)
+-   [AbortController](https://caniuse.com/abortcontroller)
 
-Middlewares can change request context and fetch response.
+### NodeJS
 
-Middleware using a immutable request context.It make for debug better.
+-   [fetch](https://nodejs.org/dist/latest-v18.x/docs/api/globals.html#fetch)
+-   [ReadableStream](https://nodejs.org/dist/latest-v18.x/docs/api/globals.html#class-readablestream)
+-   [Headers](https://nodejs.org/dist/latest-v18.x/docs/api/globals.html#class-headers)
+-   [Response](https://nodejs.org/dist/latest-v18.x/docs/api/globals.html#response)
+-   [Request](https://nodejs.org/dist/latest-v18.x/docs/api/globals.html#request)
+-   [AbortController](https://nodejs.org/dist/latest-v18.x/docs/api/globals.html#class-abortcontroller)
 
-## Why not
+---
 
-#### Axios
-
-Axios is a promise-based HTTP Client for node.js and the browser. On the server-side it uses the native node.js `http` module, while on the client (browser) it uses `XMLHttpRequests`.
-
-But Fatcher based on `fetch` api and fully supports `promise` and `streams` api. `Node.js` and `Modern Browsers` is supported `fetch` api now.
+We will learn how to send a fatcher request in next chapter [QuickStart](/quick-start)
