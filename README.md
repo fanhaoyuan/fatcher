@@ -42,7 +42,7 @@ Send fetch request gracefully in browsers and nodeJS
 
 ## Usage
 
-For detailed usage information,[visit the docs](https://fatcherjs.github.io/fatcher/quick-start/).
+For detailed usage information,[visit the docs](https://fatcherjs.github.io/fatcher/quick-start).
 
 ## License
 
