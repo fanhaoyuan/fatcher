@@ -54,7 +54,7 @@
         "react-router-dom": "^6.3.0",
         "react-syntax-highlighter": "^15.5.0",
         "remark-frontmatter": "^4.0.1",
-        "remark-mdx-frontmatter": "^1.1.1",
+        "remark-mdx-frontmatter": "^2.0.2",
         "rimraf": "^3.0.2",
         "rollup": "^2.70.1",
         "rollup-plugin-bundle-size": "^1.0.3",
