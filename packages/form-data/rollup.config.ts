@@ -5,7 +5,8 @@ import nodeResolver from '@rollup/plugin-node-resolve';
 import { main, module, browser, typings } from './package.json';
 
 const input = 'src/index.ts';
-const plugins = [nodeResolver(), esbuild({ target: 'es2018' })];
+const target = 'es2018';
+const plugins = [nodeResolver(), esbuild({ target })];
 
 export default defineConfig([
     {
@@ -22,7 +23,7 @@ export default defineConfig([
                 file: module,
             },
             {
-                plugins: [minify()],
+                plugins: [minify({ target })],
                 format: 'umd',
                 file: browser,
                 name: 'FatcherMiddlewareFormData',
