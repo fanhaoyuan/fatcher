@@ -8,11 +8,12 @@ import replace from '@rollup/plugin-replace';
 import strip from '@rollup/plugin-strip';
 
 const input = 'src/index.ts';
+const target = 'es2018';
 const VerbosityPrefix = '[Fatcher]';
 
 const plugins = [
     nodeResolver(),
-    esbuild({ target: 'es2018' }),
+    esbuild({ target }),
     replace({
         __vp__: VerbosityPrefix,
         preventAssignment: false,
@@ -48,7 +49,7 @@ export default defineConfig([
             }),
         ],
         output: {
-            plugins: [minify(), bundleSize()],
+            plugins: [minify({ target }), bundleSize()],
             format: 'umd',
             file: browser,
             name: 'Fatcher',
