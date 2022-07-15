@@ -93,7 +93,9 @@ describe('Custom Middlewares', () => {
 
                 const text = await response.text();
 
-                const stream = new ReadableStream({
+                const textEncoder = new TextEncoder();
+
+                const stream = new ReadableStream<Uint8Array>({
                     start(controller) {
                         (function push() {
                             const currentText = text.slice(index * cof, (index + 1) * cof);
@@ -105,7 +107,7 @@ describe('Custom Middlewares', () => {
 
                             index++;
 
-                            controller.enqueue(currentText);
+                            controller.enqueue(textEncoder.encode(currentText));
                             push();
                         })();
                     },
@@ -123,14 +125,16 @@ describe('Custom Middlewares', () => {
     it('Compose Middlewares', async () => {
         const COF = 1000;
 
-        const { data } = await fatcher<ReadableStream<string>>({
+        const textDecoder = new TextDecoder();
+
+        const { data } = await fatcher<ReadableStream<Uint8Array>>({
             baseUrl: BASE_URL,
             url: '/get',
             middlewares: [pre(), post(COF)],
         });
 
         const result: string[] = [];
-        await readStreamByChunk(data, str => result.push(str));
+        await readStreamByChunk(data, str => result.push(textDecoder.decode(str)));
         expect(result[0].length).toBe(COF);
         expect(result.length).toBe(longText.length / COF);
         expect(result.join('')).toBe(longText);

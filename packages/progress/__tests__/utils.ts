@@ -22,7 +22,9 @@ export function responser(options: Options = {}): Middleware {
             text += Math.random().toString(36).slice(-5);
         }
 
-        readableStream = new ReadableStream<string>({
+        const textEncoder = new TextEncoder();
+
+        readableStream = new ReadableStream({
             start(controller) {
                 (function push() {
                     const currentText = text.slice(index * cof, (index + 1) * cof);
@@ -34,7 +36,7 @@ export function responser(options: Options = {}): Middleware {
 
                     index++;
 
-                    controller.enqueue(currentText);
+                    controller.enqueue(textEncoder.encode(currentText));
                     push();
                 })();
             },

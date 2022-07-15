@@ -37,7 +37,9 @@ describe('Helpers', () => {
             text += Math.random().toString(36).slice(-5);
         }
 
-        const readableStream = new ReadableStream<string>({
+        const textEncoder = new TextEncoder();
+
+        const readableStream = new ReadableStream<Uint8Array>({
             start(controller) {
                 (function push() {
                     const currentText = text.slice(index * cof, (index + 1) * cof);
@@ -49,7 +51,7 @@ describe('Helpers', () => {
 
                     index++;
 
-                    controller.enqueue(currentText);
+                    controller.enqueue(textEncoder.encode(currentText));
                     push();
                 })();
             },
@@ -57,8 +59,10 @@ describe('Helpers', () => {
 
         const result: string[] = [];
 
+        const textDecoder = new TextDecoder();
+
         await readStreamByChunk(readableStream, chunk => {
-            result.push(chunk);
+            result.push(textDecoder.decode(chunk));
         });
 
         expect(result.join('')).toBe(text);
