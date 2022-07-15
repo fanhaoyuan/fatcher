@@ -22,6 +22,8 @@ export function responser(options: Options = {}): Middleware {
             text += Math.random().toString(36).slice(-5);
         }
 
+        const textEncoder = new TextEncoder();
+
         readableStream = new ReadableStream({
             start(controller) {
                 (function push() {
@@ -34,13 +36,7 @@ export function responser(options: Options = {}): Middleware {
 
                     index++;
 
-                    const arrayBuffer = [];
-
-                    for (const str of currentText) {
-                        arrayBuffer.push(str.charCodeAt(0));
-                    }
-
-                    controller.enqueue(Uint8Array.from(arrayBuffer));
+                    controller.enqueue(textEncoder.encode(currentText));
                     push();
                 })();
             },
