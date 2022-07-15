@@ -28,6 +28,16 @@ body:
       validations:
           required: true
 
+    - type: markdown
+      attributes:
+          value: |
+              ### Reproduction
+              If possible, provide a code snippet or unit test case.
+              ```ts
+              \n
+              \n
+              \n
+              ```
     - type: textarea
       id: expected-behavior
       attributes:
