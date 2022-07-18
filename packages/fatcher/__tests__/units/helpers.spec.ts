@@ -1,4 +1,4 @@
-import { getRandomString, getStringStream } from '../../../../shared/tests';
+import { getRandomString, getStringStream, sleep } from '../../../../shared/tests';
 import { canActivate, isAbortError, readStreamByChunk } from '../../src/helpers';
 
 describe('Helpers', () => {
@@ -29,32 +29,13 @@ describe('Helpers', () => {
     });
 
     it('readStreamByChunk', async () => {
-        let index = 0;
         const cof = 1000;
         let text = '';
         const length = 1_000_000;
 
         text = getRandomString(length);
 
-        const textEncoder = new TextEncoder();
-
-        const readableStream = new ReadableStream<Uint8Array>({
-            start(controller) {
-                (function push() {
-                    const currentText = text.slice(index * cof, (index + 1) * cof);
-
-                    if (!currentText) {
-                        controller.close();
-                        return;
-                    }
-
-                    index++;
-
-                    controller.enqueue(textEncoder.encode(currentText));
-                    push();
-                })();
-            },
-        });
+        const readableStream = getStringStream(text, cof);
 
         const result: string[] = [];
 
@@ -76,8 +57,6 @@ describe('Helpers', () => {
         const text = getRandomString(length);
 
         const readableStream = getStringStream(text, cof);
-
-        const sleep = (time = 500) => new Promise(resolve => setTimeout(resolve, time));
 
         const result: string[] = [];
 
