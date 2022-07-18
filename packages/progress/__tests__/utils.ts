@@ -1,4 +1,5 @@
 import { Middleware } from 'fatcher';
+import { getRandomString } from '../../../shared/tests';
 
 interface Options {
     customName?: string;
@@ -18,9 +19,7 @@ export function responser(options: Options = {}): Middleware {
 
     // eslint-disable-next-line no-implicit-coercion
     if (!isNaN(+length)) {
-        while (text.length < length) {
-            text += Math.random().toString(36).slice(-5);
-        }
+        text = getRandomString(length);
 
         const textEncoder = new TextEncoder();
 

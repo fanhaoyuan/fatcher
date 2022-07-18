@@ -1,3 +1,4 @@
+import { getRandomString } from '../../../../shared/tests';
 import { canActivate, isAbortError, readStreamByChunk } from '../../src/helpers';
 
 describe('Helpers', () => {
@@ -33,9 +34,7 @@ describe('Helpers', () => {
         let text = '';
         const length = 1_000_000;
 
-        while (text.length < length) {
-            text += Math.random().toString(36).slice(-5);
-        }
+        text = getRandomString(length);
 
         const textEncoder = new TextEncoder();
 
@@ -73,12 +72,9 @@ describe('Helpers', () => {
     it('readStreamByChunk Async', async () => {
         let index = 0;
         const cof = 1000;
-        let text = '';
         const length = 100_000;
 
-        while (text.length < length) {
-            text += Math.random().toString(36).slice(-5);
-        }
+        const text = getRandomString(length);
 
         const textEncoder = new TextEncoder();
 

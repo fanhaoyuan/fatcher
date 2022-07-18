@@ -1,6 +1,7 @@
 import { fatcher, Middleware, isFatcherError, canActivate, readStreamByChunk } from '../src';
 import fetchMock from 'jest-fetch-mock';
 import { BASE_URL } from './utils';
+import { getRandomString } from '../../../shared/tests';
 
 describe('Custom Middlewares', () => {
     const TEXT_LENGTH = 1_000_000;
@@ -16,9 +17,7 @@ describe('Custom Middlewares', () => {
                     };
                 }
 
-                while (longText.length < TEXT_LENGTH) {
-                    longText += Math.random().toString(36).slice(-5);
-                }
+                longText = getRandomString(TEXT_LENGTH);
 
                 return {
                     status: 200,
