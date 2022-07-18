@@ -69,4 +69,50 @@ describe('Helpers', () => {
         expect(result.length).toBe(length / cof);
         expect(result[0].length).toBe(cof);
     });
+
+    it('readStreamByChunk Async', async () => {
+        let index = 0;
+        const cof = 1000;
+        let text = '';
+        const length = 100_000;
+
+        while (text.length < length) {
+            text += Math.random().toString(36).slice(-5);
+        }
+
+        const textEncoder = new TextEncoder();
+
+        const readableStream = new ReadableStream<Uint8Array>({
+            start(controller) {
+                (function push() {
+                    const currentText = text.slice(index * cof, (index + 1) * cof);
+
+                    if (!currentText) {
+                        controller.close();
+                        return;
+                    }
+
+                    index++;
+
+                    controller.enqueue(textEncoder.encode(currentText));
+                    push();
+                })();
+            },
+        });
+
+        const sleep = (time = 500) => new Promise(resolve => setTimeout(resolve, time));
+
+        const result: string[] = [];
+
+        const textDecoder = new TextDecoder();
+
+        await readStreamByChunk(readableStream, async chunk => {
+            await sleep(5);
+            result.push(textDecoder.decode(chunk));
+        });
+
+        expect(result.join('')).toBe(text);
+        expect(result.length).toBe(length / cof);
+        expect(result[0].length).toBe(cof);
+    });
 });
