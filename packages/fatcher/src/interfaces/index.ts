@@ -1,5 +1,7 @@
 /* eslint-disable no-use-before-define */
 
+export type MaybePromise<T> = T | Promise<T>;
+
 /**
  *  HTTP Request Methods
  */
@@ -60,14 +62,14 @@ export type PatchContext = Partial<Context>;
  *
  * Should call by using middleware for get response.
  */
-export type MiddlewareNext = (patchContext?: PatchContext) => Promise<MiddlewareResult> | MiddlewareResult;
+export type MiddlewareNext = (patchContext?: PatchContext) => MaybePromise<MiddlewareResult>;
 
 /**
  * Middleware
  */
 export interface Middleware {
     name: `fatcher-middleware-${string}`;
-    use(context: Readonly<Context>, next: MiddlewareNext): Promise<MiddlewareResult> | MiddlewareResult;
+    use(context: Readonly<Context>, next: MiddlewareNext): MaybePromise<MiddlewareResult>;
     /**
      * Current middleware needs some middlewares
      */

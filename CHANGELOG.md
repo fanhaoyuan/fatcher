@@ -1,3 +1,9 @@
+## Coming Soon
+
+### fatcher
+
+-   🚀 `readStreamByChunk` supports async callback
+
 ## v1.4.1
 
 ### fatcher
