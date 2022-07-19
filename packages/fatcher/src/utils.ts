@@ -1,48 +1,38 @@
 /**
- * Confirm a url whether is a absolute url.
- * @param url url to confirm
- * @returns
- */
-export function isAbsoluteURL(url: string) {
-    return /^http(s)?:\/\/.+/.test(url);
-}
-
-function normalize(url: string) {
-    let protocol: string;
-
-    return url
-        .replace(/http(s?):\/\//, (str: string) => {
-            protocol = str;
-            return '';
-        })
-        .replace(/\/\/(\/)?/g, '/')
-        .replace(/.*\S/, str => (protocol ?? '') + str);
-}
-
-/**
  * Normalize a url with `baseURL` and `url`
+ *
+ * Supports relative url like `../` and `./`
  *
  * @param baseURL
  * @param url
  */
 export function normalizeURL(baseURL: string, url: string) {
-    if (!url) {
-        return baseURL;
-    }
-    /**
-     * If baseURL is not set and url is a absolute url
-     *
-     * return url
-     */
-    if (isAbsoluteURL(url)) {
-        return normalize(url);
-    }
+    let _url = `${baseURL}/${url}`;
+    let schema = '';
 
-    if (baseURL === '/') {
+    // Check a string whether is `<schema>://`
+    const [a, b] = _url.matchAll(/([a-z][a-z\d+\-.]*:)\/\//gi);
+
+    if (b) {
         return url;
     }
 
-    return normalize(`${baseURL}/${url}`);
+    if (a) {
+        schema = a[0];
+        _url = _url.replace(schema, '');
+    }
+
+    const paths: string[] = [];
+
+    for (const path of _url.split('/')) {
+        if (path === '..') {
+            paths.pop();
+        } else if (path && path !== '.') {
+            paths.push(path);
+        }
+    }
+
+    return `${schema || '/'}${paths.join('/')}`;
 }
 
 /**
