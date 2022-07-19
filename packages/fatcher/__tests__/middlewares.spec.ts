@@ -1,6 +1,7 @@
 import { fatcher, Middleware, isFatcherError, canActivate, readStreamByChunk } from '../src';
 import fetchMock from 'jest-fetch-mock';
 import { BASE_URL } from './utils';
+import { getRandomString, getStringStream } from '../../../shared/tests';
 
 describe('Custom Middlewares', () => {
     const TEXT_LENGTH = 1_000_000;
@@ -16,9 +17,7 @@ describe('Custom Middlewares', () => {
                     };
                 }
 
-                while (longText.length < TEXT_LENGTH) {
-                    longText += Math.random().toString(36).slice(-5);
-                }
+                longText = getRandomString(TEXT_LENGTH);
 
                 return {
                     status: 200,
@@ -77,8 +76,6 @@ describe('Custom Middlewares', () => {
     });
 
     function post(cof: number): Middleware {
-        let index = 0;
-
         return {
             name: 'fatcher-middleware-post',
             async use(context, next) {
@@ -91,32 +88,10 @@ describe('Custom Middlewares', () => {
                     };
                 }
 
-                const text = await response.text();
-
-                const textEncoder = new TextEncoder();
-
-                const stream = new ReadableStream<Uint8Array>({
-                    start(controller) {
-                        (function push() {
-                            const currentText = text.slice(index * cof, (index + 1) * cof);
-
-                            if (!currentText) {
-                                controller.close();
-                                return;
-                            }
-
-                            index++;
-
-                            controller.enqueue(textEncoder.encode(currentText));
-                            push();
-                        })();
-                    },
-                });
-
                 return {
                     ...rest,
                     response,
-                    data: stream,
+                    data: getStringStream(await response.text(), cof),
                 };
             },
         };

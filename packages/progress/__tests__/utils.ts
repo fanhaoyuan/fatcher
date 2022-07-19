@@ -1,4 +1,5 @@
 import { Middleware } from 'fatcher';
+import { getStringStreamByLength } from '../../../shared/tests';
 
 interface Options {
     customName?: string;
@@ -11,36 +12,11 @@ interface Options {
 export function responser(options: Options = {}): Middleware {
     const { cof = 1000, length = 1_000_000, customName = 'Content-Length', data, noHeaders = false } = options;
 
-    let index = 0;
-    let text = '';
-
     let readableStream;
 
     // eslint-disable-next-line no-implicit-coercion
     if (!isNaN(+length)) {
-        while (text.length < length) {
-            text += Math.random().toString(36).slice(-5);
-        }
-
-        const textEncoder = new TextEncoder();
-
-        readableStream = new ReadableStream({
-            start(controller) {
-                (function push() {
-                    const currentText = text.slice(index * cof, (index + 1) * cof);
-
-                    if (!currentText) {
-                        controller.close();
-                        return;
-                    }
-
-                    index++;
-
-                    controller.enqueue(textEncoder.encode(currentText));
-                    push();
-                })();
-            },
-        });
+        readableStream = getStringStreamByLength(length, cof);
     }
 
     const headers = noHeaders
