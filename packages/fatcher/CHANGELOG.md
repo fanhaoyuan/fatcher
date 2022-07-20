@@ -1,3 +1,8 @@
+## v1.5.0
+
+-   🚀 `readStreamByChunk` supports async callback ([#167](https://github.com/fatcherjs/fatcher/pull/167))
+-   🚀 request url supports relative path like `../` and `./` ([#170](https://github.com/fatcherjs/fatcher/pull/170))
+
 ## v1.4.1
 
 -   🔧 Remove some overt options ([#161](https://github.com/fatcherjs/fatcher/pull/161))
