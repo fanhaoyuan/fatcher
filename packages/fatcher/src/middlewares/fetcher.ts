@@ -10,7 +10,7 @@ export function fetcher(): Middleware {
         name: 'fatcher-middleware-fetch',
         async use(context) {
             // eslint-disable-next-line prefer-const
-            let { url = '', requestHeaders: headers, payload, method = 'GET', body, params = {}, ...rest } = context;
+            let { url = '', requestHeaders: headers, payload, method = 'GET', body, params, ...rest } = context;
 
             const contentType = headers.get('content-type');
 
@@ -34,8 +34,9 @@ export function fetcher(): Middleware {
                 }
             }
 
-            if (Object.keys(params).length) {
-                url = `${url}?${new URLSearchParams(params).toString()}`;
+            if (Object.keys(params!).length) {
+                // Recessive call `toString()` in URLSearchParams
+                url = `${url}?${new URLSearchParams(params)}`;
             }
 
             const response = await fetch(url, {
