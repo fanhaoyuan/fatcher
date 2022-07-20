@@ -1,6 +1,6 @@
 import { RequestOptions, ResponseResult } from './interfaces';
 import { defaultOptions, mergeOptions } from './options';
-import { fetcher, registerMiddlewares, composeMiddlewares, payloadConsumer } from './middlewares';
+import { fetcher, registerMiddlewares, composeMiddlewares } from './middlewares';
 import { createContext } from './context';
 import { canActivate } from './helpers';
 
@@ -12,7 +12,7 @@ export async function fatcher<T = any>(inlineOptions: RequestOptions = {}): Prom
 
     const { middlewares: customMiddlewares = [], ...rest } = options;
 
-    const registeredMiddlewares = registerMiddlewares([...customMiddlewares, payloadConsumer, fetcher]);
+    const registeredMiddlewares = registerMiddlewares([...customMiddlewares, fetcher]);
 
     const useMiddlewares = composeMiddlewares(registeredMiddlewares);
 

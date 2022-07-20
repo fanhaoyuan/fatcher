@@ -7,13 +7,43 @@ import { FatcherError } from '../errors';
  */
 export function fetcher(): Middleware {
     return {
-        name: 'fatcher-middleware-http-fetcher',
+        name: 'fatcher-middleware-fetch',
         async use(context) {
-            const { url = '', requestHeaders: headers, ...rest } = context;
+            // eslint-disable-next-line prefer-const
+            let { url = '', requestHeaders: headers, payload, method = 'GET', body, params, ...rest } = context;
+
+            const contentType = headers.get('content-type');
+
+            /**
+             * If Request Method is `GET` or `HEAD`.
+             *
+             * Will ignore headers['Content-Type'].
+             *
+             * payload will transform into search params.
+             */
+            if (['GET', 'HEAD'].includes(method)) {
+                params = Object.assign({}, params, body);
+                body = null;
+            } else if (payload && contentType) {
+                if (contentType.includes('application/json')) {
+                    body = JSON.stringify(payload);
+                }
+
+                if (contentType.includes('application/x-www-form-urlencoded')) {
+                    body = new URLSearchParams(payload);
+                }
+            }
+
+            if (Object.keys(params!).length) {
+                // Recessive call `toString()` in URLSearchParams
+                url = `${url}?${new URLSearchParams(params)}`;
+            }
 
             const response = await fetch(url, {
                 ...rest,
                 headers,
+                body,
+                method,
             });
 
             const { status, statusText, ok, headers: responseHeaders } = response;
