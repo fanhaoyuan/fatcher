@@ -3,6 +3,7 @@
 ### fatcher
 
 -   🚀 `readStreamByChunk` supports async callback
+-   🚀 request url supports relative path like `../` and `./`
 
 ## v1.4.1
 

@@ -1,19 +1,17 @@
-import { immutable, isAbsoluteURL, isFunction, normalizeURL } from '../../src/utils';
+import { immutable, isFunction, normalizeURL } from '../../src/utils';
 
 describe('Utils', () => {
-    it('isAbsoluteURL', () => {
-        expect(isAbsoluteURL('https://a/test')).toBe(true);
-        expect(isAbsoluteURL('a/b/c')).toBe(false);
-        expect(isAbsoluteURL('http://a/b/c')).toBe(true);
-        expect(isAbsoluteURL('/test/a')).toBe(false);
-    });
-
     it('normalizeURL', () => {
         expect(normalizeURL('/test', '/a')).toBe('/test/a');
         expect(normalizeURL('https://test/a/c', '/t/e')).toBe('https://test/a/c/t/e');
         expect(normalizeURL('/', '')).toBe('/');
         expect(normalizeURL('/', 'https://a/c')).toBe('https://a/c');
+        expect(normalizeURL('https://a/b', 'https://a/c')).toBe('https://a/c');
+        expect(normalizeURL('/', 'file://a/b')).toBe('file://a/b');
         expect(normalizeURL('/', '/a/c')).toBe('/a/c');
+        expect(normalizeURL('/', 'a/c')).toBe('/a/c');
+        expect(normalizeURL('/', './a/c')).toBe('/a/c');
+        expect(normalizeURL('/b/e', '../a/c')).toBe('/b/a/c');
     });
 
     it('isFunction', () => {
