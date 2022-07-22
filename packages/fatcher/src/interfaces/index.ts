@@ -134,4 +134,16 @@ export interface RequestOptions extends Omit<RequestInit, 'body' | 'headers'> {
      * }
      */
     headers?: RequestHeaders;
+
+    /**
+     * Custom validate status code
+     *
+     * If status code not in range, throw a `FatcherError`
+     *
+     * @default
+     * ```
+     * (statusCode) => 200 <= statusCode < 300
+     * ```
+     */
+    validateCode?: (statusCode: number) => boolean;
 }

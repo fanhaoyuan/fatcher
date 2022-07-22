@@ -22,7 +22,6 @@ fatcher specific configurations
 Prefix url, it will combine with [url](#url).
 
 -   Type: `string`
-
 -   DefaultValue: `'/'`
 
 ### url
@@ -30,7 +29,6 @@ Prefix url, it will combine with [url](#url).
 Request Url, will combine with [baseUrl](#baseurl).
 
 -   Type: `string`
-
 -   Required: `true`
 
 ### method
@@ -38,7 +36,6 @@ Request Url, will combine with [baseUrl](#baseurl).
 Request Method.
 
 -   Type: `'GET' | 'POST' | 'PUT' | 'DELETE' | 'HEAD' | 'OPTIONS' | 'PATCH'`
-
 -   DefaultValue: `'GET'`
 
 ### middlewares
@@ -46,7 +43,6 @@ Request Method.
 Middleware can be a `Middleware` object or a function that returns the Middleware object.
 
 -   Type: `((() => Middleware) | Middleware | ((() => Middleware) | Middleware)[])[]`
-
 -   DefaultValue `[]`
 
 #### Middleware Type Declaration
@@ -65,7 +61,6 @@ interface Middleware {
 Request Headers. Will ignore `null` in headers.
 
 -   Type: `Record<string, string | null>`
-
 -   DefaultValue: `{ 'Content-Type': 'application/x-www-form-urlencoded' }`
 
 > HTTP Headers is case insensitive.
@@ -77,7 +72,6 @@ Request Headers. Will ignore `null` in headers.
 Query String for search params.
 
 -   Type: `Record<string, string>`
-
 -   DefaultValue: `{}`
 
 > If the URL already has query parameters, they are converted to Params and then to query parameters again before sending the request
@@ -87,13 +81,20 @@ Query String for search params.
 Request Payload, will consume it before send request. Convert to different forms according to [method](#method).
 
 -   Type: `Record<string, any> | null`
-
 -   DefaultValue: `null`
 
 > `GET` | `HEAD` request payload into params
 > The rest of the requests are converted to body
 
 > Custom middleware allows you to customize the payload type
+
+### validateCode
+
+Custom validate status code, If status code not in range, throw a `FatcherError`.
+
+-   Version: `>= 1.6.0`
+-   Type: `(statusCode: number) => boolean`
+-   DefaultValue: `(statusCode: number) => 200 <= statusCode < 300`
 
 ## fetch Options
 
@@ -106,7 +107,6 @@ Consistent with the native fetch options.
 Whether to send 'cookies' with the request
 
 -   Type: `'omit' | 'same-origin' | 'include'`
-
 -   DefaultValue: `'same-origin'`
 
 > Details please see [Request.credentials](https://developer.mozilla.org/en-US/docs/Web/API/Request/credentials)
@@ -116,7 +116,6 @@ Whether to send 'cookies' with the request
 Controls how requests interact with the browser's HTTP cache
 
 -   Type: `'default' | 'no-store' | 'reload' | 'no-cache' | 'force-cache' | 'only-if-cached'`
-
 -   DefaultValue: `'default'`
 
 > Details please see [Request.cache](https://developer.mozilla.org/en-US/docs/Web/API/Request/cache)
@@ -126,7 +125,6 @@ Controls how requests interact with the browser's HTTP cache
 How to handle redirects
 
 -   Type: `'follow' | 'error' | 'manual'`
-
 -   DefaultValue: `'follow'`
 
 > Details please see [Request.redirect](https://developer.mozilla.org/en-US/docs/Web/API/Request/redirect)
@@ -136,7 +134,6 @@ How to handle redirects
 Reference policy
 
 -   Type: `'no-referrer' | 'no-referrer-when-downgrade' | 'origin' | 'origin-when-cross-origin' | 'same-origin' | 'strict-origin' | 'strict-origin-when-cross-origin' | 'unsafe-url'`
-
 -   DefaultValue: `'no-referrer-when-downgrade'`
 
 > Details please see [Request.referrerPolicy](https://developer.mozilla.org/en-US/docs/Web/API/Request/referrerPolicy)
@@ -146,7 +143,6 @@ Reference policy
 Request mode
 
 -   Type: `'same-origin' | 'no-cors' | 'cors' | 'navigate'`
-
 -   DefaultValue: `'cors'`
 
 > Details please see [Request.mode](https://developer.mozilla.org/en-US/docs/Web/API/Request/mode)

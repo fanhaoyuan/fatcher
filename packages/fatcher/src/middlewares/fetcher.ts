@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import { Middleware, MiddlewareResult } from '../interfaces';
 import { FatcherError } from '../errors';
 
@@ -9,8 +10,16 @@ export function fetcher(): Middleware {
     return {
         name: 'fatcher-middleware-fetch',
         async use(context) {
-            // eslint-disable-next-line prefer-const
-            let { url = '', requestHeaders: headers, payload, method = 'GET', body, params, ...rest } = context;
+            let {
+                url = '',
+                requestHeaders: headers,
+                payload,
+                method = 'GET',
+                body,
+                params,
+                validateCode,
+                ...rest
+            } = context;
 
             const contentType = headers.get('content-type');
 
@@ -56,7 +65,7 @@ export function fetcher(): Middleware {
                 data: response,
             };
 
-            if (ok) {
+            if (validateCode ? validateCode(status) : ok) {
                 return result;
             }
 

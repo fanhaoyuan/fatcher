@@ -1,3 +1,9 @@
+## Coming Soon
+
+### fatcher
+
+-   🚀 add options `validateCode` for passing custom response status code.
+
 ## v1.5.0
 
 ### fatcher
