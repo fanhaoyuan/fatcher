@@ -6,7 +6,8 @@ on:
             - master
         paths:
             - 'docs/**'
-            - 'package.json'
+        tags:
+            - 'v*'
     workflow_dispatch:
 
 jobs:
