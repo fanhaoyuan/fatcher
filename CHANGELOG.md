@@ -3,6 +3,7 @@
 ### fatcher
 
 -   🚀 add options `validateCode` for passing custom response status code.
+-   🐛 Should not sent `undefined` value in request payload.
 
 ## v1.5.0
 

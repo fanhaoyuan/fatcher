@@ -43,6 +43,9 @@ export function fetcher(): Middleware {
                 }
             }
 
+            // Filter `undefined` value in params.
+            params = Object.fromEntries(Object.entries(params!).filter(([, value]) => typeof value !== 'undefined'));
+
             if (Object.keys(params!).length) {
                 // Recessive call `toString()` in URLSearchParams
                 url = `${url}?${new URLSearchParams(params)}`;

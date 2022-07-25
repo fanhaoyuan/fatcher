@@ -37,6 +37,20 @@ describe('querystring', () => {
                 };
             }
 
+            if (url === `${BASE_URL}/getEmptyData`) {
+                const id = params.get('id');
+
+                if (id === null) {
+                    return {
+                        status: 401,
+                    };
+                }
+
+                return {
+                    status: 400,
+                };
+            }
+
             return {
                 status: 404,
             };
@@ -122,6 +136,33 @@ describe('querystring', () => {
                     id: 'post',
                 },
                 middlewares: [json()],
+            });
+        } catch (error: any) {
+            expect(isFatcherError(error)).toBe(true);
+            expect(error.toJSON().status).toBe(400);
+        }
+    });
+
+    it('Never sent undefined value in params', async () => {
+        try {
+            await fatcher({
+                baseUrl: BASE_URL,
+                url: '/getEmptyData',
+                params: {
+                    //@ts-ignore
+                    id: undefined,
+                },
+            });
+        } catch (error: any) {
+            expect(isFatcherError(error)).toBe(true);
+            expect(error.toJSON().status).toBe(401);
+        }
+
+        try {
+            await fatcher({
+                baseUrl: BASE_URL,
+                // will send id because it is a string.
+                url: '/getEmptyData?id=undefined',
             });
         } catch (error: any) {
             expect(isFatcherError(error)).toBe(true);
