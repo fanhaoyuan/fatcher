@@ -1,4 +1,4 @@
-import { canActivate, Middleware } from 'fatcher';
+import { canActivate, Middleware } from '../src';
 
 export const BASE_URL = 'https://fatcher.virtual';
 
