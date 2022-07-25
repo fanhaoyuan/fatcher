@@ -3,6 +3,7 @@
 ### fatcher
 
 -   🚀 add options `validateCode` for passing custom response status code.
+-   ⚡️ `normalizeURL` downgrade to use `match`.
 
 ## v1.5.0
 
