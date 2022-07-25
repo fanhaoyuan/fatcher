@@ -5,7 +5,7 @@ on:
         branches:
             - master
         paths:
-            - 'docs/**'
+            - 'packages/docs/**'
         tags:
             - 'v*'
     workflow_dispatch:
@@ -29,9 +29,9 @@ jobs:
 
             - run: pnpm install
 
-            - run: pnpm docs:build
+            - run: pnpm --filter docs run build
 
-            - run: cp docs-dist/index.html docs-dist/404.html
+            - run: cp packages/docs/dist/index.html packages/docs/dist/404.html
 
             - uses: JamesIves/github-pages-deploy-action@4.1.1
               with:

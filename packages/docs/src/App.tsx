@@ -2,7 +2,7 @@ import { AppContextProvider } from './app.context';
 import { Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { RouteRecord, AppContext } from './interfaces';
-import { repository, name, version } from '../../package.json';
+import { repository, name, version } from '../../../package.json';
 import { Layout } from './layouts';
 
 const defaultAppContext: AppContext = {

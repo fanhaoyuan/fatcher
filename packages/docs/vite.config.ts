@@ -12,7 +12,7 @@ export default async () => {
         base: '/fatcher/',
         publicDir: path.resolve(__dirname, 'public'),
         build: {
-            outDir: path.resolve(__dirname, '../docs-dist'),
+            outDir: path.resolve(__dirname, './dist'),
             emptyOutDir: true,
         },
         plugins: [
