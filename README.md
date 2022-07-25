@@ -1,5 +1,5 @@
 <div align="center">
-  <img alt="Fatcher logo" src="https://github.com/fatcherjs/fatcher/raw/master/docs/public/fatcher.png" height="120" width="120" />
+  <img alt="Fatcher logo" src="https://github.com/fatcherjs/fatcher/raw/master/packages/docs/public/fatcher.png" height="120" width="120" />
 </div>
 
 <div align="center">
