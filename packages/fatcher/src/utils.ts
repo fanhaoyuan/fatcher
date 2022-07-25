@@ -8,17 +8,15 @@
  */
 export function normalizeURL(baseURL: string, url: string) {
     let _url = `${baseURL}/${url}`;
-    let schema = '';
 
     // Check a string whether is `<schema>://`
-    const [a, b] = _url.matchAll(/([a-z][a-z\d+\-.]*:)\/\//gi);
+    const [schema, isAbsoluteURL] = _url.match(/([a-z][a-z\d+\-.]*:)\/\//gi) || [];
 
-    if (b) {
+    if (isAbsoluteURL) {
         return url;
     }
 
-    if (a) {
-        schema = a[0];
+    if (schema) {
         _url = _url.replace(schema, '');
     }
 
