@@ -25,7 +25,7 @@
         "type": "git",
         "url": "git+https://github.com/fatcherjs/fatcher.git"
     },
-    "peerDependencies": {
-        "fatcher": "^1.0.0"
+    "dependencies": {
+        "fatcher": "workspace:^"
     }
 }

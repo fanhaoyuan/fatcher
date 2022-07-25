@@ -44,7 +44,6 @@
         "eslint-plugin-react": "^7.30.0",
         "eslint-plugin-react-hooks": "^4.6.0",
         "fast-glob": "^3.2.11",
-        "fatcher": "workspace:*",
         "fs-extra": "^10.1.0",
         "jest": "^28.1.0",
         "jest-fetch-mock": "^3.0.3",
