@@ -16,8 +16,16 @@ Send fetch request gracefully in browsers and nodeJS
 
 </div>
 
+## How it work
+
 <div align="center">
   <img alt="Fatcher Workflow" src="https://github.com/fatcherjs/fatcher/raw/master/packages/docs/public/fatcher_workflow.png" />
+</div>
+
+## Why fetch
+
+<div align="center">
+  <img alt="Fatcher Workflow" src="https://github.com/fatcherjs/fatcher/raw/master/packages/docs/public/fatcher_streams.png" />
 </div>
 
 ## Documentation
