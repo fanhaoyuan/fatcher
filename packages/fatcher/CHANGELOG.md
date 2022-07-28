@@ -1,3 +1,8 @@
+## v1.6.0
+
+-   🚀 add options `validateCode` for passing custom response status code. ([#174](https://github.com/fatcherjs/fatcher/pull/174))
+-   ⚡️ `normalizeURL` downgrade to use `match`. ([#179](https://github.com/fatcherjs/fatcher/pull/179))
+
 ## v1.5.0
 
 -   🚀 `readStreamByChunk` supports async callback ([#167](https://github.com/fatcherjs/fatcher/pull/167))
