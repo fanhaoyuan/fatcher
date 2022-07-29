@@ -1,3 +1,7 @@
+## Coming Soon
+
+-   🐛 fix parse error when query string had absolute url
+
 ## v1.6.0
 
 ### fatcher

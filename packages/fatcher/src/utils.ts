@@ -1,39 +1,4 @@
 /**
- * Normalize a url with `baseURL` and `url`
- *
- * Supports relative url like `../` and `./`
- *
- * @param baseURL
- * @param url
- */
-export function normalizeURL(baseURL: string, url: string) {
-    let _url = `${baseURL}/${url}`;
-
-    // Check a string whether is `<schema>://`
-    const [schema, isAbsoluteURL] = _url.match(/([a-z][a-z\d+\-.]*:)\/\//gi) || [];
-
-    if (isAbsoluteURL) {
-        return url;
-    }
-
-    if (schema) {
-        _url = _url.replace(schema, '');
-    }
-
-    const paths: string[] = [];
-
-    for (const path of _url.split('/')) {
-        if (path === '..') {
-            paths.pop();
-        } else if (path && path !== '.') {
-            paths.push(path);
-        }
-    }
-
-    return `${schema || '/'}${paths.join('/')}`;
-}
-
-/**
  * Confirm a value whether is a function
  * @param value value to confirm
  * @returns

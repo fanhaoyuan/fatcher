@@ -1,5 +1,5 @@
 import { Context, RequestOptions } from '../interfaces';
-import { normalizeURL } from '../utils';
+import { parseURL } from '../url';
 
 /**
  * Create initial context by request options
@@ -13,7 +13,7 @@ export function createContext(options: RequestOptions): Context {
         throw new Error('__vp__ URL is required.');
     }
 
-    const [normalizedURL, querystring] = normalizeURL(baseUrl, url).split('?');
+    const [normalizedURL, querystring] = parseURL(baseUrl, url).split('?');
 
     if (querystring) {
         for (const [key, value] of new URLSearchParams(querystring)) {
