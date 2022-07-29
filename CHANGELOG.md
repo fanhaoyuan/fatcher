@@ -3,6 +3,7 @@
 ### fatcher
 
 -   🐛 fix parse error when query string had absolute url
+-   🐛 fix parse exception when base url with an absolute request url
 
 ## v1.6.0
 

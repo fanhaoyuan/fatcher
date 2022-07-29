@@ -18,6 +18,10 @@ export function parseURL(baseURL: string, url: string) {
     }
 
     if (schema) {
+        if (!_url.startsWith(schema)) {
+            return url;
+        }
+
         _url = _url.replace(schema, '');
     }
 
