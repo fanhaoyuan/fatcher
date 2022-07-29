@@ -34,6 +34,7 @@
         "build": "rimraf dist && rollup -c rollup.config.ts",
         "eslint": "eslint ./src",
         "tsc": "tsc --noEmit",
-        "deploy": "pnpm run build && pnpm publish --no-git-check"
+        "deploy": "pnpm run build && pnpm publish --no-git-check",
+        "prerelease": "ts-node scripts/prerelease.ts"
     }
 }

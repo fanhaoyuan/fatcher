@@ -16,8 +16,16 @@ Send fetch request gracefully in browsers and nodeJS
 
 </div>
 
+## How it work
+
 <div align="center">
   <img alt="Fatcher Workflow" src="https://github.com/fatcherjs/fatcher/raw/master/packages/docs/public/fatcher_workflow.png" />
+</div>
+
+## Why fetch
+
+<div align="center">
+  <img alt="Fatcher Workflow" src="https://github.com/fatcherjs/fatcher/raw/master/packages/docs/public/fatcher_streams.png" />
 </div>
 
 ## Documentation
@@ -46,7 +54,7 @@ Send fetch request gracefully in browsers and nodeJS
 
 ## Usage
 
-For detailed usage information,[visit the docs](https://fatcherjs.github.io/fatcher/quick-start/).
+For detailed usage information,[visit the docs](https://fatcherjs.github.io/fatcher/quick-start).
 
 ## License
 
