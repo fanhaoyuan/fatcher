@@ -49,6 +49,18 @@ describe('Parse URL', () => {
         expect(parsedURL).toBe('/base');
     });
 
+    it('Root base URL and absolute request url', () => {
+        const parsedURL = parseURL('/', 'https://virual.com/request');
+
+        expect(parsedURL).toBe('https://virual.com/request');
+    });
+
+    it('Base URL and absolute request url', () => {
+        const parsedURL = parseURL('/base', 'https://virual.com/request');
+
+        expect(parsedURL).toBe('https://virual.com/request');
+    });
+
     it('Absolute base URL and absolute request url', () => {
         const parsedURL = parseURL('https://virual.com/base', 'https://virual.com/request');
 
