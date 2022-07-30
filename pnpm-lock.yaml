@@ -126,6 +126,12 @@ importers:
     dependencies:
       fatcher: link:../fatcher
 
+  packages/mock:
+    specifiers:
+      fatcher: workspace:^
+    dependencies:
+      fatcher: link:../fatcher
+
   packages/progress:
     specifiers:
       fatcher: workspace:^

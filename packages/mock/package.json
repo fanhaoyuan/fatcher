@@ -1,0 +1,14 @@
+{
+    "name": "@fatcherjs/middleware-mock",
+    "version": "0.1.0",
+    "main": "dist/client/mock.js",
+    "module": "dist/client/mock.esm.js",
+    "typings": "dist/client/mock.d.ts",
+    "scripts": {
+        "dev": "rimraf dist && rollup -c rollup.config.ts -w",
+        "build": "rimraf dist && rollup -c rollup.config.ts"
+    },
+    "dependencies": {
+        "fatcher": "workspace:^"
+    }
+}
