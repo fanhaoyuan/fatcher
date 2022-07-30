@@ -1,3 +1,8 @@
+## v1.6.1
+
+-   🐛 fix parse error when query string had absolute url ([#180](https://github.com/fatcherjs/fatcher/pull/180))
+-   🐛 fix parse exception when base url with an absolute request url ([#181](https://github.com/fatcherjs/fatcher/pull/181))
+
 ## v1.6.0
 
 -   🚀 add options `validateCode` for passing custom response status code. ([#174](https://github.com/fatcherjs/fatcher/pull/174))

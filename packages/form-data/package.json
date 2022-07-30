@@ -1,6 +1,6 @@
 {
     "name": "@fatcherjs/middleware-form-data",
-    "version": "1.6.0",
+    "version": "1.6.1",
     "main": "dist/form-data.js",
     "module": "dist/form-data.esm.js",
     "browser": "dist/form-data.min.js",

@@ -1,9 +1,9 @@
-## Coming Soon
+## v1.6.1
 
 ### fatcher
 
--   🐛 fix parse error when query string had absolute url
--   🐛 fix parse exception when base url with an absolute request url
+-   🐛 fix parse error when query string had absolute url ([#180](https://github.com/fatcherjs/fatcher/pull/180))
+-   🐛 fix parse exception when base url with an absolute request url ([#181](https://github.com/fatcherjs/fatcher/pull/181))
 
 ## v1.6.0
 
