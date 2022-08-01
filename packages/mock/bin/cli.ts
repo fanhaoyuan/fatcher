@@ -1,5 +1,6 @@
 import { Command } from 'commander';
 import * as path from 'path';
+import { resolveConfig } from '../src/node';
 
 const program = new Command();
 
@@ -18,7 +19,7 @@ program
             workspace = resolve(options.workspace);
         }
 
-        console.log(workspace); // todo
+        resolveConfig(workspace);
     });
 
 program.parse(process.argv);
