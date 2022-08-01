@@ -14,7 +14,10 @@
     },
     "dependencies": {
         "commander": "^9.4.0",
+        "esbuild": "^0.14.51",
+        "fast-glob": "^3.2.11",
         "fatcher": "workspace:^",
+        "fs-extra": "^10.1.0",
         "mockjs": "^1.1.0"
     },
     "devDependencies": {
