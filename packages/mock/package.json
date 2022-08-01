@@ -5,11 +5,15 @@
     "module": "dist/client/mock.esm.js",
     "browser": "dist/client/mock.min.js",
     "typings": "dist/client/mock.d.ts",
+    "bin": {
+        "fm": "bin/cli"
+    },
     "scripts": {
         "dev": "rimraf dist && rollup -c rollup.config.ts -w",
         "build": "rimraf dist && rollup -c rollup.config.ts"
     },
     "dependencies": {
+        "commander": "^9.4.0",
         "fatcher": "workspace:^",
         "mockjs": "^1.1.0"
     },
