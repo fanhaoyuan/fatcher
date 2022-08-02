@@ -130,6 +130,7 @@ importers:
     specifiers:
       '@rollup/plugin-commonjs': ^22.0.1
       '@types/mockjs': ^1.0.6
+      async-validator: ^4.2.5
       commander: ^9.4.0
       esbuild: ^0.14.51
       fast-glob: ^3.2.11
@@ -137,6 +138,7 @@ importers:
       fs-extra: ^10.1.0
       mockjs: ^1.1.0
     dependencies:
+      async-validator: 4.2.5
       commander: 9.4.0
       esbuild: 0.14.51
       fast-glob: 3.2.11
@@ -1594,6 +1596,10 @@ packages:
   /astring/1.8.3:
     resolution: {integrity: sha512-sRpyiNrx2dEYIMmUXprS8nlpRg2Drs8m9ElX9vVEXaCB4XEAJhKfs7IcX0IwShjuOAjLR6wzIrgoptz1n19i1A==}
     hasBin: true
+    dev: false
+
+  /async-validator/4.2.5:
+    resolution: {integrity: sha512-7HhHjtERjqlNbZtqNqy2rckN/SpOOlmDliet+lP7k+eKZEjPk3DgyeU9lIXLdeLz0uBbbVp+9Qdow9wJWgwwfg==}
     dev: false
 
   /babel-jest/28.1.0_@babel+core@7.18.0:

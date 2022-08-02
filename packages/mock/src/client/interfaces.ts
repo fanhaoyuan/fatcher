@@ -13,6 +13,8 @@ export interface MockOptions {
 
     /**
      * Mock Schema to create mock data
+     *
+     * Inline mock schema.
      */
     schema?: MockSchema;
 }

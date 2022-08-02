@@ -13,6 +13,7 @@
         "build": "rimraf dist && rollup -c rollup.config.ts"
     },
     "dependencies": {
+        "async-validator": "^4.2.5",
         "commander": "^9.4.0",
         "esbuild": "^0.14.51",
         "fast-glob": "^3.2.11",
