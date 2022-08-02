@@ -2,6 +2,7 @@
 import Schema from 'async-validator';
 import { MockConfig } from '../interfaces';
 import { parser } from '../parser';
+import { MOCK_HEADER_KEY } from '../utils';
 
 declare let self: ServiceWorkerGlobalScope;
 declare let mockConfig: MockConfig[];
@@ -77,15 +78,13 @@ for (const config of mockConfig) {
 }
 
 self.addEventListener('fetch', async event => {
-    console.log(event);
-
     const request = event.request;
 
     const [u, querystring] = request.url.split('?');
 
     const url = u.replace(self.origin, '');
 
-    if (request.headers.get('x-fatcher-mock')) {
+    if (request.headers.get(MOCK_HEADER_KEY)) {
         const contentType = request.headers.get('content-type')!;
 
         if (mockMap.has(url)) {
