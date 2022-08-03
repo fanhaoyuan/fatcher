@@ -1,4 +1,5 @@
 import { Middleware } from 'fatcher';
+import { isNodeJS } from '../utils';
 
 let isActive = false;
 
@@ -14,7 +15,9 @@ async function setup() {
     navigator.serviceWorker.addEventListener('message', mounted);
 }
 
-setup();
+if (!isNodeJS) {
+    setup();
+}
 
 export function checker(): Middleware {
     return {
