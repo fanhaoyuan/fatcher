@@ -6,11 +6,11 @@
     "browser": "dist/client/mock.min.js",
     "typings": "dist/client/mock.d.ts",
     "bin": {
-        "fm": "bin/cli"
+        "fm": "dist/bin/cli"
     },
     "scripts": {
         "dev": "rimraf dist && rollup -c rollup.config.ts -w",
-        "build": "rimraf dist && rollup -c rollup.config.ts"
+        "build": "rimraf dist && rollup -c rollup.config.ts && tsc -p tsconfig.build.json && cp -r src/serviceWorker dist/src/serviceWorker"
     },
     "dependencies": {
         "async-validator": "^4.2.5",
