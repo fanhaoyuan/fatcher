@@ -1,15 +1,21 @@
-import { Middleware } from 'fatcher';
+import { Middleware, UnregisteredMiddlewares } from 'fatcher';
 import { MockOptions } from './interfaces';
 import { parser } from '../parser';
 import { checker } from './checker';
-import { MOCK_HEADER_KEY } from '../utils';
+import { MOCK_HEADER_KEY, isNodeJS } from '../utils';
 
 export function mock(options: MockOptions = {}): Middleware {
     const { enabled = process.env.NODE_ENV !== 'production', schema } = options;
 
+    const presets: UnregisteredMiddlewares = [];
+
+    if (!isNodeJS) {
+        presets.push(checker());
+    }
+
     return {
         name: 'fatcher-middleware-mock',
-        presets: [checker()],
+        presets,
         async use(context, next) {
             if (enabled) {
                 if (schema) {
