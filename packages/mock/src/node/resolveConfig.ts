@@ -27,8 +27,6 @@ export async function resolveConfig(workspace: string) {
             configs = configs.concat(require(path));
             continue;
         }
-
-        throw new Error('Mock config file only supports .ts,.js');
     }
 
     return configs;
