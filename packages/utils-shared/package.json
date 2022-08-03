@@ -1,0 +1,10 @@
+{
+    "name": "@fatcherjs/utils-shared",
+    "main": "dist/utils.js",
+    "module": "dist/utils.esm.js",
+    "browser": "dist/utils.min.js",
+    "typings": "dist/utils.d.ts",
+    "files": [
+        "dist"
+    ]
+}
