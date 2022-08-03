@@ -1,5 +1,5 @@
-import { bundle } from '../src/node/bundle';
-import { temporary } from '../src/node/temporary';
+import { bundle } from '../../src/node/bundle';
+import { temporary } from '../../src/node/temporary';
 
 describe('Bundle', () => {
     const add = `

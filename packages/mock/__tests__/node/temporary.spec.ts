@@ -1,4 +1,4 @@
-import { temporary } from '../src/node/temporary';
+import { temporary } from '../../src/node/temporary';
 import * as fs from 'fs-extra';
 
 describe('Temporary', () => {

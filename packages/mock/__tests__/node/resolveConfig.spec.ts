@@ -1,6 +1,6 @@
-import { resolveConfig } from '../src/node';
-import { MockConfig } from '../src/interfaces';
-import { temporary } from '../src/node/temporary';
+import { resolveConfig } from '../../src/node';
+import { MockConfig } from '../../src/interfaces';
+import { temporary } from '../../src/node/temporary';
 
 describe('Resolve Config', () => {
     const mockConfig: MockConfig[] = [
