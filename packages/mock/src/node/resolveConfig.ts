@@ -1,33 +1,22 @@
-import glob from 'fast-glob';
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { MockConfig } from '../interfaces';
 import { bundle } from './bundle';
 import { temporary } from './temporary';
 
-export async function resolveConfig(workspace: string) {
-    const paths = await glob(`${workspace}/**/*.mock.(j|t)s`);
+export async function resolveConfig(path: string) {
+    let config: MockConfig[] = [];
 
-    let configs: MockConfig[] = [];
+    if (path.endsWith('.ts')) {
+        const file = await bundle(path, 'cjs', true);
 
-    for await (const path of paths) {
-        // 如果是 ts 文件，先进行构建，再拿数据
-        if (path.endsWith('.ts')) {
-            const file = await bundle(path, 'cjs', true);
-
-            // eslint-disable-next-line no-loop-func
-            await temporary(file, temporaryPath => {
-                // eslint-disable-next-line @typescript-eslint/no-var-requires
-                configs = configs.concat(require(temporaryPath).default);
-            });
-
-            continue;
-        }
-
-        if (path.endsWith('.js')) {
-            // eslint-disable-next-line @typescript-eslint/no-var-requires
-            configs = configs.concat(require(path));
-            continue;
-        }
+        await temporary(file, temporaryPath => {
+            config = require(temporaryPath).default;
+        });
     }
 
-    return configs;
+    if (path.endsWith('.js')) {
+        config = require(path);
+    }
+
+    return config;
 }

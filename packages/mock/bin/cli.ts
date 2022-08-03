@@ -3,6 +3,8 @@ import * as path from 'path';
 import { resolveConfig } from '../src/node/resolveConfig';
 import { generator } from '../src/node/generator';
 import * as fs from 'fs';
+import glob from 'fast-glob';
+import { MockConfig } from '../src/interfaces';
 
 const program = new Command();
 
@@ -21,7 +23,14 @@ program
             workspace = resolve(options.workspace);
         }
 
-        const configs = await resolveConfig(workspace);
+        const paths = await glob(`${workspace}/**/*.mock.(j|t)s`);
+
+        let configs: MockConfig[] = [];
+
+        for await (const p of paths) {
+            const config = await resolveConfig(p);
+            configs = configs.concat(config);
+        }
 
         const sw = await generator(configs);
 
