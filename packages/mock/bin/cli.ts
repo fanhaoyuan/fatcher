@@ -34,7 +34,7 @@ program
 
         const sw = await generator(configs);
 
-        fs.writeFileSync(path.resolve(__dirname, '../sw.js'), sw);
+        fs.writeFileSync(path.resolve(cwd, 'sw.js'), sw);
     });
 
 program.parse(process.argv);
