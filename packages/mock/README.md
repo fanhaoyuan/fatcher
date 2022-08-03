@@ -2,6 +2,14 @@
 
 A middleware for mock response in browser and nodejs.
 
+## How it work
+
+### Browsers
+
+<div align="center">
+  <img alt="Service Worker Mocker" src="https://github.com/fatcherjs/fatcher/raw/master/packages/docs/public/sw_mocker.png" />
+</div>
+
 ## Install
 
 ### NPM
@@ -13,7 +21,7 @@ A middleware for mock response in browser and nodejs.
 ### CDN
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@fatcherjs/middleware-json/dist/json.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fatcherjs/middleware-mock/dist/mock.min.js"></script>
 ```
 
 ## License
