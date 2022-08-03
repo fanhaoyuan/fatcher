@@ -1,0 +1,10 @@
+{
+    "extends": "./tsconfig.json",
+    "include": ["src/**/*", "bin/*"],
+    "exclude": ["src/client/**/*", "src/serviceWorker/**/*"],
+    "compilerOptions": {
+        "outDir": "dist",
+        "noEmit": false,
+        "declaration": true
+    }
+}

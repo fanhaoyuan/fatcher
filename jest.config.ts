@@ -5,7 +5,7 @@ const config: Config.InitialOptions = {
     testMatch: ['**/?(*.)+(spec|test).[tj]s?(x)'],
     roots: ['packages'],
     testPathIgnorePatterns: ['/node_modules/'],
-    collectCoverageFrom: ['packages/*/src/**/*.ts', '!packages/docs/**/*.ts'],
+    collectCoverageFrom: ['packages/*/src/**/*.ts', '!packages/docs/**/*.ts', "!packages/mock/src/serviceWorker/*.ts"],
     transform: {
         '^.+\\.(t|j)s$': 'ts-jest',
     },
