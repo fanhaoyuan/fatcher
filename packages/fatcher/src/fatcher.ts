@@ -12,7 +12,7 @@ export async function fatcher<T = any>(inlineOptions: RequestOptions = {}): Prom
 
     const { middlewares: customMiddlewares = [], ...rest } = options;
 
-    const registeredMiddlewares = registerMiddlewares([...customMiddlewares, fetcher]);
+    const registeredMiddlewares = await registerMiddlewares([...customMiddlewares, fetcher]);
 
     const useMiddlewares = composeMiddlewares(registeredMiddlewares);
 

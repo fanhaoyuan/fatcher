@@ -1,3 +1,9 @@
+## Coming Soon
+
+### fatcher
+
+-   🚀 Supports async middlewares.
+
 ## v1.6.1
 
 ### fatcher
