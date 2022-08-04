@@ -36,8 +36,8 @@ describe('Middlewares', () => {
 
     const arrayMiddleware = [functionMiddleware, objectMiddleware];
 
-    it('registerMiddlewares', () => {
-        registeredMiddlewares = registerMiddlewares([
+    it('registerMiddlewares', async () => {
+        registeredMiddlewares = await registerMiddlewares([
             functionMiddleware,
             errorMiddleware,
             arrayMiddleware,
@@ -146,7 +146,7 @@ describe('Middlewares', () => {
             };
         }
 
-        const result = await composeMiddlewares(registerMiddlewares([middlewareA, middlewareB, middlewareC]))({
+        const result = await composeMiddlewares(await registerMiddlewares([middlewareA, middlewareB, middlewareC]))({
             method: 'GET',
             url,
             payload: null,
@@ -166,7 +166,7 @@ describe('Middlewares', () => {
         expect(data.name).toBe(body.name);
     });
 
-    it('Presets Middlewares', () => {
+    it('Presets Middlewares', async () => {
         const middlewareName = 'fatcher-middleware-middleware';
         const presetsName = 'fatcher-middleware-presets';
 
@@ -190,7 +190,7 @@ describe('Middlewares', () => {
             };
         };
 
-        const middlewares = registerMiddlewares([presets]);
+        const middlewares = await registerMiddlewares([presets]);
 
         expect(middlewares[0].name).toBe(middlewareName);
         expect(middlewares[1].name).toBe(presetsName);

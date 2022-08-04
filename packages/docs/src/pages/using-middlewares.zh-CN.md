@@ -77,15 +77,19 @@ interface MiddlewareResult extends Omit<ResponseResult, 'options' | 'data'> {
     data?: any;
 }
 
-type UnregisteredMiddlewares = ((() => Middleware) | Middleware | ((() => Middleware) | Middleware)[])[];
+export type UnregisteredMiddlewares = (
+    | (() => MaybePromise<Middleware>)
+    | Middleware
+    | ((() => MaybePromise<Middleware>) | Middleware)[]
+)[];
 
 type PatchContext = Partial<Context>;
 
-type MiddlewareNext = (patchContext?: PatchContext) => Promise<MiddlewareResult> | MiddlewareResult;
+type MiddlewareNext = (patchContext?: PatchContext) => MaybePromise<MiddlewareResult>;
 
 interface Middleware {
     name: `fatcher-middleware-${string}`;
-    use(context: Readonly<Context>, next: MiddlewareNext): Promise<MiddlewareResult> | MiddlewareResult;
+    use(context: Readonly<Context>, next: MiddlewareNext): MaybePromise<MiddlewareResult>;
     presets?: UnregisteredMiddlewares;
 }
 ```

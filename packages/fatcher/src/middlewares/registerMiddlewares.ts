@@ -7,20 +7,22 @@ import { isFunction } from '../utils';
  * @param middlewares array of middleware
  * @returns
  */
-export function registerMiddlewares(unregisteredMiddlewares: UnregisteredMiddlewares): Middleware[] {
-    return unregisteredMiddlewares.reduce<Middleware[]>((total, current) => {
-        let middleware: Middleware[];
+export async function registerMiddlewares(unregisteredMiddlewares: UnregisteredMiddlewares) {
+    let middlewares: Middleware[] = [];
 
-        if (Array.isArray(current)) {
-            middleware = registerMiddlewares(current);
+    for await (const middleware of unregisteredMiddlewares) {
+        if (Array.isArray(middleware)) {
+            middlewares = middlewares.concat(await registerMiddlewares(middleware));
         } else {
-            middleware = [isFunction(current) ? current() : current];
+            let current: Middleware[] = [isFunction(middleware) ? await middleware() : middleware];
 
-            if (middleware[0].presets?.length) {
-                middleware = registerMiddlewares(middleware[0].presets).concat(middleware);
+            if (current[0].presets?.length) {
+                current = (await registerMiddlewares(current[0].presets)).concat(current);
             }
-        }
 
-        return total.concat(middleware);
-    }, []);
+            middlewares = middlewares.concat(current);
+        }
+    }
+
+    return middlewares;
 }

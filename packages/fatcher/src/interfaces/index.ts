@@ -81,7 +81,11 @@ export interface Middleware {
  *
  * Will flatten into a array of middlewares.
  */
-export type UnregisteredMiddlewares = ((() => Middleware) | Middleware | ((() => Middleware) | Middleware)[])[];
+export type UnregisteredMiddlewares = (
+    | (() => MaybePromise<Middleware>)
+    | Middleware
+    | ((() => MaybePromise<Middleware>) | Middleware)[]
+)[];
 
 /**
  * Request Options for fetch

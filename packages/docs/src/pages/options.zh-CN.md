@@ -49,11 +49,11 @@ fatcher 特有的配置项，会在请求前进行转换。
 #### 完整类型签名
 
 ```ts
-type MiddlewareNext = (patchContext?: PatchContext) => Promise<MiddlewareResult> | MiddlewareResult;
+type MiddlewareNext = (patchContext?: PatchContext) => MaybePromise<MiddlewareResult>;
 
 interface Middleware {
     name: `fatcher-middleware-${string}`;
-    use(context: Readonly<Context>, next: MiddlewareNext): Promise<MiddlewareResult> | MiddlewareResult;
+    use(context: Readonly<Context>, next: MiddlewareNext): MaybePromise<MiddlewareResult>;
 }
 ```
 
@@ -155,7 +155,11 @@ type RequestMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'HEAD' | 'OPTIONS' | 'P
 
 type RequestHeaders = Record<string, string | null>;
 
-type UnregisteredMiddlewares = ((() => Middleware) | Middleware | ((() => Middleware) | Middleware)[])[];
+export type UnregisteredMiddlewares = (
+    | (() => MaybePromise<Middleware>)
+    | Middleware
+    | ((() => MaybePromise<Middleware>) | Middleware)[]
+)[];
 
 interface RequestOptions extends Omit<RequestInit, 'body' | 'headers'> {
     baseUrl?: string;
