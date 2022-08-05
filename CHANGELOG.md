@@ -1,8 +1,8 @@
-## Coming Soon
+## v1.7.0
 
 ### fatcher
 
--   🚀 Supports async middlewares.
+-   🚀 Supports async middlewares. ([#183](https://github.com/fatcherjs/fatcher/pull/183))
 
 ## v1.6.1
 

@@ -1,3 +1,7 @@
+## v1.7.0
+
+-   🚀 Supports async middlewares. ([#183](https://github.com/fatcherjs/fatcher/pull/183))
+
 ## v1.6.1
 
 -   🐛 fix parse error when query string had absolute url ([#180](https://github.com/fatcherjs/fatcher/pull/180))

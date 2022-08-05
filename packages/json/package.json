@@ -1,6 +1,6 @@
 {
     "name": "@fatcherjs/middleware-json",
-    "version": "1.6.1",
+    "version": "1.7.0",
     "main": "dist/json.js",
     "module": "dist/json.esm.js",
     "browser": "dist/json.min.js",
