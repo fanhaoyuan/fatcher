@@ -33,3 +33,20 @@ export function merge<T extends Record<string, any>>(
         Object.assign(Object.create(null), initial)
     );
 }
+
+export function objectDiff<T extends Record<string, any>>(target: T, object: T) {
+    const diff = Object.create(null);
+
+    for (const [key, value] of Object.entries(target)) {
+        if (!(key in object)) {
+            diff[key] = value;
+            continue;
+        }
+
+        if ((typeof object[key] !== 'object' || !object[key]) && object[key] !== target) {
+            diff[key] = value;
+        }
+    }
+
+    return diff;
+}
