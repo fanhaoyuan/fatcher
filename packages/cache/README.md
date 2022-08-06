@@ -39,7 +39,7 @@ fatcher({
 
 ## Options
 
-| name     | descriptions                           | type                   | defaultValue                          |
+| Name     | Descriptions                           | Type                   | DefaultValue                          |
 | -------- | -------------------------------------- | ---------------------- | ------------------------------------- |
 | useCache | Whether use cache                      | `boolean`              | `true`                                |
 | ttl      | Time to live(ms)                       | `number`               | `60 * 1000`                           |

@@ -45,21 +45,10 @@ fatcher({
 
 ## Options
 
-### onDownloadProgress
-
--   Type: `((current: number, total: number) => void) | null`
--   DefaultValue: `null`
--   Description:
-
-Callback with read stream chunks.
-
-### lengthName
-
--   Type: `string`
--   DefaultValue: `'content-length'`,
--   Description:
-
-Custom name in headers with `content-length`
+| Name               | Description                                   | Type                                                 | DefaultValue       |
+| ------------------ | --------------------------------------------- | ---------------------------------------------------- | ------------------ |
+| onDownloadProgress | Callback with read stream chunks              | `((current: number, total: number) => void) \| null` | `null`             |
+| lengthName         | `Custom name in headers with `content-length` | `string`                                             | `'content-length'` |
 
 ## License
 

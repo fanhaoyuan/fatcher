@@ -49,39 +49,12 @@ fatcher({
 
 ## Options
 
-### timeout
-
--   Type: `number`
--   DefaultValue: `0`
--   Description:
-
-If `timeout > 0`, will abort this request later.
-
-Aborted request will throw a DOMException which can use `isAbortError` to confirm.
-
-### onAbort
-
--   Type: `(() => void) | null`
--   DefaultValue: `null`
--   Description:
-
-A callback when aborting this request.
-
-### concurrency
-
--   Type: `boolean`
--   DefaultValue: `false`
--   Description:
-
-Request concurrency restrictions
-
-### groupBy
-
--   Type: `(context: Readonly<Context>) => string;`
--   DefaultValue: `${context.url}_${context.method}_${new URLSearchParams(context.params).toString()}`
--   Description:
-
-Concurrency key.
+| Name        | Description                                     | Type                                     | DefaultValue                                                                         |
+| ----------- | ----------------------------------------------- | ---------------------------------------- | ------------------------------------------------------------------------------------ |
+| timeout     | If `timeout > 0`, will abort this request later | `number`                                 | `0`                                                                                  |
+| onAbort     | A callback when aborting this request           | `(() => void) \| null`                   | `null`                                                                               |
+| concurrency | Request concurrency restrictions                | `boolean`                                | `false`                                                                              |
+| groupBy     | Concurrency key                                 | `(context: Readonly<Context>) => string` | `${context.url}_${context.method}_${new URLSearchParams(context.params).toString()}` |
 
 ## License
 
