@@ -3,6 +3,7 @@ import Schema from 'async-validator';
 import { MockConfig } from '../interfaces';
 import { parser } from '../parser';
 import { MOCK_HEADER_KEY } from '../utils';
+import { paramsValidator } from '../validator';
 
 declare let self: ServiceWorkerGlobalScope;
 declare let mockConfig: MockConfig[];
@@ -108,10 +109,8 @@ self.addEventListener('fetch', async event => {
                  * Check request params. Response with 400 when it is invalid.
                  */
                 if (params) {
-                    const requestParams = Object.fromEntries(new URLSearchParams(querystring));
-
                     try {
-                        await new Schema(params).validate(requestParams);
+                        await paramsValidator(querystring, params);
                     } catch (error) {
                         event.respondWith(new Response(null, responseInit(400)));
                         return;
