@@ -2,7 +2,7 @@
 import Schema from 'async-validator';
 import { MockConfig } from '../interfaces';
 import { parser } from '../parser';
-import { MOCK_HEADER_KEY, getResponseStatus } from '../utils';
+import { MOCK_HEADER_KEY, getResponseStatus, isRequestWithoutBody } from '../utils';
 import { paramsValidator } from '../validator';
 
 declare let self: ServiceWorkerGlobalScope;
@@ -71,7 +71,7 @@ self.addEventListener('fetch', async event => {
                  * If method is GET/HEAD, Do not check request payload.
                  */
                 // 如果是 GET、HEAD 请求 忽略 body 的验证
-                if (!['GET', 'HEAD'].includes(request.method) && body) {
+                if (!isRequestWithoutBody(request.method) && body) {
                     let requestBody;
 
                     if (contentType.includes('application/json')) {

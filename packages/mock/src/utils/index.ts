@@ -1,3 +1,5 @@
+import { RequestMethod } from 'fatcher';
+
 export const MOCK_HEADER_KEY = 'x-fatcher-mock';
 
 export const isNodeJS = typeof process !== 'undefined' && process.versions && process.versions.node;
@@ -14,4 +16,8 @@ export function getResponseStatus(status: keyof typeof ResponseStatusMap) {
         status,
         statusText: ResponseStatusMap[status],
     };
+}
+
+export function isRequestWithoutBody(method: RequestMethod) {
+    return ['GET', 'HEAD'].includes(method);
 }
