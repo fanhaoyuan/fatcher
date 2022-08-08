@@ -13,5 +13,7 @@ export async function paramsValidator(params: string | Record<string, string>, r
         searchParams = params;
     }
 
-    return new Schema(rules).validate(searchParams);
+    await new Schema(rules).validate(searchParams);
+
+    return null;
 }
