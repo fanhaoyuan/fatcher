@@ -5,7 +5,8 @@
     "typings": "dist/utils-shared.d.ts",
     "scripts": {
         "dev": "rimraf dist && rollup -c rollup.config.ts -w",
-        "build": "rimraf dist && rollup -c rollup.config.ts"
+        "build": "rimraf dist && rollup -c rollup.config.ts",
+        "deploy": "pnpm run build && pnpm publish --no-git-check --access public"
     },
     "devDependencies": {
         "fatcher": "workspace:^"
