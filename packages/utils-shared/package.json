@@ -1,0 +1,13 @@
+{
+    "name": "@fatcherjs/utils-shared",
+    "main": "dist/utils-shared.js",
+    "module": "dist/utils-shared.esm.js",
+    "typings": "dist/utils-shared.d.ts",
+    "scripts": {
+        "dev": "rimraf dist && rollup -c rollup.config.ts -w",
+        "build": "rimraf dist && rollup -c rollup.config.ts"
+    },
+    "devDependencies": {
+        "fatcher": "workspace:^"
+    }
+}
