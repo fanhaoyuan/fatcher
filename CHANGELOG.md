@@ -1,3 +1,11 @@
+## Coming Soon
+
+### @fatcherjs/utils-shared
+
+-   🚀 add `isNodeJS`
+-   🚀 add `getResponseStatus`
+-   🚀 add `isRequestWithoutBody`
+
 ## v1.7.0
 
 ### fatcher

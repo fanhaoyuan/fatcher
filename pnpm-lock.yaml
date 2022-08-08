@@ -155,6 +155,12 @@ importers:
     dependencies:
       fatcher: link:../fatcher
 
+  packages/utils-shared:
+    specifiers:
+      fatcher: workspace:^
+    devDependencies:
+      fatcher: link:../fatcher
+
 packages:
 
   /@ampproject/remapping/2.2.0:
