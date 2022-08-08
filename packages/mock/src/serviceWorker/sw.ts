@@ -2,8 +2,9 @@
 import Schema from 'async-validator';
 import { MockConfig } from '../interfaces';
 import { parser } from '../parser';
-import { MOCK_HEADER_KEY, getResponseStatus, isRequestWithoutBody } from '../utils';
-import { paramsValidator } from '../validator';
+import { MOCK_HEADER_KEY } from '../utils';
+import { paramsValidator } from '../validator/paramsValidator';
+import { isRequestWithoutBody, getResponseStatus } from '@fatcherjs/utils-shared';
 
 declare let self: ServiceWorkerGlobalScope;
 declare let mockConfig: MockConfig[];

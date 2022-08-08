@@ -1,5 +1,5 @@
 import { Middleware } from 'fatcher';
-import { isNodeJS } from '../utils';
+import { isNodeJS } from '@fatcherjs/utils-shared';
 
 let isActive = false;
 

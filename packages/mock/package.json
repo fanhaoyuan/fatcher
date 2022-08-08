@@ -13,6 +13,7 @@
         "build": "rimraf dist && rollup -c rollup.config.ts && tsc -p tsconfig.build.json && cp -r src/serviceWorker dist/src/serviceWorker"
     },
     "dependencies": {
+        "@fatcherjs/utils-shared": "workspace:^",
         "async-validator": "^4.2.5",
         "commander": "^9.4.0",
         "esbuild": "^0.14.51",
