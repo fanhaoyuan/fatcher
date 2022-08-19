@@ -1,6 +1,7 @@
 /* eslint-disable prefer-const */
 import { Middleware, MiddlewareResult } from '../interfaces';
 import { FatcherError } from '../errors';
+import { getQuerystringByParams } from '@fatcherjs/utils-shared';
 
 /**
  * A middleware for send http request by using fetch.
@@ -39,13 +40,13 @@ export function fetcher(): Middleware {
                 }
 
                 if (contentType.includes('application/x-www-form-urlencoded')) {
-                    body = new URLSearchParams(payload);
+                    body = getQuerystringByParams(payload);
                 }
             }
 
             if (Object.keys(params!).length) {
                 // Recessive call `toString()` in URLSearchParams
-                url = `${url}?${new URLSearchParams(params)}`;
+                url = `${url}?${getQuerystringByParams(params!)}`;
             }
 
             const response = await fetch(url, {

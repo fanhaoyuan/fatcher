@@ -112,7 +112,10 @@ importers:
       vite: 2.9.14
 
   packages/fatcher:
-    specifiers: {}
+    specifiers:
+      '@fatcherjs/utils-shared': workspace:^
+    dependencies:
+      '@fatcherjs/utils-shared': link:../utils-shared
 
   packages/form-data:
     specifiers:

@@ -1,10 +1,16 @@
 ## Coming Soon
 
+### fatcher
+
+-   🐛 Filter undefined value in payload when transform to querystring
+
 ### @fatcherjs/utils-shared
 
 -   🚀 add `isNodeJS`
 -   🚀 add `getResponseStatus`
 -   🚀 add `isRequestWithoutBody`
+-   🚀 add `getParamsByQuerystring`
+-   🚀 add `getQuerystringByParams`
 
 ## v1.7.0
 
