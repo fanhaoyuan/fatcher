@@ -1,3 +1,4 @@
+import { getParamsByQuerystring } from '@fatcherjs/utils-shared';
 import { Context, RequestOptions } from '../interfaces';
 import { parseURL } from '../url';
 
@@ -7,7 +8,9 @@ import { parseURL } from '../url';
  * @returns
  */
 export function createContext(options: RequestOptions): Context {
-    const { baseUrl = '', url = '', params = {}, headers = {} } = options;
+    const { baseUrl = '', url = '', headers = {} } = options;
+
+    let params = options.params || {};
 
     if (!url) {
         throw new Error('__vp__ URL is required.');
@@ -16,9 +19,7 @@ export function createContext(options: RequestOptions): Context {
     const [normalizedURL, querystring] = parseURL(baseUrl, url).split('?');
 
     if (querystring) {
-        for (const [key, value] of new URLSearchParams(querystring)) {
-            params[key] = value;
-        }
+        params = Object.assign({}, params, getParamsByQuerystring(querystring));
     }
 
     const requestHeaders = new Headers();
