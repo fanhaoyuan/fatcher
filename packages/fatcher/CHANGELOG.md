@@ -1,3 +1,7 @@
+## v1.7.1
+
+-   🐛 Filter undefined value in payload when transform to querystring
+
 ## v1.7.0
 
 -   🚀 Supports async middlewares. ([#183](https://github.com/fatcherjs/fatcher/pull/183))
