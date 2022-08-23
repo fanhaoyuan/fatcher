@@ -1,3 +1,4 @@
+export * from './Badge';
 export * from './Blockquote';
 export * from './Code';
 export * from './Heading';

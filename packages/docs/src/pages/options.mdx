@@ -3,6 +3,8 @@ title: Options
 order: 4
 ---
 
+import { Badge } from '@/components';
+
 # Options
 
 [Type Declaration](#Declaration)
@@ -88,11 +90,10 @@ Request Payload, will consume it before send request. Convert to different forms
 
 > Custom middleware allows you to customize the payload type
 
-### validateCode
+### validateCode <Badge>1.6.0+</Badge>
 
 Custom validate status code, If status code not in range, throw a `FatcherError`.
 
--   Version: `>= 1.6.0`
 -   Type: `(statusCode: number) => boolean`
 -   DefaultValue: `(statusCode: number) => 200 <= statusCode < 300`
 

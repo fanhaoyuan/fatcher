@@ -3,6 +3,8 @@ title: 配置
 order: 4
 ---
 
+import { Badge } from '@/components';
+
 # 配置
 
 [完整配置签名](#完整配置签名)
@@ -89,11 +91,10 @@ interface Middleware {
 
 > 自定义中间件可以自定义 payload 类型
 
-### validateCode
+### validateCode <Badge>1.6.0+</Badge>
 
 自定义状态码，如果指定范围内，则抛出一个`FatcherError`
 
--   版本: `>= 1.6.0`
 -   类型: `(statusCode: number) => boolean`
 -   默认值: `(statusCode: number) => 200 <= statusCode < 300`
 
