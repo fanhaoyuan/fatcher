@@ -131,6 +131,7 @@ importers:
 
   packages/mock:
     specifiers:
+      '@fatcherjs/utils-shared': workspace:^
       '@rollup/plugin-commonjs': ^22.0.1
       '@types/mockjs': ^1.0.6
       async-validator: ^4.2.5
@@ -141,6 +142,7 @@ importers:
       fs-extra: ^10.1.0
       mockjs: ^1.1.0
     dependencies:
+      '@fatcherjs/utils-shared': link:../utils-shared
       async-validator: 4.2.5
       commander: 9.4.0
       esbuild: 0.14.51
