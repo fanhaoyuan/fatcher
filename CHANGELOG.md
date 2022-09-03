@@ -1,3 +1,9 @@
+## Coming Soon
+
+### @fatcherjs/utils-shared
+
+-   🐛 avoid some error in querystring. Just like emoji
+
 ## v1.7.1
 
 ### fatcher

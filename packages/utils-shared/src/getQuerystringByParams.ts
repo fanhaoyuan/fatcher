@@ -13,7 +13,8 @@ export function getQuerystringByParams(params: Record<string, string | undefined
             return result;
         }
 
-        return [...result, `${key}=${value}`];
+        // Avoid some error in querystring. Just like emoji
+        return [...result, `${encodeURIComponent(key)}=${encodeURIComponent(value)}`];
     }, []);
 
     return array.join('&');
