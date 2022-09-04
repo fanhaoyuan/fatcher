@@ -1,6 +1,6 @@
 {
     "name": "@fatcherjs/middleware-mock",
-    "version": "1.7.1",
+    "version": "1.7.2",
     "main": "dist/client/mock.js",
     "module": "dist/client/mock.esm.js",
     "browser": "dist/client/mock.min.js",

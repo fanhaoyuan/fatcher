@@ -1,4 +1,4 @@
-## Coming Soon
+## v1.7.2
 
 ### @fatcherjs/utils-shared
 
