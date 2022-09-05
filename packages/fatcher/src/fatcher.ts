@@ -3,6 +3,7 @@ import { defaultOptions, mergeOptions } from './options';
 import { fetcher, registerMiddlewares, composeMiddlewares } from './middlewares';
 import { createContext } from './context';
 import { canActivate } from './helpers';
+import { isFunction, merge } from './utils';
 
 /**
  * Send HTTP request with custom options.
@@ -14,11 +15,23 @@ export async function fatcher<T = any>(inlineOptions: RequestOptions = {}): Prom
 
     const registeredMiddlewares = await registerMiddlewares([...customMiddlewares, fetcher]);
 
-    const useMiddlewares = composeMiddlewares(registeredMiddlewares);
-
     const initialContext = createContext(rest);
 
-    const result = await useMiddlewares(initialContext);
+    const context = merge(
+        initialContext,
+        registeredMiddlewares.map(item => {
+            if (isFunction(item.provides)) {
+                return item.provides(initialContext);
+            }
+
+            return item.provides || {};
+        }),
+        Object.assign
+    );
+
+    const useMiddlewares = composeMiddlewares(registeredMiddlewares);
+
+    const result = await useMiddlewares(context);
 
     const data = canActivate(result.data) ? result.data.body : result.data;
 

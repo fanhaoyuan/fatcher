@@ -74,6 +74,12 @@ export interface Middleware {
      * Current middleware needs some middlewares
      */
     presets?: UnregisteredMiddlewares;
+    /**
+     * Provides something in context (hoisting) by registering middlewares.
+     *
+     * Other middlewares can read provided context in `Middleware.use()`
+     */
+    provides?: Partial<Context> | ((initialContext: Context) => Partial<Context>);
 }
 
 /**

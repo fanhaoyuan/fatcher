@@ -56,6 +56,8 @@ type MiddlewareNext = (patchContext?: PatchContext) => MaybePromise<MiddlewareRe
 interface Middleware {
     name: `fatcher-middleware-${string}`;
     use(context: Readonly<Context>, next: MiddlewareNext): MaybePromise<MiddlewareResult>;
+    presets?: UnregisteredMiddlewares;
+    provides?: Partial<Context> | ((initialContext: Context) => Partial<Context>);
 }
 ```
 

@@ -42,6 +42,10 @@ use 方法是一个函数，这个函数是中间件的方法实现，它会被�
 
 presets 是这个中间件需要前置的中间件
 
+### provides <Badge>1.8.0+</Badge>
+
+Middleware 可以提供一些变量并提升到最高层, 与初始化的 context 合并。
+
 #### 合并规则
 
 声明在这里的中间件会在注册时被扁平化，声明于当前中间件的前方
@@ -91,5 +95,6 @@ interface Middleware {
     name: `fatcher-middleware-${string}`;
     use(context: Readonly<Context>, next: MiddlewareNext): MaybePromise<MiddlewareResult>;
     presets?: UnregisteredMiddlewares;
+    provides?: Partial<Context> | ((initialContext: Context) => Partial<Context>);
 }
 ```
