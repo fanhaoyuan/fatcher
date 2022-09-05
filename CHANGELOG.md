@@ -1,3 +1,9 @@
+## Coming Soon
+
+### fatcher
+
+-   🚀 middleware can provide context before fetching
+
 ## v1.7.2
 
 ### @fatcherjs/utils-shared
