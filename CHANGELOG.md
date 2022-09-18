@@ -1,4 +1,4 @@
-## Coming Soon
+## v1.8.0
 
 ### fatcher
 

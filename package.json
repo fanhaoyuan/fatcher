@@ -1,7 +1,7 @@
 {
     "private": true,
     "name": "fatcher",
-    "version": "1.7.2",
+    "version": "1.8.0",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/fatcherjs/fatcher.git"

@@ -1,3 +1,7 @@
+## v1.8.0
+
+-   🚀 middleware can provide context before fetching
+
 ## v1.7.1
 
 -   🐛 Filter undefined value in payload when transform to querystring

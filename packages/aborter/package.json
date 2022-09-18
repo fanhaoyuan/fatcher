@@ -1,6 +1,6 @@
 {
     "name": "@fatcherjs/middleware-aborter",
-    "version": "1.7.2",
+    "version": "1.8.0",
     "main": "dist/aborter.js",
     "module": "dist/aborter.esm.js",
     "browser": "dist/aborter.min.js",
