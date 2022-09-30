@@ -22,7 +22,7 @@
         "@rollup/plugin-replace": "^4.0.0",
         "@rollup/plugin-strip": "^2.1.0",
         "@types/fs-extra": "^9.0.13",
-        "@types/jest": "^28.1.1",
+        "@types/jest": "^29.1.1",
         "@types/node": "^18.0.0",
         "esbuild": "^0.15.5",
         "fast-glob": "^3.2.11",
