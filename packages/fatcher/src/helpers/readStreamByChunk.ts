@@ -24,13 +24,3 @@ export async function readStreamByChunk<T = Uint8Array, K = void>(
 
     return read(readableStream.getReader());
 }
-
-/**
- * Read a readable stream by chunk
- * @param readableStream
- * @param callback
- * @returns
- *
- * @deprecated Use `readStreamByChunk` instead.
- */
-export const chunkStreamReader = readStreamByChunk;
