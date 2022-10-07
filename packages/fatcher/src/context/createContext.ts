@@ -8,7 +8,7 @@ import { parseURL } from '../utils';
  * @returns
  */
 export function createContext(options: RequestOptions): Context {
-    const { baseUrl = '', url = '', headers = {} } = options;
+    const { base = '', url = '', headers = {} } = options;
 
     let params = options.params || {};
 

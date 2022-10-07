@@ -113,13 +113,8 @@ export interface RequestOptions extends Omit<RequestInit, 'body' | 'headers'> {
      *
      * @default '/'
      */
-    baseUrl?: string;
-
-    /**
-     * Url to fetch
-     */
+    base?: string;
     url?: string;
-
     /**
      * HTTP Request Method for current request.
      *
