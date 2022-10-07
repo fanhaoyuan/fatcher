@@ -2,10 +2,21 @@
 
 export type MaybePromise<T> = T | Promise<T>;
 
-/**
- *  HTTP Request Methods
- */
-export type RequestMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'HEAD' | 'OPTIONS' | 'PATCH';
+export type RequestMethod =
+    | 'GET'
+    | 'get'
+    | 'POST'
+    | 'post'
+    | 'PUT'
+    | 'put'
+    | 'DELETE'
+    | 'delete'
+    | 'HEAD'
+    | 'head'
+    | 'OPTIONS'
+    | 'options'
+    | 'PATCH'
+    | 'patch';
 
 /**
  * Middleware Context
