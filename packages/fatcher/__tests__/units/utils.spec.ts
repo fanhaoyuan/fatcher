@@ -1,19 +1,6 @@
-import { immutable, isFunction } from '../../src/utils';
+import { immutable } from '../../src/utils';
 
 describe('Utils', () => {
-    it('isFunction', () => {
-        expect(isFunction(() => null)).toBe(true);
-        expect(isFunction('1')).toBe(false);
-        expect(isFunction(2)).toBe(false);
-        expect(isFunction({})).toBe(false);
-        expect(isFunction([])).toBe(false);
-        expect(isFunction(null)).toBe(false);
-        expect(isFunction(new Map())).toBe(false);
-        expect(isFunction(new Set())).toBe(false);
-        // eslint-disable-next-line no-new-func
-        expect(isFunction(new Function())).toBe(true);
-    });
-
     it('immutable', () => {
         const object = {
             a: 'c',

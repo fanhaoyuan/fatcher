@@ -3,7 +3,8 @@ import { defaultOptions, mergeOptions } from './options';
 import { fetcher, registerMiddlewares, composeMiddlewares } from './middlewares';
 import { createContext } from './context';
 import { canActivate } from './helpers';
-import { isFunction, merge } from './utils';
+import { merge } from './utils';
+import { isFunction } from '@fatcherjs/utils-shared';
 
 /**
  * Send HTTP request with custom options.
