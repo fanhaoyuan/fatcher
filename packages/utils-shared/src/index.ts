@@ -5,3 +5,4 @@ export * from './immutable';
 export * from './isFunction';
 export * from './isNodeJS';
 export * from './isRequestWithoutBody';
+export * from './merge';

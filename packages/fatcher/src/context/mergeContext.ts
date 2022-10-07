@@ -1,5 +1,5 @@
 import { Context, PatchContext } from '../interfaces';
-import { merge } from '../utils';
+import { merge } from '@fatcherjs/utils-shared';
 
 /**
  * Merge context or patch context to a context
