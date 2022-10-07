@@ -47,10 +47,7 @@ export interface Context extends Omit<RequestOptions, 'middlewares'> {
  */
 export type RequestHeaders = Record<string, string | null>;
 
-/**
- * Response Result
- */
-export interface ResponseResult<T = any> {
+export interface Result<T = any> {
     data: T;
     headers: Headers;
     status: number;
