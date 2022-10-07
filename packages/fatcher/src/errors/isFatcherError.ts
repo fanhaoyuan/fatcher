@@ -1,4 +1,5 @@
 import { FatcherError } from './FatcherError';
+import { isFunction } from '@fatcherjs/utils-shared';
 
 /**
  * Confirm an error whether is FatcherError
@@ -6,5 +7,5 @@ import { FatcherError } from './FatcherError';
  * @returns
  */
 export function isFatcherError(error: Error): error is FatcherError {
-    return error instanceof FatcherError && error.name === 'FatcherError' && error.__isFatcherError__;
+    return error instanceof FatcherError && isFunction(error.isFatcherError) && error.isFatcherError();
 }
