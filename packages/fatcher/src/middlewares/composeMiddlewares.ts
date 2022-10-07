@@ -40,7 +40,7 @@ export function composeMiddlewares(middlewares: Middleware[]) {
         async function dispatch(index: number, patchContext?: PatchContext): Promise<MiddlewareResult> {
             if (index <= currentIndex) {
                 return Promise.reject(
-                    new Error(`Middleware <${middlewares[index - 1].name}> call next() more than once.`)
+                    new Error(`[fatcher] Middleware <${middlewares[index - 1].name}> call next() more than once.`)
                 );
             }
 

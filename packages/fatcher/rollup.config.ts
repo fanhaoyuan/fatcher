@@ -9,16 +9,8 @@ import strip from '@rollup/plugin-strip';
 
 const input = 'src/index.ts';
 const target = 'es2018';
-const VerbosityPrefix = '[Fatcher]';
 
-const plugins = [
-    nodeResolver(),
-    esbuild({ target }),
-    replace({
-        __vp__: VerbosityPrefix,
-        preventAssignment: false,
-    }),
-];
+const plugins = [nodeResolver(), esbuild({ target })];
 
 export default defineConfig([
     {

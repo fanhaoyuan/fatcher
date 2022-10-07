@@ -12,11 +12,7 @@ export function createContext(options: RequestOptions): Context {
 
     let params = options.params || {};
 
-    if (!url) {
-        throw new Error('__vp__ URL is required.');
-    }
-
-    const [normalizedURL, querystring] = parseURL(baseUrl, url).split('?');
+    const [normalizedURL, querystring] = parseURL(base, url).split('?');
 
     if (querystring) {
         params = Object.assign({}, params, getParamsByQuerystring(querystring));
