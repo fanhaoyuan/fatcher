@@ -1,6 +1,6 @@
 import { getParamsByQuerystring } from '@fatcherjs/utils-shared';
 import { Context, RequestOptions } from '../interfaces';
-import { parseURL } from '../url';
+import { parseURL } from '../utils';
 
 /**
  * Create initial context by request options
