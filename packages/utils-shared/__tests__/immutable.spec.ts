@@ -1,6 +1,6 @@
-import { immutable } from '../../src/utils';
+import { immutable } from '../src';
 
-describe('Utils', () => {
+describe('immutable', () => {
     it('immutable', () => {
         const object = {
             a: 'c',
