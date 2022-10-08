@@ -12,6 +12,8 @@ export function formData() {
         const type = headers.get('content-type');
 
         if (type && type.includes('multipart/form-data')) {
+            headers.delete('content-type');
+
             if (!isPlainObject(body) || body instanceof FormData) {
                 return next();
             }
@@ -25,8 +27,6 @@ export function formData() {
                     form.append(key, value);
                 }
             }
-
-            headers.delete('content-type');
 
             return next({
                 body: form,

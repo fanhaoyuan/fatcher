@@ -12,7 +12,6 @@ describe('Payload', () => {
             return defineMiddleware(context => {
                 expect(context.body instanceof FormData).toBe(true);
                 expect((context.body as FormData).get('name')).toBe(body.name);
-                expect(context.body).toBeNull();
                 expect((context.body as FormData).getAll('titles')).toEqual(body.titles);
 
                 return {
@@ -46,7 +45,6 @@ describe('Payload', () => {
         const checker = (): Middleware => {
             return defineMiddleware(context => {
                 expect(context.body instanceof FormData).toBe(true);
-                expect(context.body).toBeNull();
                 expect(context.body).toBe(body);
                 expect((context.body as FormData).get('name')).toBe(name);
 

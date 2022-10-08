@@ -5,13 +5,13 @@ describe('Headers', () => {
     it('Not resolve with other headers', async () => {
         const checker = () => {
             return defineMiddleware(context => {
-                expect(context.requestHeaders.get('content-type')).toBe('application/json');
+                expect(context.headers.get('content-type')).toBe('application/json');
 
                 return {
                     status: 200,
                     statusText: 'ok',
                     data: null,
-                    headers: context.requestHeaders,
+                    headers: context.headers,
                     url: context.url!,
                     options: {},
                 };
