@@ -1,6 +1,8 @@
 import { fatcher, isFatcherError } from '../src';
 import fetchMock from 'jest-fetch-mock';
-import { BASE_URL, json } from './utils';
+import { json } from '@fatcherjs/middleware-json';
+
+const BASE_URL = 'https://fatcher.virtual';
 
 describe('Basic Request', () => {
     beforeEach(() => {
@@ -48,7 +50,7 @@ describe('Basic Request', () => {
 
     it('Basic Request', async () => {
         const { data, status } = await fatcher({
-            baseUrl: BASE_URL,
+            base: BASE_URL,
             url: '/getJsonData',
             middlewares: [json()],
         });
@@ -64,10 +66,10 @@ describe('Basic Request', () => {
         const name = 'fatcher_1';
 
         const { data, status } = await fatcher({
-            baseUrl: BASE_URL,
+            base: BASE_URL,
             url: '/setJsonData',
             method: 'POST',
-            payload: {
+            body: {
                 id: 'setJsonData',
                 name,
             },
@@ -83,9 +85,9 @@ describe('Basic Request', () => {
 
         try {
             await fatcher({
-                baseUrl: BASE_URL,
+                base: BASE_URL,
                 url: '/setJsonData',
-                payload: {
+                body: {
                     id: 'setJsonData',
                     name,
                 },
@@ -100,7 +102,7 @@ describe('Basic Request', () => {
     it('Not Found', async () => {
         try {
             await fatcher({
-                baseUrl: BASE_URL,
+                base: BASE_URL,
                 url: '/get',
             });
         } catch (error: any) {

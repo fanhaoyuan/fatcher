@@ -1,4 +1,4 @@
-import { MaybePromise } from './interfaces';
+import { MaybePromise, Middleware } from './interfaces';
 
 /**
  * Confirm a data can be transform.
@@ -32,4 +32,15 @@ export async function readStreamByChunk<T = Uint8Array, K = void>(
     }
 
     return read(readableStream.getReader());
+}
+
+/**
+ * A helper function for defineMiddleware
+ * @param middleware
+ * @param displayName
+ * @returns
+ */
+export function defineMiddleware(middleware: Middleware, displayName?: string): Middleware {
+    middleware.displayName = displayName || 'Anonymous';
+    return middleware;
 }

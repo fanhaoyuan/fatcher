@@ -1,5 +1,5 @@
-import { getParamsByQuerystring } from '@fatcherjs/utils-shared';
-import { Context, RequestOptions } from '../interfaces';
+import { Querystring } from '@fatcherjs/utils-shared';
+import { Context, RequestMethod, RequestOptions } from '../interfaces';
 import { parseURL } from '../utils';
 
 /**
@@ -8,23 +8,22 @@ import { parseURL } from '../utils';
  * @returns
  */
 export function createContext(options: RequestOptions): Context {
-    const { base = '', url = '', headers = {} } = options;
+    const { base = '', url = '', headers = {}, method = 'GET' } = options;
 
     let params = options.params || {};
 
     const [normalizedURL, querystring] = parseURL(base, url).split('?');
 
     if (querystring) {
-        params = Object.assign({}, params, getParamsByQuerystring(querystring));
+        params = Object.assign({}, params, Querystring.parse(querystring));
     }
 
-    const requestHeaders = new Headers();
-
-    for (const [key, value] of Object.entries(headers)) {
-        if (value) {
-            requestHeaders.set(key, value);
-        }
-    }
-
-    return { ...options, url: normalizedURL, params, requestHeaders };
+    return {
+        ...options,
+        url: normalizedURL,
+        params,
+        headers: new Headers(headers),
+        middlewares: [],
+        method: method.toUpperCase() as RequestMethod,
+    };
 }

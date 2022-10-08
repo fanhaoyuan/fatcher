@@ -1,6 +1,7 @@
 import { fatcher, isFatcherError } from '../src';
 import fetchMock from 'jest-fetch-mock';
-import { BASE_URL, json } from './utils';
+import { json } from '@fatcherjs/middleware-json';
+const BASE_URL = 'https://fatcher.virtual';
 
 describe('querystring', () => {
     beforeEach(() => {
@@ -47,7 +48,7 @@ describe('querystring', () => {
 
     it('With querystring params', async () => {
         const result = await fatcher({
-            baseUrl: BASE_URL,
+            base: BASE_URL,
             url: '/getData?id=get',
             middlewares: [json()],
         });
@@ -58,7 +59,7 @@ describe('querystring', () => {
 
     it('With params', async () => {
         const result = await fatcher({
-            baseUrl: BASE_URL,
+            base: BASE_URL,
             url: '/getData',
             params: { id: 'get' },
             middlewares: [json()],
@@ -72,7 +73,7 @@ describe('querystring', () => {
     it('Without querystring params', async () => {
         try {
             await fatcher({
-                baseUrl: BASE_URL,
+                base: BASE_URL,
                 url: '/getData',
                 middlewares: [json()],
             });
@@ -84,7 +85,7 @@ describe('querystring', () => {
 
     it('With querystring and params', async () => {
         const result1 = await fatcher({
-            baseUrl: BASE_URL,
+            base: BASE_URL,
             url: '/getJoinedData?id=get',
             params: { name: 'query' },
             middlewares: [json()],
@@ -94,7 +95,7 @@ describe('querystring', () => {
         expect(result1.data.data).toBe('ok');
 
         const result2 = await fatcher({
-            baseUrl: BASE_URL,
+            base: BASE_URL,
             url: '/getJoinedData?name=query',
             params: { id: 'get' },
             middlewares: [json()],
@@ -106,7 +107,7 @@ describe('querystring', () => {
 
     it(`Params with cover querystring`, async () => {
         const result = await fatcher({
-            baseUrl: BASE_URL,
+            base: BASE_URL,
             url: '/getData?id=get&name=query',
             middlewares: [json()],
         });
@@ -116,7 +117,7 @@ describe('querystring', () => {
 
         try {
             await fatcher({
-                baseUrl: BASE_URL,
+                base: BASE_URL,
                 url: '/getData?id=get&name=query',
                 params: {
                     id: 'post',

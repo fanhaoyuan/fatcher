@@ -1,5 +1,8 @@
-import { UnregisteredMiddlewares, Middleware } from '../interfaces';
-import { isFunction } from '../utils';
+import { MiddlewareRegister, Middleware } from '../interfaces';
+
+function _filter(registers: MiddlewareRegister[]) {
+    return registers.filter((item): item is Middleware | (Middleware | null)[] => !!item);
+}
 
 /**
  * Register Middlewares for fatcher.
@@ -7,20 +10,14 @@ import { isFunction } from '../utils';
  * @param middlewares array of middleware
  * @returns
  */
-export async function registerMiddlewares(unregisteredMiddlewares: UnregisteredMiddlewares) {
+export function registerMiddlewares(registers: MiddlewareRegister[]) {
     let middlewares: Middleware[] = [];
 
-    for await (const middleware of unregisteredMiddlewares) {
+    for (const middleware of _filter(registers)) {
         if (Array.isArray(middleware)) {
-            middlewares = middlewares.concat(await registerMiddlewares(middleware));
+            middlewares = middlewares.concat(registerMiddlewares(middleware));
         } else {
-            let current: Middleware[] = [isFunction(middleware) ? await middleware() : middleware];
-
-            if (current[0].presets?.length) {
-                current = (await registerMiddlewares(current[0].presets)).concat(current);
-            }
-
-            middlewares = middlewares.concat(current);
+            middlewares.push(middleware);
         }
     }
 

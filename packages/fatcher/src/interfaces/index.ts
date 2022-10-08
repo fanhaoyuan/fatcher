@@ -1,5 +1,4 @@
 /* eslint-disable no-use-before-define */
-
 export type MaybePromise<T> = T | Promise<T>;
 
 export type RequestMethod =
@@ -18,34 +17,21 @@ export type RequestMethod =
     | 'PATCH'
     | 'patch';
 
-/**
- * Middleware Context
- */
-export interface Context extends Omit<RequestOptions, 'middlewares'> {
-    body?: BodyInit | null;
-
+export interface Context extends Omit<RequestOptions, 'headers'> {
     /**
      * A map of http request headers.
      *
      * @description Some headers name cannot be modified programmatically.
      * @see https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_header_name
      */
-    requestHeaders: Headers;
+    headers: Headers;
 
-    /**
-     * Request Headers
-     *
-     * @deprecated use `requestHeaders` instead.
-     */
-    headers?: RequestHeaders;
+    middlewares: Middleware[];
+
+    method: RequestMethod;
+
+    [name: string]: any;
 }
-
-/**
- * Request Headers
- *
- * Will filter null value before fetch.
- */
-export type RequestHeaders = Record<string, string | null>;
 
 export interface Result<T = any> {
     data: T;
@@ -57,54 +43,28 @@ export interface Result<T = any> {
 }
 
 /**
- * Middlewares Response Result
- */
-export interface MiddlewareResult extends Omit<ResponseResult, 'options' | 'data'> {
-    data?: any;
-}
-
-export type PatchContext = Partial<Context>;
-
-/**
  * Middleware Next
  *
  * Should call by using middleware for get response.
  */
-export type MiddlewareNext = (patchContext?: PatchContext) => MaybePromise<MiddlewareResult>;
+export type Next = (patchContext?: Partial<Context>) => MaybePromise<Result>;
 
-/**
- * Middleware
- */
 export interface Middleware {
-    name: `fatcher-middleware-${string}`;
-    use(context: Readonly<Context>, next: MiddlewareNext): MaybePromise<MiddlewareResult>;
-    /**
-     * Current middleware needs some middlewares
-     */
-    presets?: UnregisteredMiddlewares;
+    (context: Context, next: Next): MaybePromise<Result>;
+    displayName?: string;
     /**
      * Provides something in context (hoisting) by registering middlewares.
      *
-     * Other middlewares can read provided context in `Middleware.use()`
+     * Other middlewares can read provided context.
      */
     provides?: Partial<Context> | ((initialContext: Context) => Partial<Context>);
 }
 
-/**
- * A Middleware or a series of Middlewares
- *
- * Will flatten into a array of middlewares.
- */
-export type UnregisteredMiddlewares = (
-    | (() => MaybePromise<Middleware>)
-    | Middleware
-    | ((() => MaybePromise<Middleware>) | Middleware)[]
-)[];
+export type MiddlewareRegister = Middleware | null | (Middleware | null)[];
 
-/**
- * Request Options for fetch
- */
-export interface RequestOptions extends Omit<RequestInit, 'body' | 'headers'> {
+export type RequestBody = BodyInit | null | Record<string, any>;
+
+export interface RequestOptions extends Omit<RequestInit, 'body'> {
     /**
      * Base url to fetch.
      *
@@ -112,6 +72,7 @@ export interface RequestOptions extends Omit<RequestInit, 'body' | 'headers'> {
      */
     base?: string;
     url?: string;
+    body?: RequestBody;
     /**
      * HTTP Request Method for current request.
      *
@@ -131,12 +92,7 @@ export interface RequestOptions extends Omit<RequestInit, 'body' | 'headers'> {
      *
      * @default []
      */
-    middlewares?: UnregisteredMiddlewares;
-
-    /**
-     * Request Payload
-     */
-    payload?: Record<string, any> | null;
+    middlewares?: MiddlewareRegister[];
 
     /**
      * Request Headers
@@ -146,7 +102,7 @@ export interface RequestOptions extends Omit<RequestInit, 'body' | 'headers'> {
      *   'Content-Type': 'application/x-www-form-urlencoded'
      * }
      */
-    headers?: RequestHeaders;
+    headers?: Record<string, string>;
 
     /**
      * Custom validate status code

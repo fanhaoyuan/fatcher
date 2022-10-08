@@ -23,7 +23,6 @@ export class FatcherError extends Error {
         return #isFatcherError in this;
     }
 
-
     toJSON() {
         const headers: Record<string, string> = {};
 

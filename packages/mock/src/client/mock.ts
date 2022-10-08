@@ -1,23 +1,16 @@
-import { Middleware, UnregisteredMiddlewares } from 'fatcher';
+import { defineMiddleware } from 'fatcher';
 import { MockOptions } from './interfaces';
 import { parser } from '../parser';
 import { checker } from './checker';
 import { MOCK_HEADER_KEY } from '../utils';
 import { isNodeJS } from '@fatcherjs/utils-shared';
 
-export function mock(options: MockOptions = {}): Middleware {
+export function mock(options: MockOptions = {}) {
     const { enabled = process.env.NODE_ENV !== 'production', schema } = options;
 
-    const presets: UnregisteredMiddlewares = [];
-
-    if (!isNodeJS()) {
-        presets.push(checker());
-    }
-
-    return {
-        name: 'fatcher-middleware-mock',
-        presets,
-        async use(context, next) {
+    return [
+        !isNodeJS() ? checker() : null,
+        defineMiddleware(async (context, next) => {
             if (enabled) {
                 if (schema) {
                     // 有行内 mock，直接 mock
@@ -29,6 +22,7 @@ export function mock(options: MockOptions = {}): Middleware {
                             'content-type': 'application/json',
                         }),
                         url: context.url!,
+                        options: {},
                     };
                 }
 
@@ -49,6 +43,6 @@ export function mock(options: MockOptions = {}): Middleware {
             }
 
             return next();
-        },
-    };
+        }, 'fatcher-middleware-mock'),
+    ];
 }

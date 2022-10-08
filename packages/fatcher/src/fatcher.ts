@@ -11,9 +11,9 @@ import { isFunction, merge } from '@fatcherjs/utils-shared';
 export async function fatcher<T = any>(inlineOptions: RequestOptions = {}): Promise<Result<T>> {
     const options = mergeOptions(defaultOptions, inlineOptions);
 
-    const { middlewares: customMiddlewares = [], ...rest } = options;
+    const { middlewares = [], ...rest } = options;
 
-    const registeredMiddlewares = await registerMiddlewares([...customMiddlewares, fetcher]);
+    const registeredMiddlewares = registerMiddlewares([...middlewares, fetcher()]);
 
     const initialContext = createContext(rest);
 

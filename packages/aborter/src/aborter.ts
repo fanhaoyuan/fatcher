@@ -1,4 +1,4 @@
-import { Middleware } from 'fatcher';
+import { Middleware, defineMiddleware } from 'fatcher';
 import { AbortReason, AborterOptions, RoadMap } from './interfaces';
 
 const roadMap: RoadMap = {};
@@ -18,60 +18,56 @@ export function aborter(options: AborterOptions = {}): Middleware {
         _timeout = 0;
     }
 
-    return {
-        name: 'fatcher-middleware-aborter',
-        async use(context, next) {
-            const abortController = new AbortController();
+    return defineMiddleware(async (context, next) => {
+        const abortController = new AbortController();
 
-            const { abort, signal } = abortController;
+        const { abort, signal } = abortController;
 
-            const requestTask = next({ signal });
+        const requestTask = next({ signal });
 
-            const group =
-                groupBy?.(context) ??
-                `${context.url}_${context.method}_${new URLSearchParams(context.params).toString()}`;
+        const group =
+            groupBy?.(context) ?? `${context.url}_${context.method}_${new URLSearchParams(context.params).toString()}`;
 
-            // Setup road map before response
-            if (roadMap[group]?.length && concurrency) {
-                // If has other request in group. Abort them.
-                roadMap[group].forEach(item => {
-                    item.abort('concurrency');
-                });
-            }
-
-            roadMap[group] ??= [];
-
-            const trigger = (reason: AbortReason) => {
-                abort.call(abortController);
-                onAbort?.(reason);
-            };
-
-            roadMap[group].push({
-                abort: trigger,
-                timer: _timeout ? setTimeout(() => trigger('timeout'), _timeout) : null,
-                signal,
+        // Setup road map before response
+        if (roadMap[group]?.length && concurrency) {
+            // If has other request in group. Abort them.
+            roadMap[group].forEach(item => {
+                item.abort('concurrency');
             });
+        }
 
-            // Cleanup with abort event triggered.
-            signal.addEventListener('abort', () => {
-                roadMap[group] = roadMap[group].filter(item => {
-                    if (item.signal === signal) {
-                        if (item.timer) {
-                            clearTimeout(item.timer);
-                        }
+        roadMap[group] ??= [];
 
-                        return false;
+        const trigger = (reason: AbortReason) => {
+            abort.call(abortController);
+            onAbort?.(reason);
+        };
+
+        roadMap[group].push({
+            abort: trigger,
+            timer: _timeout ? setTimeout(() => trigger('timeout'), _timeout) : null,
+            signal,
+        });
+
+        // Cleanup with abort event triggered.
+        signal.addEventListener('abort', () => {
+            roadMap[group] = roadMap[group].filter(item => {
+                if (item.signal === signal) {
+                    if (item.timer) {
+                        clearTimeout(item.timer);
                     }
 
-                    return true;
-                });
-
-                if (!roadMap[group].length) {
-                    delete roadMap[group];
+                    return false;
                 }
+
+                return true;
             });
 
-            return requestTask;
-        },
-    };
+            if (!roadMap[group].length) {
+                delete roadMap[group];
+            }
+        });
+
+        return requestTask;
+    }, 'fatcher-middleware-aborter');
 }

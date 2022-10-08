@@ -1,69 +1,99 @@
-/* eslint-disable prefer-const */
-import { Middleware, MiddlewareResult } from '../interfaces';
+import { RequestMethod, Result } from '../interfaces';
 import { FatcherError } from '../errors';
-import { getQuerystringByParams } from '@fatcherjs/utils-shared';
+import { isPlainObject, Querystring } from '@fatcherjs/utils-shared';
+import { defineMiddleware } from '../helpers';
 
 /**
  * A middleware for send http request by using fetch.
  * @returns
  */
-export function fetcher(): Middleware {
-    return {
-        name: 'fatcher-middleware-fetch',
-        async use(context) {
-            let {
-                url = '',
-                requestHeaders: headers,
-                payload,
-                method = 'GET',
-                body,
-                params,
-                validateCode,
-                ...rest
-            } = context;
+export const fetcher = () => {
+    const isNonNullBody = (method: RequestMethod) => !['GET', 'HEAD'].includes(method);
 
-            const contentType = headers.get('content-type');
+    return [
+        /**
+         * Auto transform body to json string
+         */
+        defineMiddleware((context, next) => {
+            const { body, headers, method } = context;
 
+            if (isNonNullBody(method) && isPlainObject(body)) {
+                const type = headers.get('content-type');
+
+                if (type && type.includes('application/json')) {
+                    return next({
+                        body: JSON.stringify(body),
+                    });
+                }
+            }
+
+            return next();
+        }, 'fatcher-middleware-json-body'),
+
+        /**
+         * Auto transform body to querystring
+         */
+        defineMiddleware((context, next) => {
+            const { body, headers, method } = context;
+
+            if (isNonNullBody(method) && isPlainObject(body)) {
+                const type = headers.get('content-type');
+
+                if (type && type.includes('application/x-www-form-urlencoded')) {
+                    return next({
+                        body: Querystring.stringify(body as Record<string, any>),
+                    });
+                }
+            }
+
+            return next();
+        }, 'fatcher-middleware-querystring-body'),
+
+        /**
+         * Clear body when request method is `GET` or `HEAD`.
+         */
+        defineMiddleware((context, next) => {
             /**
-             * If Request Method is `GET` or `HEAD`.
+             * If Request Method is `GET` or `HEAD`, will clear body before fetch.
              *
-             * Will ignore headers['Content-Type'].
-             *
-             * payload will transform into search params.
+             * @see https://developer.mozilla.org/en-US/docs/Web/API/Request/body
              */
-            if (['GET', 'HEAD'].includes(method)) {
-                params = Object.assign({}, params, body);
-                body = null;
-            } else if (payload && contentType) {
-                if (contentType.includes('application/json')) {
-                    body = JSON.stringify(payload);
-                }
-
-                if (contentType.includes('application/x-www-form-urlencoded')) {
-                    body = getQuerystringByParams(payload);
-                }
+            if (!isNonNullBody(context.method)) {
+                return next({
+                    body: null,
+                });
             }
 
-            if (Object.keys(params!).length) {
+            return next();
+        }, 'fatcher-middleware-body-clearer'),
+
+        /**
+         * Sent request by fetch.
+         */
+        defineMiddleware(async context => {
+            const { params, validateCode, body, ...requestRest } = context;
+
+            let url = context.url || '';
+
+            if (params && Object.keys(params).length) {
                 // Recessive call `toString()` in URLSearchParams
-                url = `${url}?${getQuerystringByParams(params!)}`;
+                url += `?${Querystring.stringify(params)}`;
             }
 
-            const response = await fetch(url, {
-                ...rest,
-                headers,
-                body,
-                method,
-            });
+            const response = await fetch(url, { ...requestRest, body: isPlainObject(body) ? body.toString() : body });
 
-            const { status, statusText, ok, headers: responseHeaders } = response;
+            const { ok, status, statusText, headers } = response;
 
-            const result: MiddlewareResult = {
+            const result: Result = {
+                url,
                 status,
                 statusText,
-                headers: responseHeaders,
-                url,
+                headers,
                 data: response,
+                options: {
+                    ...context,
+                    headers: Object.fromEntries(Object.entries(context.headers)),
+                },
             };
 
             if (validateCode ? validateCode(status) : ok) {
@@ -76,6 +106,6 @@ export function fetcher(): Middleware {
              * Throw a FatcherError
              */
             return Promise.reject(new FatcherError(context, response));
-        },
-    };
-}
+        }, 'fatcher-middleware-fetch'),
+    ];
+};

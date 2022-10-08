@@ -1,7 +1,6 @@
 import fetchMock from 'jest-fetch-mock';
-import { BASE_URL } from './utils';
 import { fatcher, isFatcherError } from '../src';
-
+const BASE_URL = 'https://fatcher.virtual';
 describe('Validate Code', () => {
     beforeEach(() => {
         fetchMock.mockIf(new RegExp(`${BASE_URL}/.*`), async request => {
@@ -21,7 +20,7 @@ describe('Validate Code', () => {
 
     it('With Custom Validate Code and validate status code', async () => {
         const res = await fatcher({
-            baseUrl: BASE_URL,
+            base: BASE_URL,
             url: '/get',
             params: {
                 status: '1001',
@@ -37,7 +36,7 @@ describe('Validate Code', () => {
     it('With Custom Validate Code and invalid status code', async () => {
         try {
             await fatcher({
-                baseUrl: BASE_URL,
+                base: BASE_URL,
                 url: '/get',
                 params: {
                     status: '200',

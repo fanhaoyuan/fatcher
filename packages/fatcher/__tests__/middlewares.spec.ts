@@ -1,7 +1,8 @@
-import { fatcher, Middleware, isFatcherError, canActivate, readStreamByChunk } from '../src';
+import { fatcher, isFatcherError, canActivate, readStreamByChunk, defineMiddleware } from '../src';
 import fetchMock from 'jest-fetch-mock';
-import { BASE_URL } from './utils';
+
 import { getRandomString, getStringStream } from '../../../shared/tests';
+const BASE_URL = 'https://fatcher.virtual';
 
 describe('Custom Middlewares', () => {
     const TEXT_LENGTH = 1_000_000;
@@ -33,26 +34,23 @@ describe('Custom Middlewares', () => {
         fetchMock.enableMocks();
     });
 
-    function pre(): Middleware {
-        return {
-            name: 'fatcher-middleware-pre',
-            use(context, next) {
-                if (context.url === `${BASE_URL}/get`) {
-                    return next({
-                        url: `${BASE_URL}/getLongText`,
-                        method: 'POST',
-                    });
-                }
+    function pre() {
+        return defineMiddleware((context, next) => {
+            if (context.url === `${BASE_URL}/get`) {
+                return next({
+                    url: `${BASE_URL}/getLongText`,
+                    method: 'POST',
+                });
+            }
 
-                return next();
-            },
-        };
+            return next();
+        });
     }
 
     it("Don't use pre middleware", async () => {
         try {
             await fatcher({
-                baseUrl: BASE_URL,
+                base: BASE_URL,
                 url: '/get',
             });
         } catch (error: any) {
@@ -66,7 +64,7 @@ describe('Custom Middlewares', () => {
 
     it('Using pre middleware', async () => {
         const { status, data } = await fatcher({
-            baseUrl: BASE_URL,
+            base: BASE_URL,
             url: '/get',
             middlewares: [pre()],
         });
@@ -75,26 +73,23 @@ describe('Custom Middlewares', () => {
         expect(data.toString()).toBe(longText);
     });
 
-    function post(cof: number): Middleware {
-        return {
-            name: 'fatcher-middleware-post',
-            async use(context, next) {
-                const { data: response, ...rest } = await next();
+    function post(cof: number) {
+        return defineMiddleware(async (context, next) => {
+            const { data: response, ...rest } = await next();
 
-                if (!canActivate(response)) {
-                    return {
-                        data: response,
-                        ...rest,
-                    };
-                }
-
+            if (!canActivate(response)) {
                 return {
+                    data: response,
                     ...rest,
-                    response,
-                    data: getStringStream(await response.text(), cof),
                 };
-            },
-        };
+            }
+
+            return {
+                ...rest,
+                response,
+                data: getStringStream(await response.text(), cof),
+            };
+        });
     }
 
     it('Compose Middlewares', async () => {
@@ -103,7 +98,7 @@ describe('Custom Middlewares', () => {
         const textDecoder = new TextDecoder();
 
         const { data } = await fatcher<ReadableStream<Uint8Array>>({
-            baseUrl: BASE_URL,
+            base: BASE_URL,
             url: '/get',
             middlewares: [pre(), post(COF)],
         });
@@ -120,28 +115,25 @@ describe('Custom Middlewares', () => {
 
         const url = '/test/presets';
 
-        const test = (): Middleware => {
-            return {
-                name: 'fatcher-middleware-test',
-                async use(context, next) {
-                    const result = await next({
-                        url,
-                    });
+        const test = () => {
+            return defineMiddleware(async (context, next) => {
+                const result = await next({
+                    url,
+                });
 
-                    expect(result.data).toBe(returnedData);
-                    expect(result.status).toBe(200);
-                    expect(result.statusText).toBe('ok');
-                    expect(result.url).toBe(url);
+                expect(result.data).toBe(returnedData);
+                expect(result.status).toBe(200);
+                expect(result.statusText).toBe('ok');
+                expect(result.url).toBe(url);
 
-                    return result;
-                },
-            };
+                return result;
+            });
         };
 
-        const middleware = (): Middleware => {
-            return {
-                name: 'fatcher-middleware-return',
-                use(context) {
+        const middleware = () => {
+            return [
+                test(),
+                defineMiddleware(context => {
                     expect(context.url).toBe(url);
 
                     return {
@@ -150,10 +142,10 @@ describe('Custom Middlewares', () => {
                         data: returnedData,
                         headers: new Headers(),
                         url: context.url!,
+                        options: {},
                     };
-                },
-                presets: [test()],
-            };
+                }),
+            ];
         };
 
         await fatcher({ url: '/presets', middlewares: [middleware()] });
