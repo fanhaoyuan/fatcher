@@ -75,7 +75,7 @@ export const fetcher = () => {
 
             let url = context.url || '';
 
-            if (params && Object.keys(params).length) {
+            if (Object.keys(params).length) {
                 // Recessive call `toString()` in URLSearchParams
                 url += `?${Querystring.stringify(params)}`;
             }

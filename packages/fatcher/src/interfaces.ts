@@ -25,11 +25,9 @@ export interface Context extends Omit<RequestOptions, 'headers'> {
      * @see https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_header_name
      */
     headers: Headers;
-
     middlewares: Middleware[];
-
     method: RequestMethod;
-
+    params: Record<string, string>;
     [name: string]: any;
 }
 
