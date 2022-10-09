@@ -1,4 +1,4 @@
-import { Context } from '../src';
+import { Context, PatchContext } from '../src';
 import { createContext, mergeContext } from '../src/context';
 
 describe('Context', () => {
@@ -36,7 +36,7 @@ describe('Context', () => {
             credentials: 'same-origin',
         });
 
-        const patchContext: Partial<Context> = {
+        const patchContext: PatchContext= {
             url: '/b/test',
             method: 'PATCH',
             headers: new Headers({}),
@@ -58,14 +58,14 @@ describe('Context', () => {
             },
         });
 
-        const patchContext: Partial<Context> = {
+        const patchContext: PatchContext = {
             headers: new Headers({
                 'Content-Type': 'application/json',
                 Test: 'test',
             }),
         };
 
-        const patchContextWithEmptyHeaders: Partial<Context> = {};
+        const patchContextWithEmptyHeaders: PatchContext = {};
 
         const mergedContext = mergeContext(context, patchContext, patchContextWithEmptyHeaders);
 

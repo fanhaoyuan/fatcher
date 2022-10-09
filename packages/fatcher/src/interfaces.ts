@@ -40,22 +40,26 @@ export interface Result<T = any> {
     url: string;
 }
 
+export type MiddlewareResult = Omit<Result, 'options'>;
+
+export type PatchContext = Partial<Context>;
+
 /**
  * Middleware Next
  *
  * Should call by using middleware for get response.
  */
-export type Next = (patchContext?: Partial<Context>) => MaybePromise<Result>;
+export type MiddlewareNext = (patchContext?: PatchContext) => MaybePromise<MiddlewareResult>;
 
 export interface Middleware {
-    (context: Context, next: Next): MaybePromise<Result>;
+    (context: Context, next: MiddlewareNext): MaybePromise<MiddlewareResult>;
     displayName?: string;
     /**
      * Provides something in context (hoisting) by registering middlewares.
      *
      * Other middlewares can read provided context.
      */
-    provides?: Partial<Context> | ((initialContext: Context) => Partial<Context>);
+    provides?: PatchContext | ((initialContext: Context) => PatchContext);
 }
 
 export type MiddlewareRegister = Middleware | null | (Middleware | null)[];

@@ -1,4 +1,4 @@
-import { RequestMethod, Result } from '../interfaces';
+import { RequestMethod, MiddlewareResult } from '../interfaces';
 import { FatcherError } from '../errors';
 import { isPlainObject, Querystring } from '@fatcherjs/utils-shared';
 import { defineMiddleware } from '../helpers';
@@ -84,16 +84,12 @@ export const fetcher = () => {
 
             const { ok, status, statusText, headers } = response;
 
-            const result: Result = {
+            const result: MiddlewareResult = {
                 url,
                 status,
                 statusText,
                 headers,
                 data: response,
-                options: {
-                    ...context,
-                    headers: Object.fromEntries(Object.entries(context.headers)),
-                },
             };
 
             if (validateCode ? validateCode(status) : ok) {

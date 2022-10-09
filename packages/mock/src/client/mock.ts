@@ -22,7 +22,6 @@ export function mock(options: MockOptions = {}) {
                             'content-type': 'application/json',
                         }),
                         url: context.url!,
-                        options: {},
                     };
                 }
 

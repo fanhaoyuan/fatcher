@@ -14,7 +14,6 @@ describe('Middleware providers', () => {
                     data: null,
                     headers: new Headers(),
                     url: context.url!,
-                    options: {},
                 };
             });
 
@@ -46,7 +45,6 @@ describe('Middleware providers', () => {
                     data: null,
                     headers: new Headers(),
                     url: context.url!,
-                    options: {},
                 };
             });
 

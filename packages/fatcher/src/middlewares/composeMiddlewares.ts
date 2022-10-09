@@ -1,4 +1,4 @@
-import { Context, Middleware, Result } from '../interfaces';
+import { Context, Middleware, MiddlewareResult, PatchContext } from '../interfaces';
 import { mergeContext } from '../context';
 import { immutable } from '@fatcherjs/utils-shared';
 
@@ -33,13 +33,13 @@ export function composeMiddlewares(middlewares: Middleware[]) {
     return function use(initialContext: Context) {
         let currentIndex = -1;
 
-        let result: Result;
+        let result: MiddlewareResult;
 
         let context: Context = initialContext;
 
         let immutableContext = immutable(context);
 
-        async function dispatch(index: number, patchContext?: Partial<Context>): Promise<Result> {
+        async function dispatch(index: number, patchContext?: PatchContext): Promise<MiddlewareResult> {
             if (index <= currentIndex) {
                 return Promise.reject(
                     new Error(

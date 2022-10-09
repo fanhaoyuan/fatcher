@@ -1,7 +1,7 @@
-import { Middleware, canActivate, Context, Result, defineMiddleware } from 'fatcher';
+import { Middleware, canActivate, Context, MiddlewareResult, defineMiddleware } from 'fatcher';
 import { CacheOptions } from './interfaces';
 
-const cacheMap = new Map<string, Result>();
+const cacheMap = new Map<string, MiddlewareResult>();
 
 const timer: Record<string, NodeJS.Timer> = {};
 
@@ -24,7 +24,7 @@ export function cache(options: CacheOptions): Middleware {
         const cacheKey = `${context.method} ${context.url}`;
 
         if (cacheMap.has(cacheKey)) {
-            const result = cacheMap.get(cacheKey) as Result;
+            const result = cacheMap.get(cacheKey) as MiddlewareResult;
 
             return {
                 ...result,

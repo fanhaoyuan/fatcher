@@ -1,4 +1,4 @@
-import { Context } from '../interfaces';
+import { Context, PatchContext } from '../interfaces';
 import { merge } from '@fatcherjs/utils-shared';
 import { mergeHeaders } from '../mergeHeaders';
 
@@ -8,7 +8,7 @@ import { mergeHeaders } from '../mergeHeaders';
  * @param patchContext
  * @returns
  */
-export function mergeContext(context: Context, ...patchContext: Partial<Context>[]): Context {
+export function mergeContext(context: Context, ...patchContext: PatchContext[]): Context {
     return merge(context, patchContext, (merged, current) => {
         const { headers } = current;
 

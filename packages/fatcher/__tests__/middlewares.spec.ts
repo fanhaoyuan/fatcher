@@ -142,7 +142,6 @@ describe('Custom Middlewares', () => {
                         data: returnedData,
                         headers: new Headers(),
                         url: context.url!,
-                        options: {},
                     };
                 }),
             ];
