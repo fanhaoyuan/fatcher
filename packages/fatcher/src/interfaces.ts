@@ -52,7 +52,7 @@ export type PatchContext = Partial<Context>;
 export type MiddlewareNext = (patchContext?: PatchContext) => MaybePromise<MiddlewareResult>;
 
 export interface Middleware {
-    (context: Context, next: MiddlewareNext): MaybePromise<MiddlewareResult>;
+    (context: Readonly<Context>, next: MiddlewareNext): MaybePromise<MiddlewareResult>;
     displayName?: string;
     /**
      * Provides something in context (hoisting) by registering middlewares.
