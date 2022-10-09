@@ -1,31 +1,28 @@
-import { fatcher, Middleware } from 'fatcher';
+import { defineMiddleware, fatcher, Middleware } from 'fatcher';
 import { formData } from '../src';
 
 describe('Payload', () => {
     it('Object change to formData', async () => {
-        const payload = {
+        const body = {
             name: 'form-data',
             titles: ['a', 'b', 'c'],
         };
 
-        const checker = (): Middleware => {
-            return {
-                name: 'fatcher-middleware-checker',
-                use(context) {
-                    expect(context.body instanceof FormData).toBe(true);
-                    expect((context.body as FormData).get('name')).toBe(payload.name);
-                    expect(context.payload).toBeNull();
-                    expect((context.body as FormData).getAll('titles')).toEqual(payload.titles);
+        const checker = () => {
+            return defineMiddleware(context => {
+                expect(context.body instanceof FormData).toBe(true);
+                expect((context.body as FormData).get('name')).toBe(body.name);
+                expect((context.body as FormData).getAll('titles')).toEqual(body.titles);
 
-                    return {
-                        status: 200,
-                        statusText: 'ok',
-                        data: null,
-                        headers: context.requestHeaders,
-                        url: context.url!,
-                    };
-                },
-            };
+                return {
+                    status: 200,
+                    statusText: 'ok',
+                    data: null,
+                    headers: context.headers,
+                    url: context.url!,
+                    options: {},
+                };
+            });
         };
 
         await fatcher({
@@ -34,35 +31,32 @@ describe('Payload', () => {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
-            payload,
+            body,
         });
     });
 
     it('FormData ignore to change', async () => {
-        const payload = new FormData();
+        const body = new FormData();
 
         const name = 'form-data';
 
-        payload.append('name', name);
+        body.append('name', name);
 
         const checker = (): Middleware => {
-            return {
-                name: 'fatcher-middleware-checker',
-                use(context) {
-                    expect(context.body instanceof FormData).toBe(true);
-                    expect(context.payload).toBeNull();
-                    expect(context.body).toBe(payload);
-                    expect((context.body as FormData).get('name')).toBe(name);
+            return defineMiddleware(context => {
+                expect(context.body instanceof FormData).toBe(true);
+                expect(context.body).toBe(body);
+                expect((context.body as FormData).get('name')).toBe(name);
 
-                    return {
-                        status: 200,
-                        statusText: 'ok',
-                        data: null,
-                        headers: context.requestHeaders,
-                        url: context.url!,
-                    };
-                },
-            };
+                return {
+                    status: 200,
+                    statusText: 'ok',
+                    data: null,
+                    headers: context.requestHeaders,
+                    url: context.url!,
+                    options: {},
+                };
+            });
         };
 
         await fatcher({
@@ -71,7 +65,7 @@ describe('Payload', () => {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
-            payload,
+            body,
         });
     });
 });

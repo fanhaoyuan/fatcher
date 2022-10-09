@@ -1,6 +1,9 @@
-import { fatcher, Middleware } from '../src';
+import { defineMiddleware, fatcher } from '../src';
 import fetchMock from 'jest-fetch-mock';
-import { BASE_URL, json } from './utils';
+
+import { json } from '@fatcherjs/middleware-json';
+
+const BASE_URL = 'https://fatcher.virtual';
 
 describe('Custom Interceptors', () => {
     const ResponseErrMsg = 'Response Error';
@@ -37,31 +40,28 @@ describe('Custom Interceptors', () => {
         const payloadErrMsg = 'Payload is not defined';
         const methodErrMsg = 'Method is not POST';
 
-        function requestInterceptor(): Middleware {
-            return {
-                name: 'fatcher-middleware-request-interceptor',
-                use(context, next) {
-                    if (!context.payload) {
-                        throw new Error(payloadErrMsg);
-                    }
+        function requestInterceptor() {
+            return defineMiddleware((context, next) => {
+                if (!context.body) {
+                    throw new Error(payloadErrMsg);
+                }
 
-                    if (context.method !== 'POST') {
-                        throw new Error(methodErrMsg);
-                    }
+                if (context.method !== 'POST') {
+                    throw new Error(methodErrMsg);
+                }
 
-                    // ...
+                // ...
 
-                    return next();
-                },
-            };
+                return next();
+            });
         }
 
         try {
             await fatcher({
-                baseUrl: BASE_URL,
+                base: BASE_URL,
                 url: '/foo/bar',
                 middlewares: [requestInterceptor()],
-                payload: {
+                body: {
                     test: 1,
                 },
             });
@@ -71,7 +71,7 @@ describe('Custom Interceptors', () => {
 
         try {
             await fatcher({
-                baseUrl: BASE_URL,
+                base: BASE_URL,
                 url: '/foo/bar',
                 middlewares: [requestInterceptor()],
                 method: 'POST',
@@ -82,24 +82,21 @@ describe('Custom Interceptors', () => {
     });
 
     it('Response Interceptor', async () => {
-        function responseInterceptor(): Middleware {
-            return {
-                name: 'fatcher-middleware-response-interceptor',
-                async use(context, next) {
-                    const result = await next();
+        function responseInterceptor() {
+            return defineMiddleware(async (context, next) => {
+                const result = await next();
 
-                    if (result.data.status === 50000) {
-                        return Promise.reject(result.data);
-                    }
+                if (result.data.status === 50000) {
+                    return Promise.reject(result.data);
+                }
 
-                    return result;
-                },
-            };
+                return result;
+            });
         }
 
         try {
             await fatcher({
-                baseUrl: BASE_URL,
+                base: BASE_URL,
                 url: '/interceptor/response/error',
                 middlewares: [responseInterceptor(), json()],
             });
@@ -109,7 +106,7 @@ describe('Custom Interceptors', () => {
         }
 
         const { data, status } = await fatcher({
-            baseUrl: BASE_URL,
+            base: BASE_URL,
             url: '/interceptor/response/success',
             middlewares: [responseInterceptor(), json()],
         });

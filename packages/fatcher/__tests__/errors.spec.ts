@@ -1,16 +1,15 @@
-import { Context } from '../../src';
-import { FatcherError, isFatcherError } from '../../src/errors';
+import { createContext } from '../src/context';
+import { FatcherError, isFatcherError } from '../src/errors';
 
 describe('Errors', () => {
     let fatcherError: FatcherError;
 
-    const context: Context = {
+    const context = createContext({
         url: '/errors/test',
         headers: {
             'Content-Type': 'application/json',
         },
-        requestHeaders: new Headers(),
-    };
+    });
 
     const responseBody = {
         userId: 'test',
@@ -19,7 +18,7 @@ describe('Errors', () => {
 
     const response = new Response(JSON.stringify(responseBody), {
         status: 404,
-        headers: context.headers as Record<string, string>,
+        headers: context.headers,
     });
 
     it('FatcherError', () => {
@@ -29,7 +28,7 @@ describe('Errors', () => {
 
         expect(json.context).toStrictEqual(context);
         expect(json.status).toBe(404);
-        expect(json.headers['content-type']).toBe(context.headers!['Content-Type']);
+        expect(json.headers['content-type']).toBe(context.headers.get('Content-Type'));
     });
 
     it('isFatcherError', () => {

@@ -1,5 +1,6 @@
 import { Context, PatchContext } from '../interfaces';
-import { merge } from '../utils';
+import { merge } from '@fatcherjs/utils-shared';
+import { mergeHeaders } from '../mergeHeaders';
 
 /**
  * Merge context or patch context to a context
@@ -15,13 +16,7 @@ export function mergeContext(context: Context, ...patchContext: PatchContext[]):
          * Deep merge headers
          */
         if (headers) {
-            current.headers = Object.assign(merged.headers || {}, headers);
-
-            for (const [key, value] of Object.entries(headers)) {
-                if (value) {
-                    context.requestHeaders.set(key, value);
-                }
-            }
+            current.headers = mergeHeaders(context.headers, headers);
         }
 
         return current;

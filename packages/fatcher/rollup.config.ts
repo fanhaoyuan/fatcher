@@ -8,17 +8,9 @@ import replace from '@rollup/plugin-replace';
 import strip from '@rollup/plugin-strip';
 
 const input = 'src/index.ts';
-const target = 'es2018';
-const VerbosityPrefix = '[Fatcher]';
+const target = 'esnext';
 
-const plugins = [
-    nodeResolver(),
-    esbuild({ target }),
-    replace({
-        __vp__: VerbosityPrefix,
-        preventAssignment: false,
-    }),
-];
+const plugins = [nodeResolver(), esbuild({ target })];
 
 export default defineConfig([
     {
@@ -31,7 +23,7 @@ export default defineConfig([
                 file: main,
             },
             {
-                format: 'module',
+                format: 'esm',
                 file: module,
             },
         ],
@@ -50,7 +42,7 @@ export default defineConfig([
             }),
         ],
         output: {
-            plugins: [minify({ target }), bundleSize()],
+            plugins: [minify({ target: 'es2018' }), bundleSize()],
             format: 'umd',
             file: browser,
             name: 'Fatcher',

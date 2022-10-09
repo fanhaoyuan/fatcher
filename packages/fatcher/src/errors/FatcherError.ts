@@ -5,33 +5,37 @@ import { Context } from '../interfaces';
  */
 export class FatcherError extends Error {
     constructor(context: Context, response: Response) {
-        super(`__vp__ Fetch failed with status code ${response.status}`);
+        super(`[fatcher] Fetch failed with status code ${response.status}`);
 
-        this._response = response;
-        this._context = context;
+        this.#response = response;
+        this.#context = context;
     }
 
     readonly name = 'FatcherError';
 
-    readonly __isFatcherError__ = true;
+    readonly #isFatcherError = true;
 
-    private readonly _response: Response;
+    readonly #response: Response;
 
-    private readonly _context: Context;
+    readonly #context: Context;
+
+    isFatcherError() {
+        return #isFatcherError in this;
+    }
 
     toJSON() {
         const headers: Record<string, string> = {};
 
-        for (const [key, value] of this._response.headers) {
+        for (const [key, value] of this.#response.headers) {
             headers[key] = value;
         }
 
         return {
-            status: this._response.status,
-            statusText: this._response.statusText,
-            context: this._context,
+            status: this.#response.status,
+            statusText: this.#response.statusText,
+            context: this.#context,
             headers,
-            data: this._response.body,
+            data: this.#response.body,
         };
     }
 }

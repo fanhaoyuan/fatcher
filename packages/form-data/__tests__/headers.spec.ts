@@ -1,23 +1,21 @@
-import { fatcher, Middleware } from 'fatcher';
+import { defineMiddleware, fatcher } from 'fatcher';
 import { formData } from '../src';
 
 describe('Headers', () => {
     it('Not resolve with other headers', async () => {
-        const checker = (): Middleware => {
-            return {
-                name: 'fatcher-middleware-checker',
-                use(context) {
-                    expect(context.requestHeaders.get('content-type')).toBe('application/json');
+        const checker = () => {
+            return defineMiddleware(context => {
+                expect(context.headers.get('content-type')).toBe('application/json');
 
-                    return {
-                        status: 200,
-                        statusText: 'ok',
-                        data: null,
-                        headers: context.requestHeaders,
-                        url: context.url!,
-                    };
-                },
-            };
+                return {
+                    status: 200,
+                    statusText: 'ok',
+                    data: null,
+                    headers: context.headers,
+                    url: context.url!,
+                    options: {},
+                };
+            });
         };
 
         await fatcher({
@@ -30,21 +28,19 @@ describe('Headers', () => {
     });
 
     it('Headers Changed', async () => {
-        const checker = (): Middleware => {
-            return {
-                name: 'fatcher-middleware-checker',
-                use(context) {
-                    expect(context.requestHeaders.get('content-type')).toBeNull();
+        const checker = () => {
+            return defineMiddleware(context => {
+                expect(context.headers.get('content-type')).toBeNull();
 
-                    return {
-                        status: 200,
-                        statusText: 'ok',
-                        data: null,
-                        headers: context.requestHeaders,
-                        url: context.url!,
-                    };
-                },
-            };
+                return {
+                    status: 200,
+                    statusText: 'ok',
+                    data: null,
+                    headers: context.headers,
+                    url: context.url!,
+                    options: {},
+                };
+            });
         };
 
         await fatcher({

@@ -21,6 +21,7 @@
         "url": "git+https://github.com/fatcherjs/fatcher.git"
     },
     "dependencies": {
+        "@fatcherjs/utils-shared": "workspace:^",
         "fatcher": "workspace:^"
     }
 }

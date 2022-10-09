@@ -1,5 +1,5 @@
-import { getRandomString, getStringStream, sleep } from '../../../../shared/tests';
-import { canActivate, isAbortError, readStreamByChunk } from '../../src/helpers';
+import { getRandomString, getStringStream, sleep } from '../../../shared/tests';
+import { canActivate, readStreamByChunk } from '../src/helpers';
 
 describe('Helpers', () => {
     it('canActivate', () => {
@@ -19,13 +19,6 @@ describe('Helpers', () => {
         expect(canActivate(response)).toBe(true);
         expect(canActivate(usedResponse)).toBe(false);
         expect(canActivate(nullBodyResponse)).toBe(false);
-    });
-
-    it('isAbortError', () => {
-        const domException = new DOMException('The user aborted a request.', 'AbortError');
-
-        expect(isAbortError(domException)).toBe(true);
-        expect(isAbortError(new DOMException())).toBe(false);
     });
 
     it('readStreamByChunk', async () => {

@@ -1,4 +1,13 @@
-import { MaybePromise } from '../interfaces';
+import { MaybePromise, Middleware } from './interfaces';
+
+/**
+ * Confirm a data can be transform.
+ * @param response
+ * @returns
+ */
+export function canActivate(data: unknown): data is Response {
+    return data instanceof Response && !data.bodyUsed && !!data.body;
+}
 
 /**
  * Read a readable stream by chunk
@@ -26,11 +35,12 @@ export async function readStreamByChunk<T = Uint8Array, K = void>(
 }
 
 /**
- * Read a readable stream by chunk
- * @param readableStream
- * @param callback
+ * A helper function for defineMiddleware
+ * @param middleware
+ * @param displayName
  * @returns
- *
- * @deprecated Use `readStreamByChunk` instead.
  */
-export const chunkStreamReader = readStreamByChunk;
+export function defineMiddleware(middleware: Middleware, displayName?: string): Middleware {
+    middleware.displayName = displayName || 'Anonymous';
+    return middleware;
+}

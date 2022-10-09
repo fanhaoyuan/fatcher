@@ -1,4 +1,4 @@
-import { Middleware } from 'fatcher';
+import { defineMiddleware, Middleware } from 'fatcher';
 import { getStringStreamByLength } from '../../../shared/tests';
 
 interface Options {
@@ -31,16 +31,14 @@ export function responser(options: Options = {}): Middleware {
         statusText: 'ok',
     });
 
-    return {
-        name: 'fatcher-middleware-responser',
-        use() {
-            return {
-                status: response.status,
-                statusText: response.statusText,
-                headers: response.headers,
-                data: response,
-                url: response.url,
-            };
-        },
-    };
+    return defineMiddleware(() => {
+        return {
+            status: response.status,
+            statusText: response.statusText,
+            headers: response.headers,
+            data: response,
+            url: response.url,
+            options: {},
+        };
+    });
 }

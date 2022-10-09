@@ -1,4 +1,4 @@
-import { parseURL } from '../../src/url';
+import { parseURL } from '../src/utils';
 
 describe('Parse URL', () => {
     it('Base URL and request URL', () => {

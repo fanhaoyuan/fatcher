@@ -6,6 +6,7 @@ importers:
     specifiers:
       '@fansy/eslint-config': ^1.0.0
       '@fansy/prettier-config': ^1.0.0
+      '@fatcherjs/middleware-json': workspace:^
       '@jest/types': ^28.1.0
       '@rollup/plugin-node-resolve': ^13.1.3
       '@rollup/plugin-replace': ^4.0.0
@@ -29,6 +30,7 @@ importers:
     devDependencies:
       '@fansy/eslint-config': 1.0.0_typescript@4.7.4
       '@fansy/prettier-config': 1.0.0
+      '@fatcherjs/middleware-json': link:packages/json
       '@jest/types': 28.1.3
       '@rollup/plugin-node-resolve': 13.3.0_rollup@2.77.2
       '@rollup/plugin-replace': 4.0.0_rollup@2.77.2
@@ -119,8 +121,10 @@ importers:
 
   packages/form-data:
     specifiers:
+      '@fatcherjs/utils-shared': workspace:^
       fatcher: workspace:^
     dependencies:
+      '@fatcherjs/utils-shared': link:../utils-shared
       fatcher: link:../fatcher
 
   packages/json:
