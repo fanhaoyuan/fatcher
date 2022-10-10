@@ -1,5 +1,5 @@
 import { defineMiddleware } from 'fatcher';
-import { AborterOptions, RoadMap } from './interfaces';
+import { AborterMiddlewareContext, AborterOptions, RoadMap } from './interfaces';
 
 const roadMap: RoadMap = {};
 
@@ -32,7 +32,7 @@ export function aborter(options: AborterOptions = {}) {
     }, 'fatcher-middleware-aborter');
 
     const timeoutAborter = defineMiddleware(async (context, next) => {
-        const { signal, abort } = context;
+        const { signal, abort } = context as AborterMiddlewareContext;
 
         let timer: NodeJS.Timeout | null = setTimeout(abort, _timeout);
 
@@ -56,6 +56,8 @@ export function aborter(options: AborterOptions = {}) {
     }, 'fatcher-middleware-timeout-aborter');
 
     const concurrencyAborter = defineMiddleware(async (context, next) => {
+        const { signal, abort } = context as AborterMiddlewareContext;
+
         const group = groupBy
             ? groupBy(context)
             : `${context.url}_${context.method}_${new URLSearchParams(context.params)}`;
@@ -70,15 +72,12 @@ export function aborter(options: AborterOptions = {}) {
             roadMap[group] = [];
         }
 
-        roadMap[group].push({
-            abort: context.abort,
-            signal: context.signal,
-        });
+        roadMap[group].push({ abort, signal });
 
         const release = () => {
             roadMap[group] = roadMap[group].filter(item => {
                 // Keep signals which is not aborted.
-                return item.signal !== context.signal;
+                return item.signal !== signal;
             });
 
             if (!roadMap[group].length) {
@@ -87,7 +86,7 @@ export function aborter(options: AborterOptions = {}) {
         };
 
         // Cleanup with abort event triggered.
-        context.signal.addEventListener('abort', release);
+        signal.addEventListener('abort', release);
 
         const result = await next();
 

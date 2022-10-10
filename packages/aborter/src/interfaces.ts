@@ -7,23 +7,15 @@ export type RoadSign = {
 
 export type RoadMap = Record<string, RoadSign[]>;
 
-declare module 'fatcher' {
-    // eslint-disable-next-line no-shadow
-    interface Context {
-        /**
-         * Provides with aborter
-         *
-         * @require `@fatcherjs/middleware-aborter`
-         */
-        abort: () => void;
+export interface AborterMiddlewareContext extends Readonly<Context> {
+    /**
+     * Provides with aborter
+     *
+     * @require `@fatcherjs/middleware-aborter`
+     */
+    abort: () => void;
 
-        /**
-         * Provides with aborter
-         *
-         * @require `@fatcherjs/middleware-aborter`
-         */
-        signal: AbortSignal;
-    }
+    signal: AbortSignal;
 }
 
 export interface AborterOptions {
