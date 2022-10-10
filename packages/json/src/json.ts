@@ -1,4 +1,4 @@
-import { canActivate, defineMiddleware } from 'fatcher';
+import { canActivate, defineMiddleware, Middleware } from 'fatcher';
 
 /**
  * A middleware for transforming stream into json
@@ -7,7 +7,7 @@ import { canActivate, defineMiddleware } from 'fatcher';
  *
  * But if transform error. Will return a origin response.
  */
-export function json() {
+export function json(): Middleware {
     return defineMiddleware(async (context, next) => {
         const result = await next();
 
