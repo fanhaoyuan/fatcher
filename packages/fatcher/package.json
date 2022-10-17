@@ -38,6 +38,6 @@
         "prerelease": "ts-node scripts/prerelease.ts"
     },
     "dependencies": {
-        "@fatcherjs/utils-shared": "workspace:^"
+        "@fatcherjs/utils-shared": "^2.0.0"
     }
 }

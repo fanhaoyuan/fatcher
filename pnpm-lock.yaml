@@ -115,9 +115,9 @@ importers:
 
   packages/fatcher:
     specifiers:
-      '@fatcherjs/utils-shared': workspace:^
+      '@fatcherjs/utils-shared': ^2.0.0
     dependencies:
-      '@fatcherjs/utils-shared': link:../utils-shared
+      '@fatcherjs/utils-shared': 2.0.0
 
   packages/form-data:
     specifiers:
@@ -680,6 +680,10 @@ packages:
     dependencies:
       prettier: 2.7.1
     dev: true
+
+  /@fatcherjs/utils-shared/2.0.0:
+    resolution: {integrity: sha512-wFjuJn88GVK+2hL+wMuxW/s1uB/GbOlYKONmG/bFEDDuISV22fSvtLOuxhCbnQAKvmNBBoW/lqno5tl2K2calA==}
+    dev: false
 
   /@humanwhocodes/config-array/0.5.0:
     resolution: {integrity: sha512-FagtKFz74XrTl7y6HCzQpwDfXP0yhxe9lHLD1UZxjvZIcbyRz8zTFF/yYNfSfzU414eDwZ1SrO0Qvtyf+wFMQg==}
