@@ -32,10 +32,7 @@ jobs:
 
             - run: echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
 
-            - run: pnpm -r --filter fatcher run deploy
+            - run: pnpm run deploy
               env:
                   NPM_TOKEN: ${{secrets.NPM_TOKEN}}
 
-            - run: pnpm -r --filter \!fatcher run deploy
-              env:
-                  NPM_TOKEN: ${{secrets.NPM_TOKEN}}
