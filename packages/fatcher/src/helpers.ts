@@ -19,7 +19,7 @@ export async function readStreamByChunk<T = Uint8Array, K = void>(
     readableStream: ReadableStream<T>,
     callback: (chunk: T) => MaybePromise<K>
 ) {
-    async function read(reader: ReadableStreamReader<T>) {
+    async function read(reader: ReadableStreamDefaultReader<T>) {
         const { value, done } = await reader.read();
 
         if (done || !value) {
