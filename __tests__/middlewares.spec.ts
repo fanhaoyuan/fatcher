@@ -1,7 +1,7 @@
 import { fatcher, isFatcherError, canActivate, readStreamByChunk, defineMiddleware } from '../src';
 import fetchMock from 'jest-fetch-mock';
 
-import { getRandomString, getStringStream } from '../../../shared/tests';
+import { getRandomString, getStringStream } from './utils';
 const BASE_URL = 'https://fatcher.virtual';
 
 describe('Custom Middlewares', () => {

@@ -1,4 +1,4 @@
-import { Context, PatchContext } from '../src';
+import { PatchContext } from '../src';
 import { createContext, mergeContext } from '../src/context';
 
 describe('Context', () => {

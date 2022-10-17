@@ -1,4 +1,4 @@
-import { getRandomString, getStringStream, sleep } from '../../../shared/tests';
+import { getRandomString, getStringStream, sleep } from './utils';
 import { canActivate, readStreamByChunk } from '../src/helpers';
 
 describe('Helpers', () => {

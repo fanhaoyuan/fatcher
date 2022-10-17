@@ -1,6 +1,6 @@
 import { createScopedRequest, isFatcherError } from '../src';
 import fetchMock from 'jest-fetch-mock';
-import { json } from '@fatcherjs/middleware-json';
+import { json } from './utils';
 const BASE_URL = 'https://fatcher.virtual';
 
 describe('Scoped Request', () => {
