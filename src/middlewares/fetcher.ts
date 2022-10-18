@@ -73,7 +73,7 @@ export const fetcher = () => {
         defineMiddleware(async context => {
             const { params, validateCode, body, ...requestRest } = context;
 
-            let url = context.url || '';
+            let url = context.url;
 
             if (Object.keys(params).length) {
                 // Recessive call `toString()` in URLSearchParams

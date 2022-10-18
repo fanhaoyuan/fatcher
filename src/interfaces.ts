@@ -28,6 +28,12 @@ export interface Context extends Omit<RequestOptions, 'headers'> {
     middlewares: Middleware[];
     method: RequestMethod;
     params: Record<string, string>;
+    mode: RequestMode;
+    cache: RequestCache;
+    redirect: RequestRedirect;
+    credentials: RequestCredentials;
+    referrerPolicy: ReferrerPolicy;
+    url: string;
     [name: string]: any;
 }
 
