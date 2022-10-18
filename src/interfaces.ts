@@ -110,7 +110,7 @@ export interface RequestOptions extends Omit<RequestInit, 'body'> {
      *   'Content-Type': 'application/x-www-form-urlencoded'
      * }
      */
-    headers?: Record<string, string>;
+    headers?: Record<string, string> | Headers;
 
     /**
      * Custom validate status code
