@@ -1,7 +1,6 @@
 import { Querystring } from '@fatcherjs/utils-shared';
-import { Context, RequestMethod, RequestOptions } from '../interfaces';
-import { mergeHeaders } from '../mergeHeaders';
-import { parseURL } from '../utils';
+import { Context, RequestMethod, RequestOptions } from './interfaces';
+import { parseURL, mergeHeaders } from './utils';
 
 /**
  * Create initial context by request options

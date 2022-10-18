@@ -1,5 +1,6 @@
 import { PatchContext } from '../src';
-import { createContext, mergeContext } from '../src/context';
+import { createContext } from '../src/createContext';
+import { combine } from '../src/utils';
 
 describe('Context', () => {
     it('createContext', () => {
@@ -36,13 +37,13 @@ describe('Context', () => {
             credentials: 'same-origin',
         });
 
-        const patchContext: PatchContext= {
+        const patchContext: PatchContext = {
             url: '/b/test',
             method: 'PATCH',
             headers: new Headers({}),
         };
 
-        const mergedContext = mergeContext(context, patchContext);
+        const mergedContext = combine(context, patchContext);
 
         expect(mergedContext.url).toBe(patchContext.url);
         expect(mergedContext.base).toBe(context.base);
@@ -67,7 +68,7 @@ describe('Context', () => {
 
         const patchContextWithEmptyHeaders: PatchContext = {};
 
-        const mergedContext = mergeContext(context, patchContext, patchContextWithEmptyHeaders);
+        const mergedContext = combine(context, patchContext, patchContextWithEmptyHeaders);
 
         // expect(mergedContext.headers!['Content-Type']).toBe(patchContext.headers!['Content-Type']);
         // expect(mergedContext.headers!['Test']).toBe(mergedContext.headers!['Test']);

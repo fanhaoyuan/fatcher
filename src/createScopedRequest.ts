@@ -1,6 +1,6 @@
 import { fatcher } from './fatcher';
 import { RequestBody, RequestOptions } from './interfaces';
-import { mergeOptions } from './mergeOptions';
+import { combine } from './utils';
 
 /**
  * Create a scope fatcher request.
@@ -9,7 +9,7 @@ import { mergeOptions } from './mergeOptions';
  */
 export function createScopedRequest<K = any>(scopedOptions: RequestOptions = {}) {
     return function request<T = K>(url: string, body?: RequestBody, inlineOptions: RequestOptions = {}) {
-        const options = mergeOptions(scopedOptions, { ...inlineOptions, url, body });
+        const options = combine(scopedOptions, { ...inlineOptions, url, body });
         return fatcher<T>(options);
     };
 }

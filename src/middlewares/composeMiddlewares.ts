@@ -1,6 +1,6 @@
 import { Context, Middleware, MiddlewareResult, PatchContext } from '../interfaces';
-import { mergeContext } from '../context';
 import { immutable } from '@fatcherjs/utils-shared';
+import { combine } from '../utils';
 
 /**
  * Compose middlewares to a higher-order function.
@@ -59,7 +59,7 @@ export function composeMiddlewares(middlewares: Middleware[]) {
             }
 
             if (patchContext) {
-                context = mergeContext(context, patchContext);
+                context = combine(context, patchContext);
                 immutableContext = immutable(context);
             }
 
