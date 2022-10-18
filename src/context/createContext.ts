@@ -1,5 +1,6 @@
 import { Querystring } from '@fatcherjs/utils-shared';
 import { Context, RequestMethod, RequestOptions } from '../interfaces';
+import { mergeHeaders } from '../mergeHeaders';
 import { parseURL } from '../utils';
 
 /**
@@ -9,6 +10,11 @@ import { parseURL } from '../utils';
  */
 export function createContext(options: RequestOptions): Context {
     const { base = '', url = '', headers = {}, method = 'GET' } = options;
+
+    const defaultHeaders = {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        ...headers,
+    };
 
     let params = options.params || {};
 
@@ -27,7 +33,7 @@ export function createContext(options: RequestOptions): Context {
         ...options,
         url: normalizedURL,
         params,
-        headers: new Headers(headers),
+        headers: mergeHeaders(new Headers(), defaultHeaders),
         middlewares: [],
         method: method.toUpperCase() as RequestMethod,
     };
