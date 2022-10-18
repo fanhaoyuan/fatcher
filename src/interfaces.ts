@@ -33,6 +33,7 @@ export interface Context extends Omit<RequestOptions, 'headers'> {
     redirect: RequestRedirect;
     credentials: RequestCredentials;
     referrerPolicy: ReferrerPolicy;
+    url: string;
     [name: string]: any;
 }
 
