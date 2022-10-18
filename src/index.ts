@@ -1,6 +1,6 @@
 export * from './helpers';
 export { FatcherError, isFatcherError } from './errors';
-export { setDefaultOptions, mergeOptions } from './options';
+export { mergeOptions } from './mergeOptions';
 export * from './interfaces';
 export * from './fatcher';
 export * from './createScopedRequest';

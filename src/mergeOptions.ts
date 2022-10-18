@@ -1,4 +1,4 @@
-import { RequestOptions } from '../interfaces';
+import { RequestOptions } from './interfaces';
 import { merge } from '@fatcherjs/utils-shared';
 
 export function mergeOptions(options: RequestOptions, ...patchOptions: Partial<RequestOptions>[]): RequestOptions {

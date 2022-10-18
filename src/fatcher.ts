@@ -1,5 +1,4 @@
 import { RequestOptions, Result } from './interfaces';
-import { defaultOptions, mergeOptions } from './options';
 import { fetcher, registerMiddlewares, composeMiddlewares } from './middlewares';
 import { createContext } from './context';
 import { canActivate } from './helpers';
@@ -8,9 +7,7 @@ import { isFunction, merge } from '@fatcherjs/utils-shared';
 /**
  * Send HTTP request with custom options.
  */
-export async function fatcher<T = any>(inlineOptions: RequestOptions = {}): Promise<Result<T>> {
-    const options = mergeOptions(defaultOptions, inlineOptions);
-
+export async function fatcher<T = any>(options: RequestOptions = {}): Promise<Result<T>> {
     const { middlewares = [], ...rest } = options;
 
     const registeredMiddlewares = registerMiddlewares([...middlewares, fetcher()]);

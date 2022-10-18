@@ -1,6 +1,6 @@
 import { fatcher } from './fatcher';
 import { RequestBody, RequestOptions } from './interfaces';
-import { mergeOptions } from './options';
+import { mergeOptions } from './mergeOptions';
 
 /**
  * Create a scope fatcher request.
