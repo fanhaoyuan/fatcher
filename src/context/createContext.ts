@@ -19,6 +19,11 @@ export function createContext(options: RequestOptions): Context {
     }
 
     return {
+        credentials: 'same-origin',
+        cache: 'default',
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer-when-downgrade',
+        mode: 'cors',
         ...options,
         url: normalizedURL,
         params,
