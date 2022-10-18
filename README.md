@@ -1,5 +1,5 @@
 <div align="center">
-  <img alt="Fatcher logo" src="https://github.com/fatcherjs/fatcher/raw/master/packages/docs/public/fatcher.png" height="120" width="120" />
+  <img alt="Fatcher logo" src="https://github.com/fatcherjs/v1.docs/raw/master/public/fatcher.png" height="120" width="120" />
 </div>
 
 <div align="center">
@@ -20,18 +20,18 @@ Send fetch request gracefully in browsers and nodeJS
 ## How it work
 
 <div align="center">
-  <img alt="Fatcher Workflow" src="https://github.com/fatcherjs/fatcher/raw/master/packages/docs/public/fatcher_workflow.png" />
+  <img alt="Fatcher Workflow" src="https://github.com/fatcherjs/v1.docs/raw/master/public/fatcher_workflow.png" />
 </div>
 
 ## Why fetch
 
 <div align="center">
-  <img alt="Fatcher Workflow" src="https://github.com/fatcherjs/fatcher/raw/master/packages/docs/public/fatcher_streams.png" />
+  <img alt="Fatcher Workflow" src="https://github.com/fatcherjs/v1.docs/raw/master/public/fatcher_streams.png" />
 </div>
 
 ## Documentation
 
-➡️ [View documentation Here](https://fatcherjs.github.io/fatcher)
+➡️ [View documentation Here](https://fatcherjs.github.io/v1.docs/)
 
 ## Install
 
@@ -55,8 +55,8 @@ Send fetch request gracefully in browsers and nodeJS
 
 ## Usage
 
-For detailed usage information,[visit the docs](https://fatcherjs.github.io/fatcher/quick-start).
+For detailed usage information,[visit the docs](https://fatcherjs.github.io/v1.docs/quick-start).
 
 ## License
 
-[MIT](https://github.com/fatcherjs/fatcher/blob/master/LICENSE)
+[MIT](https://github.com/fatcherjs/v1.docs/blob/master/LICENSE)
