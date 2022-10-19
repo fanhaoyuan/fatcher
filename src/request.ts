@@ -7,7 +7,7 @@ import { defineMiddleware } from './helpers';
  * A middleware for send http request by using fetch.
  * @returns
  */
-export const fetcher = () => {
+export const request = () => {
     const isNonNullBody = (method: RequestMethod) => !['GET', 'HEAD'].includes(method);
 
     return [
