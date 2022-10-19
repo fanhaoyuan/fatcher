@@ -1,3 +1,15 @@
+## v2.0.0
+
+-   ❌ Deprecated `setDefaultOptions`
+-   ❌ Deprecated `mergeOptions`
+-   ❌ Deprecated `isAbortError`
+-   ❌ Deprecated `chunkStreamReader`
+-   🚀 Add `combine` for merging options and context
+-   🚀 Add `defineMiddleware` helper function to declare middleware
+-   🚀 `RequestMethod` allows lower method
+-   🚀 `Context` with required context.
+-   🔧 Refactor object middleware to functions
+
 ## v1.8.0
 
 -   🚀 middleware can provide context before fetching
