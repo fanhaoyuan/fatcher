@@ -1,13 +1,13 @@
-import { RequestMethod, MiddlewareResult } from '../interfaces';
-import { FatcherError } from '../errors';
+import { RequestMethod, MiddlewareResult } from './interfaces';
+import { FatcherError } from './FatcherError';
 import { isPlainObject, Querystring } from '@fatcherjs/utils-shared';
-import { defineMiddleware } from '../helpers';
+import { defineMiddleware } from './helpers';
 
 /**
  * A middleware for send http request by using fetch.
  * @returns
  */
-export const fetcher = () => {
+export const request = () => {
     const isNonNullBody = (method: RequestMethod) => !['GET', 'HEAD'].includes(method);
 
     return [

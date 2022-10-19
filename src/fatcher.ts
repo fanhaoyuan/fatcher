@@ -1,5 +1,7 @@
 import { RequestOptions, Result } from './interfaces';
-import { fetcher, registerMiddlewares, composeMiddlewares } from './middlewares';
+import { registerMiddlewares } from './registerMiddlewares';
+import { composeMiddlewares } from './composeMiddlewares';
+import { request } from './request';
 import { createContext } from './createContext';
 import { canActivate } from './helpers';
 import { isFunction, merge } from '@fatcherjs/utils-shared';
@@ -10,7 +12,7 @@ import { isFunction, merge } from '@fatcherjs/utils-shared';
 export async function fatcher<T = any>(options: RequestOptions = {}): Promise<Result<T>> {
     const { middlewares = [], ...rest } = options;
 
-    const registeredMiddlewares = registerMiddlewares([...middlewares, fetcher()]);
+    const registeredMiddlewares = registerMiddlewares([...middlewares, request()]);
 
     const initialContext = createContext(rest);
 
