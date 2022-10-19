@@ -1,5 +1,7 @@
 import { RequestOptions, Result } from './interfaces';
-import { fetcher, registerMiddlewares, composeMiddlewares } from './middlewares';
+import { registerMiddlewares } from './registerMiddlewares';
+import { composeMiddlewares } from './composeMiddlewares';
+import { fetcher } from './fetcher';
 import { createContext } from './createContext';
 import { canActivate } from './helpers';
 import { isFunction, merge } from '@fatcherjs/utils-shared';

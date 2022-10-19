@@ -1,4 +1,4 @@
-import { MiddlewareRegister, Middleware } from '../interfaces';
+import { MiddlewareRegister, Middleware } from './interfaces';
 
 function _filter(registers: MiddlewareRegister[]) {
     return registers.filter((item): item is Middleware | (Middleware | null)[] => !!item);
