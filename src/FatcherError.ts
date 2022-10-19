@@ -1,4 +1,4 @@
-import { Context } from '../interfaces';
+import { Context } from './interfaces';
 
 /**
  * Fatcher error

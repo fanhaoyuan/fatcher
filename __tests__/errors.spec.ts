@@ -1,5 +1,5 @@
 import { createContext } from '../src/createContext';
-import { FatcherError, isFatcherError } from '../src/errors';
+import { isFatcherError, FatcherError } from '../src';
 
 describe('Errors', () => {
     let fatcherError: FatcherError;

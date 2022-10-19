@@ -1,3 +1,5 @@
+import { isFunction } from '@fatcherjs/utils-shared';
+import { FatcherError } from './FatcherError';
 import { MaybePromise, Middleware } from './interfaces';
 
 /**
@@ -43,4 +45,13 @@ export async function readStreamByChunk<T = Uint8Array, K = void>(
 export function defineMiddleware(middleware: Middleware, displayName?: string): Middleware {
     middleware.displayName = displayName || 'Anonymous';
     return middleware;
+}
+
+/**
+ * Confirm an error whether is FatcherError
+ * @param error
+ * @returns
+ */
+export function isFatcherError(error: Error): error is FatcherError {
+    return error instanceof FatcherError && isFunction(error.isFatcherError) && error.isFatcherError();
 }
