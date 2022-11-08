@@ -9,8 +9,21 @@ import { isFunction, merge } from '@fatcherjs/utils-shared';
 /**
  * Send HTTP request with custom options.
  */
-export async function fatcher<T = any>(options: RequestOptions = {}): Promise<Result<T>> {
-    const { middlewares = [], ...rest } = options;
+export async function fatcher<T = any>(input?: RequestOptions): Promise<Result<T>>;
+export async function fatcher<T = any>(input: string, options?: RequestOptions): Promise<Result<T>>;
+export async function fatcher<T = any>(
+    input?: string | RequestOptions,
+    options: RequestOptions = {}
+): Promise<Result<T>> {
+    let _options = options;
+
+    if (typeof input === 'string') {
+        _options.url = input;
+    } else {
+        _options = Object.assign({}, _options, input);
+    }
+
+    const { middlewares = [], ...rest } = _options;
 
     const registeredMiddlewares = registerMiddlewares([...middlewares, request()]);
 
