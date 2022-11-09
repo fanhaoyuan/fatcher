@@ -1,3 +1,7 @@
+## v2.1.0
+
+-   🚀 Supports string inputs.
+
 ## v2.0.0
 
 -   ❌ Deprecated `setDefaultOptions`
