@@ -15,7 +15,7 @@ jobs:
 
             - uses: pnpm/action-setup@v2.0.1
               with:
-                  version: 6.20.3
+                  version: 7
 
             - uses: actions/setup-node@v2
               with:
@@ -24,7 +24,7 @@ jobs:
 
             - run: pnpm install
 
-            - run: pnpm run build
+            - run: pnpm run -r build
 
     eslint:
         runs-on: ubuntu-latest
@@ -33,7 +33,7 @@ jobs:
 
             - uses: pnpm/action-setup@v2.0.1
               with:
-                  version: 6.20.3
+                  version: 7
 
             - uses: actions/setup-node@v2
               with:
@@ -51,7 +51,7 @@ jobs:
 
             - uses: pnpm/action-setup@v2.0.1
               with:
-                  version: 6.20.3
+                  version: 7
 
             - uses: actions/setup-node@v2
               with:
@@ -60,7 +60,7 @@ jobs:
 
             - run: pnpm install
 
-            - run: pnpm run tsc
+            - run: pnpm run -r tsc
 
     test:
         runs-on: ubuntu-latest
@@ -69,7 +69,7 @@ jobs:
 
             - uses: pnpm/action-setup@v2.0.1
               with:
-                  version: 6.20.3
+                  version: 7
 
             - uses: actions/setup-node@v2
               with:
