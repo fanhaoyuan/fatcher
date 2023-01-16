@@ -50,6 +50,12 @@ importers:
     dependencies:
       '@fatcherjs/utils-shared': 2.0.0
 
+  packages/middleware-aborter:
+    specifiers:
+      fatcher: workspace:^
+    devDependencies:
+      fatcher: link:../fatcher
+
   packages/middleware-json:
     specifiers:
       fatcher: workspace:*
