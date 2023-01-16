@@ -32,7 +32,6 @@
     "scripts": {
         "dev": "rimraf dist && rollup -c rollup.config.ts -w",
         "build": "rimraf dist && rollup -c rollup.config.ts",
-        "eslint": "eslint .",
         "tsc": "tsc --noEmit",
         "deploy": "pnpm run build && pnpm publish --no-git-check",
         "ci": "npm run eslint && npm run tsc && npm run build && npm run test"

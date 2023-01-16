@@ -2,7 +2,8 @@
     "private": true,
     "scripts": {
         "test": "jest",
-        "test:cov": "jest --coverage"
+        "test:cov": "jest --coverage",
+        "eslint": "eslint ."
     },
     "devDependencies": {
         "@fansy/eslint-config": "^1.1.0",
