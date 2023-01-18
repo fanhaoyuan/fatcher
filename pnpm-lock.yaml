@@ -62,6 +62,15 @@ importers:
     devDependencies:
       fatcher: link:../fatcher
 
+  packages/middleware-form-data:
+    specifiers:
+      '@fatcherjs/utils-shared': ^2.0.0
+      fatcher: workspace:*
+    dependencies:
+      '@fatcherjs/utils-shared': 2.0.0
+    devDependencies:
+      fatcher: link:../fatcher
+
   packages/middleware-json:
     specifiers:
       fatcher: workspace:*

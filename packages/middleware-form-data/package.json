@@ -1,0 +1,33 @@
+{
+    "name": "@fatcherjs/middleware-form-data",
+    "version": "2.0.0",
+    "main": "dist/form-data.js",
+    "module": "dist/form-data.esm.js",
+    "browser": "dist/form-data.min.js",
+    "typings": "dist/form-data.d.ts",
+    "scripts": {
+        "dev": "rimraf dist && rollup -c rollup.config.ts -w",
+        "build": "rimraf dist && rollup -c rollup.config.ts",
+        "deploy": "pnpm run build && pnpm publish --no-git-check",
+        "tsc": "tsc --noEmit"
+    },
+    "license": "MIT",
+    "description": "A middleware for consuming payload to form data.",
+    "files": [
+        "dist"
+    ],
+    "homepage": "https://github.com/fanhaoyuan/fatcher/tree/master/packages/middleware-form-data",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/fanhaoyuan/fatcher.git"
+    },
+    "devDependencies": {
+        "fatcher": "workspace:*"
+    },
+    "peerDependencies": {
+        "fatcher": "^2.0.0"
+    },
+    "dependencies": {
+        "@fatcherjs/utils-shared": "^2.0.0"
+    }
+}
