@@ -56,6 +56,12 @@ importers:
     devDependencies:
       fatcher: link:../fatcher
 
+  packages/middleware-cache:
+    specifiers:
+      fatcher: workspace:^
+    devDependencies:
+      fatcher: link:../fatcher
+
   packages/middleware-json:
     specifiers:
       fatcher: workspace:*

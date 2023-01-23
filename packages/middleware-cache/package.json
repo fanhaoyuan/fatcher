@@ -1,0 +1,30 @@
+{
+    "name": "@fatcherjs/middleware-cache",
+    "version": "2.0.0",
+    "main": "dist/cache.js",
+    "module": "dist/cache.esm.js",
+    "browser": "dist/cache.min.js",
+    "typings": "dist/cache.d.ts",
+    "scripts": {
+        "dev": "rimraf dist && rollup -c rollup.config.ts -w",
+        "build": "rimraf dist && rollup -c rollup.config.ts",
+        "deploy": "pnpm run build && pnpm publish --no-git-check",
+        "tsc": "tsc --noEmit"
+    },
+    "description": "A Middleware for caching response",
+    "files": [
+        "dist"
+    ],
+    "homepage": "https://github.com/fanhaoyuan/fatcher/tree/master/packages/middleware-cache",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/fanhaoyuan/fatcher.git"
+    },
+    "license": "MIT",
+    "devDependencies": {
+        "fatcher": "workspace:^"
+    },
+    "peerDependencies": {
+        "fatcher": "^2.0.0"
+    }
+}
