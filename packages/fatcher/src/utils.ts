@@ -50,10 +50,7 @@ export function parseURL(base: string, url: string) {
  * @param patchHeaders
  * @returns
  */
-export function mergeHeaders(
-    headers: Headers | Record<string, string>,
-    patchHeaders: Headers | Record<string, string>
-) {
+export function mergeHeaders(headers: HeadersInit, patchHeaders: HeadersInit) {
     const h = headers instanceof Headers ? headers : new Headers();
 
     for (const [key, value] of Object.entries(patchHeaders)) {
