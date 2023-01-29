@@ -8,8 +8,7 @@
     "scripts": {
         "dev": "rimraf dist && rollup -c rollup.config.ts -w",
         "build": "rimraf dist && rollup -c rollup.config.ts",
-        "deploy": "pnpm run build && pnpm publish --no-git-check",
-        "tsc": "tsc --noEmit"
+        "deploy": "pnpm run build && pnpm publish --no-git-check"
     },
     "description": "A Middleware for caching response",
     "files": [

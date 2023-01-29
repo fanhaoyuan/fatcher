@@ -60,7 +60,7 @@ jobs:
 
             - run: pnpm install
 
-            - run: pnpm run -r tsc
+            - run: pnpm -r exec tsc --noEmit
 
     test:
         runs-on: ubuntu-latest
