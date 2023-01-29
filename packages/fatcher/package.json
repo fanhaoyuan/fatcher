@@ -2,10 +2,10 @@
     "name": "fatcher",
     "version": "2.1.0",
     "description": "Send fetch request gracefully in browsers and nodeJS",
-    "homepage": "https://github.com/fatcherjs/fatcher",
+    "homepage": "https://github.com/fanhaoyuan/fatcher",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/fatcherjs/fatcher.git"
+        "url": "git+https://github.com/fanhaoyuan/fatcher.git"
     },
     "license": "MIT",
     "keywords": [

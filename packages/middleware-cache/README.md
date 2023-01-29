@@ -2,11 +2,9 @@
 
 A middleware for caching response result.
 
-[![codecov](https://codecov.io/gh/fatcherjs/middleware-cache/branch/master/graph/badge.svg?token=TFKUGW6YNI)](https://codecov.io/gh/fatcherjs/middleware-cache)
 [![install size](https://packagephobia.com/badge?p=@fatcherjs/middleware-cache)](https://packagephobia.com/result?p=@fatcherjs/middleware-cache)
 <a href="https://unpkg.com/@fatcherjs/middleware-cache"><img alt="Size" src="https://img.badgesize.io/https://unpkg.com/@fatcherjs/middleware-cache"></a>
 <a href="https://npmjs.com/package/@fatcherjs/middleware-cache"><img src="https://img.shields.io/npm/v/@fatcherjs/middleware-cache.svg" alt="npm package"></a>
-<a href="https://github.com/fatcherjs/middleware-cache/actions/workflows/ci.yml"><img src="https://github.com/fatcherjs/middleware-cache/actions/workflows/ci.yml/badge.svg?branch=master" alt="build status"></a>
 
 ## Install
 
@@ -53,4 +51,4 @@ fatcher({
 
 ## License
 
-[LICENSE](https://github.com/fatcherjs/fatcher/blob/master/LICENSE)
+[LICENSE](https://github.com/fanhaoyuan/fatcher/blob/master/LICENSE)

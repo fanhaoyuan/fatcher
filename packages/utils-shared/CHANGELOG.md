@@ -1,10 +1,10 @@
 ## v2.0.0
 
--   🚀 add merge for custom merge a list of objects [#8](https://github.com/fatcherjs/utils-shared/pull/8)
--   🚀 add `isPlainObject` for check value whether a plain object [#7](https://github.com/fatcherjs/utils-shared/pull/7)
--   🚀 add `isFunction` for checking value whether is a function [#6](https://github.com/fatcherjs/utils-shared/pull/6)
--   🚀 add `immutable` [#5](https://github.com/fatcherjs/utils-shared/pull/5)
--   🔧 move `getParamsByQuerystring` and `getQuerystringByParams` to `Querystring` [#4](https://github.com/fatcherjs/utils-shared/pull/4)
+-   🚀 add merge for custom merge a list of objects
+-   🚀 add `isPlainObject` for check value whether a plain object
+-   🚀 add `isFunction` for checking value whether is a function
+-   🚀 add `immutable`
+-   🔧 move `getParamsByQuerystring` and `getQuerystringByParams` to `Querystring`
 
 ## v1.7.2
 

@@ -15,10 +15,10 @@
     "files": [
         "dist"
     ],
-    "homepage": "https://github.com/fanhaoyuan/fatcher/tree/master/packages/aborter",
+    "homepage": "https://github.com/fanhaoyuan/fatcher/tree/master/packages/middleware-aborter",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/fatcherjs/fatcher.git"
+        "url": "git+https://github.com/fanhaoyuan/fatcher.git"
     },
     "devDependencies": {
         "fatcher": "workspace:^"
