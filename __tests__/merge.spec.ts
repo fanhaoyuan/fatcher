@@ -1,4 +1,4 @@
-import { merge } from '../../src/utils/index';
+import { merge } from '../src/utils';
 
 describe('merge', () => {
     it('Basic merge', () => {
@@ -66,7 +66,7 @@ describe('merge', () => {
         const b = {
             b: {
                 a: 'c',
-                b: ''
+                b: '',
             },
         };
 

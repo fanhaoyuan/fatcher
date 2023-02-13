@@ -1,5 +1,4 @@
-import { defineMiddleware, fatcher } from '../../../src';
-import { formData } from '../../../src/middlewares/form-data';
+import { defineMiddleware, fatcher, formData } from '../../../src';
 
 describe('Headers', () => {
     it('Not resolve with other headers', async () => {

@@ -1,6 +1,5 @@
-import { fatcher } from '../../../src';
+import { fatcher, json } from '../../../src';
 import fetchMock from 'jest-fetch-mock';
-import { json } from '../../../src/middlewares/json';
 
 describe('Json', () => {
     const BASE_URL = 'https://virual.com';

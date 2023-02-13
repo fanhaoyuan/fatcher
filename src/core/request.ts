@@ -1,7 +1,8 @@
 import { RequestMethod, MiddlewareResult } from '../interfaces';
 import { FatcherError } from './FatcherError';
-import { isPlainObject, Querystring } from '../utils';
+import { isPlainObject } from '../utils';
 import { defineMiddleware } from '../helpers/defineMiddleware';
+import { stringify } from './stringify';
 
 /**
  * A middleware for send http request by using fetch.
@@ -41,7 +42,7 @@ export const request = () => {
 
                 if (type && type.includes('application/x-www-form-urlencoded')) {
                     return next({
-                        body: Querystring.stringify(body as Record<string, any>),
+                        body: stringify(body as Record<string, any>),
                     });
                 }
             }
@@ -77,7 +78,7 @@ export const request = () => {
 
             if (Object.keys(params).length) {
                 // Recessive call `toString()` in URLSearchParams
-                url += `?${Querystring.stringify(params)}`;
+                url += `?${stringify(params)}`;
             }
 
             const response = await fetch(url, { ...requestRest, body: isPlainObject(body) ? body.toString() : body });

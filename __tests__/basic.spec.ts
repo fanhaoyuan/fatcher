@@ -1,6 +1,5 @@
-import { fatcher, isFatcherError } from '../src';
+import { fatcher, isFatcherError, json } from '../src';
 import fetchMock from 'jest-fetch-mock';
-import { json } from './utils';
 
 const BASE_URL = 'https://fatcher.virtual';
 

@@ -1,5 +1,4 @@
-import { defineMiddleware, fatcher, Middleware } from '../../../src';
-import { formData } from '../../../src/middlewares/form-data';
+import { defineMiddleware, fatcher, Middleware, formData } from '../../../src';
 
 describe('Payload', () => {
     it('Object change to formData', async () => {

@@ -1,4 +1,4 @@
-import { isFunction } from '../../src/utils/index';
+import { isFunction } from '../src/utils';
 
 describe('isFunction', () => {
     it('isFunction', () => {

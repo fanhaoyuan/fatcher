@@ -1,5 +1,6 @@
 import { Context, RequestMethod, RequestOptions } from '../interfaces';
-import { parseURL, mergeHeaders, Querystring } from '../utils';
+import { parseURL, mergeHeaders } from '../utils';
+import { parse } from './parse';
 
 /**
  * Create initial context by request options
@@ -19,7 +20,7 @@ export function createContext(options: RequestOptions): Context {
     const [normalizedURL, querystring] = parseURL(base, url).split('?');
 
     if (querystring) {
-        params = Object.assign({}, params, Querystring.parse(querystring));
+        params = Object.assign({}, params, parse(querystring));
     }
 
     return {

@@ -1,26 +1,10 @@
-import { Querystring } from '../../src/utils/index';
+import { stringify } from '../src/core/stringify';
 
-describe('Querystring', () => {
-    it('Parse with empty querystring', () => {
-        const querystring = '';
-
-        const params = Querystring.parse(querystring);
-
-        expect(params).toStrictEqual({});
-    });
-
-    it('Parse with normal querystring', () => {
-        const querystring = 'a=b&b=c';
-
-        const params = Querystring.parse(querystring);
-
-        expect(params).toStrictEqual({ a: 'b', b: 'c' });
-    });
-
+describe('stringify', () => {
     it('Stringify with empty params object', () => {
         const params: Record<string, string> = {};
 
-        const querystring = Querystring.stringify(params);
+        const querystring = stringify(params);
 
         expect(querystring).toBe('');
     });
@@ -31,7 +15,7 @@ describe('Querystring', () => {
             b: 'c',
         };
 
-        const querystring = Querystring.stringify(params);
+        const querystring = stringify(params);
 
         expect(querystring).toBe('a=b&b=c');
     });
@@ -42,7 +26,7 @@ describe('Querystring', () => {
             c: undefined,
         };
 
-        const querystring = Querystring.stringify(params);
+        const querystring = stringify(params);
 
         expect(querystring).toBe('a=b');
     });
@@ -53,7 +37,7 @@ describe('Querystring', () => {
             c: undefined,
         };
 
-        const querystring = Querystring.stringify(params);
+        const querystring = stringify(params);
 
         expect(querystring).toBe('');
     });
