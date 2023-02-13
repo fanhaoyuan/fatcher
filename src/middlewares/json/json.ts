@@ -1,4 +1,4 @@
-import { canActivate, defineMiddleware, Middleware } from 'fatcher';
+import { canActivate, defineMiddleware, Middleware } from '../..';
 
 /**
  * A middleware for transforming stream into json
