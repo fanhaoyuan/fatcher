@@ -1,6 +1,5 @@
-import { Querystring } from '../utils/index';
 import { Context, RequestMethod, RequestOptions } from '../interfaces';
-import { parseURL, mergeHeaders } from '../utils';
+import { parseURL, mergeHeaders, Querystring } from '../utils';
 
 /**
  * Create initial context by request options

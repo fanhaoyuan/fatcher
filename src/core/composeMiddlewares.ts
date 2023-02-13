@@ -1,6 +1,5 @@
 import { Context, Middleware, MiddlewareResult, PatchContext } from '../interfaces';
-import { immutable } from '../utils/index';
-import { combine } from '../utils';
+import { immutable, combine } from '../utils';
 
 /**
  * Compose middlewares to a higher-order function.
