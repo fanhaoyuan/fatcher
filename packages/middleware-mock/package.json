@@ -1,0 +1,34 @@
+{
+    "name": "@fatcherjs/middleware-mock",
+    "version": "1.8.0",
+    "main": "dist/client/mock.js",
+    "module": "dist/client/mock.esm.js",
+    "browser": "dist/client/mock.min.js",
+    "typings": "dist/client/mock.d.ts",
+    "bin": {
+        "fm": "dist/bin/cli"
+    },
+    "scripts": {
+        "dev": "rimraf dist && rollup -c rollup.config.ts -w",
+        "build": "rimraf dist && rollup -c rollup.config.ts && tsc -p tsconfig.build.json && cp -r src/serviceWorker dist/src/serviceWorker",
+        "deploy": "pnpm run build && pnpm publish --no-git-check --access public",
+        "tsc": "tsc --noEmit && tsc -p src/serviceWorker/tsconfig.json"
+    },
+    "dependencies": {
+        "@fatcherjs/utils-shared": "^2.0.0",
+        "async-validator": "^4.2.5",
+        "commander": "^9.4.0",
+        "esbuild": "^0.14.51",
+        "fast-glob": "^3.2.11",
+        "fs-extra": "^10.1.0",
+        "mockjs": "^1.1.0"
+    },
+    "devDependencies": {
+        "@types/fs-extra": "^9.0.13",
+        "@types/mockjs": "^1.0.6",
+        "fatcher": "workspace:*"
+    },
+    "peerDependencies": {
+        "fatcher": "^2.0.0"
+    }
+}

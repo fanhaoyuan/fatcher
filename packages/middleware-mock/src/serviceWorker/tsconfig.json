@@ -1,0 +1,9 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "lib": ["WebWorker"],
+        "skipLibCheck": true
+    },
+    "include": ["./*"],
+    "exclude": ["node_modules"]
+}
