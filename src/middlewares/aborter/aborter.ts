@@ -1,4 +1,4 @@
-import { defineMiddleware } from 'fatcher';
+import { defineMiddleware } from '../..';
 import { AborterMiddlewareContext, AborterOptions, RoadMap } from './interfaces';
 
 const roadMap: RoadMap = {};

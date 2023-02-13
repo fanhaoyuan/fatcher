@@ -1,6 +1,6 @@
-import { fatcher } from 'fatcher';
+import { fatcher } from '../../../src';
 import fetchMock from 'jest-fetch-mock';
-import { aborter, isAbortError } from '../src';
+import { aborter, isAbortError } from '../../../src/middlewares/aborter';
 
 describe('Concurrency', () => {
     const BASE_URL = 'https://fatcher.virual';
