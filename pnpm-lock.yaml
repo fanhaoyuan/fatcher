@@ -50,7 +50,7 @@ importers:
     specifiers:
       '@fatcherjs/utils-shared': ^2.0.0
     dependencies:
-      '@fatcherjs/utils-shared': 2.0.0
+      '@fatcherjs/utils-shared': link:../utils-shared
 
   packages/middleware-aborter:
     specifiers:
@@ -69,7 +69,7 @@ importers:
       '@fatcherjs/utils-shared': ^2.0.0
       fatcher: workspace:*
     dependencies:
-      '@fatcherjs/utils-shared': 2.0.0
+      '@fatcherjs/utils-shared': link:../utils-shared
     devDependencies:
       fatcher: link:../fatcher
 
@@ -92,7 +92,7 @@ importers:
       fs-extra: ^10.1.0
       mockjs: ^1.1.0
     dependencies:
-      '@fatcherjs/utils-shared': 2.0.0
+      '@fatcherjs/utils-shared': link:../utils-shared
       async-validator: 4.2.5
       commander: 9.5.0
       esbuild: 0.14.54
@@ -103,6 +103,15 @@ importers:
       '@types/fs-extra': 9.0.13
       '@types/mockjs': 1.0.7
       fatcher: link:../fatcher
+
+  packages/middleware-progress:
+    specifiers:
+      fatcher: workspace:*
+    devDependencies:
+      fatcher: link:../fatcher
+
+  packages/utils-shared:
+    specifiers: {}
 
 packages:
 
@@ -522,10 +531,6 @@ packages:
     dependencies:
       prettier: 2.7.1
     dev: true
-
-  /@fatcherjs/utils-shared/2.0.0:
-    resolution: {integrity: sha512-wFjuJn88GVK+2hL+wMuxW/s1uB/GbOlYKONmG/bFEDDuISV22fSvtLOuxhCbnQAKvmNBBoW/lqno5tl2K2calA==}
-    dev: false
 
   /@humanwhocodes/config-array/0.5.0:
     resolution: {integrity: sha512-FagtKFz74XrTl7y6HCzQpwDfXP0yhxe9lHLD1UZxjvZIcbyRz8zTFF/yYNfSfzU414eDwZ1SrO0Qvtyf+wFMQg==}
