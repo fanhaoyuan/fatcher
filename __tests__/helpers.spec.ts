@@ -1,5 +1,5 @@
 import { getRandomString, getStringStream, sleep } from './utils';
-import { canActivate, readStreamByChunk } from '../src/helpers';
+import { canActivate, readStreamByChunk } from '../src';
 
 describe('Helpers', () => {
     it('canActivate', () => {
