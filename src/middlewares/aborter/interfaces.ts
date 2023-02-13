@@ -1,4 +1,4 @@
-import { Context } from '../..';
+import { Context } from '../../interfaces';
 
 export type RoadSign = {
     abort: () => void;

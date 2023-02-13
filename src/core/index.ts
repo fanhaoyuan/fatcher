@@ -1,3 +1,3 @@
-export * from './composeMiddlewares';
-export * from './createContext';
-export * from './registerMiddlewares';
+export * from './canActivate';
+export * from './fatcher';
+export * from './FatcherError';

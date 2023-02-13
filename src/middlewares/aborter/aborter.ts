@@ -1,4 +1,4 @@
-import { defineMiddleware } from '../..';
+import { defineMiddleware } from '../../helpers';
 import { AborterMiddlewareContext, AborterOptions, RoadMap } from './interfaces';
 
 const roadMap: RoadMap = {};

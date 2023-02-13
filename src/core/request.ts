@@ -1,7 +1,7 @@
-import { RequestMethod, MiddlewareResult } from './interfaces';
-import { FatcherError } from './core/FatcherError';
-import { isPlainObject, Querystring } from './utils/index';
-import { defineMiddleware } from './helpers';
+import { RequestMethod, MiddlewareResult } from '../interfaces';
+import { FatcherError } from './FatcherError';
+import { isPlainObject, Querystring } from '../utils/index';
+import { defineMiddleware } from '../helpers';
 
 /**
  * A middleware for send http request by using fetch.

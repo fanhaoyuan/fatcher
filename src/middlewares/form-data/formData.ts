@@ -1,5 +1,5 @@
-import { defineMiddleware } from '../..';
-import { isPlainObject } from '../../utils/index';
+import { defineMiddleware } from '../../helpers';
+import { isPlainObject } from '../../utils';
 
 /**
  * A middleware for consuming payload to form data.

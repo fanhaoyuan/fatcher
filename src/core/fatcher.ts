@@ -1,10 +1,10 @@
-import { RequestOptions, Result } from './interfaces';
-import { registerMiddlewares } from './core/registerMiddlewares';
-import { composeMiddlewares } from './core/composeMiddlewares';
+import { RequestOptions, Result } from '../interfaces';
+import { registerMiddlewares } from './registerMiddlewares';
+import { composeMiddlewares } from './composeMiddlewares';
 import { request } from './request';
-import { createContext } from './core/createContext';
-import { canActivate } from './helpers';
-import { isFunction, merge } from './utils/index';
+import { createContext } from './createContext';
+import { canActivate } from './canActivate';
+import { isFunction, merge } from '../utils';
 
 /**
  * Send HTTP request with custom options.

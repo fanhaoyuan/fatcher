@@ -1,4 +1,6 @@
-import { Middleware, canActivate, Context, MiddlewareResult, defineMiddleware } from '../..';
+import { canActivate } from '../../core';
+import { defineMiddleware } from '../../helpers';
+import { Context, Middleware, MiddlewareResult } from '../../interfaces';
 import { CacheOptions } from './interfaces';
 
 const cacheMap = new Map<string, MiddlewareResult>();

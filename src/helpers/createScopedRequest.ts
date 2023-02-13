@@ -1,4 +1,4 @@
-import { fatcher } from '../fatcher';
+import { fatcher } from '../core';
 import { RequestBody, RequestOptions } from '../interfaces';
 import { combine } from '../utils';
 
