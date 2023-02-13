@@ -1,4 +1,4 @@
-import { Middleware, canActivate, Context, MiddlewareResult, defineMiddleware } from 'fatcher';
+import { Middleware, canActivate, Context, MiddlewareResult, defineMiddleware } from '../..';
 import { CacheOptions } from './interfaces';
 
 const cacheMap = new Map<string, MiddlewareResult>();
