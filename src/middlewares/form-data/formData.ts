@@ -1,5 +1,5 @@
-import { defineMiddleware } from 'fatcher';
-import { isPlainObject } from '@fatcherjs/utils-shared';
+import { defineMiddleware } from '../..';
+import { isPlainObject } from '../../utils/index';
 
 /**
  * A middleware for consuming payload to form data.
