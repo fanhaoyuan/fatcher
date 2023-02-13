@@ -1,4 +1,4 @@
-import { isFunction } from '@fatcherjs/utils-shared';
+import { isFunction } from './utils/index';
 import { FatcherError } from './FatcherError';
 import { MaybePromise, Middleware } from './interfaces';
 

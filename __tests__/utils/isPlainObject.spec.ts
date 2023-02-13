@@ -1,4 +1,4 @@
-import { isPlainObject } from '../src';
+import { isPlainObject } from '../../src/utils/index';
 
 describe('isPlainObject', () => {
     it('The object create by null is plain object', () => {

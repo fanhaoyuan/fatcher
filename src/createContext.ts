@@ -1,4 +1,4 @@
-import { Querystring } from '@fatcherjs/utils-shared';
+import { Querystring } from './utils/index';
 import { Context, RequestMethod, RequestOptions } from './interfaces';
 import { parseURL, mergeHeaders } from './utils';
 

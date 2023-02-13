@@ -1,4 +1,4 @@
-import { merge } from '../src';
+import { merge } from '../../src/utils/index';
 
 describe('merge', () => {
     it('Basic merge', () => {

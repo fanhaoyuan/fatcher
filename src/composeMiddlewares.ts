@@ -1,5 +1,5 @@
 import { Context, Middleware, MiddlewareResult, PatchContext } from './interfaces';
-import { immutable } from '@fatcherjs/utils-shared';
+import { immutable } from './utils/index';
 import { combine } from './utils';
 
 /**

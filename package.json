@@ -38,9 +38,6 @@
         "test:cov": "jest --coverage",
         "eslint": "eslint ."
     },
-    "dependencies": {
-        "@fatcherjs/utils-shared": "^2.0.0"
-    },
     "devDependencies": {
         "@fansy/eslint-config": "^1.1.0",
         "@fansy/prettier-config": "^1.0.0",

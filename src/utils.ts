@@ -1,4 +1,4 @@
-import { merge } from '@fatcherjs/utils-shared';
+import { merge } from './utils/index';
 import { Context, RequestOptions } from './interfaces';
 
 /**

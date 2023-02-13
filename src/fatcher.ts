@@ -4,7 +4,7 @@ import { composeMiddlewares } from './composeMiddlewares';
 import { request } from './request';
 import { createContext } from './createContext';
 import { canActivate } from './helpers';
-import { isFunction, merge } from '@fatcherjs/utils-shared';
+import { isFunction, merge } from './utils/index';
 
 /**
  * Send HTTP request with custom options.

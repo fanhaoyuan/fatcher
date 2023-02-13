@@ -1,4 +1,4 @@
-import { isNodeJS } from '../src';
+import { isNodeJS } from '../../src/utils/index';
 
 describe('isNodeJS', () => {
     it('Test env is in node js', () => {

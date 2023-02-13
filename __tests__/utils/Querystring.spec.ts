@@ -1,4 +1,4 @@
-import { Querystring } from '../src';
+import { Querystring } from '../../src/utils/index';
 
 describe('Querystring', () => {
     it('Parse with empty querystring', () => {

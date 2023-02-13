@@ -1,4 +1,4 @@
-import { getResponseStatus } from '../src';
+import { getResponseStatus } from '../../src/utils/index';
 
 describe('Get Response Status', () => {
     it('200 is OK', () => {
