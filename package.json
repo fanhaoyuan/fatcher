@@ -1,9 +1,45 @@
 {
-    "private": true,
+    "name": "fatcher",
+    "version": "2.1.0",
+    "description": "Send fetch request gracefully in browsers and nodeJS",
+    "homepage": "https://github.com/fanhaoyuan/fatcher",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/fanhaoyuan/fatcher.git"
+    },
+    "license": "MIT",
+    "keywords": [
+        "fetch",
+        "http",
+        "request",
+        "middlewares",
+        "streams",
+        "axios",
+        "got",
+        "node"
+    ], 
+    "main": "dist/index.js",
+    "module": "dist/index.esm.js",
+    "browser": "dist/fatcher.min.js",
+    "unpkg": "dist/fatcher.min.js",
+    "typings": "dist/index.d.ts",
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "files": [
+        "dist"
+    ],
     "scripts": {
+        "dev": "rimraf dist && rollup -c rollup.config.ts -w",
+        "build": "rimraf dist && rollup -c rollup.config.ts",
+        "deploy": "pnpm run build && pnpm publish --no-git-check",
+        "ci": "npm run eslint && npm run tsc && npm run build && npm run test",
         "test": "jest",
         "test:cov": "jest --coverage",
         "eslint": "eslint ."
+    },
+    "dependencies": {
+        "@fatcherjs/utils-shared": "^2.0.0"
     },
     "devDependencies": {
         "@fansy/eslint-config": "^1.1.0",
