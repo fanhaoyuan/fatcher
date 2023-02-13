@@ -1,5 +1,5 @@
 import { PatchContext } from '../src';
-import { createContext } from '../src/createContext';
+import { createContext } from '../src/core/createContext';
 import { combine } from '../src/utils';
 
 describe('Context', () => {

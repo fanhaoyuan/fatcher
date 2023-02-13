@@ -1,4 +1,4 @@
-import { createContext } from '../src/createContext';
+import { createContext } from '../src/core/createContext';
 import { isFatcherError, FatcherError } from '../src';
 
 describe('Errors', () => {

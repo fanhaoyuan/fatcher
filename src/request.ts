@@ -1,5 +1,5 @@
 import { RequestMethod, MiddlewareResult } from './interfaces';
-import { FatcherError } from './FatcherError';
+import { FatcherError } from './core/FatcherError';
 import { isPlainObject, Querystring } from './utils/index';
 import { defineMiddleware } from './helpers';
 
