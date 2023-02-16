@@ -9,7 +9,6 @@ describe('Custom Length Name', () => {
         let chunk = 0;
 
         function onDownloadProgress(current: number, total: number) {
-            console.log(current, total);
             expect(current).toBe(cof * (chunk + 1));
             expect(total).toBe(length);
             chunk++;

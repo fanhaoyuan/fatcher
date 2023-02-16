@@ -1,4 +1,5 @@
-import { readStreamByChunk, defineMiddleware } from '../../helpers';
+import { canActivate } from '../../core';
+import { defineMiddleware } from '../../helpers';
 import { Middleware } from '../../interfaces';
 import { ProgressOptions } from './interfaces';
 
@@ -13,6 +14,18 @@ export function progress(options: ProgressOptions = {}): Middleware {
     return defineMiddleware(async (context, next) => {
         const result = await next();
 
+        const data = result.data;
+
+        if (!canActivate(data)) {
+            return result;
+        }
+
+        const originStream = data.body;
+
+        if (!originStream) {
+            return result;
+        }
+
         if (!onDownloadProgress) {
             return result;
         }
@@ -23,15 +36,29 @@ export function progress(options: ProgressOptions = {}): Middleware {
             return result;
         }
 
-        let current = 0;
+        const readableStream = new ReadableStream({
+            start(controller) {
+                let current = 0;
 
-        const clonedResponse = result.data.clone();
+                (async function push(reader: ReadableStreamDefaultReader<Uint8Array>) {
+                    const { done, value } = await reader.read();
 
-        readStreamByChunk(clonedResponse.body, chunk => {
-            current += chunk.length;
-            onDownloadProgress(current, total);
+                    if (done) {
+                        controller.close();
+                        return;
+                    }
+
+                    controller.enqueue(value);
+                    current += value.length;
+                    onDownloadProgress(current, total);
+                    await push(reader);
+                })(originStream.getReader());
+            },
         });
 
-        return result;
+        return {
+            ...result,
+            data: readableStream,
+        };
     }, 'fatcher-middleware-progress');
 }
