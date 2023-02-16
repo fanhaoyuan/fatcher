@@ -1,4 +1,4 @@
-import { Middleware } from "../interfaces";
+import { Middleware } from '../interfaces';
 
 /**
  * A helper function for defineMiddleware

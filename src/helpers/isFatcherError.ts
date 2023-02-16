@@ -1,5 +1,5 @@
-import { FatcherError } from "../core/FatcherError";
-import { isFunction } from "../utils/index";
+import { FatcherError } from '../core/FatcherError';
+import { isFunction } from '../utils/index';
 
 /**
  * Confirm an error whether is FatcherError
