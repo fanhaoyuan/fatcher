@@ -9,5 +9,6 @@
         "noEmit": true,
         "allowJs": true
     },
-    "exclude": ["node_modules", "dist"]
+    "exclude": ["node_modules", "dist"],
+    "include": ["src/**/*", "__tests__/**/*"]
 }
