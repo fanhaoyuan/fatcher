@@ -1,6 +1,6 @@
-import { defineMiddleware } from '../../helpers';
-import { Middleware } from '../../interfaces';
-import { canActivate } from '../../core';
+import { defineMiddleware } from '../helpers';
+import { Middleware } from '../interfaces';
+import { canActivate } from '../core';
 
 /**
  * A middleware for transforming stream into json
