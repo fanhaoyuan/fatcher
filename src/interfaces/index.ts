@@ -34,6 +34,8 @@ export interface Context extends Omit<RequestOptions, 'headers'> {
     credentials: RequestCredentials;
     referrerPolicy: ReferrerPolicy;
     url: string;
+    signal?: AbortSignal;
+    abort?: () => void;
     [name: string]: any;
 }
 

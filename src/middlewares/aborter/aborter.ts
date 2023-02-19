@@ -9,7 +9,7 @@ const roadMap: RoadMap = {};
  * @returns
  */
 export function aborter(options: AborterOptions = {}) {
-    const { timeout = 0, onAbort = null, concurrency, groupBy } = options;
+    const { timeout = 0, concurrency, groupBy } = options;
 
     let _timeout = timeout;
 
@@ -17,19 +17,6 @@ export function aborter(options: AborterOptions = {}) {
         console.warn('[fatcher-middleware-aborter] Timeout is not a valid number.');
         _timeout = 0;
     }
-
-    const baseAborter = defineMiddleware(async (context, next) => {
-        const abortController = new AbortController();
-
-        if (onAbort) {
-            abortController.signal.addEventListener('abort', () => onAbort());
-        }
-
-        return next({
-            signal: abortController.signal,
-            abort: abortController.abort.bind(abortController),
-        });
-    }, 'fatcher-middleware-aborter');
 
     const timeoutAborter = defineMiddleware(async (context, next) => {
         const { signal, abort } = context as AborterMiddlewareContext;
@@ -96,7 +83,7 @@ export function aborter(options: AborterOptions = {}) {
         return result;
     }, 'fatcher-middleware-concurrency-aborter');
 
-    const middlewares = [baseAborter];
+    const middlewares = [];
 
     if (_timeout) {
         middlewares.push(timeoutAborter);
