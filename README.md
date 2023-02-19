@@ -1,5 +1,5 @@
 <div align="center">
-  <img alt="Fatcher logo" src="https://github.com/fatcherjs/v1.docs/raw/master/public/fatcher.png" height="120" width="120" />
+  <img alt="Fatcher logo" src="https://github.com/fanhaoyuan/fatcher/raw/master/images/logo.png" height="120" width="120" />
 </div>
 
 <div align="center">
@@ -20,13 +20,13 @@ Send fetch request gracefully in browsers and nodeJS
 ## How it work
 
 <div align="center">
-  <img alt="Fatcher Workflow" src="https://github.com/fatcherjs/v1.docs/raw/master/public/fatcher_workflow.png" />
+  <img alt="Fatcher Workflow" src="https://github.com/fanhaoyuan/fatcher/raw/master/images/workflow.png" />
 </div>
 
 ## Why fetch
 
 <div align="center">
-  <img alt="Fatcher Workflow" src="https://github.com/fatcherjs/v1.docs/raw/master/public/fatcher_streams.png" />
+  <img alt="Fatcher Workflow" src="https://github.com/fanhaoyuan/fatcher/raw/master/images/streams.png" />
 </div>
 
 ## Documentation
