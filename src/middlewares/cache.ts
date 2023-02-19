@@ -1,7 +1,28 @@
-import { canActivate } from '../../core';
-import { defineMiddleware } from '../../helpers';
-import { Context, Middleware, MiddlewareResult } from '../../interfaces';
-import { CacheOptions } from './interfaces';
+import { canActivate } from '../core';
+import { defineMiddleware } from '../helpers';
+import { Context, Middleware, MiddlewareResult } from '../interfaces';
+
+export interface CacheOptions {
+    /**
+     * Validate a request whether needs cache
+     *
+     * @default
+     * (context: Context) => context.method === 'GET'
+     */
+    validate?: (context: Context) => boolean;
+    /**
+     * Time to live (ms).
+     *
+     * If `0`, permanent cache
+     * @default 60000
+     */
+    ttl?: number;
+
+    /**
+     * @default true
+     */
+    useCache?: boolean;
+}
 
 const cacheMap = new Map<string, MiddlewareResult>();
 
