@@ -47,7 +47,7 @@
         "@rollup/plugin-replace": "^5.0.0",
         "@rollup/plugin-strip": "^3.0.0",
         "@types/jest": "^29.1.2",
-        "@types/node": "^18.11.0",
+        "@types/node": "^18.15.1",
         "esbuild": "^0.17.8",
         "eslint-plugin-prettier": "^4.2.1",
         "husky": "^8.0.3",
