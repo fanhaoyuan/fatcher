@@ -22,6 +22,13 @@ export type Options = RequestInit & {
      * ```
      */
     validateCode?: (code: number) => boolean;
+
+    /**
+     * @requires
+     * `fatcher-middleware-aborter`
+     */
+    onAbort?: () => void;
+
 };
 
 export type Result = Response;
@@ -30,6 +37,13 @@ export interface Context extends Omit<Options, 'middlewares'> {
     url: string;
 
     headers: Headers;
+
+    /**
+     *
+     * @requires
+     * `fatcher-middleware-aborter`
+     */
+    abort?: () => void;
 }
 
 export type PatchContext = Partial<Context>;
