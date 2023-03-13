@@ -1,3 +1,17 @@
+## v3.0.0-beta
+
+-   🔧 Refactor fatcher request core, same behavior with fetch.
+-   🚀 Built-in `fatcher-middleware-aborter`
+-   🚀 Built-in `fatcher-middleware-json`
+-   ❌ Deprecated `createScopedRequest`
+-   📚 Archived `@fatcherjs/middleware-json`
+-   📚 Archived `@fatcherjs/middleware-aborter`
+-   📚 Archived `@fatcherjs/middleware-cache`
+-   📚 Archived `@fatcherjs/middleware-form-data`
+-   📚 Archived `@fatcherjs/middleware-mock`
+-   📚 Archived `@fatcherjs/middleware-progress`
+-   📚 Archived `@fatcherjs/utils-shared`
+
 ## v2.1.0
 
 -   🚀 Supports string inputs.
