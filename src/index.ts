@@ -4,9 +4,8 @@ import defineMiddleware from './defineMiddleware';
 import json from './json';
 import isFatcherError from './isFatcherError';
 import FatcherError from './FatcherError';
-import isAbortError from './isAbortError';
 
 export * from './types';
-export { fatcher, defineMiddleware, canActivate, isFatcherError, isAbortError, FatcherError };
+export { fatcher, defineMiddleware, canActivate, isFatcherError, FatcherError };
 // Middlewares
 export { json };
