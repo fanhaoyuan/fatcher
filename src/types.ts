@@ -13,6 +13,15 @@ export type Options = RequestInit & {
     method?: Method;
 
     /**
+     * @requires
+     * `fatcher-middleware-progress`
+     *
+     * @param current loaded data length
+     * @param total total data length
+     */
+    downloadProgress?: (current: number, total: number) => void;
+
+    /**
      * Custom http response code by fetch.
      * @param code origin http response code
      *
@@ -29,6 +38,17 @@ export type Options = RequestInit & {
      */
     onAbort?: () => void;
 
+    /**
+     * @requires
+     * `fatcher-middleware-timeout`
+     */
+    timeout?: number;
+
+    /**
+     * @requires
+     * `fatcher-middleware-limit`
+     */
+    limit?: number;
 };
 
 export type Result = Response;
@@ -52,5 +72,6 @@ type Next = (patchContext?: PatchContext) => MaybePromise<Result>;
 
 export interface Middleware {
     name: string;
+    provide?: (options: Options) => Partial<Options>;
     use(context: Readonly<Context>, next: Next): MaybePromise<Result>;
 }
