@@ -1,4 +1,4 @@
-import { immutable } from '../src/utils';
+import immutable from '../src/immutable';
 
 describe('immutable', () => {
     it('immutable', () => {
