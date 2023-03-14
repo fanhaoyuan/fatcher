@@ -4,9 +4,9 @@ import FatcherError from './FatcherError';
 export default defineMiddleware({
     name: 'fatcher-middleware-fetch',
     async use(context) {
-        const { validateCode } = context;
+        const { validateCode, url, ...rest } = context;
 
-        const response = await fetch(context.url);
+        const response = await fetch(url, rest);
 
         if (validateCode?.(response.status)) {
             return response;
