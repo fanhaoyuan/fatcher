@@ -1,3 +1,7 @@
+## v3.0.0-beta-1
+
+-   🐛 Pass fetch options to fetch api ([#264](https://github.com/fanhaoyuan/fatcher/pull/264))
+
 ## v3.0.0-beta
 
 -   🔧 Refactor fatcher request core, same behavior with fetch.
