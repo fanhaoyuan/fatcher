@@ -1,3 +1,7 @@
+## v3.0.0-beta-2
+
+-   🚀 add `fatcher-middleware-parameter` to deal with query string ([#266](https://github.com/fanhaoyuan/fatcher/pull/266))
+
 ## v3.0.0-beta-1
 
 -   🐛 Pass fetch options to fetch api ([#264](https://github.com/fanhaoyuan/fatcher/pull/264))
