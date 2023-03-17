@@ -49,6 +49,12 @@ export type Options = RequestInit & {
      * `fatcher-middleware-limit`
      */
     limit?: number;
+
+    /**
+     * @requires
+     * `fatcher-middleware-parameter`
+     */
+    params?: Record<string, any>;
 };
 
 export type Result = Response;
