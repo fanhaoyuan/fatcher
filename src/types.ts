@@ -78,6 +78,6 @@ type Next = (patchContext?: PatchContext) => MaybePromise<Result>;
 
 export interface Middleware {
     name: string;
-    provide?: (options: Options) => Partial<Options>;
+    provide?: (context: Context) => PatchContext;
     use(context: Readonly<Context>, next: Next): MaybePromise<Result>;
 }
