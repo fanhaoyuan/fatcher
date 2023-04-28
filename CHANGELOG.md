@@ -1,3 +1,7 @@
+## v3.0.0-beta-3
+
+-   🚀 mode default use `no-cors` ([#269](https://github.com/fanhaoyuan/fatcher/pull/269))
+
 ## v3.0.0-beta-2
 
 -   🚀 add `fatcher-middleware-parameter` to deal with query string ([#266](https://github.com/fanhaoyuan/fatcher/pull/266))
