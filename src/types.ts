@@ -3,7 +3,7 @@ type MaybePromise<T> = Promise<T> | T;
 
 export type Method = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'HEAD' | 'OPTIONS' | 'PATCH';
 
-export type Options = RequestInit & {
+export interface Options extends RequestInit {
     middlewares?: (Middleware | Middleware[])[];
     /**
      * HTTP Request Method for current request.
@@ -55,7 +55,7 @@ export type Options = RequestInit & {
      * `fatcher-middleware-parameter`
      */
     params?: Record<string, any>;
-};
+}
 
 export type Result = Response;
 
