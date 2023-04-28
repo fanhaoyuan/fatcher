@@ -11,7 +11,7 @@ export default function fatcher(input: string, options: Options = {}) {
         cache: 'default',
         redirect: 'follow',
         referrerPolicy: 'no-referrer-when-downgrade',
-        mode: 'cors',
+        mode: 'no-cors',
         ...rest,
     });
 
