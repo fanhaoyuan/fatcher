@@ -6,7 +6,7 @@ devDependencies:
     version: 1.4.0(eslint@7.32.0)(typescript@4.9.5)
   '@fansy/prettier-config':
     specifier: ^1.0.0
-    version: 1.0.0
+    version: 1.1.0
   '@jest/types':
     specifier: ^29.2.0
     version: 29.2.0
@@ -653,8 +653,8 @@ packages:
       - supports-color
     dev: true
 
-  /@fansy/prettier-config@1.0.0:
-    resolution: {integrity: sha512-zevewtIYvHl9T7Ejkghng0eDbljWksqkvuEbje8ifILY+Vp4+Y77GxRk3HkQtMP0GEXq/UVDDd7f1+t/hb/qOQ==}
+  /@fansy/prettier-config@1.1.0:
+    resolution: {integrity: sha512-Y47ONI0hPa4q3cXE2GywG0oYhq86w9h8JniUEiwzMobOG8Qxaphj3ujWHAyenJoaxkr16Ci3x8AZfdaWkXjRNQ==}
     dependencies:
       prettier: 2.7.1
     dev: true
