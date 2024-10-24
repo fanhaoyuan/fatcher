@@ -2,38 +2,38 @@ import fetchMock from 'jest-fetch-mock';
 import { fatcher } from '../src';
 
 describe('Request behavior with fetch', () => {
-    beforeEach(() => {
-        fetchMock.mockIf('https://foo.bar/get', async () => {
-            return {};
-        });
-
-        fetchMock.enableMocks();
+  beforeEach(() => {
+    fetchMock.mockIf('https://foo.bar/get', async () => {
+      return {};
     });
 
-    afterEach(() => fetchMock.disableMocks());
+    fetchMock.enableMocks();
+  });
 
-    it('[Success] Same behavior with fetch', async () => {
-        const input = 'https://foo.bar/get';
-        const res = await fatcher(input);
-        const res1 = await fetch(input);
-        expect(res).toStrictEqual(res1);
-    });
+  afterEach(() => fetchMock.disableMocks());
 
-    it('[Fail] Same behavior with fetch', async () => {
-        const input = '/get';
-        let err, err1;
-        try {
-            await fatcher(input);
-        } catch (error) {
-            err = error;
-        }
+  it('[Success] Same behavior with fetch', async () => {
+    const input = 'https://foo.bar/get';
+    const res = await fatcher(input);
+    const res1 = await fetch(input);
+    expect(res).toStrictEqual(res1);
+  });
 
-        try {
-            await fetch(input);
-        } catch (error) {
-            err1 = error;
-        }
+  it('[Fail] Same behavior with fetch', async () => {
+    const input = '/get';
+    let err, err1;
+    try {
+      await fatcher(input);
+    } catch (error) {
+      err = error;
+    }
 
-        expect(err).toStrictEqual(err1);
-    });
+    try {
+      await fetch(input);
+    } catch (error) {
+      err1 = error;
+    }
+
+    expect(err).toStrictEqual(err1);
+  });
 });

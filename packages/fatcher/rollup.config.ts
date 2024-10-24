@@ -16,7 +16,6 @@ export default defineConfig([
   {
     input,
     plugins,
-    external: [/^@fatcherjs/],
     output: [
       {
         format: 'cjs',
