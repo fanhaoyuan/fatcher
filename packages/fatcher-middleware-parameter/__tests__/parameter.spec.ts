@@ -1,5 +1,7 @@
+import { afterEach, beforeEach, describe, expect, it } from '@jest/globals';
+import { fatcher } from 'fatcher';
 import fetchMock from 'jest-fetch-mock';
-import { fatcher, parameter } from '../src';
+import { parameter } from '../src';
 
 describe('fatcher-middleware-parameter', () => {
   beforeEach(() => {
@@ -17,11 +19,14 @@ describe('fatcher-middleware-parameter', () => {
 
   it('Transform context params to querystring', async () => {
     const response = await fatcher('https://foo.bar/get', {
-      middlewares: [parameter],
-      params: {
-        page: 1,
-        pageSize: 10,
-      },
+      middlewares: [
+        parameter({
+          params: {
+            page: 1,
+            pageSize: 10,
+          },
+        }),
+      ],
     });
 
     expect(await response.text()).toBe('page=1&pageSize=10');
@@ -29,11 +34,14 @@ describe('fatcher-middleware-parameter', () => {
 
   it('Merge origin querystring into context params', async () => {
     const response = await fatcher('https://foo.bar/get?order=0', {
-      middlewares: [parameter],
-      params: {
-        page: 1,
-        pageSize: 10,
-      },
+      middlewares: [
+        parameter({
+          params: {
+            page: 1,
+            pageSize: 10,
+          },
+        }),
+      ],
     });
 
     expect(await response.text()).toBe('page=1&pageSize=10&order=0');
@@ -41,11 +49,14 @@ describe('fatcher-middleware-parameter', () => {
 
   it('Prefer context params, it will cover origin querystring', async () => {
     const response = await fatcher('https://foo.bar/get?page=10&order=0', {
-      middlewares: [parameter],
-      params: {
-        page: 1,
-        pageSize: 10,
-      },
+      middlewares: [
+        parameter({
+          params: {
+            page: 1,
+            pageSize: 10,
+          },
+        }),
+      ],
     });
 
     expect(await response.text()).toBe('page=1&pageSize=10&order=0');
@@ -53,7 +64,7 @@ describe('fatcher-middleware-parameter', () => {
 
   it('Nothing happen when params is empty', async () => {
     const response = await fatcher('https://foo.bar/get?page=10&order=0', {
-      middlewares: [parameter],
+      middlewares: [parameter()],
     });
 
     expect(await response.text()).toBe('page=10&order=0');
@@ -61,12 +72,15 @@ describe('fatcher-middleware-parameter', () => {
 
   it('Filter context params when params is undefined', async () => {
     const response = await fatcher('https://foo.bar/get?page=10&order=0', {
-      middlewares: [parameter],
-      params: {
-        page: 1,
-        pageSize: 10,
-        name: undefined,
-      },
+      middlewares: [
+        parameter({
+          params: {
+            page: 1,
+            pageSize: 10,
+            name: undefined,
+          },
+        }),
+      ],
     });
 
     expect(await response.text()).toBe('page=1&pageSize=10&order=0');

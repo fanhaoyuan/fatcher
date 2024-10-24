@@ -1,5 +1,7 @@
+import { afterEach, beforeEach, describe, expect, it } from '@jest/globals';
+import { defineMiddleware, fatcher } from 'fatcher';
 import fetchMock from 'jest-fetch-mock';
-import { canActivate, defineMiddleware, fatcher, json } from '../src';
+import { json } from '../src';
 
 describe('fatcher-middleware-json', () => {
   beforeEach(() => {
@@ -24,7 +26,7 @@ describe('fatcher-middleware-json', () => {
 
   it('Response json with json data', async () => {
     const res = await fatcher('https://foo.bar/get?json', {
-      middlewares: [json],
+      middlewares: [json()],
     });
 
     expect(res).toStrictEqual({ key: 'test' });
@@ -32,10 +34,9 @@ describe('fatcher-middleware-json', () => {
 
   it('Response origin data with non-json data', async () => {
     const res = await fatcher('https://foo.bar/get', {
-      middlewares: [json],
+      middlewares: [json()],
     });
 
-    expect(canActivate(res)).toBe(true);
     expect(await res.text()).toBe('test');
   });
 
@@ -44,22 +45,19 @@ describe('fatcher-middleware-json', () => {
 
     const res = await fatcher('https://foo.bar/get?json', {
       middlewares: [
-        json,
-        defineMiddleware({
-          name: 'test',
-          async use(context, next) {
-            const _ = await next();
+        json(),
+        defineMiddleware(async (context, next) => {
+          const _ = await next();
 
-            // use it.
-            await _.json();
+          // use it.
+          await _.json();
 
-            return _;
-          },
+          return _;
         }),
       ],
     });
 
-    expect(canActivate(res)).toBe(false);
+    expect(res.bodyUsed).toBe(false);
     expect(res).not.toStrictEqual(originData);
     expect(res.json).toThrowError();
   });

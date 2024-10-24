@@ -41,13 +41,14 @@
     "clean": "pnpm -r clean",
     "build": "pnpm -r build",
     "ci": "npm run eslint && npx tsc && npm run build && npm run test",
-    "test": "jest",
-    "test:cov": "jest --coverage",
+    "test": "pnpm -r run test",
+    "test:cov": "pnpm -r run test:cov",
     "eslint": "eslint ."
   },
   "devDependencies": {
     "@fansy/eslint-config": "^1.4.2",
     "@fansy/prettier-config": "^1.1.0",
+    "@jest/globals": "^29.7.0",
     "@jest/types": "^29.2.0",
     "@rollup/plugin-node-resolve": "^15.0.0",
     "@rollup/plugin-replace": "^5.0.0",

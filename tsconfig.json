@@ -9,7 +9,7 @@
     "noEmit": true,
     "allowJs": true,
     "typeRoots": ["./types"],
-    "baseUrl": "."
+    "baseUrl": ".",
   },
   "exclude": ["node_modules", "dist"]
 }

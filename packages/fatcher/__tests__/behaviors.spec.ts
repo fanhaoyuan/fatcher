@@ -1,3 +1,4 @@
+import { afterEach, beforeEach, describe, expect, it } from '@jest/globals';
 import fetchMock from 'jest-fetch-mock';
 import { fatcher } from '../src';
 
