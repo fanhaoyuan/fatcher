@@ -51,7 +51,8 @@ export function composeMiddlewares(middlewares: FatcherMiddleware[]) {
       }
 
       if (patch) {
-        request = merge(new Request(request, patch) as FatcherRequest, { ...request }, patch);
+        const base = patch.url ? new Request(patch.url, request) : request;
+        request = merge(new Request(base, patch) as FatcherRequest, { ...request }, patch);
       }
 
       const newResponse = await middleware(request, async _ => dispatch(index + 1, _));
