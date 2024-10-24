@@ -137,7 +137,7 @@ fatcher('https://foo.bar', { middlewares: [exception()] }).catch(error => {
 - [@fatcherjs/middleware-cache](https://github.com/fanhaoyuan/fatcher/tree/master/packages/fatcher-middleware-cache)
 - [@fatcherjs/middleware-form-data](https://github.com/fanhaoyuan/fatcher/tree/master/packages/fatcher-middleware-form-data)
 - [@fatcherjs/middleware-json](https://github.com/fanhaoyuan/fatcher/tree/master/packages/fatcher-middleware-json)
-- [@fatcherjs/middleware-parameters](https://github.com/fanhaoyuan/fatcher/tree/master/packages/fatcher-middleware-parameters)
+- [@fatcherjs/middleware-parameter](https://github.com/fanhaoyuan/fatcher/tree/master/packages/fatcher-middleware-parameter)
 - [@fatcherjs/middleware-progress](https://github.com/fanhaoyuan/fatcher/tree/master/packages/fatcher-middleware-progress)
 
 ## License
