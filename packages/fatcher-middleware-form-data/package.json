@@ -1,6 +1,11 @@
 {
   "name": "@fatcherjs/middleware-form-data",
   "version": "3.0.0",
+  "homepage": "https://github.com/fanhaoyuan/fatcher",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fanhaoyuan/fatcher.git"
+  },
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "browser": "dist/index.min.js",
@@ -17,7 +22,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && rollup -c rollup.config.ts",
-        "test": "jest",
+    "test": "jest",
     "test:cov": "jest --coverage"
   }
 }

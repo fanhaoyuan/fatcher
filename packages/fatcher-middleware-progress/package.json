@@ -1,6 +1,11 @@
 {
   "name": "@fatcherjs/middleware-progress",
   "version": "3.0.0",
+  "homepage": "https://github.com/fanhaoyuan/fatcher",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fanhaoyuan/fatcher.git"
+  },
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "browser": "dist/index.min.js",

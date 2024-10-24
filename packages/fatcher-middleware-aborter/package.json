@@ -1,5 +1,10 @@
 {
   "name": "@fatcherjs/middleware-aborter",
+  "homepage": "https://github.com/fanhaoyuan/fatcher",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fanhaoyuan/fatcher.git"
+  },
   "version": "3.0.0",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",

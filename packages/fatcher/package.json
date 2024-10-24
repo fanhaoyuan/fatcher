@@ -1,12 +1,28 @@
 {
   "name": "fatcher",
   "version": "3.0.0",
+  "description": "Send fetch request gracefully in browsers and nodeJS",
+  "homepage": "https://github.com/fanhaoyuan/fatcher",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fanhaoyuan/fatcher.git"
+  },
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
-  "browser": "dist/index.min.js",
+  "browser": "dist/fatcher.min.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist"
+  ],
+  "keywords": [
+    "fetch",
+    "http",
+    "request",
+    "middlewares",
+    "streams",
+    "axios",
+    "got",
+    "node"
   ],
   "engines": {
     "node": ">=18.0.0"
