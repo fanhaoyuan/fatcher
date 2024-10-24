@@ -1,8 +1,4 @@
 <div align="center">
-  <img alt="Fatcher logo" src="https://github.com/fanhaoyuan/fatcher/raw/master/images/logo.png" height="120" width="120" />
-</div>
-
-<div align="center">
 <h1>Fatcher</h1>
 
 Send fetch request gracefully in browsers and nodeJS
@@ -17,37 +13,57 @@ Send fetch request gracefully in browsers and nodeJS
 
 </div>
 
-## How it work
+## Introduction
 
-<div align="center">
-  <img alt="Fatcher Workflow" src="https://github.com/fanhaoyuan/fatcher/raw/master/images/workflow.png" />
-</div>
+`Fatcher` is a lightweight HTTP request library based on `fetch`. It allows us to use native `fetch` for web requests in a browser and NodeJS environment.
 
-## Why fetch
+It is wrapped using the native `fetch`, we require that browsers or NodeJS support `fetch` when we use it.
 
-<div align="center">
-  <img alt="Fatcher Workflow" src="https://github.com/fanhaoyuan/fatcher/raw/master/images/streams.png" />
-</div>
+- Fetch support is already pretty good in modern browsers.
+- In NodeJS, fetch already support with `18.0.0`
 
-## Documentation
+`Fatcher` aims to embrace the `fetch` of the standard library and at the same time provide some functions that cannot be provided in `fetch`, as well as make the function better expand and reuse.
 
-➡️ [View documentation Here](https://github.com/fanhaoyuan/fatcher/tree/master/docs)
+### Features
 
-## Install
+- Fully compatible with fetch api
+- Zero dependencies
+- Tiny: less than 1kb
+- Works in Node.js and all modern browsers
+- Composable middleware
+- Streaming API
 
-### NPM
+### Compatibility
+
+#### Browsers
+
+- [fetch](https://caniuse.com/fetch)
+- [ReadableStream](https://caniuse.com/mdn-api_readablestream)
+- [Headers](https://caniuse.com/mdn-api_headers)
+- [Response](https://caniuse.com/mdn-api_response)
+- [Request](https://caniuse.com/mdn-api_request)
+- [AbortController](https://caniuse.com/abortcontroller)
+
+#### NodeJS
+
+- [fetch](https://nodejs.org/dist/latest-v18.x/docs/api/globals.html#fetch)
+- [ReadableStream](https://nodejs.org/dist/latest-v18.x/docs/api/globals.html#class-readablestream)
+- [Headers](https://nodejs.org/dist/latest-v18.x/docs/api/globals.html#class-headers)
+- [Response](https://nodejs.org/dist/latest-v18.x/docs/api/globals.html#response)
+- [Request](https://nodejs.org/dist/latest-v18.x/docs/api/globals.html#request)
+- [AbortController](https://nodejs.org/dist/latest-v18.x/docs/api/globals.html#class-abortcontroller)
+
+## Getting Started
+
+### Install
+
+#### NPM
 
 ```bash
 >$ npm install fatcher
-
-#or using yarn
->$ yarn add fatcher
-
-#or using pnpm
->$ pnpm add fatcher
 ```
 
-### CDN
+#### CDN
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/fatcher/dist/fatcher.min.js"></script>
@@ -55,7 +71,74 @@ Send fetch request gracefully in browsers and nodeJS
 
 ## Usage
 
-For detailed usage information,[visit the docs](https://github.com/fanhaoyuan/fatcher/tree/master/docs).
+### Basic
+
+`Fatcher` is fully compatible with fetch api.
+
+```ts
+const fetchOptions = {
+  /* options */
+};
+
+fetch('https://foo.bar', fetchOptions);
+
+// is similar to
+import { fatcher } from 'fatcher';
+fatcher('https://foo.bar', fetchOptions);
+```
+
+### Middleware
+
+Everything is middleware, middleware is a function which is like in koa
+
+```ts
+export type FatcherMiddleware = (
+  request: FatcherRequest,
+  next: (request?: Partial<FatcherRequest>) => Promise<FatcherResponse> | FatcherResponse,
+) => Promise<FatcherResponse> | FatcherResponse;
+```
+
+We can pass the request context to next middleware and get the response form next middleware.
+
+We should call the next function and return the response to prev middleware.
+
+```ts
+import { defineMiddleware } from 'fatcher';
+
+const logs = defineMiddleware(async (request, next) => {
+  const response = await next({
+    url: 'https://foo.bar1',
+  });
+});
+
+fatcher('https://foo.bar', { middlewares: [logs] }); //  sent to 'https://foo.bar1' instead of 'https://foo.bar'
+```
+
+### Exception Handling
+
+In the fetch api, all requests are considered successful. However, we generally consider a request with a response code of `200-299` to be successful.
+
+```ts
+import { exception, fatcher, isFatcherError } from 'fatcher';
+
+fatcher('https://foo.bar', { middlewares: [exception()] }).catch(error => {
+  if (isFatcherError(error)) {
+    // handle fatcher error
+    return;
+  }
+
+  // handle other error
+});
+```
+
+## Packages
+
+- [@fatcherjs/middleware-aborter](https://github.com/fanhaoyuan/fatcher/tree/master/packages/fatcher-middleware-aborter)
+- [@fatcherjs/middleware-cache](https://github.com/fanhaoyuan/fatcher/tree/master/packages/fatcher-middleware-cache)
+- [@fatcherjs/middleware-form-data](https://github.com/fanhaoyuan/fatcher/tree/master/packages/fatcher-middleware-form-data)
+- [@fatcherjs/middleware-json](https://github.com/fanhaoyuan/fatcher/tree/master/packages/fatcher-middleware-json)
+- [@fatcherjs/middleware-parameters](https://github.com/fanhaoyuan/fatcher/tree/master/packages/fatcher-middleware-parameters)
+- [@fatcherjs/middleware-progress](https://github.com/fanhaoyuan/fatcher/tree/master/packages/fatcher-middleware-progress)
 
 ## License
 
