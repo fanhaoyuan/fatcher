@@ -36,6 +36,6 @@ export const parameter = (options: ParameterOptions = {}) => {
       }, [])
       .join('&');
 
-    return next({ url: `${base}?${querystring}` });
+    return next(new Request(`${base}?${querystring}`));
   });
 };

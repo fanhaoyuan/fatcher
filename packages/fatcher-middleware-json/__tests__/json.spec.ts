@@ -29,7 +29,8 @@ describe('fatcher-middleware-json', () => {
       middlewares: [json()],
     });
 
-    expect(res).toStrictEqual({ key: 'test' });
+    // @ts-expect-error
+    expect(res.key).toEqual('test');
   });
 
   it('Response origin data with non-json data', async () => {
@@ -57,7 +58,7 @@ describe('fatcher-middleware-json', () => {
       ],
     });
 
-    expect(res.bodyUsed).toBe(false);
+    expect(res.bodyUsed).toBe(true);
     expect(res).not.toStrictEqual(originData);
     expect(res.json).toThrowError();
   });

@@ -4,7 +4,7 @@ export const json = () => {
   return defineMiddleware(async (context, next) => {
     const response = await next();
 
-    if (!response.bodyUsed || !response.body) {
+    if (response.bodyUsed || !response.body) {
       return response;
     }
 
