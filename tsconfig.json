@@ -8,8 +8,8 @@
     "moduleResolution": "node",
     "noEmit": true,
     "allowJs": true,
-    "typeRoots": ["./types"],
-    "baseUrl": ".",
+    "typeRoots": ["./types", "./node_modules/@types"],
+    "baseUrl": "."
   },
   "exclude": ["node_modules", "dist"]
 }

@@ -1,13 +1,6 @@
 {
   "version": "3.0.0-beta-2",
   "license": "MIT",
-  "lint-staged": {
-    "*.{ts,js}": [
-      "tsc --noEmit",
-      "eslint --fix"
-    ],
-    "*.{ts,js,md,json,yaml,yml}": "prettier -w"
-  },
   "scripts": {
     "prepare": "husky install",
     "clean": "pnpm -r clean",
@@ -40,7 +33,7 @@
     "rollup-plugin-dts": "^4.2.3",
     "rollup-plugin-esbuild": "^5.0.0",
     "ts-jest": "^29.0.3",
-    "ts-node": "^10.9.1",
+    "ts-node": "^10.9.2",
     "typescript": "^4.9.5"
   }
 }
