@@ -1,20 +1,20 @@
 import immutable from '../src/immutable';
 
 describe('immutable', () => {
-    it('immutable', () => {
-        const object = {
-            a: 'c',
-        };
+  it('immutable', () => {
+    const object = {
+      a: 'c',
+    };
 
-        const immutableObject = immutable(object);
+    const immutableObject = immutable(object);
 
-        //@ts-expect-error
-        immutableObject.a = '';
+    //@ts-expect-error
+    immutableObject.a = '';
 
-        expect(immutableObject.a).toBe('c');
+    expect(immutableObject.a).toBe('c');
 
-        object.a = '';
+    object.a = '';
 
-        expect(object.a).toBe('');
-    });
+    expect(object.a).toBe('');
+  });
 });

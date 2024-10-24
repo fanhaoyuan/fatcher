@@ -1,4 +1,5 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "target": "esnext",
     "module": "commonjs",
@@ -8,7 +9,6 @@
     "moduleResolution": "node",
     "noEmit": true,
     "allowJs": true,
-    "typeRoots": ["./types"],
     "baseUrl": "."
   },
   "exclude": ["node_modules", "dist"]

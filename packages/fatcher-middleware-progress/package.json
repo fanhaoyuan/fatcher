@@ -1,0 +1,21 @@
+{
+  "name": "@fatcherjs/middleware-progress",
+  "version": "3.0.0",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "browser": "dist/index.min.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "fatcher": "workspace:*"
+  },
+  "devDependencies": {
+    "fatcher": "workspace:*"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "npm run clean && rollup -c rollup.config.ts"
+  }
+}
