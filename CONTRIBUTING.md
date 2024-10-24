@@ -8,7 +8,7 @@ The [Fatcher Docs](https://fanhaoyuan.github.io/fatcher/) contains information a
 
 See the followings for more details before you decide to contribute:
 
--   Check whether there is already a Pull Request about your contributing.
+- Check whether there is already a Pull Request about your contributing.
 
 Those guidelines, as the name suggests, are only guidelines, not rules.
 

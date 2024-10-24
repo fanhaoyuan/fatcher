@@ -10,12 +10,12 @@ We must set `url` in a fatcher request.
 import { fatcher } from 'fatcher';
 
 fatcher({
-    url: 'https://examples.com/bar/foo',
+  url: 'https://examples.com/bar/foo',
 }).then(result => {
-    // Response
-    const { data, status, statusText, headers } = result;
+  // Response
+  const { data, status, statusText, headers } = result;
 
-    // ...
+  // ...
 });
 ```
 
@@ -27,20 +27,20 @@ Fatcher will throw an `FatcherError` when response code is not match validator c
 import { fatcher, isFatcherError } from 'fatcher';
 
 fatcher({
-    url: 'https://examples.com/bar/foo',
+  url: 'https://examples.com/bar/foo',
 })
-    .then(result => {
-        // Response
-        const { data, status } = result;
-    })
-    .catch(err => {
-        // Catch Fatcher Error
-        if (isFatcherError(err)) {
-            // Request successfully. But response status code is not match validator code.
-            console.error(err.toJSON());
-            return;
-        }
+  .then(result => {
+    // Response
+    const { data, status } = result;
+  })
+  .catch(err => {
+    // Catch Fatcher Error
+    if (isFatcherError(err)) {
+      // Request successfully. But response status code is not match validator code.
+      console.error(err.toJSON());
+      return;
+    }
 
-        // This is other errors.
-    });
+    // This is other errors.
+  });
 ```

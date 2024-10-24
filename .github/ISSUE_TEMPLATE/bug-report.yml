@@ -3,66 +3,66 @@ description: Report an issue with fatcher
 title: '[Bug]: '
 labels: ['bug']
 body:
-    - type: markdown
-      attributes:
-          value: |
-              Thanks for taking the time to fill out this bug report!
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
 
-    - type: checkboxes
-      id: env
-      attributes:
-          label: Environment
-          description: The environment which you are encountering errors.
-          options:
-              - label: NodeJS
-              - label: Browsers
-      validations:
-          required: true
+  - type: checkboxes
+    id: env
+    attributes:
+      label: Environment
+      description: The environment which you are encountering errors.
+      options:
+        - label: NodeJS
+        - label: Browsers
+    validations:
+      required: true
 
-    - type: input
-      id: version
-      attributes:
-          label: Version
-          description: The environment version.
-          placeholder: ex. 18.2.0
-      validations:
-          required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: The environment version.
+      placeholder: ex. 18.2.0
+    validations:
+      required: true
 
-    - type: textarea
-      id: reproduction
-      attributes:
-          label: Reproduction
-          description: If possible, provide a code snippet or unit test case.
-          render: typescript
-      validations:
-          required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: If possible, provide a code snippet or unit test case.
+      render: typescript
+    validations:
+      required: true
 
-    - type: textarea
-      id: expected-behavior
-      attributes:
-          label: Expected behavior
-          description: A clear and concise description of what you expected to happen.
-      validations:
-          required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expected to happen.
+    validations:
+      required: true
 
-    - type: textarea
-      id: actual-behavior
-      attributes:
-          label: Actual behavior
-          description: A clear and concise description of what actually happens.
-      validations:
-          required: true
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual behavior
+      description: A clear and concise description of what actually happens.
+    validations:
+      required: true
 
-    - type: textarea
-      id: other
-      attributes:
-          label: Additional information
-          description: Add any other context about the problem here.
-      validations:
-          required: false
+  - type: textarea
+    id: other
+    attributes:
+      label: Additional information
+      description: Add any other context about the problem here.
+    validations:
+      required: false
 
-    - type: markdown
-      attributes:
-          value: |
-              ### Before creating an issue make sure that:
-              -   This hasn't been [reported before](https://github.com/fatcherjs/fatcher/issues).
+  - type: markdown
+    attributes:
+      value: |
+        ### Before creating an issue make sure that:
+        -   This hasn't been [reported before](https://github.com/fatcherjs/fatcher/issues).

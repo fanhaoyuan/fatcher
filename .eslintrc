@@ -1,9 +1,9 @@
 {
-    "extends": ["@fansy/eslint-config", "plugin:prettier/recommended"],
-    "parserOptions": {
-        "sourceType": "module"
-    },
-    "rules": {
-        "no-bitwise": "off"
-    }
+  "extends": ["@fansy/eslint-config", "plugin:prettier/recommended"],
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-bitwise": "off"
+  }
 }

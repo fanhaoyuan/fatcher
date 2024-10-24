@@ -1,5 +1,5 @@
-import { isFatcherError, fatcher } from '../src';
 import fetchMock from 'jest-fetch-mock';
+import { fatcher, isFatcherError } from '../src';
 
 describe('Fatcher Error Instance', () => {
   beforeEach(() => {

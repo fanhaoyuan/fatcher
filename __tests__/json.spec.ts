@@ -1,5 +1,5 @@
-import { json, fatcher, canActivate, defineMiddleware } from '../src';
 import fetchMock from 'jest-fetch-mock';
+import { canActivate, defineMiddleware, fatcher, json } from '../src';
 
 describe('fatcher-middleware-json', () => {
   beforeEach(() => {

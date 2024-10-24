@@ -1,38 +1,37 @@
 name: Release
 
 on:
-    push:
-        tags:
-            - 'v*'
+  push:
+    tags:
+      - 'v*'
 
 jobs:
-    tag-release:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: Roang-zero1/github-create-release-action@master
-              with:
-                  version_regex: ^v[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+  tag-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Roang-zero1/github-create-release-action@master
+        with:
+          version_regex: ^v[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
-    npm-deploy:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v2
+  npm-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
 
-            - uses: pnpm/action-setup@v2.0.1
-              with:
-                  version: 6.20.3
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.20.3
 
-            - uses: actions/setup-node@v2
-              with:
-                  cache: 'pnpm'
+      - uses: actions/setup-node@v2
+        with:
+          cache: 'pnpm'
 
-            - run: pnpm install
+      - run: pnpm install
 
-            - run: echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+      - run: echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
 
-            - run: pnpm run deploy
-              env:
-                  NPM_TOKEN: ${{secrets.NPM_TOKEN}}
-
+      - run: pnpm run deploy
+        env:
+          NPM_TOKEN: ${{secrets.NPM_TOKEN}}

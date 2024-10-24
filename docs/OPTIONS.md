@@ -14,10 +14,10 @@ Prefix path at request. `base` will combine with `url`.
 
 ```ts
 interface FatcherOptions {
-    /**
-     * @default `/`
-     */
-    base?: string;
+  /**
+   * @default `/`
+   */
+  base?: string;
 }
 ```
 
@@ -27,7 +27,7 @@ interface FatcherOptions {
 import { fatcher } from 'fatcher';
 
 fatcher({
-    base: 'https://examples.com/',
+  base: 'https://examples.com/',
 });
 ```
 
@@ -39,10 +39,10 @@ Request url. `url` will combine with `base`.
 
 ```ts
 interface FatcherOptions {
-    /**
-     * @default '/'
-     */
-    url?: string;
+  /**
+   * @default '/'
+   */
+  url?: string;
 }
 ```
 
@@ -65,10 +65,10 @@ An array of function with `pre` or `post` request. Detail please see [MIDDLEWARE
 
 ```ts
 interface FatcherOptions {
-    /**
-     *  @default []
-     */
-    middlewares?: MiddlewareRegister[];
+  /**
+   *  @default []
+   */
+  middlewares?: MiddlewareRegister[];
 }
 ```
 
@@ -78,11 +78,11 @@ interface FatcherOptions {
 import { fatcher, defineMiddleware } from 'fatcher';
 
 const middleware = defineMiddleware(async (context, next) => {
-    // ...
+  // ...
 }, 'my-middleware-name');
 
 fatcher({
-    middlewares: [middleware],
+  middlewares: [middleware],
 });
 ```
 
@@ -94,10 +94,10 @@ Some request params in url.
 
 ```ts
 interface FatcherOptions {
-    /**
-     *  @default {}
-     */
-    params?: Record<string, string>;
+  /**
+   *  @default {}
+   */
+  params?: Record<string, string>;
 }
 ```
 
@@ -107,12 +107,12 @@ interface FatcherOptions {
 import { fatcher } from 'fatcher';
 
 fatcher({
-    base: 'https://examples.com/',
-    url: '/foo/bar',
-    params: {
-        name: 'example',
-        id: '1',
-    },
+  base: 'https://examples.com/',
+  url: '/foo/bar',
+  params: {
+    name: 'example',
+    id: '1',
+  },
 }); // Request url is https://examples.com/foo/bar?name=example&id=1
 ```
 
@@ -124,11 +124,11 @@ Custom validate status code, If status code is not match, will throw a `FatcherE
 
 ```ts
 interface FatcherOptions {
-    /**
-     *  @default
-     * (statusCode) => 200 <= statusCode < 300
-     */
-    validateCode?: (statusCode: number) => boolean;
+  /**
+   *  @default
+   * (statusCode) => 200 <= statusCode < 300
+   */
+  validateCode?: (statusCode: number) => boolean;
 }
 ```
 
@@ -138,11 +138,11 @@ interface FatcherOptions {
 import { fatcher } from 'fatcher';
 
 fatcher({
-    base: 'https://examples.com/',
-    url: '/foo/bar',
-    validateCode(code) {
-        return code === 200; // will success when code is 200
-    },
+  base: 'https://examples.com/',
+  url: '/foo/bar',
+  validateCode(code) {
+    return code === 200; // will success when code is 200
+  },
 });
 ```
 
@@ -159,29 +159,29 @@ HTTP Request Method for current request.
 ```ts
 // fetch
 interface RequestInit {
-    method?: string;
+  method?: string;
 }
 
 // fatcher
 interface FatcherOptions {
-    /**
-     *  @default 'GET'
-     */
-    method?:
-        | 'GET'
-        | 'get'
-        | 'POST'
-        | 'post'
-        | 'PUT'
-        | 'put'
-        | 'DELETE'
-        | 'delete'
-        | 'HEAD'
-        | 'head'
-        | 'OPTIONS'
-        | 'options'
-        | 'PATCH'
-        | 'patch';
+  /**
+   *  @default 'GET'
+   */
+  method?:
+    | 'GET'
+    | 'get'
+    | 'POST'
+    | 'post'
+    | 'PUT'
+    | 'put'
+    | 'DELETE'
+    | 'delete'
+    | 'HEAD'
+    | 'head'
+    | 'OPTIONS'
+    | 'options'
+    | 'PATCH'
+    | 'patch';
 }
 ```
 
@@ -191,7 +191,7 @@ interface FatcherOptions {
 import { fatcher } from 'fatcher';
 
 fatcher({
-    method: 'POST',
+  method: 'POST',
 });
 ```
 
@@ -204,14 +204,14 @@ Request body, will consume it in middlewares before send request. Convert to dif
 ```ts
 // fetch
 interface RequestInit {
-    body?: BodyInit | null;
+  body?: BodyInit | null;
 }
 
 // fatcher
 type RequestBody = BodyInit | null | Record<string, any>;
 
 interface FatcherOptions {
-    body?: RequestBody;
+  body?: RequestBody;
 }
 ```
 
@@ -221,8 +221,8 @@ interface FatcherOptions {
 import { fatcher } from 'fatcher';
 
 fatcher({
-    body: {
-        id: 'examples',
-    },
+  body: {
+    id: 'examples',
+  },
 });
 ```

@@ -1,86 +1,86 @@
 name: CI
 
 on:
-    push:
-        branches:
-            - master
-    pull_request:
-    workflow_dispatch:
+  push:
+    branches:
+      - master
+  pull_request:
+  workflow_dispatch:
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v2
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
 
-            - uses: pnpm/action-setup@v2.0.1
-              with:
-                  version: 7
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 7
 
-            - uses: actions/setup-node@v2
-              with:
-                  cache: 'pnpm'
-                  node-version: 18
+      - uses: actions/setup-node@v2
+        with:
+          cache: 'pnpm'
+          node-version: 18
 
-            - run: pnpm install
+      - run: pnpm install
 
-            - run: pnpm run build
+      - run: pnpm run build
 
-    eslint:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v2
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
 
-            - uses: pnpm/action-setup@v2.0.1
-              with:
-                  version: 7
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 7
 
-            - uses: actions/setup-node@v2
-              with:
-                  cache: 'pnpm'
-                  node-version: 18
+      - uses: actions/setup-node@v2
+        with:
+          cache: 'pnpm'
+          node-version: 18
 
-            - run: pnpm install
+      - run: pnpm install
 
-            - run: pnpm run eslint
+      - run: pnpm run eslint
 
-    typings:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v2
+  typings:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
 
-            - uses: pnpm/action-setup@v2.0.1
-              with:
-                  version: 7
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 7
 
-            - uses: actions/setup-node@v2
-              with:
-                  cache: 'pnpm'
-                  node-version: 18
+      - uses: actions/setup-node@v2
+        with:
+          cache: 'pnpm'
+          node-version: 18
 
-            - run: pnpm install
+      - run: pnpm install
 
-            - run: pnpm exec tsc --noEmit
+      - run: pnpm exec tsc --noEmit
 
-    test:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v2
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
 
-            - uses: pnpm/action-setup@v2.0.1
-              with:
-                  version: 7
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 7
 
-            - uses: actions/setup-node@v2
-              with:
-                  cache: 'pnpm'
-                  node-version: 18
+      - uses: actions/setup-node@v2
+        with:
+          cache: 'pnpm'
+          node-version: 18
 
-            - run: pnpm install
+      - run: pnpm install
 
-            - run: pnpm run test:cov
+      - run: pnpm run test:cov
 
-            - uses: codecov/codecov-action@v2
-              with:
-                  fail_ci_if_error: true
-                  verbose: true
+      - uses: codecov/codecov-action@v2
+        with:
+          fail_ci_if_error: true
+          verbose: true
