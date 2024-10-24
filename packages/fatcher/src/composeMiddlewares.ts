@@ -36,7 +36,7 @@ export function composeMiddlewares(middlewares: FatcherMiddleware[]) {
 
     async function dispatch(
       index: number,
-      patch?: Partial<FatcherRequest>
+      patch?: Partial<FatcherRequest>,
     ): Promise<FatcherResponse> {
       if (index <= currentIndex) {
         return response;

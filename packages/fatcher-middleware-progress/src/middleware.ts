@@ -3,7 +3,7 @@ import { ProgressOptions } from './types';
 
 async function readStreamByChunk(
   readableStream: ReadableStream,
-  callback: (value: string) => Promise<void> | void
+  callback: (value: string) => Promise<void> | void,
 ) {
   async function read(reader: ReadableStreamDefaultReader) {
     const { value, done } = await reader.read();

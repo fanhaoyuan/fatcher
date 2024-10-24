@@ -6,7 +6,7 @@ import * as path from 'path';
  */
 function validator(message: string) {
   const REG_EXP = new RegExp(
-    `^(revert: )?(feat|fix|docs|style|refactor|perf|test|workflow|build|ci|chore|types|release|deprecate)(\\(.+\\))?: .{1,50}`
+    `^(revert: )?(feat|fix|docs|style|refactor|perf|test|workflow|build|ci|chore|types|release|deprecate)(\\(.+\\))?: .{1,50}`,
   );
 
   if (!REG_EXP.test(message)) {

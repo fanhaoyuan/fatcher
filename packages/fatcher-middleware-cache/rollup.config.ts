@@ -2,9 +2,9 @@ import nodeResolver from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import strip from '@rollup/plugin-strip';
 import { defineConfig } from 'rollup';
-import bundleSize from 'rollup-plugin-bundle-size';
 import dts from 'rollup-plugin-dts';
 import esbuild, { minify } from 'rollup-plugin-esbuild';
+import bundleSize from 'rollup-plugin-output-size';
 import { browser, main, module, typings } from './package.json';
 
 const input = 'src/index.ts';
