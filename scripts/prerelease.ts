@@ -1,7 +1,8 @@
 import * as fs from 'fs-extra';
 import * as path from 'path';
+import { version } from '../package.json';
 
-(function version() {
+(function updateVersion() {
   const base = path.resolve(__dirname, '../packages');
   const items = fs.readdirSync(base);
 

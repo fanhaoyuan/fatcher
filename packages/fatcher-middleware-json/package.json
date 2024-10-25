@@ -27,5 +27,6 @@
     "test": "jest",
     "test:cov": "jest --coverage",
     "tsc": "tsc --noEmit"
-  }
+  },
+  "version": "3.0.0"
 }
