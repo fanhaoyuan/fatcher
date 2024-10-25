@@ -1,4 +1,5 @@
 import { FatcherMiddleware } from 'fatcher';
+import { readStreamByChunk } from '../../utils-shared/dist';
 
 export const json = (): FatcherMiddleware => {
   return async (context, next) => {
@@ -10,20 +11,19 @@ export const json = (): FatcherMiddleware => {
 
     const clonedResponse = response.clone();
 
-    try {
-      /**
-       * Clone a response to try.
-       */
-      const data = await clonedResponse.json();
+    response.toJson = async () => {
+      let string = '';
 
-      return data;
-    } catch {
-      /**
-       * If transform error.
-       *
-       * Return origin result.
-       */
-    }
+      await readStreamByChunk(clonedResponse.body!, chunk => {
+        console.log(Buffer.isBuffer(chunk));
+
+        string += chunk;
+      });
+
+      console.log(string);
+
+      return JSON.parse(string);
+    };
 
     return response;
   };

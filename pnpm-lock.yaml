@@ -117,6 +117,10 @@ importers:
         version: link:../fatcher
 
   packages/fatcher-middleware-json:
+    dependencies:
+      '@fatcherjs/utils-shared':
+        specifier: workspace:*
+        version: link:../utils-shared
     devDependencies:
       fatcher:
         specifier: workspace:*

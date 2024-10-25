@@ -16,6 +16,9 @@
   "peerDependencies": {
     "fatcher": "workspace:*"
   },
+  "dependencies": {
+    "@fatcherjs/utils-shared": "workspace:*"
+  },
   "devDependencies": {
     "fatcher": "workspace:*"
   },
