@@ -21,14 +21,13 @@ describe('Middleware Response Context', () => {
         defineMiddleware(async (request, next) => {
           const res = await next();
           // @ts-expect-error
-          res['extraProps'] = extraProps;
+          expect(res.extraProps).toBe(extraProps);
           return res;
         }),
-
         defineMiddleware(async (request, next) => {
           const res = await next();
           // @ts-expect-error
-          expect(res.extraProps).toBe(extraProps);
+          res['extraProps'] = extraProps;
           return res;
         }),
       ],
