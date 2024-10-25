@@ -8,8 +8,7 @@ export function merge<
   }
 
   for (const key of Object.keys(source)) {
-    // eslint-disable-next-line no-proto
-    if (!Object.hasOwn(target.__proto__, key)) {
+    if (!Object.hasOwn(Object.getPrototypeOf(target), key)) {
       // @ts-expect-error
       target[key] = source[key];
     }
