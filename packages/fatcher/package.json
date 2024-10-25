@@ -1,6 +1,5 @@
 {
   "name": "fatcher",
-  "version": "3.0.0",
   "description": "Send fetch request gracefully in browsers and nodeJS",
   "homepage": "https://github.com/fanhaoyuan/fatcher",
   "repository": {
