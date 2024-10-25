@@ -129,10 +129,16 @@ importers:
         version: link:../fatcher
 
   packages/fatcher-middleware-progress:
+    dependencies:
+      '@fatcherjs/utils-shared':
+        specifier: workspace:*
+        version: link:../utils-shared
     devDependencies:
       fatcher:
         specifier: workspace:*
         version: link:../fatcher
+
+  packages/utils-shared: {}
 
 packages:
 
@@ -286,6 +292,7 @@ packages:
   /@babel/helper-validator-identifier@7.25.9:
     resolution: {integrity: sha512-Ed61U6XJc3CVRfkERJWDz4dJwKe7iLmmJsbOGu9wSloNSFttHV0I8g6UAgb7qnK5ly5bGLPd4oXZlxCdANBOWQ==}
     engines: {node: '>=6.9.0'}
+    requiresBuild: true
     dev: true
 
   /@babel/helper-validator-option@7.18.6:

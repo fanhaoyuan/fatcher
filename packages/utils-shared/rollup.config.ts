@@ -15,7 +15,7 @@ const plugins = [nodeResolver(), esbuild({ target })];
 export default defineConfig([
   {
     input,
-    external: ['fatcher', /^@fatcherjs/],
+    external: ['fatcher'],
     plugins,
     output: [
       {
@@ -45,7 +45,7 @@ export default defineConfig([
       plugins: [minify({ target: 'es2018' }), bundleSize()],
       format: 'umd',
       file: browser,
-      name: 'FatcherMiddlewareProgress',
+      name: 'FatcherUtilsShared',
     },
   },
   {

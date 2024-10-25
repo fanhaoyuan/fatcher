@@ -1,20 +1,6 @@
+import { readStreamByChunk } from '@fatcherjs/utils-shared';
 import { FatcherMiddleware } from 'fatcher';
 import { ProgressOptions } from './types';
-
-async function readStreamByChunk(
-  readableStream: ReadableStream,
-  callback: (value: string) => Promise<void> | void,
-) {
-  async function read(reader: ReadableStreamDefaultReader) {
-    const { value, done } = await reader.read();
-    if (done) {
-      return;
-    }
-    await callback(value);
-    await read(reader);
-  }
-  return read(readableStream.getReader());
-}
 
 export const progress = (options: ProgressOptions = {}): FatcherMiddleware => {
   return async (context, next) => {
