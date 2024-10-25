@@ -15,6 +15,7 @@
   ],
   "scripts": {
     "clean": "rimraf dist",
-    "build": "npm run clean && rollup -c rollup.config.ts"
+    "build": "npm run clean && rollup -c rollup.config.ts",
+    "tsc": "tsc --noEmit"
   }
 }

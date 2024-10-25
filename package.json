@@ -5,7 +5,8 @@
     "prepare": "husky install",
     "clean": "pnpm -r clean",
     "build": "pnpm -r build",
-    "ci": "npm run eslint && npx tsc --noEmit && npm run build && npm run test",
+    "ci": "npm run eslint && npm run tsc && npm run build && npm run test",
+    "tsc": "pnpm -r tsc",
     "test": "pnpm -r run test",
     "test:cov": "pnpm -r run test:cov",
     "eslint": "eslint . --fix"
