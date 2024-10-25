@@ -17,5 +17,5 @@
     "build": "npm run clean && rollup -c rollup.config.ts",
     "tsc": "tsc --noEmit"
   },
-  "version": "3.0.0-alpha-4"
+  "version": "3.0.0-alpha-5"
 }
