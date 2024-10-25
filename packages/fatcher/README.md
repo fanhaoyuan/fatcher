@@ -106,9 +106,16 @@ We should call the next function and return the response to prev middleware.
 import { defineMiddleware } from 'fatcher';
 
 const logs = defineMiddleware(async (request, next) => {
+  const startTime = Date.now();
+
   const response = await next({
     url: 'https://foo.bar1',
   });
+
+  const now = Date.now();
+  console.log(`spent ${now - startTime}ms`);
+
+  return response;
 });
 
 fatcher('https://foo.bar', { middlewares: [logs] }); //  sent to 'https://foo.bar1' instead of 'https://foo.bar'
