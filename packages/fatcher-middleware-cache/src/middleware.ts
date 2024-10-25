@@ -3,8 +3,8 @@ import { CacheOptions } from './types';
 
 const cacheMap = new Map<string, Response>();
 
-export const cache = (options: CacheOptions = {}): FatcherMiddleware => {
-  return async (req, next) => {
+export const cache = (options: CacheOptions = {}) => {
+  return (async (req, next) => {
     const { ttl = 0, useCache } = options;
 
     if (!useCache || ttl <= 0 || !req.url || req.method?.toUpperCase() !== 'GET') {
@@ -28,5 +28,5 @@ export const cache = (options: CacheOptions = {}): FatcherMiddleware => {
     }, ttl);
 
     return response;
-  };
+  }) as FatcherMiddleware;
 };

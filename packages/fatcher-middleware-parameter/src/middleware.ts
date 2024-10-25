@@ -1,8 +1,8 @@
 import { FatcherMiddleware } from 'fatcher';
 import { ParameterOptions } from './types';
 
-export const parameter = (options: ParameterOptions = {}): FatcherMiddleware => {
-  return async (req, next) => {
+export const parameter = (options: ParameterOptions = {}) => {
+  return (async (req, next) => {
     const { params } = options;
 
     if (!params) {
@@ -37,5 +37,5 @@ export const parameter = (options: ParameterOptions = {}): FatcherMiddleware => 
       .join('&');
 
     return next(new Request(`${base}?${querystring}`));
-  };
+  }) as FatcherMiddleware;
 };

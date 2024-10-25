@@ -1,7 +1,7 @@
 import { FatcherMiddleware } from 'fatcher';
 
-export const formData = (): FatcherMiddleware => {
-  return (req, next) => {
+export const formData = () => {
+  return ((req, next) => {
     if (!req.body) {
       return next();
     }
@@ -31,5 +31,5 @@ export const formData = (): FatcherMiddleware => {
     }
 
     return next();
-  };
+  }) as FatcherMiddleware;
 };

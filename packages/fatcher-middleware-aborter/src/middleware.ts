@@ -1,8 +1,8 @@
 import { FatcherMiddleware } from 'fatcher';
 import { AborterOptions } from './types';
 
-export const aborter = (options: AborterOptions = {}): FatcherMiddleware => {
-  return async (req, next) => {
+export const aborter = (options: AborterOptions = {}) => {
+  return (async (req, next) => {
     const { onAbort, timeout } = options;
     const abortController = new AbortController();
 
@@ -30,5 +30,5 @@ export const aborter = (options: AborterOptions = {}): FatcherMiddleware => {
     }
 
     return response;
-  };
+  }) as FatcherMiddleware;
 };
