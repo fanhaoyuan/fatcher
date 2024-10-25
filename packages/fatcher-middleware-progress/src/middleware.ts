@@ -1,4 +1,4 @@
-import { defineMiddleware } from 'fatcher';
+import { FatcherMiddleware } from 'fatcher';
 import { ProgressOptions } from './types';
 
 async function readStreamByChunk(
@@ -16,8 +16,8 @@ async function readStreamByChunk(
   return read(readableStream.getReader());
 }
 
-export const progress = (options: ProgressOptions = {}) => {
-  return defineMiddleware(async (context, next) => {
+export const progress = (options: ProgressOptions = {}): FatcherMiddleware => {
+  return async (context, next) => {
     const { onDownloadProgress } = options;
 
     const response = await next();
@@ -42,5 +42,5 @@ export const progress = (options: ProgressOptions = {}) => {
     });
 
     return new Response(tee, response);
-  });
+  };
 };
