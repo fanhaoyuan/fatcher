@@ -30,6 +30,8 @@ jobs:
 
       - run: pnpm install
 
+      - run: pnpm build
+
       - run: echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
 
       - run: pnpm -r publish --access=public --no-git-checks
