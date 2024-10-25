@@ -15,7 +15,7 @@ const plugins = [nodeResolver(), esbuild({ target })];
 export default defineConfig([
   {
     input,
-    external: ['fatcher'],
+    external: ['fatcher', /^@fatcherjs/],
     plugins,
     output: [
       {

@@ -1,28 +1,33 @@
+import { readStreamByChunk } from '@fatcherjs/utils-shared';
 import { FatcherMiddleware } from 'fatcher';
-import { readStreamByChunk } from '../../utils-shared/dist';
 
 export const json = (): FatcherMiddleware => {
   return async (context, next) => {
     const response = await next();
 
     if (response.bodyUsed || !response.body) {
+      response.readStreamAsJson = async () => null;
       return response;
     }
 
     const clonedResponse = response.clone();
 
-    response.toJson = async () => {
+    response.readStreamAsJson = async onRead => {
+      const textDecoder = new TextDecoder();
       let string = '';
 
       await readStreamByChunk(clonedResponse.body!, chunk => {
-        console.log(Buffer.isBuffer(chunk));
-
-        string += chunk;
+        const currentChunkString = textDecoder.decode(chunk, { stream: true });
+        string += currentChunkString;
+        onRead?.(currentChunkString, chunk);
       });
 
-      console.log(string);
-
-      return JSON.parse(string);
+      string += textDecoder.decode(undefined, { stream: false });
+      try {
+        return JSON.parse(string);
+      } catch {
+        return null;
+      }
     };
 
     return response;

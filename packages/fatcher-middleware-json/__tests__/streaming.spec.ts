@@ -24,9 +24,19 @@ describe('fatcher-middleware-json', () => {
       middlewares: [json()],
     });
 
-    const streamingJson = await res.toJson();
+    const streamingJson = await res.readStreamAsJson();
+    expect(streamingJson).toStrictEqual(result);
+  });
 
-    console.log(streamingJson);
+  it('Read string data with chunk', async () => {
+    const res = await fatcher('https://foo.bar/get', {
+      middlewares: [json()],
+    });
+
+    const streamingJson = await res.readStreamAsJson((string, buffer) => {
+      expect(typeof string).toBe('string');
+      expect(buffer instanceof Uint8Array).toBe(true);
+    });
 
     expect(streamingJson).toStrictEqual(result);
   });

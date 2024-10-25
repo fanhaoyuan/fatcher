@@ -2,6 +2,8 @@ import 'fatcher';
 
 declare module 'fatcher' {
   interface FatcherResponse {
-    toJson: <T>() => Promise<T>;
+    readStreamAsJson: <T>(
+      onRead?: (chunk: string, buffer: Uint8Array) => void | Promise<void>,
+    ) => Promise<T | null>;
   }
 }
