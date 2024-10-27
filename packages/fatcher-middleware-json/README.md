@@ -1,4 +1,4 @@
-# @fatcher/middleware-json
+# @fatcherjs/middleware-json
 
 <a href="https://npmjs.com/package/@fatcherjs/middleware-json"><img src="https://img.shields.io/npm/v/@fatcherjs/middleware-json.svg" alt="npm package"></a>
 [![install size](https://packagephobia.com/badge?p=@fatcherjs/middleware-json)](https://packagephobia.com/result?p=@fatcherjs/middleware-json)
