@@ -1,5 +1,9 @@
 # @fatcher/middleware-form-data
 
+<a href="https://npmjs.com/package/@fatcherjs/middleware-form-data"><img src="https://img.shields.io/npm/v/@fatcherjs/middleware-form-data.svg" alt="npm package"></a>
+[![install size](https://packagephobia.com/badge?p=@fatcherjs/middleware-form-data)](https://packagephobia.com/result?p=@fatcherjs/middleware-form-data)
+<a href="https://unpkg.com/@fatcherjs/middleware-form-data"><img alt="Size" src="https://img.badgesize.io/https://unpkg.com/@fatcherjs/middleware-form-data"></a>
+
 ## Install
 
 ### NPM

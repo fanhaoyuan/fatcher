@@ -1,5 +1,9 @@
 # @fatcher/middleware-progress
 
+<a href="https://npmjs.com/package/@fatcherjs/middleware-progress"><img src="https://img.shields.io/npm/v/@fatcherjs/middleware-progress.svg" alt="npm package"></a>
+[![install size](https://packagephobia.com/badge?p=@fatcherjs/middleware-progress)](https://packagephobia.com/result?p=@fatcherjs/middleware-progress)
+<a href="https://unpkg.com/@fatcherjs/middleware-progress"><img alt="Size" src="https://img.badgesize.io/https://unpkg.com/@fatcherjs/middleware-progress"></a>
+
 ## Install
 
 ### NPM
