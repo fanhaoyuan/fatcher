@@ -20,9 +20,13 @@
 import { fatcher } from 'fatcher';
 import { json } from '@fatcherjs/middleware-json';
 
-fatcher('https://foo.bar', {
+const res = await fatcher('https://foo.bar/get', {
   middlewares: [json()],
 });
+
+const streamingJson = await res.readStreamAsJson((string: string, buffer: Uint8Array) => {
+  console.log(string, buffer); // chunks for streaming string
+}); // full result
 ```
 
 ## License
