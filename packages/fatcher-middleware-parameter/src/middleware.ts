@@ -1,11 +1,16 @@
 import { FatcherMiddleware } from 'fatcher';
+import { defaultSerializer } from './defaultSerializer';
 import { ParameterOptions } from './types';
 
 export const parameter = (options: ParameterOptions = {}) => {
-  return (async (req, next) => {
-    const { params } = options;
+  const { serializer = defaultSerializer } = options;
 
-    if (!params) {
+  return (async (req, next) => {
+    const {
+      options: { params = {} },
+    } = req;
+
+    if (!Object.keys(params).length) {
       return next();
     }
 
@@ -23,19 +28,8 @@ export const parameter = (options: ParameterOptions = {}) => {
       }
     }
 
-    querystring = Object.keys(params)
-      .reduce<string[]>((result, key) => {
-        const value = params[key];
+    querystring = serializer(params);
 
-        if (typeof value === 'undefined') {
-          return result;
-        }
-
-        // Avoid some error in querystring. Just like emoji
-        return [...result, `${encodeURIComponent(key)}=${encodeURIComponent(value)}`];
-      }, [])
-      .join('&');
-
-    return next(new Request(`${base}?${querystring}`));
+    return next(new Request(querystring ? `${base}?${querystring}` : base));
   }) as FatcherMiddleware;
 };

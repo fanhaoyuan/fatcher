@@ -1,3 +1,15 @@
+import 'fatcher';
+
+export type RequestParameters = Record<string, any>;
+
+export type ParameterSerializer = (params: RequestParameters) => string;
+
 export interface ParameterOptions {
-  params?: Record<string, any>;
+  serializer?: ParameterSerializer;
+}
+
+declare module 'fatcher' {
+  interface FatcherOptions {
+    params?: RequestParameters;
+  }
 }
