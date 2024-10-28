@@ -1,4 +1,5 @@
-import 'fatcher';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type * as fatcher from 'fatcher';
 
 export type RequestParameters = Record<string, any>;
 
