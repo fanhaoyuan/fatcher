@@ -25,11 +25,7 @@ import { fatcher } from 'fatcher';
 import { progress } from '@fatcherjs/middleware-progress';
 
 fatcher('https://foo.bar', {
-  middlewares: [
-    progress({
-      // Options
-    }),
-  ],
+  middlewares: [progress()],
 });
 ```
 
@@ -42,13 +38,11 @@ import { fatcher } from 'fatcher';
 import { progress } from '@fatcherjs/middleware-progress';
 
 fatcher('https://foo.bar', {
-  middlewares: [
-    progress({
-      onDownloadProgress: (current, total) => {
-        console.log(current, total);
-      }, // will trigger when receive data
-    }),
-  ],
+  middlewares: [progress()],
+  onDownloadProgress: (current, total) => {
+    // current received data length
+    // total data length
+  },
 });
 ```
 

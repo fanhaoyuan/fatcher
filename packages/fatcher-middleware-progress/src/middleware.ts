@@ -1,18 +1,19 @@
 import { readStreamByChunk } from '@fatcherjs/utils-shared';
 import { FatcherMiddleware } from 'fatcher';
-import { ProgressOptions } from './types';
 
-export const progress = (options: ProgressOptions = {}) => {
+export const progress = () => {
   return (async (context, next) => {
-    const { onDownloadProgress } = options;
+    const {
+      options: { onDownloadProgress },
+    } = context;
 
     const response = await next();
 
-    if (!onDownloadProgress || !response.body) {
+    if (!onDownloadProgress || !response.body || response.bodyUsed) {
       return response;
     }
 
-    const total = Number(response.headers.get('content-length')) ?? 0;
+    const total = Number(response.headers.get('content-length') || 0);
 
     if (!total) {
       return response;
