@@ -26,7 +26,7 @@ jobs:
 
       - run: pnpm install
 
-      - run: cd pacakges/fatcher && pnpm run test:cov
+      - run: cd packages/fatcher && pnpm run test:cov
 
       - uses: codecov/codecov-action@v2
         with:
