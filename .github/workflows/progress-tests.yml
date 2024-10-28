@@ -7,6 +7,8 @@ on:
     paths:
       - packages/fatcher-middleware-progress/**/*
   pull_request:
+    paths:
+      - packages/fatcher-middleware-progress/**/*
   workflow_dispatch:
 
 jobs:

@@ -7,6 +7,8 @@ on:
     paths:
       - packages/fatcher/**/*
   pull_request:
+    paths:
+      - packages/fatcher/**/*
   workflow_dispatch:
 
 jobs:
