@@ -28,6 +28,8 @@ jobs:
 
       - run: pnpm install
 
+      - run: pnpm build
+
       - run: cd packages/fatcher-middleware-json && pnpm run test:cov
 
       - uses: codecov/codecov-action@v2
