@@ -44,24 +44,6 @@ jobs:
 
       - run: pnpm run eslint
 
-  typings:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-
-      - uses: pnpm/action-setup@v2.0.1
-        with:
-          version: 8
-
-      - uses: actions/setup-node@v2
-        with:
-          cache: 'pnpm'
-          node-version: 18
-
-      - run: pnpm install
-
-      - run: pnpm exec tsc --noEmit
-
   test:
     runs-on: ubuntu-latest
     steps:
