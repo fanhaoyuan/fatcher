@@ -1,14 +1,16 @@
-name: CI
+name: Fatcher Tests
 
 on:
   push:
     branches:
       - master
+    paths:
+      - packages/fatcher/**/*
   pull_request:
   workflow_dispatch:
 
 jobs:
-  build:
+  test-coverage:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -24,22 +26,11 @@ jobs:
 
       - run: pnpm install
 
-      - run: pnpm run build
+      - run: cd pacakges/fatcher && pnpm run test:cov
 
-  eslint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-
-      - uses: pnpm/action-setup@v2.0.1
+      - uses: codecov/codecov-action@v2
         with:
-          version: 8
-
-      - uses: actions/setup-node@v2
-        with:
-          cache: 'pnpm'
-          node-version: 18
-
-      - run: pnpm install
-
-      - run: pnpm run eslint
+          fail_ci_if_error: false
+          verbose: true
+          directory: packages/fatcher
+          flags: fatcher
