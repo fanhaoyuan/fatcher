@@ -1,0 +1,40 @@
+name: Fatcher Middleware FormData Tests
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - packages/fatcher-middleware-form-data/**/*
+  pull_request:
+    paths:
+      - packages/fatcher-middleware-form-data/**/*
+  workflow_dispatch:
+
+jobs:
+  test-coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 8
+
+      - uses: actions/setup-node@v2
+        with:
+          cache: 'pnpm'
+          node-version: 18
+
+      - run: pnpm install
+
+      - run: pnpm build
+
+      - run: cd packages/fatcher-middleware-form-data && pnpm run test:cov
+
+      - uses: codecov/codecov-action@v2
+        with:
+          fail_ci_if_error: false
+          verbose: true
+          directory: packages/fatcher-middleware-form-data
+          flags: fatcher-middleware-form-data

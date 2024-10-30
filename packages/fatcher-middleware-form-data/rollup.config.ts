@@ -5,7 +5,7 @@ import { defineConfig } from 'rollup';
 import dts from 'rollup-plugin-dts';
 import esbuild, { minify } from 'rollup-plugin-esbuild';
 import bundleSize from 'rollup-plugin-output-size';
-import { browser, main, module, typings } from './package.json';
+import { browser, dependencies, main, module, peerDependencies, typings } from './package.json';
 
 const input = 'src/index.ts';
 const target = 'esnext';
@@ -15,7 +15,7 @@ const plugins = [nodeResolver(), esbuild({ target })];
 export default defineConfig([
   {
     input,
-    external: ['fatcher'],
+    external: [...Object.keys(peerDependencies), ...Object.keys(dependencies)],
     plugins,
     output: [
       {

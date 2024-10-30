@@ -26,6 +26,14 @@ import { formData } from '@fatcherjs/middleware-form-data';
 
 fatcher('https://foo.bar', {
   middlewares: [formData()],
+  headers: {
+    'Content-Type': 'multipart/form-data',
+  },
+  method: 'POST',
+  body: {
+    foo: 'bar',
+    test: 'a',
+  },
 });
 ```
 

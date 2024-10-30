@@ -1,25 +1,28 @@
+import { isBrowser, isPlainObject } from '@fatcherjs/utils-shared';
 import { FatcherMiddleware } from 'fatcher';
 
 export const formData = () => {
   return ((req, next) => {
-    if (!req.body) {
+    const { body } = req.options;
+
+    if (!body) {
       return next();
     }
 
-    const contentType = req.headers.get('content-type') ?? '';
-
-    if (contentType.includes('multipart/form-data')) {
-      req.headers.delete('content-type');
+    if (req.headers.get('content-type')?.includes('multipart/form-data')) {
+      if (isBrowser()) {
+        req.headers.delete('content-type');
+      }
     }
 
-    if (req.body instanceof FormData) {
+    if (body instanceof FormData) {
       return next();
     }
 
-    if (typeof req.body === 'object') {
+    if (isPlainObject(body)) {
       const form = new FormData();
 
-      for (const [key, value] of Object.entries(req.body)) {
+      for (const [key, value] of Object.entries(body)) {
         if (Array.isArray(value)) {
           value.forEach(item => form.append(key, item));
         } else {
