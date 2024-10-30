@@ -16,5 +16,5 @@
     "clean": "rimraf dist",
     "build": "npm run clean && rollup -c rollup.config.ts"
   },
-  "version": "3.0.0-alpha-7"
+  "version": "3.0.0-alpha-8"
 }
