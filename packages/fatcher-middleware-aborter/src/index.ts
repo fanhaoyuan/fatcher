@@ -1,3 +1,4 @@
+export * from './aborter';
 export * from './isAbortError';
-export * from './middleware';
+export * from './timeout';
 export * from './types';
