@@ -17,7 +17,7 @@
     "@jest/globals": "^29.7.0",
     "@jest/types": "^29.2.0",
     "@rollup/plugin-node-resolve": "^15.3.0",
-    "@rollup/plugin-replace": "^5.0.0",
+    "@rollup/plugin-replace": "^6.0.2",
     "@rollup/plugin-strip": "^3.0.0",
     "@types/fs-extra": "^11.0.4",
     "@types/jest": "^29.1.2",
