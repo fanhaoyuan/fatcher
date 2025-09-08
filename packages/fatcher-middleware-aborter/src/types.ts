@@ -2,11 +2,13 @@
 import 'fatcher';
 
 declare module 'fatcher' {
-  interface FatcherContext {
-    timeout?: number;
+  interface FatcherOptions {
     onAbort?: (reason?: string) => void;
     abortController?: AbortController;
-    abort: (reason?: string) => void;
+    timeout?: number;
+  }
+  interface FatcherContext {
     signal: AbortSignal;
+    abort: (reason?: string) => void;
   }
 }
