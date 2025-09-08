@@ -1,3 +1,4 @@
+import { merge } from './merge';
 import { FatcherFunctionalMiddleware, FatcherRequest, FatcherResponse } from './types';
 
 /**
@@ -50,13 +51,12 @@ export function composeMiddlewares(middlewares: FatcherFunctionalMiddleware[]) {
       }
 
       if (patch) {
-        request = {
-          ...Object.assign({}, request, patch),
-        };
+        const base = patch.url ? new Request(patch.url, request) : request;
+        request = merge(new Request(base, patch) as FatcherRequest, { ...request }, patch);
       }
 
       const newResponse = await middleware(request, async _ => dispatch(index + 1, _));
-      response = response ? Object.assign(response, newResponse) : newResponse;
+      response = response ? merge(response, newResponse) : newResponse;
       return response;
     }
 
