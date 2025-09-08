@@ -1,5 +1,5 @@
 import { describe } from '@jest/globals';
-import { isFatcherError } from '../src';
+import { FatcherError, isFatcherError } from '../src';
 
 describe('Confirm a error whether is fatcher error', () => {
   it('Normal error is not fatcher error', () => {
