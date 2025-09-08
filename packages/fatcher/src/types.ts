@@ -1,9 +1,5 @@
 /* eslint-disable no-use-before-define */
 
-export interface ExceptionOptions {
-  validateCode?: (statusCode: number) => boolean;
-}
-
 export interface FatcherResponse extends Response {}
 
 export interface FatcherOptions extends RequestInit {

@@ -116,6 +116,16 @@ importers:
         specifier: workspace:*
         version: link:../fatcher
 
+  packages/fatcher-middleware-exception:
+    dependencies:
+      '@fatcherjs/utils-shared':
+        specifier: workspace:*
+        version: link:../utils-shared
+    devDependencies:
+      fatcher:
+        specifier: workspace:*
+        version: link:../fatcher
+
   packages/fatcher-middleware-form-data:
     dependencies:
       '@fatcherjs/utils-shared':
