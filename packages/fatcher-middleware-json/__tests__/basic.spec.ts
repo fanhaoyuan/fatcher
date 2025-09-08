@@ -21,7 +21,7 @@ describe('fatcher-middleware-json', () => {
 
   it('Provide a json read function', async () => {
     const res = await fatcher('https://foo.bar/get', {
-      middlewares: [json()],
+      middlewares: [json],
     });
 
     expect(typeof res.readStreamAsJson).toEqual('function');
@@ -29,7 +29,7 @@ describe('fatcher-middleware-json', () => {
 
   it('Return null with empty body', async () => {
     const res = await fatcher('https://foo.bar/get', {
-      middlewares: [json()],
+      middlewares: [json],
     });
 
     expect(await res.readStreamAsJson()).toBe(null);
@@ -38,7 +38,7 @@ describe('fatcher-middleware-json', () => {
   it('Return null with used body', async () => {
     const res = await fatcher('https://foo.bar/get', {
       middlewares: [
-        json(),
+        json,
         async (req, next) => {
           const response = await next();
           await response.text();
@@ -52,7 +52,7 @@ describe('fatcher-middleware-json', () => {
 
   it('Return null with non-json data', async () => {
     const res = await fatcher('https://foo.bar/non-json', {
-      middlewares: [json()],
+      middlewares: [json],
     });
 
     expect(await res.readStreamAsJson()).toBe(null);

@@ -20,7 +20,7 @@ describe('Body Type', () => {
 
   it('Will ignore when body is empty', async () => {
     const response = await fatcher('https://foo.bar', {
-      middlewares: [formData()],
+      middlewares: [formData],
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -33,7 +33,7 @@ describe('Body Type', () => {
 
   it('Will Ignore when body is not plain object', async () => {
     const response = await fatcher('https://foo.bar', {
-      middlewares: [formData()],
+      middlewares: [formData],
       headers: {
         'Content-Type': 'multipart/form-data',
       },

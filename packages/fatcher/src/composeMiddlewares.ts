@@ -57,7 +57,7 @@ export function composeMiddlewares(middlewares: FatcherFunctionalMiddleware[]) {
       }
 
       const newResponse = await middleware(context, async _ => dispatch(index + 1, _));
-      response = Object.assign(response, newResponse);
+      response = response ? Object.assign(response, newResponse) : newResponse;
       return response;
     }
 

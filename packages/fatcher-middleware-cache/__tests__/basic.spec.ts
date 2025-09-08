@@ -17,10 +17,10 @@ describe('Basic', () => {
   it('Ignore cache when ttl is not a number value', async () => {
     const url = `https://foo.bar?id=${id++}`;
 
-    const response = await fatcher(url, { middlewares: [cache()] });
+    const response = await fatcher(url, { middlewares: [cache] });
     const result = await response.json();
 
-    const response1 = await fatcher(url, { middlewares: [cache()] });
+    const response1 = await fatcher(url, { middlewares: [cache] });
     const result1 = await response1.json();
 
     expect(result.responseTime === result1.responseTime).toBe(false);
@@ -29,10 +29,10 @@ describe('Basic', () => {
   it('Cached With ttl options', async () => {
     const url = `https://foo.bar?id=${id++}`;
 
-    const response = await fatcher(url, { ttl: 2000, middlewares: [cache()] });
+    const response = await fatcher(url, { ttl: 2000, middlewares: [cache] });
     const result = await response.json();
 
-    const response1 = await fatcher(url, { middlewares: [cache()] });
+    const response1 = await fatcher(url, { middlewares: [cache] });
     const result1 = await response1.json();
 
     expect(result.responseTime === result1.responseTime).toBe(true);
@@ -41,10 +41,10 @@ describe('Basic', () => {
   it('Ignore Cached Response With flush options', async () => {
     const url = `https://foo.bar?id=${id++}`;
 
-    const response = await fatcher(url, { ttl: 2000, middlewares: [cache()] });
+    const response = await fatcher(url, { ttl: 2000, middlewares: [cache] });
     const result = await response.json();
 
-    const response1 = await fatcher(url, { flush: true, middlewares: [cache()] });
+    const response1 = await fatcher(url, { flush: true, middlewares: [cache] });
     const result1 = await response1.json();
 
     expect(result.responseTime === result1.responseTime).toBe(false);

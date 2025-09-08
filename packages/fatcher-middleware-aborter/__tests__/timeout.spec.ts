@@ -24,14 +24,14 @@ describe('Timeout', () => {
   it('Basic using', async () => {
     const response = await fatcher('https://foo.bar', {
       timeout: 1500,
-      middlewares: [aborter(), timeout()],
+      middlewares: [aborter, timeout],
     });
     expect(response.body).toBe(null);
   });
 
   it('Abort on timeout', async () => {
     try {
-      await fatcher('https://foo.bar', { timeout: 500, middlewares: [aborter(), timeout()] });
+      await fatcher('https://foo.bar', { timeout: 500, middlewares: [aborter, timeout] });
     } catch (error) {
       expect(isAbortError(error)).toBe(true);
     }

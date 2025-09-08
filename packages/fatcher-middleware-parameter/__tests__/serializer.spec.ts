@@ -1,6 +1,6 @@
 import { describe } from '@jest/globals';
 import { fatcher } from 'fatcher';
-import { parameter, ParameterSerializer } from '../src';
+import { parameters, ParameterSerializer } from '../src';
 
 describe('Serializer', () => {
   beforeAll(() => {
@@ -23,7 +23,8 @@ describe('Serializer', () => {
       params: {
         foo: 'bar',
       },
-      middlewares: [parameter({ serializer })],
+      serializer,
+      middlewares: [parameters],
     });
 
     const result = await response.text();
@@ -39,7 +40,8 @@ describe('Serializer', () => {
       params: {
         foo: 'bar',
       },
-      middlewares: [parameter({ serializer })],
+      serializer,
+      middlewares: [parameters],
     });
 
     expect(response.body).toBe(null);
@@ -51,7 +53,7 @@ describe('Serializer', () => {
         foo: 'bar',
         count: undefined,
       },
-      middlewares: [parameter()],
+      middlewares: [parameters],
     });
 
     const result = await response.text();

@@ -1,6 +1,6 @@
 import { describe, it } from '@jest/globals';
 import { fatcher } from 'fatcher';
-import { parameter } from '../src';
+import { parameters } from '../src';
 
 describe('Basic Usage', () => {
   beforeAll(() => {
@@ -19,7 +19,7 @@ describe('Basic Usage', () => {
       params: {
         foo: 'bar',
       },
-      middlewares: [parameter()],
+      middlewares: [parameters],
     });
 
     const result = await response.text();
@@ -31,7 +31,7 @@ describe('Basic Usage', () => {
       params: {
         foo: 'bar',
       },
-      middlewares: [parameter()],
+      middlewares: [parameters],
     });
 
     const result = await response.text();
@@ -43,7 +43,7 @@ describe('Basic Usage', () => {
       params: {
         foo: 'bar',
       },
-      middlewares: [parameter()],
+      middlewares: [parameters],
     });
 
     const result = await response.text();
@@ -52,7 +52,7 @@ describe('Basic Usage', () => {
 
   it('Do nothing when params is empty', async () => {
     const response = await fatcher('https://foo.bar', {
-      middlewares: [parameter()],
+      middlewares: [parameters],
     });
 
     expect(response.body).toBe(null);
