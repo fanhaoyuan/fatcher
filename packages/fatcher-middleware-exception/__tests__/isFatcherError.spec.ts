@@ -9,7 +9,6 @@ describe('Confirm a error whether is fatcher error', () => {
     expect(isFatcherError(new DOMException())).toBe(false);
   });
   it('FatcherError instance is a fatcher error', () => {
-    // @ts-expect-error
-    expect(isFatcherError(new FatcherError({}, new Response()))).toBe(true);
+    expect(isFatcherError(new FatcherError(new Request(''), new Response()))).toBe(true);
   });
 });

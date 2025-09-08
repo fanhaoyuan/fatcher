@@ -1,16 +1,16 @@
-import { FatcherContext, FatcherResponse } from 'fatcher';
+import { FatcherRequest, FatcherResponse } from 'fatcher';
 
 interface Snapshot {
-  context: FatcherContext;
+  request: FatcherRequest;
   response: FatcherResponse;
 }
 
 export class FatcherError extends Error {
-  constructor(context: FatcherContext, response: FatcherResponse) {
+  constructor(request: FatcherRequest, response: FatcherResponse) {
     super(`[fatcher] Request fail with code ${response.status}`);
 
     this.snapshot = {
-      context,
+      request,
       response,
     };
   }

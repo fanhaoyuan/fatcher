@@ -3,7 +3,7 @@ import { FatcherMiddleware } from 'fatcher';
 
 export const json: FatcherMiddleware = {
   name: 'fatcher-middleware-json',
-  use: async (context, next) => {
+  use: async (request, next) => {
     const response = await next();
 
     if (response.bodyUsed || !response.body) {

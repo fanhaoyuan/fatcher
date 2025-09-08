@@ -3,16 +3,16 @@ import { FatcherMiddleware } from 'fatcher';
 
 export const formData: FatcherMiddleware = {
   name: 'fatcher-middleware-formdata',
-  use: (ctx, next) => {
-    const { body } = ctx;
+  use: (request, next) => {
+    const { body } = request;
 
     if (!body) {
       return next();
     }
 
-    if (ctx.request.headers.get('content-type')?.includes('multipart/form-data')) {
+    if (request.headers.get('content-type')?.includes('multipart/form-data')) {
       if (isBrowser()) {
-        ctx.request.headers.delete('content-type');
+        request.headers.delete('content-type');
       }
     }
 
@@ -31,7 +31,7 @@ export const formData: FatcherMiddleware = {
         }
       }
 
-      return next(new Request(ctx.request, { body: form }));
+      return next(new Request(request, { body: form }));
     }
 
     return next();

@@ -4,16 +4,16 @@ const cacheMap = new Map<string, { expireTime: number; response: Response }>();
 
 export const cache: FatcherMiddleware = {
   name: 'fatcher-middleware-cache',
-  use: async (ctx, next) => {
-    const { ttl = 0, flush } = ctx;
+  use: async (request, next) => {
+    const { ttl = 0, flush } = request;
 
-    const method = ctx.request.method.toUpperCase();
+    const method = request.method.toUpperCase();
 
     if (method !== 'GET') {
       return next();
     }
 
-    const cacheKey = `${method} ${ctx.request.url}`;
+    const cacheKey = `${method} ${request.url}`;
 
     const hitCache = cacheMap.get(cacheKey);
 

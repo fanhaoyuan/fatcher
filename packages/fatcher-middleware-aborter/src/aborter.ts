@@ -2,8 +2,8 @@ import { FatcherMiddleware } from 'fatcher';
 
 export const aborter: FatcherMiddleware = {
   name: 'fatcher-middleware-aborter',
-  use: async (ctx, next) => {
-    const { onAbort, abortController = new AbortController() } = ctx;
+  use: async (request, next) => {
+    const { onAbort, abortController = new AbortController() } = request;
 
     const handler = () => {
       onAbort?.(abortController.signal.reason);

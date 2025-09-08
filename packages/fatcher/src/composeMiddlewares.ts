@@ -1,4 +1,4 @@
-import { FatcherContext, FatcherFunctionalMiddleware, FatcherResponse } from './types';
+import { FatcherFunctionalMiddleware, FatcherRequest, FatcherResponse } from './types';
 
 /**
  * Compose middlewares to a higher-order function.
@@ -26,16 +26,16 @@ import { FatcherContext, FatcherFunctionalMiddleware, FatcherResponse } from './
  * ```
  */
 export function composeMiddlewares(middlewares: FatcherFunctionalMiddleware[]) {
-  return function use(init: FatcherContext) {
+  return function use(init: FatcherRequest) {
     let currentIndex = -1;
 
     let response: Response;
 
-    let context: FatcherContext = init;
+    let request: FatcherRequest = init;
 
     async function dispatch(
       index: number,
-      patch?: Partial<FatcherContext>,
+      patch?: Partial<FatcherRequest>,
     ): Promise<FatcherResponse> {
       if (index <= currentIndex) {
         return response;
@@ -50,13 +50,12 @@ export function composeMiddlewares(middlewares: FatcherFunctionalMiddleware[]) {
       }
 
       if (patch) {
-        context = {
-          ...Object.assign({}, context, patch),
-          request: patch.request || context.request,
+        request = {
+          ...Object.assign({}, request, patch),
         };
       }
 
-      const newResponse = await middleware(context, async _ => dispatch(index + 1, _));
+      const newResponse = await middleware(request, async _ => dispatch(index + 1, _));
       response = response ? Object.assign(response, newResponse) : newResponse;
       return response;
     }

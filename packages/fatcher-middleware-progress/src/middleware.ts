@@ -3,8 +3,8 @@ import { FatcherMiddleware } from 'fatcher';
 
 export const progress: FatcherMiddleware = {
   name: 'fatcher-middleware-progress',
-  use: async (context, next) => {
-    const { onDownloadProgress } = context;
+  use: async (request, next) => {
+    const { onDownloadProgress } = request;
 
     const response = await next();
 
