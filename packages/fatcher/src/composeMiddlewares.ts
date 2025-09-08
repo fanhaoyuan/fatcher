@@ -1,5 +1,4 @@
-import { merge } from './merge';
-import { FatcherMiddleware, FatcherRequest, FatcherResponse } from './types';
+import { FatcherContext, FatcherFunctionalMiddleware, FatcherResponse } from './types';
 
 /**
  * Compose middlewares to a higher-order function.
@@ -26,17 +25,17 @@ import { FatcherMiddleware, FatcherRequest, FatcherResponse } from './types';
  * }
  * ```
  */
-export function composeMiddlewares(middlewares: FatcherMiddleware[]) {
-  return function use(init: FatcherRequest) {
+export function composeMiddlewares(middlewares: FatcherFunctionalMiddleware[]) {
+  return function use(init: FatcherContext) {
     let currentIndex = -1;
 
-    let response: FatcherResponse;
+    let response: Response;
 
-    let request: FatcherRequest = init;
+    let context: FatcherContext = init;
 
     async function dispatch(
       index: number,
-      patch?: Partial<FatcherRequest>,
+      patch?: Partial<FatcherContext>,
     ): Promise<FatcherResponse> {
       if (index <= currentIndex) {
         return response;
@@ -51,18 +50,14 @@ export function composeMiddlewares(middlewares: FatcherMiddleware[]) {
       }
 
       if (patch) {
-        const base = patch.url ? new Request(patch.url, request) : request;
-        request = merge(new Request(base, patch) as FatcherRequest, { ...request }, patch);
+        context = {
+          ...Object.assign({}, context, patch),
+          request: patch.request || context.request,
+        };
       }
 
-      const newResponse = await middleware(request, async _ => dispatch(index + 1, _));
-
-      if (response !== newResponse) {
-        response = merge(newResponse, response);
-      } else {
-        response = newResponse;
-      }
-
+      const newResponse = await middleware(context, async _ => dispatch(index + 1, _));
+      response = Object.assign(response, newResponse);
       return response;
     }
 

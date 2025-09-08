@@ -1,21 +1,16 @@
 import { composeMiddlewares } from './composeMiddlewares';
-import { FatcherMiddleware, FatcherOptions, FatcherRequest } from './types';
+import { registerMiddlewares } from './registerMiddlewares';
+import { FatcherContext, FatcherOptions } from './types';
 
 export async function fatcher(input: RequestInfo | URL, options: FatcherOptions = {}) {
   const { middlewares = [], ...rest } = options;
 
-  const context = new Request(input, rest) as FatcherRequest;
-  context.options = rest;
+  const context: FatcherContext = {
+    ...rest,
+    request: new Request(input, rest),
+  };
 
-  let middlewareList: FatcherMiddleware[] = [];
+  const registeredMiddlewares = registerMiddlewares(middlewares);
 
-  for (const middleware of middlewares) {
-    if (Array.isArray(middleware)) {
-      middlewareList = middlewareList.concat(middleware);
-    } else {
-      middlewareList.push(middleware);
-    }
-  }
-
-  return composeMiddlewares([...middlewareList, req => fetch(req)])(context);
+  return composeMiddlewares([...registeredMiddlewares, ctx => fetch(ctx.request)])(context);
 }

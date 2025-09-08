@@ -1,18 +1,19 @@
-import { FatcherMiddleware, FatcherResponse } from 'fatcher';
+import { FatcherMiddleware } from 'fatcher';
 
-const cacheMap = new Map<string, { expireTime: number; response: FatcherResponse }>();
+const cacheMap = new Map<string, { expireTime: number; response: Response }>();
 
-export const cache = () => {
-  return (async (req, next) => {
-    const { ttl = 0, flush } = req.options;
+export const cache: FatcherMiddleware = {
+  name: 'fatcher-middleware-cache',
+  use: async (ctx, next) => {
+    const { ttl = 0, flush } = ctx;
 
-    const method = req.method.toUpperCase();
+    const method = ctx.request.method.toUpperCase();
 
     if (method !== 'GET') {
       return next();
     }
 
-    const cacheKey = `${method} ${req.url}`;
+    const cacheKey = `${method} ${ctx.request.url}`;
 
     const hitCache = cacheMap.get(cacheKey);
 
@@ -32,5 +33,5 @@ export const cache = () => {
     }
 
     return response;
-  }) as FatcherMiddleware;
+  },
 };

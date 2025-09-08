@@ -1,11 +1,10 @@
 import { readStreamByChunk } from '@fatcherjs/utils-shared';
 import { FatcherMiddleware } from 'fatcher';
 
-export const progress = () => {
-  return (async (context, next) => {
-    const {
-      options: { onDownloadProgress },
-    } = context;
+export const progress: FatcherMiddleware = {
+  name: 'fatcher-middleware-progress',
+  use: async (context, next) => {
+    const { onDownloadProgress } = context;
 
     const response = await next();
 
@@ -29,5 +28,5 @@ export const progress = () => {
     });
 
     return new Response(tee, response);
-  }) as FatcherMiddleware;
+  },
 };

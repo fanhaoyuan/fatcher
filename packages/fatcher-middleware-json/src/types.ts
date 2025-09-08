@@ -1,5 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type * as fatcher from 'fatcher';
+
+import 'fatcher';
 
 declare module 'fatcher' {
   interface FatcherResponse {

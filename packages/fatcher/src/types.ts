@@ -1,24 +1,27 @@
 /* eslint-disable no-use-before-define */
 
-export interface FatcherOptions extends RequestInit {
-  middlewares?: FatcherMiddleware[] | FatcherMiddleware[][];
-}
-
-export interface FatcherRequest extends Request {
-  options: Omit<FatcherOptions, 'middlewares'>;
+export interface ExceptionOptions {
+  validateCode?: (statusCode: number) => boolean;
 }
 
 export interface FatcherResponse extends Response {}
 
-export type FatcherMiddlewareNext = (
-  request?: Partial<FatcherRequest>,
-) => Promise<FatcherResponse> | FatcherResponse;
-
-export type FatcherMiddleware = (
-  request: FatcherRequest,
-  next: FatcherMiddlewareNext,
-) => Promise<FatcherResponse> | FatcherResponse;
-
-export interface ExceptionOptions {
-  validateCode?: (statusCode: number) => boolean;
+export interface FatcherOptions extends RequestInit {
+  middlewares?: FatcherMiddlewares | FatcherMiddlewares[];
 }
+
+export interface FatcherContext extends Omit<FatcherOptions, 'middlewares'> {
+  request: Request;
+}
+
+export type FatcherFunctionalMiddleware = (
+  ctx: FatcherContext,
+  next: (context?: Partial<FatcherContext>) => Promise<FatcherResponse> | FatcherResponse,
+) => Promise<FatcherResponse> | FatcherResponse;
+
+export type FatcherMiddleware = {
+  name: string;
+  use: FatcherFunctionalMiddleware;
+};
+
+export type FatcherMiddlewares = (FatcherFunctionalMiddleware | FatcherMiddleware)[];
