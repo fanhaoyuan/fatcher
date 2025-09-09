@@ -25,7 +25,7 @@ import { fatcher } from 'fatcher';
 import { progress } from '@fatcherjs/middleware-progress';
 
 fatcher('https://foo.bar', {
-  middlewares: [progress()],
+  middlewares: [progress],
 });
 ```
 
@@ -38,7 +38,7 @@ import { fatcher } from 'fatcher';
 import { progress } from '@fatcherjs/middleware-progress';
 
 fatcher('https://foo.bar', {
-  middlewares: [progress()],
+  middlewares: [progress],
   onDownloadProgress: (current, total) => {
     // current received data length
     // total data length

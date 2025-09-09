@@ -25,11 +25,7 @@ import { fatcher } from 'fatcher';
 import { cache } from '@fatcherjs/middleware-cache';
 
 fatcher('https://foo.bar', {
-  middlewares: [
-    cache({
-      /* Options*/
-    }),
-  ],
+  middlewares: [cache],
 });
 ```
 
@@ -42,11 +38,8 @@ import { fatcher } from 'fatcher';
 import { cache } from '@fatcherjs/middleware-cache';
 
 fatcher('https://foo.bar', {
-  middlewares: [
-    cache({
-      ttl: 5 * 1000, // Cache in 5 seconds
-    }),
-  ],
+  ttl: 5 * 1000,
+  middlewares: [cache],
 });
 ```
 
