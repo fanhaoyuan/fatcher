@@ -16,7 +16,7 @@ describe('Empty Response', () => {
 
   it('Never process callback', async () => {
     const response = await fatcher('https://foo.bar', {
-      middlewares: [progress()],
+      middlewares: [progress],
       onDownloadProgress: () => {
         throw new Error('processed.');
       },

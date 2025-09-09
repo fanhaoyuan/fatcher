@@ -25,7 +25,7 @@ import { fatcher } from 'fatcher';
 import { json } from '@fatcherjs/middleware-json';
 
 const res = await fatcher('https://foo.bar/get', {
-  middlewares: [json()],
+  middlewares: [json],
 });
 
 const streamingJson = await res.readStreamAsJson((string: string, buffer: Uint8Array) => {

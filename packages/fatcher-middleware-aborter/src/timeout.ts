@@ -1,11 +1,9 @@
-import { FatcherMiddleware, FatcherResponse } from 'fatcher';
+import { FatcherMiddleware } from 'fatcher';
 
-export const timeout = () => {
-  return (async (req, next) => {
-    const {
-      abort,
-      options: { timeout: _timeout },
-    } = req;
+export const timeout: FatcherMiddleware = {
+  name: 'fatcher-middleware-timeout',
+  use: async (context, next) => {
+    const { abort, timeout: _timeout } = context;
 
     let timer = null;
 
@@ -15,7 +13,7 @@ export const timeout = () => {
       }, _timeout);
     }
 
-    let response: FatcherResponse;
+    let response;
 
     try {
       response = await next();
@@ -27,5 +25,5 @@ export const timeout = () => {
     }
 
     return response;
-  }) as FatcherMiddleware;
+  },
 };

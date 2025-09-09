@@ -15,7 +15,7 @@ describe('Basic', () => {
 
   it('Basic Using', async () => {
     const response = await fatcher('https://foo.bar', {
-      middlewares: [formData()],
+      middlewares: [formData],
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -36,7 +36,7 @@ describe('Basic', () => {
     body.append('foo', 'bar');
 
     const response = await fatcher('https://foo.bar', {
-      middlewares: [formData()],
+      middlewares: [formData],
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -49,7 +49,7 @@ describe('Basic', () => {
 
   it('Array Value', async () => {
     const response = await fatcher('https://foo.bar', {
-      middlewares: [formData()],
+      middlewares: [formData],
       headers: {
         'Content-Type': 'multipart/form-data',
       },

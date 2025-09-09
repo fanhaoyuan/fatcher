@@ -1,6 +1,7 @@
-import { afterEach, beforeEach, describe, expect, it } from '@jest/globals';
+import { afterEach, beforeEach, describe } from '@jest/globals';
+import { fatcher } from 'fatcher';
 import fetchMock from 'jest-fetch-mock';
-import { exception, fatcher } from '../src';
+import { exception } from '../src';
 
 describe('Validate Code', () => {
   beforeEach(() => {
@@ -20,11 +21,8 @@ describe('Validate Code', () => {
 
   it('Request successfully with code 10001', async () => {
     const res = await fatcher('https://foo.bar/get?code=10001', {
-      middlewares: [
-        exception({
-          validateCode: code => code === 10001,
-        }),
-      ],
+      validateCode: code => code === 10001,
+      middlewares: [exception],
     });
 
     expect(res.status).toBe(10001);

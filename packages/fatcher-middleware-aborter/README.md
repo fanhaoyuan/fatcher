@@ -69,7 +69,7 @@ import { aborter, timeout } from '@fatcherjs/middleware-aborter';
 fatcher('https://foo.bar', {
   onAbort: () => console.log('aborted'),
   timeout: 1000 * 10, // 10s
-  middlewares: [aborter(), timeout() /* must call after aborter */],
+  middlewares: [aborter, timeout /* must call after aborter */],
 });
 ```
 
@@ -84,7 +84,7 @@ const abortController = new AbortController();
 fatcher('https://foo.bar', {
   onAbort: () => console.log('aborted'),
   abortController,
-  middlewares: [aborter()],
+  middlewares: [aborter],
 }).catch(error => {
   // abort error
 });
@@ -103,7 +103,7 @@ const abortController = new AbortController();
 fatcher('https://foo.bar', {
   onAbort: () => console.log('aborted'),
   abortController,
-  middlewares: [aborter()],
+  middlewares: [aborter],
 }).catch(error => {
   if (isAbortError(error)) {
     // do something..

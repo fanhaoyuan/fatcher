@@ -24,7 +24,7 @@ describe('Basic', () => {
   it('Basic Using', async () => {
     const response = await fatcher('https://foo.bar', {
       onAbort: () => console.log('aborted'),
-      middlewares: [aborter()],
+      middlewares: [aborter],
     });
     expect(response.body).toBe(null);
   });
@@ -36,7 +36,7 @@ describe('Basic', () => {
       onAbort: () => {
         expect(true).toBe(true);
       },
-      middlewares: [aborter()],
+      middlewares: [aborter],
     }).catch(async error => {
       expect(isAbortError(error)).toBe(true);
     });

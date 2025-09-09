@@ -1,8 +1,9 @@
 import { readStreamByChunk } from '@fatcherjs/utils-shared';
 import { FatcherMiddleware } from 'fatcher';
 
-export const json = () => {
-  return (async (context, next) => {
+export const json: FatcherMiddleware = {
+  name: 'fatcher-middleware-json',
+  use: async (context, next) => {
     const response = await next();
 
     if (response.bodyUsed || !response.body) {
@@ -31,5 +32,5 @@ export const json = () => {
     };
 
     return response;
-  }) as FatcherMiddleware;
+  },
 };

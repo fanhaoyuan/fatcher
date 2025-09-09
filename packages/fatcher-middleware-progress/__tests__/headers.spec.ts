@@ -35,7 +35,7 @@ describe('Response Headers', () => {
 
   it('Never process callback when response content-length invalid', async () => {
     const response = await fatcher('https://foo.bar', {
-      middlewares: [progress()],
+      middlewares: [progress],
       onDownloadProgress: () => {
         throw new Error('processed');
       },

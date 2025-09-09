@@ -28,7 +28,7 @@ fatcher('https://foo.bar', {
   params: {
     foo: 'bar',
   },
-  middlewares: [parameter({})],
+  middlewares: [parameter],
 }); // url is https://foo.bar?foo=bar
 ```
 
@@ -47,9 +47,8 @@ fatcher('https://foo.bar', {
   params: {
     foo: 'bar',
   },
-  middlewares: [parameter({
-    serializer
-  })],
+  serializer,
+  middlewares: [parameter],
 });
 ```
 

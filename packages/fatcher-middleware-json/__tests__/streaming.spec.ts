@@ -21,7 +21,7 @@ describe('fatcher-middleware-json', () => {
 
   it('Response json with json data', async () => {
     const res = await fatcher('https://foo.bar/get', {
-      middlewares: [json()],
+      middlewares: [json],
     });
 
     const streamingJson = await res.readStreamAsJson();
@@ -30,7 +30,7 @@ describe('fatcher-middleware-json', () => {
 
   it('Read string data with chunk', async () => {
     const res = await fatcher('https://foo.bar/get', {
-      middlewares: [json()],
+      middlewares: [json],
     });
 
     const streamingJson = await res.readStreamAsJson((string, buffer) => {

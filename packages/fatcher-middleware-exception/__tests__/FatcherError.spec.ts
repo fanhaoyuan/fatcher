@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it } from '@jest/globals';
+import { fatcher } from 'fatcher';
 import fetchMock from 'jest-fetch-mock';
-import { exception, fatcher, isFatcherError } from '../src';
+import { exception, isFatcherError } from '../src';
 
 describe('Fatcher Error Instance', () => {
   beforeEach(() => {
@@ -25,7 +26,7 @@ describe('Fatcher Error Instance', () => {
 
   it('Receive a fatcher error when response code is not 2xx', async () => {
     try {
-      await fatcher('https://foo.bar/get?code=500', { middlewares: [exception()] });
+      await fatcher('https://foo.bar/get?code=500', { middlewares: [exception] });
     } catch (error) {
       if (isFatcherError(error)) {
         expect(error.snapshot.response.status).toBe(500);

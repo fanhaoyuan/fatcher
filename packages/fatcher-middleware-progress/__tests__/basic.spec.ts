@@ -39,7 +39,7 @@ describe('Basic', () => {
     let i = 0;
 
     const response = await fatcher('https://foo.bar', {
-      middlewares: [progress()],
+      middlewares: [progress],
       onDownloadProgress: (current, total) => {
         expect(current).toBe(6 * (i + 1));
         expect(total).toBe(result.length * 6);

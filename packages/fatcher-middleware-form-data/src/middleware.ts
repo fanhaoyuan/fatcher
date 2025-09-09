@@ -1,17 +1,18 @@
 import { isBrowser, isPlainObject } from '@fatcherjs/utils-shared';
 import { FatcherMiddleware } from 'fatcher';
 
-export const formData = () => {
-  return ((req, next) => {
-    const { body } = req.options;
+export const formData: FatcherMiddleware = {
+  name: 'fatcher-middleware-formdata',
+  use: (context, next) => {
+    const { body } = context;
 
     if (!body) {
       return next();
     }
 
-    if (req.headers.get('content-type')?.includes('multipart/form-data')) {
+    if (context.request.headers.get('content-type')?.includes('multipart/form-data')) {
       if (isBrowser()) {
-        req.headers.delete('content-type');
+        context.request.headers.delete('content-type');
       }
     }
 
@@ -30,9 +31,9 @@ export const formData = () => {
         }
       }
 
-      return next(new Request(req, { body: form }));
+      return next({ request: new Request(context.request, { body: form }) });
     }
 
     return next();
-  }) as FatcherMiddleware;
+  },
 };

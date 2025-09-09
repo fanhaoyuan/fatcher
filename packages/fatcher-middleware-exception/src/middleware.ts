@@ -1,10 +1,10 @@
-import { defineMiddleware } from './defineMiddleware';
+import { FatcherMiddleware } from 'fatcher';
 import { FatcherError } from './FatcherError';
-import { ExceptionOptions } from './types';
 
-export const exception = (options: ExceptionOptions = {}) => {
-  return defineMiddleware(async (context, next) => {
-    const { validateCode } = options;
+export const exception: FatcherMiddleware = {
+  name: 'fatcher-middleware-exception',
+  use: async (context, next) => {
+    const { validateCode } = context;
 
     const response = await next();
 
@@ -17,5 +17,5 @@ export const exception = (options: ExceptionOptions = {}) => {
     }
 
     return Promise.reject(new FatcherError(context, response));
-  });
+  },
 };
