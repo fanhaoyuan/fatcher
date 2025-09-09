@@ -1,29 +1,25 @@
 import { FatcherMiddleware } from 'fatcher';
+import { abortSignalAny } from './abortSignalAny';
+import { abortSignalTimeout } from './abortSignalTimeout';
 
 export const timeout: FatcherMiddleware = {
   name: 'fatcher-middleware-timeout',
   use: async (context, next) => {
-    const { abort, timeout: _timeout } = context;
+    const { timeout: _timeout = 60000, signal, onTimeout } = context;
 
-    let timer = null;
+    const timeoutSignal = abortSignalTimeout(_timeout);
 
-    if (_timeout) {
-      timer = setTimeout(() => {
-        abort();
-      }, _timeout);
-    }
+    const composedSignal = signal ? abortSignalAny([timeoutSignal, signal]) : timeoutSignal;
 
-    let response;
-
-    try {
-      response = await next();
-    } catch (error) {
-      if (timer) {
-        clearTimeout(timer);
+    composedSignal.addEventListener('abort', () => {
+      if (timeoutSignal.aborted) {
+        onTimeout?.();
+        return;
       }
-      throw error;
-    }
+    });
 
-    return response;
+    return next({
+      request: new Request(context.request, { signal: composedSignal }),
+    });
   },
 };
