@@ -15,7 +15,28 @@
 ### CDN
 
 ```html
+<script src="https://cdn.jsdelivr.net/npm/fatcher/dist/fatcher.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@fatcherjs/middleware-aborter/dist/index.min.js"></script>
+
+<script>
+  Fatcher.fatcher('xxx', {
+    middlewares: [FatcherMiddlewareAborter.aborter, FatcherMiddlewareAborter.timeout],
+    onAbort: () => {},
+    onTimeout: () => {},
+    timeout: 30000,
+  })
+    .then(response => {
+      console.log(response);
+    })
+    .catch(error => {
+      if (FatcherMiddlewareAborter.isAbortError(error)) {
+        // do somethings
+        return;
+      }
+
+      // do other thing
+    });
+</script>
 ```
 
 ## Usage
