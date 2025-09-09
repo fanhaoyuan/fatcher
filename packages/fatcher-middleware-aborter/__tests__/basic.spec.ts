@@ -32,7 +32,7 @@ describe('Basic', () => {
   it('User cancelable', async () => {
     const abortController = new AbortController();
     fatcher('https://foo.bar', {
-      abortController,
+      signal: abortController.signal,
       onAbort: () => {
         expect(true).toBe(true);
       },

@@ -1,27 +1,24 @@
 import { FatcherMiddleware } from 'fatcher';
+import { abortSignalAny } from './abortSignalAny';
 
 export const aborter: FatcherMiddleware = {
   name: 'fatcher-middleware-aborter',
   use: async (request, next) => {
-    const { onAbort, abortController = new AbortController() } = request;
+    const { onAbort, signal } = request;
 
-    const handler = () => {
+    const abortController = new AbortController();
+
+    const abort = () => {
+      abortController.abort();
       onAbort?.(abortController.signal.reason);
-      abortController.signal.removeEventListener('abort', handler);
     };
-
-    if (onAbort) {
-      abortController.signal.addEventListener('abort', handler);
-    }
 
     const response = await next({
       abort: abortController.abort.bind(abortController),
-      signal: abortController.signal,
+      signal: signal ? abortSignalAny([abortController.signal, signal]) : abortController.signal,
     });
 
-    if (onAbort) {
-      abortController.signal.removeEventListener('abort', handler);
-    }
+    response.abort = abort;
 
     return response;
   },

@@ -4,10 +4,14 @@ import 'fatcher';
 declare module 'fatcher' {
   interface FatcherOptions {
     onAbort?: (reason?: string) => void;
-    abortController?: AbortController;
     timeout?: number;
+    onTimeout?: () => void;
   }
   interface FatcherContext {
+    abort: (reason?: string) => void;
+  }
+
+  interface FatcherResponse {
     abort: (reason?: string) => void;
   }
 }
