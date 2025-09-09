@@ -5,13 +5,13 @@ export interface FatcherOptions extends RequestInit {
   middlewares?: FatcherMiddlewares | FatcherMiddlewares[];
 }
 
-export interface FatcherRequest
-  extends Request,
-    Omit<FatcherOptions, keyof RequestInit | 'middlewares'> {}
+export interface FatcherContext extends Omit<FatcherOptions, 'middlewares'> {
+  request: Request;
+}
 
 export type FatcherFunctionalMiddleware = (
-  request: FatcherRequest,
-  next: (context?: Partial<FatcherRequest>) => Promise<FatcherResponse> | FatcherResponse,
+  request: FatcherContext,
+  next: (context?: Partial<FatcherContext>) => Promise<FatcherResponse> | FatcherResponse,
 ) => Promise<FatcherResponse> | FatcherResponse;
 
 export type FatcherMiddleware = {

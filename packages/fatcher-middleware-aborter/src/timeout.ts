@@ -2,8 +2,8 @@ import { FatcherMiddleware } from 'fatcher';
 
 export const timeout: FatcherMiddleware = {
   name: 'fatcher-middleware-timeout',
-  use: async (request, next) => {
-    const { abort, timeout: _timeout } = request;
+  use: async (context, next) => {
+    const { abort, timeout: _timeout } = context;
 
     let timer = null;
 

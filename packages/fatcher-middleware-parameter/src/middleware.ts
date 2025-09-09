@@ -3,15 +3,15 @@ import { defaultSerializer } from './defaultSerializer';
 
 export const parameters: FatcherMiddleware = {
   name: 'fatcher-middleware-parameters',
-  use: async (request, next) => {
-    const { params = {}, serializer = defaultSerializer } = request;
+  use: async (context, next) => {
+    const { params = {}, serializer = defaultSerializer } = context;
 
     if (!Object.keys(params).length) {
       return next();
     }
 
     // eslint-disable-next-line prefer-const
-    let [base, querystring] = request.url.split('?');
+    let [base, querystring] = context.request.url.split('?');
 
     if (querystring) {
       for (const [key, value] of new URLSearchParams(querystring)) {
@@ -26,6 +26,6 @@ export const parameters: FatcherMiddleware = {
 
     querystring = serializer(params);
 
-    return next(new Request(querystring ? `${base}?${querystring}` : base));
+    return next({ params, request: new Request(querystring ? `${base}?${querystring}` : base) });
   },
 };

@@ -7,7 +7,7 @@ declare module 'fatcher' {
     abortController?: AbortController;
     timeout?: number;
   }
-  interface FatcherRequest {
+  interface FatcherContext {
     abort: (reason?: string) => void;
   }
 }
