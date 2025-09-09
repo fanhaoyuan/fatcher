@@ -10,7 +10,9 @@ describe('Confirm a error whether is fatcher error', () => {
   });
   it('FatcherError instance is a fatcher error', () => {
     expect(
-      isFatcherError(new FatcherError(new Request('https://google.com'), new Response())),
+      isFatcherError(
+        new FatcherError({ request: new Request('https://google.com') }, new Response()),
+      ),
     ).toBe(true);
   });
 });
