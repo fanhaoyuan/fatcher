@@ -1,4 +1,4 @@
-import { merge } from './merge';
+import { attach } from './attach';
 import { FatcherContext, FatcherFunctionalMiddleware, FatcherResponse } from './types';
 
 /**
@@ -59,7 +59,7 @@ export function composeMiddlewares(middlewares: FatcherFunctionalMiddleware[]) {
       }
 
       const newResponse = await middleware(context, async _ => dispatch(index + 1, _));
-      response = response ? merge(newResponse, response) : newResponse;
+      response = attach(newResponse, response);
       return response;
     }
 
