@@ -1,7 +1,7 @@
 import { FatcherFunctionalMiddleware, FatcherMiddlewares } from './types';
 
 export function registerMiddlewares(
-  middlewares: FatcherMiddlewares | FatcherMiddlewares[],
+  middlewares: FatcherMiddlewares,
   registeredMiddlewares = new Set<string>(),
 ) {
   const middlewareList: FatcherFunctionalMiddleware[] = [];
@@ -14,7 +14,7 @@ export function registerMiddlewares(
     }
 
     if (Array.isArray(middleware)) {
-      registerMiddlewares(middlewareList, registeredMiddlewares);
+      middlewareList.push(...registerMiddlewares(middleware, registeredMiddlewares));
       continue;
     }
 

@@ -1,8 +1,14 @@
 /* eslint-disable no-use-before-define */
 export interface FatcherResponse extends Response {}
 
+export type FatcherMiddlewares = (
+  | FatcherFunctionalMiddleware
+  | FatcherMiddleware
+  | (FatcherFunctionalMiddleware | FatcherMiddleware)[]
+)[];
+
 export interface FatcherOptions extends RequestInit {
-  middlewares?: FatcherMiddlewares | FatcherMiddlewares[];
+  middlewares?: FatcherMiddlewares;
 }
 
 export interface FatcherContext extends Omit<FatcherOptions, 'middlewares'> {
@@ -18,5 +24,3 @@ export type FatcherMiddleware = {
   name: string;
   use: FatcherFunctionalMiddleware;
 };
-
-export type FatcherMiddlewares = (FatcherFunctionalMiddleware | FatcherMiddleware)[];
