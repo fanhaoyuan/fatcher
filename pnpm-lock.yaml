@@ -4,123 +4,58 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-importers:
-
-  .:
-    devDependencies:
-      '@fansy/eslint-config':
-        specifier: ^1.4.2
-        version: 1.4.2(eslint@8.57.1)(typescript@5.9.2)
-      '@fansy/prettier-config':
-        specifier: ^1.1.0
-        version: 1.1.0
-      '@types/node':
-        specifier: ^24.3.1
-        version: 24.3.1
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^8.11.0
-        version: 8.11.0(@typescript-eslint/parser@8.11.0)(eslint@8.57.1)(typescript@5.9.2)
-      '@typescript-eslint/parser':
-        specifier: ^8.11.0
-        version: 8.11.0(eslint@8.57.1)(typescript@5.9.2)
-      '@vitest/coverage-v8':
-        specifier: 3.2.4
-        version: 3.2.4(vitest@3.2.4)
-      eslint:
-        specifier: ^8.57.1
-        version: 8.57.1
-      eslint-plugin-prettier:
-        specifier: ^5.2.1
-        version: 5.2.1(eslint@8.57.1)(prettier@3.3.3)
-      husky:
-        specifier: ^9.1.7
-        version: 9.1.7
-      lint-staged:
-        specifier: ^16.1.6
-        version: 16.1.6
-      msw:
-        specifier: ^2.11.1
-        version: 2.11.1(@types/node@24.3.1)(typescript@5.9.2)
-      prettier:
-        specifier: ^3.3.3
-        version: 3.3.3
-      prettier-plugin-organize-imports:
-        specifier: ^4.1.0
-        version: 4.1.0(prettier@3.3.3)(typescript@5.9.2)
-      typescript:
-        specifier: ^5.9.2
-        version: 5.9.2
-      vite:
-        specifier: ^7.1.5
-        version: 7.1.5(@types/node@24.3.1)
-      vite-plugin-dts:
-        specifier: ^4.5.4
-        version: 4.5.4(@types/node@24.3.1)(typescript@5.9.2)(vite@7.1.5)
-      vitest:
-        specifier: ^3.2.4
-        version: 3.2.4(@types/node@24.3.1)(msw@2.11.1)
-
-  packages/fatcher: {}
-
-  packages/fatcher-middleware-aborter:
-    devDependencies:
-      fatcher:
-        specifier: workspace:*
-        version: link:../fatcher
-
-  packages/fatcher-middleware-cache:
-    devDependencies:
-      fatcher:
-        specifier: workspace:*
-        version: link:../fatcher
-
-  packages/fatcher-middleware-exception:
-    dependencies:
-      '@fatcherjs/utils-shared':
-        specifier: workspace:*
-        version: link:../utils-shared
-    devDependencies:
-      fatcher:
-        specifier: workspace:*
-        version: link:../fatcher
-
-  packages/fatcher-middleware-form-data:
-    dependencies:
-      '@fatcherjs/utils-shared':
-        specifier: workspace:*
-        version: link:../utils-shared
-    devDependencies:
-      fatcher:
-        specifier: workspace:*
-        version: link:../fatcher
-
-  packages/fatcher-middleware-json:
-    dependencies:
-      '@fatcherjs/utils-shared':
-        specifier: workspace:*
-        version: link:../utils-shared
-    devDependencies:
-      fatcher:
-        specifier: workspace:*
-        version: link:../fatcher
-
-  packages/fatcher-middleware-parameter:
-    devDependencies:
-      fatcher:
-        specifier: workspace:*
-        version: link:../fatcher
-
-  packages/fatcher-middleware-progress:
-    dependencies:
-      '@fatcherjs/utils-shared':
-        specifier: workspace:*
-        version: link:../utils-shared
-    devDependencies:
-      fatcher:
-        specifier: workspace:*
-        version: link:../fatcher
-
-  packages/utils-shared: {}
+devDependencies:
+  '@fansy/eslint-config':
+    specifier: ^1.4.2
+    version: 1.4.2(eslint@8.57.1)(typescript@5.9.2)
+  '@fansy/prettier-config':
+    specifier: ^1.1.0
+    version: 1.1.0
+  '@types/node':
+    specifier: ^24.3.1
+    version: 24.3.1
+  '@typescript-eslint/eslint-plugin':
+    specifier: ^8.11.0
+    version: 8.11.0(@typescript-eslint/parser@8.11.0)(eslint@8.57.1)(typescript@5.9.2)
+  '@typescript-eslint/parser':
+    specifier: ^8.11.0
+    version: 8.11.0(eslint@8.57.1)(typescript@5.9.2)
+  '@vitest/coverage-v8':
+    specifier: 3.2.4
+    version: 3.2.4(vitest@3.2.4)
+  eslint:
+    specifier: ^8.57.1
+    version: 8.57.1
+  eslint-plugin-prettier:
+    specifier: ^5.2.1
+    version: 5.2.1(eslint@8.57.1)(prettier@3.3.3)
+  husky:
+    specifier: ^9.1.7
+    version: 9.1.7
+  lint-staged:
+    specifier: ^16.1.6
+    version: 16.1.6
+  msw:
+    specifier: ^2.11.1
+    version: 2.11.1(@types/node@24.3.1)(typescript@5.9.2)
+  prettier:
+    specifier: ^3.3.3
+    version: 3.3.3
+  prettier-plugin-organize-imports:
+    specifier: ^4.1.0
+    version: 4.2.0(prettier@3.3.3)(typescript@5.9.2)
+  typescript:
+    specifier: ^5.9.2
+    version: 5.9.2
+  vite:
+    specifier: ^7.1.5
+    version: 7.1.5(@types/node@24.3.1)
+  vite-plugin-dts:
+    specifier: ^4.5.4
+    version: 4.5.4(@types/node@24.3.1)(typescript@5.9.2)(vite@7.1.5)
+  vitest:
+    specifier: ^3.2.4
+    version: 3.2.4(@types/node@24.3.1)(msw@2.11.1)
 
 packages:
 
@@ -2790,12 +2725,12 @@ packages:
       fast-diff: 1.2.0
     dev: true
 
-  /prettier-plugin-organize-imports@4.1.0(prettier@3.3.3)(typescript@5.9.2):
-    resolution: {integrity: sha512-5aWRdCgv645xaa58X8lOxzZoiHAldAPChljr/MT0crXVOWTZ+Svl4hIWlz+niYSlO6ikE5UXkN1JrRvIP2ut0A==}
+  /prettier-plugin-organize-imports@4.2.0(prettier@3.3.3)(typescript@5.9.2):
+    resolution: {integrity: sha512-Zdy27UhlmyvATZi67BTnLcKTo8fm6Oik59Sz6H64PgZJVs6NJpPD1mT240mmJn62c98/QaL+r3kx9Q3gRpDajg==}
     peerDependencies:
       prettier: '>=2.0'
       typescript: '>=2.9'
-      vue-tsc: ^2.1.0
+      vue-tsc: ^2.1.0 || 3
     peerDependenciesMeta:
       vue-tsc:
         optional: true
