@@ -70,9 +70,7 @@ npm install fatcher
 </script>
 ```
 
-## Usage
-
-### Basic Example
+## Quick Start
 
 ```ts
 import { fatcher } from 'fatcher';
@@ -84,7 +82,7 @@ fatcher('https://foo.bar', init);
 fetch('https://foo.bar', init);
 ```
 
-### Middleware
+## Middlewares
 
 Fatcher uses a middleware system similar to Koa.
 
@@ -108,7 +106,43 @@ export type FatcherMiddleware = {
 };
 ```
 
-### Middleware Example
+- FunctionalMiddleware runs every time it is used.
+- ObjectMiddleware is registered only once, respecting the registration order.
+
+### Custom Middleware
+
+```ts
+// fatcher.d.ts
+import 'fatcher';
+
+declare module 'fatcher' {
+  // expand fatcher options for custom options
+  interface FatcherOptions {
+    baseUrl?: number;
+  }
+}
+
+// middleware.ts
+import { defineMiddleware } from 'fatcher';
+const baseUrlMiddleware = defineMiddleware({
+  name: 'base-url',
+  use: async (context, next) => {
+    const target = `${context.baseUrl}/${context.url}`;
+    return next({ request: new Request(target, context.request), url: target });
+  },
+});
+
+// api.ts
+fatcher('/foo.bar', {
+  baseUrl: 'https://api.example.com',
+}).then(response => {
+  // do something
+});
+```
+
+## Examples
+
+### Logger Middleware
 
 ```ts
 import { defineMiddleware } from 'fatcher';
@@ -116,25 +150,127 @@ import { defineMiddleware } from 'fatcher';
 const logs = defineMiddleware(async (request, next) => {
   const startTime = Date.now();
 
-  const response = await next({ request: new Request('https://foo.bar1') });
+  const response = await next();
 
   console.log(`Request spent ${Date.now() - startTime}ms`);
   return response;
 });
 
-fatcher('https://foo.bar', { middlewares: [logs] });
-// The request is sent to 'https://foo.bar1' instead of 'https://foo.bar'
+fatcher('https://foo.bar', { middlewares: [logs] }); // Request spent 20 ms
 ```
 
-Note:
+### Custom Request
 
-- FunctionalMiddleware runs every time it is used.
-- ObjectMiddleware is registered only once, respecting the registration order.
+```ts
+import { defineMiddleware } from 'fatcher';
+
+const request = defineMiddleware({
+  name: 'my-custom-request',
+  use: async context => {
+    const response = await myFetch(context.url);
+    return response;
+  },
+});
+// custom request should register at last
+fatcher('https://foo.bar', { middlewares: [request] });
+```
+
+### Request Interceptor
+
+```ts
+import { defineMiddleware } from 'fatcher';
+
+const requestInterceptor = defineMiddleware({
+  name: 'request-interceptor',
+  use: async (context, next) => {
+    const accessToken = localStorage.get('AccessToken');
+
+    if (accessToken) {
+      context.request.headers.set('Authorization', accessToken);
+    }
+
+    return next();
+  },
+});
+```
+
+### Response Interceptor
+
+```ts
+import { defineMiddleware, fatcher } from 'fatcher';
+
+const responseInterceptor = defineMiddleware({
+  name: 'response-interceptor',
+  use: async (context, next) => {
+    const response = await next();
+
+    // rewrite response body
+    return new Response('success', response);
+  },
+});
+
+fatcher('https://foo.bar', {
+  middlewares: [responseInterceptor],
+}).then(response => {
+  const text = await response.text();
+  console.log(text); // 'success'2
+});
+```
+
+### Video Transformer
+
+```ts
+// fatcher.d.ts
+import 'fatcher';
+
+declare module 'fatcher' {
+  interface FatcherResponse {
+    getMp4: () => Promise<File>;
+  }
+}
+
+// middleware.ts
+import { defineMiddleware, fatcher } from 'fatcher';
+
+const videoTransformer = defineMiddleware({
+  name: 'video-transformer',
+  use: async (context, next) => {
+    const response = await next();
+
+    const videoResponse = response.clone();
+
+    response.getMp4 = () => {
+      return new Promise((resolve, reject) => {
+        // video transform
+        console.log(videoResponse);
+      });
+    };
+
+    return response;
+  },
+});
+
+// api.ts
+const response = await fatcher('https://video.examples.com/foo.avi', {
+  middlewares: [videoTransformer],
+});
+
+const mediaSource = new MediaSource();
+const url = URL.createObjectURL(mediaSource);
+mediaSource.onsourceopen = async () => {
+  // read response readableStream for data;
+};
+const video = document.querySelector('#video');
+video.src = url;
+
+const transformedFile = await response.getMp4();
+// download mp4 file
+```
 
 ## Packages
 
 - [@fatcherjs/middleware-aborter](https://github.com/fatcherjs/middleware-aborter)
-- [@fatcherjs/middleware-cache](https://github.com/fatcherjs/middleware-cache)
+- [@fatcherjs/middleware-cache](https://github.com/fatcherjs/middleware-cache)22
 - [@fatcherjs/middleware-form-data](https://github.com/fatcherjs/middleware-form-data)
 - [@fatcherjs/middleware-json](https://github.com/fatcherjs/middleware-json)
 - [@fatcherjs/middleware-parameter](https://github.com/fatcherjs/middleware-parameter)
