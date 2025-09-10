@@ -1,3 +1,9 @@
+## v3.0.0
+
+- 🚀 Support Named Middleware and Functional Middleware
+- ❌ Remove `Fatcher Error`
+- ❌ Remove `exception` middleware
+
 ## v3.0.0-beta-2
 
 - 🚀 add `fatcher-middleware-parameter` to deal with query string ([#266](https://github.com/fanhaoyuan/fatcher/pull/266))
