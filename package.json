@@ -32,7 +32,8 @@
     "prepare": "husky install",
     "build": "vite build",
     "test": "vitest run",
-    "test:cov": "vitest run --coverage"
+    "test:cov": "vitest run --coverage",
+    "eslint": "eslint ."
   },
   "devDependencies": {
     "@fansy/eslint-config": "^1.4.2",

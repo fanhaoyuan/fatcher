@@ -20,7 +20,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           cache: 'pnpm'
-          node-version: 18
+          node-version: 20
 
       - run: pnpm install
 
@@ -38,7 +38,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           cache: 'pnpm'
-          node-version: 18
+          node-version: 20
 
       - run: pnpm install
 
@@ -56,16 +56,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           cache: 'pnpm'
-          node-version: 18
+          node-version: 20
 
       - run: pnpm install
 
-      - run: pnpm build
-
       - run: pnpm run test:cov
 
-      - uses: codecov/codecov-action@v2
-        if: ${{github.event == 'push'}}
+      - uses: codecov/codecov-action@v5
+        if: ${{github.event_name == 'push'}}
         with:
           fail_ci_if_error: false
+          token: ${{secrets.CODECOV_TOKEN}}
           verbose: true

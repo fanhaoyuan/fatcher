@@ -3,9 +3,9 @@
 > Send fetch requests gracefully in browsers and Node.js
 
 <div align="center">
-  <a href="https://codecov.io/gh/fanhaoyuan/fatcher/branch/master">
-    <img src="https://codecov.io/gh/fanhaoyuan/fatcher/branch/master/graph/badge.svg?token=9DRTR2GXH8" alt="codecov">
-  </a>
+  <a href="https://codecov.io/github/fatcherjs/fatcher" > 
+    <img src="https://codecov.io/github/fatcherjs/fatcher/graph/badge.svg?token=JL0Z89OVRI"/> 
+ </a>
   <a href="https://www.jsdelivr.com/package/npm/fatcher">
     <img src="https://data.jsdelivr.com/v1/package/npm/fatcher/badge?style=rounded" alt="jsDelivr">
   </a>
@@ -21,8 +21,8 @@
   <a href="https://nodejs.org/en/about/releases/">
     <img src="https://img.shields.io/node/v/fatcher.svg" alt="node compatibility">
   </a>
-  <a href="https://github.com/fanhaoyuan/fatcher/actions/workflows/ci.yml">
-    <img src="https://github.com/fanhaoyuan/fatcher/actions/workflows/ci.yml/badge.svg?branch=master" alt="build status">
+  <a href="https://github.com/fatcherjs/fatcher/actions/workflows/ci.yml">
+    <img src="https://github.com/fatcherjs/fatcher/actions/workflows/ci.yml/badge.svg?branch=master" alt="build status">
   </a>
 </div>
 
@@ -133,13 +133,13 @@ Note:
 
 ## Packages
 
-- [@fatcherjs/middleware-aborter](https://github.com/fanhaoyuan/fatcher/tree/master/packages/fatcher-middleware-aborter)
-- [@fatcherjs/middleware-cache](https://github.com/fanhaoyuan/fatcher/tree/master/packages/fatcher-middleware-cache)
-- [@fatcherjs/middleware-form-data](https://github.com/fanhaoyuan/fatcher/tree/master/packages/fatcher-middleware-form-data)
-- [@fatcherjs/middleware-json](https://github.com/fanhaoyuan/fatcher/tree/master/packages/fatcher-middleware-json)
-- [@fatcherjs/middleware-parameter](https://github.com/fanhaoyuan/fatcher/tree/master/packages/fatcher-middleware-parameter)
-- [@fatcherjs/middleware-progress](https://github.com/fanhaoyuan/fatcher/tree/master/packages/fatcher-middleware-progress)
-- [@fatcherjs/middleware-exception](https://github.com/fanhaoyuan/fatcher/tree/master/packages/fatcher-middleware-exception)
+- [@fatcherjs/middleware-aborter](https://github.com/fatcherjs/middleware-aborter)
+- [@fatcherjs/middleware-cache](https://github.com/fatcherjs/middleware-cache)
+- [@fatcherjs/middleware-form-data](https://github.com/fatcherjs/middleware-form-data)
+- [@fatcherjs/middleware-json](https://github.com/fatcherjs/middleware-json)
+- [@fatcherjs/middleware-parameter](https://github.com/fatcherjs/middleware-parameter)
+- [@fatcherjs/middleware-progress](https://github.com/fatcherjs/middleware-progress)
+- [@fatcherjs/middleware-exception](https://github.com/fatcherjs/middleware-exception)
 
 ## License
 
