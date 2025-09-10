@@ -46,10 +46,6 @@ export function composeMiddlewares(middlewares: FatcherFunctionalMiddleware[]) {
 
       const middleware = middlewares[index];
 
-      if (!middleware) {
-        return response;
-      }
-
       if (patch) {
         context = {
           ...context,
