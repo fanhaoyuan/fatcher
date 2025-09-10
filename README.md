@@ -279,4 +279,4 @@ const transformedFile = await response.getMp4();
 
 ## License
 
-[MIT](https://github.com/fanhaoyuan/fatcher/blob/master/LICENSE)
+[MIT](https://github.com/fatcherjs/fatcher/blob/master/LICENSE)
